@@ -1,0 +1,28 @@
+source $ZFUNCTIONS/zsh-functions
+
+f() { find -E $1 -regex ".*\.($2)" -print0 | xargs -0 grep -n -d skip $3 }
+#f() { find -E $1 -regex ".*\.($2)" -print0 | xargs -0 grep -n $3 }
+fe() { find -E $1 -regex ".*\.($2)" }
+
+
+# adb_connect() { adb connect "${IPADDR}:5555" }
+
+avgen() { python3 ${ENV}/avgen.py $PWD $1 }
+github() { python3 ${ENV}/github.py }
+
+upgrade() {
+    sudo port selfupdate;
+    sudo port upgrade outdated;
+    find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q;
+    brew upgrade;
+}
+cleanup() {
+    sudo port uninstall leaves;
+    brew autoremove;
+    brew cleanup --prune=all;
+    sudo rm -rf $(brew --cache)
+    sudo port -f clean --all all;
+}
+
+ig-scraper() { $SCRIPTDIR/instagram/venv/bin/python $SCRIPTDIR/instagram/main.py $1 }
+exe() { eval $EXE }

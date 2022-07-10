@@ -1,0 +1,12 @@
+source $ZALIASES/zsh-aliases
+
+alias ns='netstat -plntu'
+alias ls='ls --color=auto'
+
+# docker
+alias up='docker-compose up --build'
+alias down='docker-compose down'
+alias run='docker-compose run'
+#alias exe='docker exec -it'
+
+alias upgrade='sudo apt update && sudo apt upgrade -y'

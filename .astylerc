@@ -1,0 +1,82 @@
+### ~/.astylerc
+
+### Brace Style Options
+style=kr
+
+### Tab Options
+indent=spaces=4
+
+### Brace Modify Options
+# attach-namespaces
+# attach-classes
+# attach-inlines
+# attach-extern-c
+attach-closing-while
+
+### Indentation Options
+# indent-classes
+# indent-modifiers
+# indent-switches
+# indent-cases
+# indent-namespaces
+indent-after-parens
+indent-continuation=1
+# indent-labels
+indent-preproc-block
+indent-preproc-cond
+indent-preproc-define
+indent-col1-comments
+min-conditional-indent=2
+max-continuation-indent=40
+
+### Padding Options
+break-blocks
+# break-blocks=all
+pad-oper
+pad-comma
+# pad-paren
+# pad-paren-out
+# pad-first-paren-out
+# pad-paren-in
+pad-header
+unpad-paren
+delete-empty-lines
+# fill-empty-lines
+align-pointer=name
+align-reference=name
+
+### Formatting Options
+# break-closing-braces
+# break-elseifs
+break-one-line-headers
+# add-braces
+# add-one-line-braces
+remove-braces
+# break-return-type
+# break-return-type-decl
+# attach-return-type
+# attach-return-type-decl
+# keep-one-line-blocks
+# keep-one-line-statements
+convert-tabs
+# close-templates
+# remove-comment-prefix
+# max-code-length=
+# break-after-logical
+mode=c
+
+### Other Options
+suffix=none
+# recursive
+# dry-run
+# exclude=
+# ignore-exclude-errors
+# ignore-exclude-errors-x
+errors-to-stdout
+preserve-date
+# verbose
+# formatted
+# quiet
+# lineend=windows
+# lineend=linux
+# lineend=macold

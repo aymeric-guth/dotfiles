@@ -1,0 +1,62 @@
+# #!/bin/sh
+source $ZENVS/zshenv
+
+
+export CLICOLOR=1
+
+# JAVA
+export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+export ANDROID_HOME="${HOME}/Library/Android/sdk"
+PATH="${PATH}:${ANDROID_HOME}/emulator"
+PATH="${PATH}:${ANDROID_HOME}/tools"
+PATH="${PATH}:${ANDROID_HOME}/tools/bin"
+PATH="${PATH}:${ANDROID_HOME}/platform-tools"
+export GRADLE_USER_HOME="~/.gradle"
+
+### USER DEV ENV ###
+export DEV="${HOME}/Desktop/dev"
+export ENV="${DEV}/env"
+# export THOTS="${HOME}/Downloads/InstaScrap"
+export NOTES="${HOME}/Desktop/Notes"
+export GITHUB_REPOS="${HOME}/Desktop/Repos"
+export CONFIG="$DEV/config-sync"
+
+### IFA DEV ENV ###
+
+### GLOBAL DEV ENV ###
+export WINEDIR="${HOME}/.wine/drive_c"
+export IFA="${DESKTOP}/IFA"
+
+
+### Homebrew
+PATH="/usr/local/Homebrew/bin:${PATH}"
+PATH="/usr/local/sbin:${PATH}"
+export HOMEBREW_GITHUB_API_TOKEN=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
+
+
+### Novall
+export NOVALL="${DESKTOP}/Novall"
+export YAKUT_COMPILE_OUTPUT=~/.yakut
+export YAKUT_PATH="$YAKUT_COMPILE_OUTPUT"
+# export MCU=$(eval "ls /dev/tty.usb*")
+
+# MicroPython build deps
+export MPY=$HOME/Desktop/micropython-repos
+export XTENSA=${MPY}/xtensa-esp32-elf/bin
+export PATH=${PATH}:${XTENSA}
+export MPY_DIR=${MPY}/micropython
+
+# git-filter-repo
+PATH=${PATH}:/Users/yul/Desktop/Repos/git-filter-repo
+# MacPorts binaries
+PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+
+### CMake
+export MACOSX_DEPLOYMENT_TARGET=10.14
+export RSN=$HOME/Desktop/RSN
+
+# export SCRIPTDIR="$HOME/bin"
+# export IG_USER="aymeric.guth@protonmail.com"
+# export IG_PWD="F%o{4]wgkJ=hNiADA97B6fQrya?+e#4ZOU9L1<0#7#Jr;tPr,\w[\yO<u\vcI1C"
+# export POKEDEX="$HOME/Downloads/Pokedex"

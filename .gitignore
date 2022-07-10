@@ -1,0 +1,12 @@
+/Volumes
+/System
+**/.av-mp/**
+.git
+.direnv
+.mypy_cache
+.venv
+venv
+node_modules
+**/Audio/**
+plugged
+plugins
