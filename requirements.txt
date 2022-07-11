@@ -1,2 +1,10 @@
 pynvim
+mypy
+pylint
+jedi
+pytest
 black
+virtualenv
+meson
+python-language-server
+

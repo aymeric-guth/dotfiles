@@ -60,3 +60,7 @@ export RSN=$HOME/Desktop/RSN
 # export IG_USER="aymeric.guth@protonmail.com"
 # export IG_PWD="F%o{4]wgkJ=hNiADA97B6fQrya?+e#4ZOU9L1<0#7#Jr;tPr,\w[\yO<u\vcI1C"
 # export POKEDEX="$HOME/Downloads/Pokedex"
+#
+
+### Python
+PATH="$HOME/Library/Python/3.10/bin:$PATH"

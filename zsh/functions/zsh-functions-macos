@@ -11,11 +11,22 @@ avgen() { python3 ${ENV}/avgen.py $PWD $1 }
 github() { python3 ${ENV}/github.py }
 
 upgrade() {
+    # Macports
     sudo port selfupdate;
     sudo port upgrade outdated;
+    # ZSH plugins
     find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q;
+    # Homebrew
     brew upgrade;
+    # PIP, Python3 global packages
+    python3 -m pip install --upgrade pip;
+    python3 -m pip install -r $DOTCONF/requirements.txt --upgrade;
+    # NPM, Node global packages
+    sudo npm install -g npm@latest;
+    sudo npm update -g;
+    python3 ${ENV}/github.py;
 }
+
 cleanup() {
     sudo port uninstall leaves;
     brew autoremove;

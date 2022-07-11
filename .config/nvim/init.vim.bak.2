@@ -1,0 +1,96 @@
+" Ignore files
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=**/coverage/*
+set wildignore+=**/node_modules/*
+set wildignore+=**/android/*
+set wildignore+=**/ios/*
+set wildignore+=**/.git/*
+
+"source .vimrc in CWD
+set exrc
+"display line number
+set number
+set relativenumber
+"tab rendered space
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+set smartindent
+set nowrap
+set nohlsearch
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+set scrolloff=8
+set signcolumn=yes
+set colorcolumn=80
+set hidden
+set noerrorbells
+set termguicolors
+
+call plug#begin()
+
+" LSP
+Plug 'chilledheart/vim-clangd'
+
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/plenary.nvim'
+"Plug 'https://github.com/gruvbox-community/gruvbox.git'
+"Plug 'https://github.com/morhetz/gruvbox.git'
+Plug 'luisiacc/gruvbox-baby'
+Plug 'https://github.com/vim-autoformat/vim-autoformat'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+Plug 'romgrk/nvim-treesitter-context'
+
+" git tree browser
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+
+Plug 'mbbill/undotree'
+
+" LSP tree view
+" https://github.com/simrat39/symbols-outline.nvim
+" LSP plugin ?
+" https://github.com/glepnir/lspsaga.nvim
+
+call plug#end()
+
+"colorscheme gruvbox
+colorscheme gruvbox-baby
+highlight Normal guibg=none
+
+filetype plugin on
+
+lua require'nvim-treesitter.configs'.setup { highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
+
+let g:python3_host_prog="python3"
+let g:formatdef_av_c = '"astyle --options=${DOTCONF}/.astylerc --project=none"'
+let g:formatters_c = ['av_c']
+let g:formatdef_av_python = '"python3 -m black"'
+let g:formatters_python = ['av_python']
+let g:formatdef_av_markdown = '"remark"'
+let g:formatters_markdown = ['av_markdown']
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup AV
+    autocmd!
+    autocmd BufWrite *.c,*.py,*md :Autoformat
+    autocmd BufWritePre * :call TrimWhitespace()
+augroup END
+
+let mapleader = " "
+nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep for > ")})<cr>
+
+lua require('av')

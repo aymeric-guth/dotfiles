@@ -8,5 +8,7 @@
 venv
 node_modules
 **/Audio/**
-plugged
-plugins
+.local/share/nvim/shada/**
+.local/share/nvim/site/**
+.local/share/nvim/swap/**
+zsh/plugins/**
