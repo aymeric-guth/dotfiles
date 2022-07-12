@@ -69,10 +69,7 @@ local cmp = require('cmp')
         {
             { name = 'nvim_lsp' },
             { name = 'cmp_tabnine' },
-            -- { name = 'vsnip' }, -- For vsnip users.
-            { name = 'luasnip' }, -- For luasnip users.
-            -- { name = 'ultisnips' }, -- For ultisnips users.
-            -- { name = 'snippy' }, -- For snippy users.
+            { name = 'luasnip' }, 
             { name = 'buffer' },
         }
     )
@@ -107,16 +104,16 @@ local cmp = require('cmp')
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local project_path = os.getenv("PROJECT_PATH")
 
-require('lspconfig')['jedi_language_server'].setup {
---  on_attach = on_attach, 
-  capabilities = capabilities
+--require('lspconfig')['jedi_language_server'].setup {
+--  capabilities = capabilities
+--}
+require'lspconfig'.pylsp.setup{
+    on_attach = on_attach,
+    capabilities = capabilities
 }
-require('lspconfig')['pyright'].setup{
-    cmd = { "pyright-langserver", "--stdio", "--project " .. project_path .. "/projectpyproject.toml" }
---   capabilities = capabilities
-}
+--require('lspconfig')['pyright'].setup{
+--}
 require('lspconfig')['clangd'].setup{
   capabilities = capabilities
 }
