@@ -107,12 +107,14 @@ local cmp = require('cmp')
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local project_path = os.getenv("PROJECT_PATH")
 
 require('lspconfig')['jedi_language_server'].setup {
 --  on_attach = on_attach, 
   capabilities = capabilities
 }
 require('lspconfig')['pyright'].setup{
+    cmd = { "pyright-langserver", "--stdio", "--project " .. project_path .. "/projectpyproject.toml" }
 --   capabilities = capabilities
 }
 require('lspconfig')['clangd'].setup{
