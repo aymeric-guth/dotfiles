@@ -22,6 +22,6 @@ function ColorGruvboxBaby()
     vim.cmd[[colorscheme gruvbox-baby]]
 end
 
--- ColorGruvboxBaby()
+ColorGruvboxBaby()
 -- ColorGruvboxCommunity()
-ColorTokyoNight()
+-- ColorTokyoNight()

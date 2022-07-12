@@ -25,6 +25,7 @@ upgrade() {
     sudo npm install -g npm@latest;
     sudo npm update -g;
     python3 ${ENV}/github.py;
+    cargo install-update --all;
 }
 
 cleanup() {
