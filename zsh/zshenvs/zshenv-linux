@@ -1,2 +1,3 @@
 # #!/bin/sh
 source $ZENVS/zshenv
+PATH="$HOME/.local/bin:$PATH"

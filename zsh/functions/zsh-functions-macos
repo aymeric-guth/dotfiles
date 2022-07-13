@@ -20,12 +20,15 @@ upgrade() {
     brew upgrade;
     # PIP, Python3 global packages
     python3 -m pip install --upgrade pip;
-    python3 -m pip install -r $DOTCONF/requirements.txt --upgrade;
+    # --upgrade breaks compatibility with package that relies on version specific dependencies
+    # installation per package with dependencies in isolation? pipx?
+    # python3 -m pip install -r $DOTCONF/requirements.txt --upgrade;
+    python3 -m pip install -r $DOTCONF/requirements.txt;
     # NPM, Node global packages
     sudo npm install -g npm@latest;
     sudo npm update -g;
     python3 ${ENV}/github.py;
-    cargo install-update --all;
+    LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all;
 }
 
 cleanup() {

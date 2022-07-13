@@ -1,10 +1,12 @@
 pynvim
 mypy
 pylint
-jedi
 pytest
 black
 virtualenv
 meson
-python-language-server
-
+httpx
+git+https://github.com/python-lsp/python-lsp-server.git@develop
+git+https://github.com/python-lsp/pylsp-mypy@master
+git+https://github.com/pappasam/jedi-language-server@main
+pyright

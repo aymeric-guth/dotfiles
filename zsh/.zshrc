@@ -42,28 +42,27 @@ Darwin)
 	[ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
 	[ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
 	[ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
-		# Imports
-		source "$ZFUNCTIONS/zsh-functions-macos"
-		source "$ZENVS/zshenv-macos"
-		source "$ZALIASES/zsh-aliases-macos"
-		source "$ZPROMPTS/zsh-prompt"
-        ;;
+	# Imports
+	source "$ZFUNCTIONS/zsh-functions-macos"
+	source "$ZENVS/zshenv-macos"
+	source "$ZALIASES/zsh-aliases-macos"
+	source "$ZPROMPTS/zsh-prompt"
+	;;
 Linux)
     source $ZENVS/zshenv-linux
-# https://github.com/junegunn/fzf
-# TODO update for mac
+	# https://github.com/junegunn/fzf
 	[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 	[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 	[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
 	[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 	[ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
-		# Imports
-		source "$ZFUNCTIONS/zsh-functions-linux"
-		source "$ZENVS/zshenv-linux"
-		source "$ZALIASES/zsh-aliases-linux"
-		source "$ZPROMPTS/zsh-prompt"
-        ;;
+	# Imports
+	source "$ZFUNCTIONS/zsh-functions-linux"
+	source "$ZENVS/zshenv-linux"
+	source "$ZALIASES/zsh-aliases-linux"
+	source "$ZPROMPTS/zsh-prompt"
+	;;
 *)
         ;;
 esac
@@ -110,6 +109,7 @@ compinit
 source "$ZCOMPLETIONS/.minikube-completion"
 fpath=($ZCOMPLETIONS $fpath)
 zstyle ':completion:*:*:git:*' script $ZCOMPLETIONS/git-completion.bash
+# eval "$(register-python-argcomplete pipx)"
 
 # source "$ZCOMPLETIONS/git-completion.bash"
 # source "$ZCOMPLETIONS/git-completion.zsh"

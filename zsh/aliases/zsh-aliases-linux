@@ -9,4 +9,6 @@ alias down='docker-compose down'
 alias run='docker-compose run'
 #alias exe='docker exec -it'
 
-alias upgrade='sudo apt update && sudo apt upgrade -y'
+
+alias nvim="XDG_CONFIG_HOME=${DOTCONF}/.config XDG_DATA_HOME=${DOTCONF}/.local/share PATH=$HOME/bin/lua-language-server:$PATH nvim"
+alias python3="python3.7"

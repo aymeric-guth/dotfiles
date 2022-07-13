@@ -11,3 +11,6 @@ node_modules
 .local/share/nvim/**
 zsh/plugins/**
 .config/nvim/plugin/**
+.config/TabNine/**
+.luarc.json
+.stignore
