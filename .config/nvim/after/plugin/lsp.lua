@@ -1,13 +1,3 @@
-local source_mapping = {
-	youtube = "[Suck it YT]",
-	buffer = "[Buffer]",
-	nvim_lsp = "[LSP]",
-	nvim_lua = "[Lua]",
-	cmp_tabnine = "[TN]",
-	path = "[Path]",
-}
-
---local lspkind = require("lspkind")
 local compare = require("cmp.config.compare")
 local icons = require("av.icons")
 local kind_icons = icons.kind
@@ -20,20 +10,6 @@ local kind_icons = icons.kind
 -- vim.api.nvim_set_hl(0, "CmpItemKindBuffer", { fg = "#CA42F0" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindPath", { fg = "#FDE030" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindLua", { fg = "#F64D00" })
-
-local tabnine = require("cmp_tabnine.config")
-tabnine:setup({
-	max_lines = 1000,
-	max_num_results = 20,
-	sort = true,
-	run_on_every_keystroke = true,
-	snippet_placeholder = "..",
-	ignored_file_types = { -- default is not to ignore
-		-- uncomment to ignore in lua:
-		-- lua = true
-	},
-	show_prediction_strength = false,
-})
 
 local cmp = require("cmp")
 cmp.setup({
@@ -97,11 +73,6 @@ cmp.setup({
 				vim_item.kind = icons.misc.Vim
 				vim_item.kind_hl_group = "CmpItemKindLua"
 			end
-
-			-- if entry.source.name == "crates" then
-			-- 	vim_item.kind = icons.misc.Package
-			-- 	vim_item.kind_hl_group = "CmpItemKindCrate"
-			-- end
 
 			vim_item.menu = ({
 				nvim_lsp = "",

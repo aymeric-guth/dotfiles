@@ -10,7 +10,9 @@ local null_ls_opts = {
 		filetypes = { "c", "cpp" },
 		--            --cppcheck-build-dir=path
 		extra_args = {
-			"--enable=warning,style,performance,portability,information,unusedFunction,missingInclude",
+			"--enable=all",
+			"--suppress=missingIncludeSystem",
+			-- "--enable=warning,style,performance,portability,information,unusedFunction,missingInclude",
 			"--std=c11",
 			"--platform=unix64",
 			"$FILENAME",
