@@ -54,7 +54,7 @@ return require("packer").startup(function()
 	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
 	use("L3MON4D3/LuaSnip")
 	use("saadparwaiz1/cmp_luasnip")
-
+	use("folke/trouble.nvim")
 	-- Colorscheme section
 	use("gruvbox-community/gruvbox")
 	use("folke/tokyonight.nvim")
