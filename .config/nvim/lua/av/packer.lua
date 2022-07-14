@@ -55,7 +55,6 @@ return require("packer").startup(function()
 	use("simrat39/symbols-outline.nvim")
 	-- LSP
 	--    use("p00f/clangd_extensions.nvim")
-	use("pappasam/jedi-language-server")
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-path")
