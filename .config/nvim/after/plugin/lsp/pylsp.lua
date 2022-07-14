@@ -9,9 +9,10 @@ require("lspconfig")["pylsp"].setup({
 	lsp_flags = lsp_flags,
 	settings = {
 		pylsp = {
-			configurationSources = { "pylsp_mypy", "mypy" },
+			trace = { server = "verbose" },
+			configurationSources = {},
 			plugins = {
-				flake8 = { enabled = false },
+				flake8 = { enabled = true },
 				pylint = { enabled = false },
 				pycodestyle = { enabled = false },
 				pyflakes = { enabled = false },
@@ -19,7 +20,7 @@ require("lspconfig")["pylsp"].setup({
 				jedi_completion = { enabled = true },
 				jedi_definition = { enabled = true },
 				jedi_hover = { enabled = true },
-				mccabe = { enabled = false },
+				mccabe = { enabled = true },
 				preload = { enabled = false },
 				pydocstyle = { enabled = false },
 				rope_completion = { enabled = false },

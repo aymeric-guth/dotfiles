@@ -24,35 +24,32 @@ local null_ls_opts = {
 	}),
 	formatting.remark.with({
 		filetypes = { "markdown" },
-		extra_args = { "$FILENAME" },
 	}),
-	formatting.prettierd.with({
-		filetypes = {
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact",
-			"vue",
-			"css",
-			"scss",
-			"less",
-			"html",
-			"json",
-			"jsonc",
-			"yaml",
-			"markdown",
-			"graphql",
-			"handlebars",
-		},
-		extra_args = { "$FILENAME" },
-	}),
-	formatting.stylua,
+	formatting.prettier,
+	-- 	formatting.prettier.with({
+	-- 		filetypes = {
+	-- 			"javascript",
+	-- 			"javascriptreact",
+	-- 			"typescript",
+	-- 			"typescriptreact",
+	-- 			"vue",
+	-- 			"css",
+	-- 			"scss",
+	-- 			"less",
+	-- 			"html",
+	-- 			"json",
+	-- 			"jsonc",
+	-- 			"yaml",
+	-- 			"markdown",
+	-- 			"graphql",
+	-- 			"handlebars",
+	-- 		},
+	-- 	}),
+	formatting.stylua.with({ filetypes = { "lua" } }),
+	formatting.taplo.with({ filetypes = { "toml" } }),
+	diagnostics.yamllint.with({ filetypes = { "yaml" } }),
 }
 
---null_ls.setup({
---	debug = false,
---	source = null_ls_opts,
---})
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
 	debug = false,

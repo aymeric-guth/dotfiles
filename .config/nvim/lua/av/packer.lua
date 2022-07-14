@@ -51,6 +51,7 @@ return require("packer").startup(function()
 		},
 		tag = "nightly", -- optional, updated every week. (see issue #1193)
 	})
+	use("mbbill/undotree")
 
 	use("simrat39/symbols-outline.nvim")
 	-- LSP
@@ -64,6 +65,7 @@ return require("packer").startup(function()
 	use("L3MON4D3/LuaSnip")
 	use("saadparwaiz1/cmp_luasnip")
 	use("folke/trouble.nvim")
+
 	-- Colorscheme section
 	use("gruvbox-community/gruvbox")
 	use("folke/tokyonight.nvim")

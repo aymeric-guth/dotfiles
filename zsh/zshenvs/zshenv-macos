@@ -64,6 +64,7 @@ export RSN=$HOME/Desktop/RSN
 
 ### Python
 PATH="$HOME/Library/Python/3.10/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 #export DYLD_LIBRARY_PATH="/opt/local/lib:/opt/local/libexec/llvm-14/lib"
 #export DYLD_FALLBACK_LIBRARY_PATH="/opt/local/lib:/opt/local/libexec/llvm-14/lib"

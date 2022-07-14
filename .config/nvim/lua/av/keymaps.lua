@@ -16,6 +16,7 @@ vim.g.maplocalleader = " "
 keymap("n", "<leader>e", ":NvimTreeToggle <CR>", opts)
 keymap("n", "<leader>r", ":SymbolsOutline<CR>", opts)
 keymap("n", "<leader>d", ":TroubleToggle<CR>", opts)
+keymap("n", "<leader>z", ":UndotreeToggle<CR>", opts)
 
 keymap("n", "<C-=>", "<Nop>", opts)
 keymap("n", "^=", ":resize +2<CR>", opts)

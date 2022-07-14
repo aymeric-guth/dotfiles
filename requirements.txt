@@ -1,12 +1,14 @@
-pynvim
-mypy
-pylint
-pytest
-black
-virtualenv
+# Tools
 meson
-httpx
-git+https://github.com/python-lsp/python-lsp-server.git@develop
+virtualenv
+pytest
+git+https://git.ars-virtualis.org/yul/lsfiles@master
+# VIM
+pynvim
+black
+python-lsp-server[flake8,mccabe,rope,pycodestyle,pydocstyle]@git+https://github.com/python-lsp/python-lsp-server.git@develop
 git+https://github.com/python-lsp/pylsp-mypy@master
-git+https://github.com/pappasam/jedi-language-server@main
 pyright
+git+https://github.com/adrienverge/yamllint@master
+# Temp
+httpx

@@ -21,8 +21,8 @@ upgrade() {
     # PIP, Python3 global packages
     python3 -m pip install --upgrade pip;
     # --upgrade breaks compatibility with package that relies on version specific dependencies
-    # installation per package with dependencies in isolation? pipx?
     # python3 -m pip install -r $DOTCONF/requirements.txt --upgrade;
+    python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
     python3 -m pip install -r $DOTCONF/requirements.txt;
     # NPM, Node global packages
     sudo npm install -g npm@latest;
@@ -37,6 +37,10 @@ cleanup() {
     brew cleanup --prune=all;
     sudo rm -rf $(brew --cache)
     sudo port -f clean --all all;
+    python3 -m pip cache purge;
+    cargo cache clean-unref;
+    cargo cache --autoclean;
+    npm cache clean –force;
 }
 
 ig-scraper() { $SCRIPTDIR/instagram/venv/bin/python $SCRIPTDIR/instagram/main.py $1 }
