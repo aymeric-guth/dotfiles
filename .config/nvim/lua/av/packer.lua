@@ -39,12 +39,22 @@ return require("packer").startup(function()
 	use("jose-elias-alvarez/null-ls.nvim")
 
 	-- Telescope + deps: fuzzy finder
-	use("nvim-telescope/telescope.nvim")
+	use({
+		"nvim-telescope/telescope.nvim",
+		branch = "master",
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
+	use({
+		"kyazdani42/nvim-tree.lua",
+		requires = {
+			"kyazdani42/nvim-web-devicons", -- optional, for file icons
+		},
+		tag = "nightly", -- optional, updated every week. (see issue #1193)
+	})
 
+	use("simrat39/symbols-outline.nvim")
 	-- LSP
 	--    use("p00f/clangd_extensions.nvim")
-	--    use("kyazdani42/nvim-web-devicons")
-	--    use("folke/trouble.nvim")
 	use("pappasam/jedi-language-server")
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-buffer")
@@ -59,7 +69,6 @@ return require("packer").startup(function()
 	use("gruvbox-community/gruvbox")
 	use("folke/tokyonight.nvim")
 	use("luisiacc/gruvbox-baby")
-	use("onsails/lspkind.nvim")
 
 	-- Autopairs
 	use("windwp/nvim-autopairs")

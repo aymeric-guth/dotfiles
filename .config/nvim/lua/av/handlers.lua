@@ -35,9 +35,17 @@ return {
 		if client.name ~= "null-ls" then
 			client.resolved_capabilities.document_formatting = false
 		end
-		--if client.name == "null-ls" then
-		--	client.server_capabilities.completionProvider = false
-		--end
+		-- local rc = client.resolved_capabilities
+		-- rc.document_formatting = false
+		-- rc.document_range_formatting = false
+		-- rc.document_highlight = false
+		-- rc.document_symbol = false
+		-- rc.workspace_symbol = false
+		-- rc.rename = false
+		-- rc.hover = false
+		-- rc.completion = false
+		-- rc.code_action = false
+		-- rc.documenrt_publish_diagnostics = false
 	end,
 
 	-- Setup lspconfig.

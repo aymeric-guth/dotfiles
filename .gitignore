@@ -1,7 +1,6 @@
 /Volumes
 /System
 **/.av-mp/**
-.git
 .direnv
 .mypy_cache
 .venv
@@ -10,7 +9,11 @@ node_modules
 **/Audio/**
 .local/share/nvim/**
 zsh/plugins/**
-.config/nvim/plugin/**
+.config/nvim/plugin
 .config/TabNine/**
 .luarc.json
-.stignore
+TabNine
+.local
+.stfolder
+.stversions
+.vscode

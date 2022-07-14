@@ -1,3 +1,24 @@
+vim.opt.wildignore = {
+	"*.pyc",
+	"*_build/*",
+	"**/coverage/*",
+	"**/node_modules/*",
+	"**/android/*",
+	"**/ios/*",
+	"**/.git/*",
+	"TabNine",
+	".stfolder",
+	".vscode",
+	".venv",
+	"venv",
+	".mypy_cache",
+	".atom",
+	".pytest_cache",
+	".DS_Store",
+	"__pycache__",
+	".local",
+}
+
 -- vim.opt.guicursor = ""
 
 vim.opt.encoding = "utf-8"

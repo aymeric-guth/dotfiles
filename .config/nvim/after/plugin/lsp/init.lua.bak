@@ -1,6 +1,0 @@
-require("null-ls")
-require("clangd")
-require("jedi-language-server")
-require("pylsp")
-require("pyright")
-require("sumneko")
