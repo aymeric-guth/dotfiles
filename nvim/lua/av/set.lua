@@ -21,6 +21,7 @@ vim.opt.wildignore = {
 
 -- vim.opt.guicursor = ""
 
+vim.opt.foldenable = false
 vim.opt.encoding = "utf-8"
 vim.opt.guifont = "monospace:h17"
 
@@ -40,7 +41,7 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = vim.fn.stdpath("cache")
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -63,5 +64,3 @@ vim.opt.updatetime = 50
 vim.opt.shortmess:append("c")
 
 vim.opt.colorcolumn = "80"
-
-vim.g.mapleader = " "

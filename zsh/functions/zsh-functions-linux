@@ -1,3 +1,5 @@
+#!/bin/sh
+
 source $ZFUNCTIONS/zsh-functions
 
 f() { find -E $1 -regex ".*\.($2)" -print0 | xargs -0 grep -n $3 }

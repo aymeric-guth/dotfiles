@@ -1,4 +1,9 @@
-require("symbols-outline").setup({
+local status_ok, symbols_outline = pcall(require, "symbols-outline")
+if not status_ok then
+	return
+end
+
+symbols_outline.setup({
 	-- whether to highlight the currently hovered symbol
 	-- disable if your cpu usage is higher than you want it
 	-- or you just hate the highlight

@@ -1,9 +1,10 @@
+#!/bin/sh
+
 source $ZFUNCTIONS/zsh-functions
 
 f() { find -E $1 -regex ".*\.($2)" -print0 | xargs -0 grep -n -d skip $3 }
 #f() { find -E $1 -regex ".*\.($2)" -print0 | xargs -0 grep -n $3 }
 fe() { find -E $1 -regex ".*\.($2)" }
-
 
 # adb_connect() { adb connect "${IPADDR}:5555" }
 
@@ -11,23 +12,23 @@ avgen() { python3 ${ENV}/avgen.py $PWD $1 }
 github() { python3 ${ENV}/github.py }
 
 upgrade() {
-    # Macports
+    ### Macports
     sudo port selfupdate;
     sudo port upgrade outdated;
-    # ZSH plugins
+    ### ZSH plugins
     find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q;
-    # Homebrew
+    ### Homebrew
     brew upgrade;
-    # PIP, Python3 global packages
+    ### PIP, Python3 global packages
     python3 -m pip install --upgrade pip;
-    # --upgrade breaks compatibility with package that relies on version specific dependencies
-    # python3 -m pip install -r $DOTCONF/requirements.txt --upgrade;
     python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
     python3 -m pip install -r $DOTCONF/requirements.txt;
-    # NPM, Node global packages
+    ### NPM, Node global packages
     sudo npm install -g npm@latest;
     sudo npm update -g;
+    ### Pull updates from github
     python3 ${ENV}/github.py;
+    ### Rust crates
     LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all;
 }
 
@@ -40,7 +41,7 @@ cleanup() {
     python3 -m pip cache purge;
     cargo cache clean-unref;
     cargo cache --autoclean;
-    npm cache clean –force;
+    npm cache clean --force;
 }
 
 ig-scraper() { $SCRIPTDIR/instagram/venv/bin/python $SCRIPTDIR/instagram/main.py $1 }

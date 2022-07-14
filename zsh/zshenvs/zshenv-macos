@@ -1,6 +1,6 @@
-# #!/bin/sh
-source $ZENVS/zshenv
+#!/bin/sh
 
+source $ZENVS/zshenv
 
 export CLICOLOR=1
 
@@ -42,10 +42,10 @@ export YAKUT_PATH="$YAKUT_COMPILE_OUTPUT"
 # export MCU=$(eval "ls /dev/tty.usb*")
 
 # MicroPython build deps
-export MPY=$HOME/Desktop/micropython-repos
-export XTENSA=${MPY}/xtensa-esp32-elf/bin
-export PATH=${PATH}:${XTENSA}
-export MPY_DIR=${MPY}/micropython
+# export MPY=$HOME/Desktop/micropython-repos
+# export XTENSA=${MPY}/xtensa-esp32-elf/bin
+# export PATH=${PATH}:${XTENSA}
+# export MPY_DIR=${MPY}/micropython
 
 # git-filter-repo
 PATH=${PATH}:/Users/yul/Desktop/Repos/git-filter-repo
@@ -55,16 +55,20 @@ PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 ### CMake
 export MACOSX_DEPLOYMENT_TARGET=10.14
 export RSN=$HOME/Desktop/RSN
+#export DYLD_LIBRARY_PATH="/opt/local/lib:/opt/local/libexec/llvm-14/lib"
+#export DYLD_FALLBACK_LIBRARY_PATH="/opt/local/lib:/opt/local/libexec/llvm-14/lib"
 
 # export SCRIPTDIR="$HOME/bin"
 # export IG_USER="aymeric.guth@protonmail.com"
 # export IG_PWD="F%o{4]wgkJ=hNiADA97B6fQrya?+e#4ZOU9L1<0#7#Jr;tPr,\w[\yO<u\vcI1C"
 # export POKEDEX="$HOME/Downloads/Pokedex"
-#
 
 ### Python
+# Interpreter PATH
 PATH="$HOME/Library/Python/3.10/bin:$PATH"
+# User installed executables 
 PATH="$HOME/.local/bin:$PATH"
+
+### Rust
+# User installed executables
 PATH="$HOME/.cargo/bin:$PATH"
-#export DYLD_LIBRARY_PATH="/opt/local/lib:/opt/local/libexec/llvm-14/lib"
-#export DYLD_FALLBACK_LIBRARY_PATH="/opt/local/lib:/opt/local/libexec/llvm-14/lib"

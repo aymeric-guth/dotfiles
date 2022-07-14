@@ -1,3 +1,5 @@
+#!/bin/sh
+
 alias ll='ls -lh'
 alias la='ls -la'
 alias ..='cd ..'
@@ -10,11 +12,6 @@ alias grep='LC_ALL=C  grep --color=auto'
 # alias rm='rm -i'
 
 alias df='df -h'     # human-readable sizes
-alias free='free -m' # show sizes in MB
-
-# get top process eating memory
-alias psmem='ps auxf | sort -nr -k 4 | head -5'
-
 # get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
@@ -24,18 +21,4 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
-
 alias kubectl="minikube kubectl --"
-
-
-#alias astyle="astyle --options=${DOTCONF}/.astilerc --project=none"
-# case "$(uname -s)" in
-# Darwin)
-#     source $ZALIASES/zsh-aliases-macos
-# 	;;
-# Linux)
-#     source $ZALIASES/zsh-aliases-linux
-# 	;;
-# *)
-# 	;;
-# esac

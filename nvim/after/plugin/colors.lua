@@ -1,3 +1,8 @@
+local status_ok, colorscheme = pcall(require, "gruvbox-baby")
+if not status_ok then
+	return
+end
+
 function ColorTokyoNight()
 	vim.g.tokyonight_transparent_sidebar = true
 	vim.g.tokyonight_transparent = true

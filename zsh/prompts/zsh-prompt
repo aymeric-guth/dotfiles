@@ -1,82 +1,10 @@
-# Requirements
+#!/bin/sh
 
-
-#########################################################################################################
-# autoload -Uz vcs_info
-# precmd_vcs_info() { vcs_info }
-# precmd_functions+=( precmd_vcs_info )
-# setopt prompt_subst
-# RPROMPT=\$vcs_info_msg_0_
-# zstyle ':vcs_info:git:*' formats '%F{240}(%b)%r%f'
-# zstyle ':vcs_info:*' enable git
-
-# export PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
-# PROMPT='%n@%m%/'
-# PROMPT='%M%F{240}%1~%f%b %# '
-
-
-#########################################################################################################
-# PROMPT=$'%~\n%# '
-# RPROMPT='%T'
-
-
-
-
-
-#########################################################################################################
-# Example of two-line ZSH prompt with four components.
-#
-#   top-left                         top-right
-#   bottom-left                   bottom-right
-#
-# Components can be customized by editing set-prompt function.
-#
-# Installation:
-#
-#   (cd && curl -fsSLO https://gist.githubusercontent.com/romkatv/2a107ef9314f0d5f76563725b42f7cab/raw/two-line-prompt.zsh)
-#   echo 'source ~/two-line-prompt.zsh' >>~/.zshrc
-#
-# Accompanying article:
-# https://www.reddit.com/r/zsh/comments/cgbm24/multiline_prompt_the_missing_ingredient/
-#
-# This is only an example. If you are looking for a good ZSH prompt,
-# try https://github.com/romkatv/powerlevel10k/.
-
-# Usage: prompt-length TEXT [COLUMNS]
-#
-# If you run `print -P TEXT`, how many characters will be printed
-# on the last line?
-#
-# Or, equivalently, if you set PROMPT=TEXT with prompt_subst
-# option unset, on which column will the cursor be?
-#
-# The second argument specifies terminal width. Defaults to the
-# real terminal width.
-#
-# The result is stored in REPLY.
-#
-# Assumes that `%{%}` and `%G` don't lie.
-#
-# Examples:
-#
-#   prompt-length ''            => 0
-#   prompt-length 'abc'         => 3
-#   prompt-length $'abc\nxy'    => 2
-#   prompt-length '❎'          => 2
-#   prompt-length $'\t'         => 8
-#   prompt-length $'\u274E'     => 2
-#   prompt-length '%F{red}abc'  => 3
-#   prompt-length $'%{a\b%Gb%}' => 1
-#   prompt-length '%D'          => 8
-#   prompt-length '%1(l..ab)'   => 2
-#   prompt-length '%(!.a.)'     => 1 if root, 0 if not
 function show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    # echo "($(basename $VIRTUAL_ENV)) "
     echo ">>"
   fi
 }
-# export -f show_virtual_env
 
 function prompt-length() {
   emulate -L zsh

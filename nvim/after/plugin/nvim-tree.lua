@@ -7,10 +7,13 @@ local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_status_ok then
 	return
 end
-
-local icons = require("av.icons")
-
 local tree_cb = nvim_tree_config.nvim_tree_callback
+
+local status_ok, icons = pcall(require, "av.icons")
+if not status_ok then
+	return
+end
+
 
 nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
 	auto_reload_on_write = true,

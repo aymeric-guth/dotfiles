@@ -1,4 +1,12 @@
-local compare = require("cmp.config.compare")
+local status_ok, compare = pcall(require, "cmp.config.compare")
+if not status_ok then
+	return
+end
+
+local status_ok, icons = pcall(require, "av.icons")
+if not status_ok then
+	return
+end
 local icons = require("av.icons")
 local kind_icons = icons.kind
 

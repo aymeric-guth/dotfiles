@@ -1,5 +1,5 @@
 # #!/bin/sh
-HISTFILE=~/.zsh_history
+HISTFILE="$ZDATA/.zsh_history"
 setopt appendhistory
 
 # some useful options (man zshoptions)
@@ -13,7 +13,11 @@ unsetopt BEEP
 
 
 # completions
+export ZSH_COMPDUMP=$ZDATA/.zcompdump
 autoload -Uz compinit
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$ZDATA/.zcompcache"
 zstyle ':completion:*' menu select
 # zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
@@ -28,6 +32,7 @@ zle -N down-line-or-beginning-search
 # Colors
 autoload -Uz colors && colors
 
+export ZPLUGINS="$ZDATA/plugins"
 export ZFUNCTIONS="$ZDOTDIR/functions"
 export ZENVS="$ZDOTDIR/zshenvs"
 export ZALIASES="$ZDOTDIR/aliases"
@@ -102,8 +107,7 @@ bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
 
-
-compinit
+compinit -d $ZDATA/.zcompdump-$ZSH_VERSION
 
 # Completion
 source "$ZCOMPLETIONS/.minikube-completion"
@@ -116,7 +120,7 @@ zstyle ':completion:*:*:git:*' script $ZCOMPLETIONS/git-completion.bash
 
 
 # Environment variables set everywhere
-export EDITOR="$(which nano)"
+export EDITOR="$(which nvim)"
 
 # direnv hook
 eval "$(direnv hook zsh)"
@@ -126,3 +130,6 @@ eval "$(direnv hook zsh)"
 if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden --ignore-file $DOTCONF/.gitignore'
 fi
+
+export PATH
+
