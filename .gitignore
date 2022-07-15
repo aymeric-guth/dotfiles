@@ -5,15 +5,9 @@
 .mypy_cache
 .venv
 venv
-node_modules
 **/Audio/**
-.local/share/nvim/**
-zsh/plugins/**
-.config/nvim/plugin
-.config/TabNine/**
-.luarc.json
-TabNine
-.local
 .stfolder
 .stversions
 .vscode
+.zsh_history
+.luarc.json

@@ -14,7 +14,6 @@ if not status_ok then
 	return
 end
 
-
 nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
 	auto_reload_on_write = true,
 	create_in_closed_folder = false,
@@ -134,7 +133,7 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
 	},
 	filters = {
 		dotfiles = false,
-		custom = {},
+		custom = { "^.git$" },
 		exclude = {},
 	},
 	filesystem_watchers = {

@@ -7,10 +7,6 @@
 (?d).Spotlight-V100
 (?d).Trashes
 (?d)desktop.ini
-(?d)node_modules
-(?d).ipynb_checkpoints
-(?d).gradle
-(?d).mvn
-(?d)venv
 (?d)index-v**
 (?d).venv
+(?d)venv
