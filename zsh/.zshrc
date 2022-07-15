@@ -131,5 +131,8 @@ if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden --ignore-file $DOTCONF/.gitignore'
 fi
 
+source $ZDOTDIR/vim-mode.sh
 export PATH
 
+-e 
+alias luamake=/home/yul/lua-language-server/3rd/luamake/luamake

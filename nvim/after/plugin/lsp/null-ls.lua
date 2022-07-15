@@ -26,9 +26,7 @@ local null_ls_opts = {
 		filetypes = { "python" },
 		extra_args = { "--fast" },
 	}),
-	formatting.remark.with({
-		filetypes = { "markdown" },
-	}),
+	formatting.remark,
 	formatting.prettier,
 	-- 	formatting.prettier.with({
 	-- 		filetypes = {

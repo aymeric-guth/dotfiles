@@ -37,4 +37,5 @@ alias ncdu='ncdu --exclude=/Users/yul/.av-mp'
 alias lua-language-server="$HOME/bin/lua-language-server/bin/lua-language-server" "$@"
 
 alias nvim="XDG_CONFIG_HOME=${DOTCONF} XDG_DATA_HOME=${HOME}/.local/share XDG_CACHE_HOME=${HOME}/.cache PATH=/opt/local/libexec/llvm-14/bin:${HOME}/bin/lua-language-server/bin:${PATH} nvim"
-alias vim-config="cd $DOTCONF && nvim"
+
+alias flux="cd $DEV/Network/mplayer && source .envrc && exe"

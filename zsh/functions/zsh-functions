@@ -31,3 +31,16 @@ function zsh_add_completion() {
     if [ "$2" = true ] && compinit "${completion_file:1}"
 }
 
+function zsh-update-plugins() {
+    find "$ZPLUGINS" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q;
+}
+
+function _upgrade() {
+    ### ZSH plugins
+    zsh-update-plugins;
+    ### PIP, Python3 global packages
+    python3 -m pip install --upgrade pip;
+    python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
+    python3 -m pip install -r $DOTCONF/requirements.txt;
+
+}

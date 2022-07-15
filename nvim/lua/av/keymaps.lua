@@ -26,9 +26,13 @@ keymap("n", "<C-+>", "<Nop>", opts)
 keymap("n", "<C-+>", ":vertical resize +2<CR>", opts)
 keymap("n", "<C-_>", ":vertical resize -2<CR>", opts)
 
-keymap(
-	"n",
-	"<leader>ps",
-	":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep for > ')})<cr>",
-	opts
-)
+keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
+-- keymap(
+-- 	"n",
+-- 	"<leader>ps",
+-- 	":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep for > ')})<cr>",
+-- 	opts
+-- )

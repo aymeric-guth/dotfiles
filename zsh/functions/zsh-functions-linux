@@ -5,31 +5,20 @@ source $ZFUNCTIONS/zsh-functions
 f() { find -E $1 -regex ".*\.($2)" -print0 | xargs -0 grep -n $3 }
 
 function upgrade() {
+    _upgrade;
     # APT
     sudo apt update && sudo apt upgrade -y;
-    # ZSH plugins
-    find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q;
-    # Python global packages
-    python3.7 -m pip install --upgrade pip;
-    python3.7 -m pip install --user -U pipx --upgrade;
-    pipx install --include-deps git+https://github.com/python-lsp/python-lsp-server.git@develop;
-    pipx install --include-deps git+https://github.com/python-lsp/pylsp-mypy@master;
-    pipx install --include-deps git+https://github.com/pappasam/jedi-language-server@main;
-    pipx install --include-deps black;
-    pipx install --include-deps pylint;
-    pipx install --include-deps pynvim;
-    pipx upgrade-all;
  }
 
 function _upgrade_nvim() {
-    git clone --depth=1 https://github.com/neovim/neovim ~/neovim;
+    git clone --depth 1 https://github.com/neovim/neovim ~/neovim;
     cd ~/neovim && make CMAKE_BUILD_TYPE=Release;
     sudo make install;
     cd .. && sudo rm -rf neovim;
 }
 
 function _upgrade_lua() {
-    git clone  --depth=1 https://github.com/sumneko/lua-language-server ~/lua-language-server;
+    git clone  --depth 1 https://github.com/sumneko/lua-language-server ~/lua-language-server;
     cd lua-language-server && git submodule update --depth 1 --init --recursive;
     cd 3rd/luamake && ./compile/install.sh;
     cd ../.. && ./3rd/luamake/luamake rebuild;
