@@ -12,8 +12,6 @@ local status_ok, icons = pcall(require, 'av.icons')
 if not status_ok then
   return
 end
-
-local icons = require('av.icons')
 local kind_icons = icons.kind
 
 -- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })

@@ -112,6 +112,7 @@ return require('packer').startup(function(use)
     branch = 'master',
     requires = { { 'nvim-lua/plenary.nvim' } },
   })
+  use({ 'nvim-telescope/telescope-fzf-native.nvim', branch = 'main', run = 'make' })
   use({
     'kyazdani42/nvim-tree.lua',
     requires = {

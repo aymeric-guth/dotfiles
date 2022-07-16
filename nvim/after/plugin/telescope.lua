@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+-- To get fzf loaded and working with telescope, you need to call
+-- load_extension, somewhere after setup function:
 telescope.setup({
   defaults = {
     -- Default configuration for telescope goes here:
@@ -43,3 +45,5 @@ telescope.setup({
     -- please take a look at the readme of the extension you want to configure
   },
 })
+
+telescope.load_extension('fzf')
