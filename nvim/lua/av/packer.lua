@@ -20,6 +20,14 @@ if not status_ok then
   return
 end
 
+-- :PackerSync on_save
+-- vim.cmd([[
+--     augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost packer.lua source <afile> | PackerSync
+--     augroup end
+-- ]])
+
 packer.init({
   ensure_dependencies = true, -- Should packer install plugin dependencies?
   snapshot = nil, -- Name of the snapshot you would like to load at startup
@@ -83,18 +91,13 @@ packer.init({
     enable = false,
     threshold = 1, -- integer in milliseconds, plugins which load faster than this won't be shown in profile output
   },
-  autoremove = false, -- Remove disabled or unused plugins without prompting the user
+  autoremove = true, -- Remove disabled or unused plugins without prompting the user
 })
 
-vim.cmd([[
-    augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost packer.lua source <afile> | PackerSync
-    augroup end
-]])
-
-return require('packer').startup(function()
+return require('packer').startup(function(use)
+  -- Packer
   use('wbthomason/packer.nvim')
+
   -- General dependencies
   use('nvim-lua/popup.nvim')
   use('nvim-lua/plenary.nvim')
@@ -116,31 +119,42 @@ return require('packer').startup(function()
     },
     tag = 'nightly', -- optional, updated every week. (see issue #1193)
   })
+  -- bufferline
+  use({ 'akinsho/bufferline.nvim', branch = 'main', requires = 'kyazdani42/nvim-web-devicons' })
+  -- bbye
+  use({ 'moll/vim-bbye', branch = 'master' })
+
+  --
   use('mbbill/undotree')
 
   use('simrat39/symbols-outline.nvim')
   -- LSP
-  --    use("p00f/clangd_extensions.nvim")
   use('hrsh7th/cmp-nvim-lsp')
   use('hrsh7th/cmp-buffer')
   use('hrsh7th/cmp-path')
   use('hrsh7th/cmp-cmdline')
   use('hrsh7th/nvim-cmp')
-  use({ 'tzachar/cmp-tabnine', run = '$DOTCONF/patches/tabnine/install.sh', requires = 'hrsh7th/nvim-cmp' })
-  -- use({ 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' })
+  -- patched installer to force tabnine in .local
+  use({
+    'tzachar/cmp-tabnine',
+    run = '$DOTCONF/patches/tabnine/install.sh',
+    requires = 'hrsh7th/nvim-cmp',
+  })
   use('L3MON4D3/LuaSnip')
   use('saadparwaiz1/cmp_luasnip')
   use('folke/trouble.nvim')
 
-  -- Colorscheme section
+  -- Colorschemes
   use('gruvbox-community/gruvbox')
   use('folke/tokyonight.nvim')
   use('luisiacc/gruvbox-baby')
 
   -- Autopairs
   use('windwp/nvim-autopairs')
+
   -- TreeSitter + deps
-  use('nvim-treesitter/nvim-treesitter', {
+  use({
+    'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   })
   use('nvim-treesitter/playground')
@@ -150,6 +164,15 @@ return require('packer').startup(function()
   use('lewis6991/gitsigns.nvim')
 
   if PACKER_BOOTSTRAP then
+    -- :autocmd User MyPlugin echom 'got MyPlugin event'
+    -- :doautocmd User MyPlugin
     require('packer').sync()
+    -- PackerComplete
+    vim.cmd([[
+      augroup packer_bootstrap
+      autocmd!
+      autocmd User PackerComplete quitall
+      augroup end
+    ]])
   end
 end)

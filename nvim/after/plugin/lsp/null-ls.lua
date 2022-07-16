@@ -1,3 +1,12 @@
+local status_ok, handlers = pcall(require, "av.handlers")
+if not status_ok then
+	return
+end
+
+local on_attach = handlers.on_attach
+local capabilities = handlers.capabilities
+local lsp_flags = handlers.lsp_flags
+
 local status_ok, null_ls = pcall(require, 'null-ls')
 if not status_ok then
   return
@@ -57,9 +66,12 @@ local null_ls_opts = {
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 null_ls.setup({
   debug = false,
+  capabilities = capabilities,
+  lsp_flags = lsp_flags,
   sources = null_ls_opts,
   -- you can reuse a shared lspconfig on_attach callback here
   on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
     if client.supports_method('textDocument/formatting') then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
       vim.api.nvim_create_autocmd('BufWrite', {

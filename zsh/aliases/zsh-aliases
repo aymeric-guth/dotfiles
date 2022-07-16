@@ -5,7 +5,7 @@ alias la='ls -la'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='LC_ALL=C  grep --color=auto'
-
+#alias grep='LC_ALL=C  grep --color=auto --exclude-dir={.av-mp}'
 # confirm before overwriting something
 # alias cp="cp -i"
 # alias mv='mv -i'
@@ -20,5 +20,5 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
 alias kubectl="minikube kubectl --"
 
-alias vim-config="cd $DOTCONF && nvim"
+alias vim-config="pushd $DOTCONF && nvim && popd"
 

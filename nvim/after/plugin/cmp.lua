@@ -1,3 +1,8 @@
+local status_ok, cmp = pcall(require, 'cmp')
+if not status_ok then
+  return
+end
+
 local status_ok, compare = pcall(require, 'cmp.config.compare')
 if not status_ok then
   return
@@ -7,6 +12,7 @@ local status_ok, icons = pcall(require, 'av.icons')
 if not status_ok then
   return
 end
+
 local icons = require('av.icons')
 local kind_icons = icons.kind
 
@@ -19,7 +25,6 @@ local kind_icons = icons.kind
 -- vim.api.nvim_set_hl(0, "CmpItemKindPath", { fg = "#FDE030" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindLua", { fg = "#F64D00" })
 
-local cmp = require('cmp')
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -96,7 +101,7 @@ cmp.setup({
 
   sources = {
     -- { name = "crates", group_index = 1 },
-    { name = 'null-ls', group_index = 1 },
+    { name = 'null_ls', group_index = 1 },
     --{ name = "nvim_lsp", group_index = 1 },
     { name = 'nvim_lua', group_index = 1 },
     -- { name = "copilot", group_index = 2 },
@@ -152,17 +157,3 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' },
   }),
 })
-
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require('null-ls').setup({
-  capabilities = capabilities,
-})
---require('lspconfig')[''].setup({
---  capabilities = capabilities,
---})
---require('lspconfig')[''].setup({
---  capabilities = capabilities,
---})
---require('lspconfig')[''].setup({
---  capabilities = capabilities,
---})

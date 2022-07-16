@@ -25,23 +25,37 @@ upgrade() {
     python3 ${ENV}/github.py;
     ### Rust crates
     LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all;
+    ### Neovim
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
 }
 
 cleanup() {
-    # Macports -- slow
+    ### Macports -- slow
+    echo "cleaning MacPorts cache"
     sudo port uninstall leaves;
     sudo port -f clean --all all;
-    # Homebrew
+    ### Homebrew
+    echo "cleaning Homebrew cache"
     brew autoremove;
     brew cleanup --prune=all;
-    # Python
+    ### Python
+    echo "cleaning pip cache"
     python3 -m pip cache purge;
-    # Rust
+    ### Rust
+    echo "cleaning cargo cache"
     cargo cache clean-unref;
     cargo cache --autoclean;
-    # JS/TS
+    ### JS/TS
+    echo "cleaning npm cache"
     sudo npm prune;
     sudo npm cache clean --force;
+    ### App cache
+    echo "removing user app-cache"
+    sudo rm -rf $HOME/Library/Caches/*;
+    sudo rm -rf $HOME/.cache/*;
+    ### Misc
+    echo "removing misc artifacts"
+    rm -rf $HOME/node_modules;
 }
 
 ig-scraper() { $SCRIPTDIR/instagram/venv/bin/python $SCRIPTDIR/instagram/main.py $1 }

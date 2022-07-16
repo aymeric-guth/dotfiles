@@ -8,6 +8,9 @@ setopt interactive_comments
 stty stop undef # Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
 
+# cd -> pushd
+# setopt auto_pushd
+
 # beeping is annoying
 unsetopt BEEP
 
@@ -42,36 +45,34 @@ export ZCOMPLETIONS="$ZDOTDIR/completions"
 
 case "$(uname -s)" in
 Darwin)
-# https://github.com/junegunn/fzf
-	[ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
-	[ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
-	[ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
-	[ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
-	# Imports
-	source "$ZFUNCTIONS/zsh-functions-macos"
-	source "$ZENVS/zshenv-macos"
-	source "$ZALIASES/zsh-aliases-macos"
-	source "$ZPROMPTS/zsh-prompt"
-	;;
+    # Imports
+    source "$ZENVS/zshenv-macos"
+    source "$ZALIASES/zsh-aliases-macos"
+    source "$ZFUNCTIONS/zsh-functions-macos"
+    source "$ZPROMPTS/zsh-prompt"
+    # https://github.com/junegunn/fzf
+    [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
+    [ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
+    [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
+    [ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
+   ;;
 Linux)
-    source $ZENVS/zshenv-linux
-	# https://github.com/junegunn/fzf
-	[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-	[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-	[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
-	[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
-	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-	[ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
-	# Imports
-	source "$ZFUNCTIONS/zsh-functions-linux"
-	source "$ZENVS/zshenv-linux"
-	source "$ZALIASES/zsh-aliases-linux"
-	source "$ZPROMPTS/zsh-prompt"
-	;;
+    # Imports
+    source "$ZENVS/zshenv-linux"
+    source "$ZALIASES/zsh-aliases-linux"
+    source "$ZFUNCTIONS/zsh-functions-linux"
+    source "$ZPROMPTS/zsh-prompt"
+    # https://github.com/junegunn/fzf
+    [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+    [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+    [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
+    [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    [ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
+   ;;
 *)
         ;;
 esac
-
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -120,16 +121,19 @@ zstyle ':completion:*:*:git:*' script $ZCOMPLETIONS/git-completion.bash
 
 
 # Environment variables set everywhere
-export EDITOR="$(which nvim)"
+export EDITOR=$(which nvim)
 
 # direnv hook
 eval "$(direnv hook zsh)"
 
 
 #determines search program for fzf
-if type rg &> /dev/null; then
+if type fd &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
+elif type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden --ignore-file $DOTCONF/.gitignore'
 fi
 
-source $ZDOTDIR/vim-mode.sh
+# source $ZDOTDIR/vim-mode.sh
+
 export PATH

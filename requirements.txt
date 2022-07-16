@@ -1,14 +1,16 @@
-# Tools
+### Tools
 meson
 virtualenv
 pytest
 git+https://git.ars-virtualis.org/yul/lsfiles@master
-# VIM
+six
+### VIM
 pynvim
 black
 python-lsp-server[flake8,mccabe,rope,pycodestyle,pydocstyle]@git+https://github.com/python-lsp/python-lsp-server.git@develop
 git+https://github.com/python-lsp/pylsp-mypy@master
 pyright
 git+https://github.com/adrienverge/yamllint@master
-# Temp
+### Temp
 httpx
+pydantic
