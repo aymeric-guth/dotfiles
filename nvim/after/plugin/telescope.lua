@@ -3,8 +3,10 @@ if not status_ok then
   return
 end
 
+local actions = require('telescope.actions')
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
+local fb_actions = telescope.extensions.file_browser.actions
 telescope.setup({
   defaults = {
     -- Default configuration for telescope goes here:
@@ -14,7 +16,10 @@ telescope.setup({
         -- map actions.which_key to <C-h> (default: <C-/>)
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-        ['<C-h>'] = 'which_key',
+        ['<C-c>'] = actions.close,
+      },
+      n = {
+        ['<C-c>'] = actions.close,
       },
     },
   },
@@ -38,12 +43,57 @@ telescope.setup({
     -- builtin picker
   },
   extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
+    fzf = {
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
+    },
+    file_browser = {
+      initial_mode = 'normal',
+      -- theme = 'ivy',
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        ['i'] = {
+          ['<A-c>'] = fb_actions.create,
+          ['<S-CR>'] = fb_actions.create_from_prompt,
+          ['<A-r>'] = fb_actions.rename,
+          ['<A-m>'] = fb_actions.move,
+          ['<A-y>'] = fb_actions.copy,
+          ['<A-d>'] = fb_actions.remove,
+          ['<C-o>'] = fb_actions.open,
+          ['<C-g>'] = fb_actions.goto_parent_dir,
+          ['<C-e>'] = fb_actions.goto_home_dir,
+          ['<C-w>'] = fb_actions.goto_cwd,
+          ['<C-t>'] = fb_actions.change_cwd,
+          ['<C-f>'] = fb_actions.toggle_browser,
+          ['<C-h>'] = fb_actions.toggle_hidden,
+          ['<C-s>'] = fb_actions.toggle_all,
+        },
+        ['n'] = {
+          ['c'] = fb_actions.create,
+          ['r'] = fb_actions.rename,
+          ['m'] = fb_actions.move,
+          ['y'] = fb_actions.copy,
+          ['d'] = fb_actions.remove,
+          ['l'] = actions.select_default,
+          ['h'] = function(prompt_bufnr, _)
+            fb_actions.goto_parent_dir(prompt_bufnr, false)
+          end,
+          ['e'] = fb_actions.goto_home_dir,
+          ['w'] = fb_actions.goto_cwd,
+          ['t'] = fb_actions.change_cwd,
+          ['f'] = fb_actions.toggle_browser,
+          ['s'] = fb_actions.toggle_hidden,
+          -- ['h'] = fb_actions.toggle_hidden,
+          -- ['s'] = fb_actions.toggle_all,
+        },
+      },
+    },
   },
 })
 
 telescope.load_extension('fzf')
+telescope.load_extension('file_browser')

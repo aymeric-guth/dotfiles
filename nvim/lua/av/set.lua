@@ -22,7 +22,7 @@ vim.opt.wildignore = {
 -- vim.opt.guicursor = ""
 -- vim.opt.guicursor = 'a:blinkon100'
 
-vim.opt.foldenable = false
+-- vim.opt.foldenable = false
 vim.opt.encoding = 'utf-8'
 vim.opt.guifont = 'monospace:h17'
 
@@ -65,3 +65,18 @@ vim.opt.updatetime = 50
 vim.opt.shortmess:append('c')
 
 vim.opt.colorcolumn = '80'
+
+vim.g.sqlite_clib_path = '/opt/local/lib/libsqlite3.dylib'
+
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+--   pattern = { '*' },
+--   command = 'normal zx',
+-- })
+--
+-- vim.api.nvim_create_autocmd({ 'BufReadPost,FileReadPost' }, {
+--   pattern = { '*' },
+--   command = 'normal zR',
+-- })

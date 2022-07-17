@@ -33,9 +33,9 @@ treesitter.setup({
     enable = true,
     additional_vim_regex_highlighting = false,
   },
+  incremental_selection = { enable = true },
+  text_object = { enable = true },
   indent = {
     enable = true,
   },
 })
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'

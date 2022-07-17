@@ -23,19 +23,26 @@ vim.g.loaded_perl_provider = 0
 -- keymap('n', '¬', '', opts)
 -- <Alt-S-l>
 -- keymap('n', 'Ò', '', opts)
--- <Alt-j>
 
-keymap('n', '<M-j>', '}', opts)
+--[[
+-- h j k l H J K L
+--]]
+-- <Alt-j>
+vim.keymap.set({ 'n' }, '<M-j>', '}', opts)
+-- compatibility Laptop, not sure why M- does not work
+vim.keymap.set({ 'n' }, '∆', '}', opts)
 keymap('n', '<M-S-j>', '<S-g>', opts)
--- keymap('n', '∆', '}', opts)
 -- <Alt-S-j>
--- keymap('n', 'Ô', '', opts)
+
 -- <Alt-k>
 keymap('n', '<M-k>', '{', opts)
+-- compatibility Laptop, not sure why M- does not work
+keymap('n', '˚', '{', opts)
 keymap('n', '<M-S-k>', 'gg', opts)
 -- <Alt-S-k>
 -- keymap('n', '', '', opts)
 
+-- keymap('n', '<leader>e', ':Fcarbon<CR>', opts)
 keymap('n', '<leader>e', ':NvimTreeToggle <CR>', opts)
 keymap('n', '<leader>r', ':SymbolsOutline<CR>', opts)
 keymap('n', '<leader>d', ':TroubleToggle<CR>', opts)
@@ -57,7 +64,13 @@ keymap('n', '<leader>q', ':Bdelete<CR>', opts)
 --[[
 Telescope
 --]]
-keymap('n', '<leader>ff', ':Telescope find_files<CR>', opts)
+keymap(
+  'n',
+  '<leader>ff',
+  "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+  opts
+)
+-- keymap('n', '<leader>ff', ':Telescope find_files<CR>', opts)
 keymap('n', '<leader>fg', ':Telescope live_grep<CR>', opts)
 
 keymap('n', '<leader>ft', ':Telescope current_buffer_fuzzy_find<CR>', opts)
@@ -66,6 +79,13 @@ keymap('n', '<leader>fb', ':Telescope buffers<CR>', opts)
 -- keymap('n', '<leader>fh', ':Telescope man_pages<CR>', opts)
 keymap('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
 
+keymap('n', '<leader>e', ':Telescope file_browser<CR>', opts)
+keymap(
+  'n',
+  '<leader>e',
+  "<cmd>lua require('telescope').extensions.file_browser.file_browser(require('telescope.themes').get_dropdown{ previewer = false})<cr>",
+  opts
+)
 -- keymap('n', '<leader>ft', ':Telescope treesitter<CR>', opts)
 -- builtin.git_files search through git ls-files
 -- builtin.grep_string search under cursor in cwd
