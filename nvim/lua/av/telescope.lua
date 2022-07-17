@@ -4,11 +4,11 @@ if not status then
 end
 local actions = require('telescope.actions')
 
-local file_browser = telescope.extensions.file_browser
-if not file_browser then
-    return
-end
-local fb_actions = file_browser.actions
+-- local file_browser = telescope.extensions.file_browser
+-- if not file_browser then
+--     return
+-- end
+-- local fb_actions = file_browser.actions
 
 telescope.setup({
   defaults = {
@@ -53,50 +53,48 @@ telescope.setup({
       case_mode = 'smart_case', -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     },
-    file_browser = {
-      initial_mode = 'normal',
-      -- theme = 'ivy',
-      -- disables netrw and use telescope-file-browser in its place
-      hijack_netrw = true,
-      mappings = {
-        ['i'] = {
-          ['<A-c>'] = fb_actions.create,
-          ['<S-CR>'] = fb_actions.create_from_prompt,
-          ['<A-r>'] = fb_actions.rename,
-          ['<A-m>'] = fb_actions.move,
-          ['<A-y>'] = fb_actions.copy,
-          ['<A-d>'] = fb_actions.remove,
-          ['<C-o>'] = fb_actions.open,
-          ['<C-g>'] = fb_actions.goto_parent_dir,
-          ['<C-e>'] = fb_actions.goto_home_dir,
-          ['<C-w>'] = fb_actions.goto_cwd,
-          ['<C-t>'] = fb_actions.change_cwd,
-          ['<C-f>'] = fb_actions.toggle_browser,
-          ['<C-h>'] = fb_actions.toggle_hidden,
-          ['<C-s>'] = fb_actions.toggle_all,
-        },
-        ['n'] = {
-          ['c'] = fb_actions.create,
-          ['r'] = fb_actions.rename,
-          ['m'] = fb_actions.move,
-          ['y'] = fb_actions.copy,
-          ['d'] = fb_actions.remove,
-          ['l'] = actions.select_default,
-          ['h'] = function(prompt_bufnr, _)
-            fb_actions.goto_parent_dir(prompt_bufnr, false)
-          end,
-          ['e'] = fb_actions.goto_home_dir,
-          ['w'] = fb_actions.goto_cwd,
-          ['t'] = fb_actions.change_cwd,
-          ['f'] = fb_actions.toggle_browser,
-          ['s'] = fb_actions.toggle_hidden,
-          -- ['h'] = fb_actions.toggle_hidden,
-          -- ['s'] = fb_actions.toggle_all,
-        },
-      },
-    },
+    -- file_browser = {
+    --   initial_mode = 'normal',
+    --   hijack_netrw = true,
+    --   mappings = {
+    --     ['i'] = {
+    --       ['<A-c>'] = fb_actions.create,
+    --       ['<S-CR>'] = fb_actions.create_from_prompt,
+    --       ['<A-r>'] = fb_actions.rename,
+    --       ['<A-m>'] = fb_actions.move,
+    --       ['<A-y>'] = fb_actions.copy,
+    --       ['<A-d>'] = fb_actions.remove,
+    --       ['<C-o>'] = fb_actions.open,
+    --       ['<C-g>'] = fb_actions.goto_parent_dir,
+    --       ['<C-e>'] = fb_actions.goto_home_dir,
+    --       ['<C-w>'] = fb_actions.goto_cwd,
+    --       ['<C-t>'] = fb_actions.change_cwd,
+    --       ['<C-f>'] = fb_actions.toggle_browser,
+    --       ['<C-h>'] = fb_actions.toggle_hidden,
+    --       ['<C-s>'] = fb_actions.toggle_all,
+    --     },
+    --     ['n'] = {
+    --       ['c'] = fb_actions.create,
+    --       ['r'] = fb_actions.rename,
+    --       ['m'] = fb_actions.move,
+    --       ['y'] = fb_actions.copy,
+    --       ['d'] = fb_actions.remove,
+    --       ['l'] = actions.select_default,
+    --       ['h'] = function(prompt_bufnr, _)
+    --         fb_actions.goto_parent_dir(prompt_bufnr, false)
+    --       end,
+    --       ['e'] = fb_actions.goto_home_dir,
+    --       ['w'] = fb_actions.goto_cwd,
+    --       ['t'] = fb_actions.change_cwd,
+    --       ['f'] = fb_actions.toggle_browser,
+    --       ['s'] = fb_actions.toggle_hidden,
+    --       -- ['h'] = fb_actions.toggle_hidden,
+    --       -- ['s'] = fb_actions.toggle_all,
+    --     },
+    --   },
+    -- },
   },
 })
 
 telescope.load_extension('fzf')
-telescope.load_extension('file_browser')
+-- telescope.load_extension('file_browser')

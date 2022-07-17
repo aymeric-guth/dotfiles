@@ -1,6 +1,5 @@
 local stdpath = vim.fn.stdpath
 
--- local install_path = stdpath("data") .. "/site/pack/packer.nvim"
 local install_path = stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = vim.fn.system({
@@ -15,8 +14,8 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd([[packadd packer.nvim]])
 end
 
-local status_ok, packer = pcall(require, 'packer')
-if not status_ok then
+local status, packer = pcall(require, 'packer')
+if not status then
   return
 end
 
@@ -115,7 +114,7 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } },
   })
   use({ 'nvim-telescope/telescope-fzf-native.nvim', branch = 'main', run = 'make' })
-  use('nvim-telescope/telescope-file-browser.nvim')
+  -- use('nvim-telescope/telescope-file-browser.nvim')
   -- binary: sqlite3 @3.39.0
   use({
     'nvim-telescope/telescope-frecency.nvim',
@@ -128,13 +127,13 @@ return require('packer').startup(function(use)
   --[[
   -- Navigation
   --]]
-  -- use({
-  --   'kyazdani42/nvim-tree.lua',
-  --   requires = {
-  --     'kyazdani42/nvim-web-devicons', -- optional, for file icons
-  --   },
-  --   tag = 'nightly', -- optional, updated every week. (see issue #1193)
-  -- })
+  use({
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    branch = 'master',
+  })
   use({ 'akinsho/bufferline.nvim', branch = 'main', requires = 'kyazdani42/nvim-web-devicons' })
   use({ 'moll/vim-bbye', branch = 'master' })
   use({ 'ThePrimeagen/harpoon', branch = 'master' })
@@ -179,6 +178,7 @@ return require('packer').startup(function(use)
   -- git
   use('lewis6991/gitsigns.nvim')
 
+  -- Packer boostraping
   if PACKER_BOOTSTRAP then
     -- :autocmd User MyPlugin echom 'got MyPlugin event'
     -- :doautocmd User MyPlugin

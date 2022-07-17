@@ -42,7 +42,6 @@ keymap('n', '<M-S-k>', 'gg', opts)
 -- <Alt-S-k>
 -- keymap('n', '', '', opts)
 
--- keymap('n', '<leader>e', ':Fcarbon<CR>', opts)
 keymap('n', '<leader>e', ':NvimTreeToggle <CR>', opts)
 keymap('n', '<leader>r', ':SymbolsOutline<CR>', opts)
 keymap('n', '<leader>d', ':TroubleToggle<CR>', opts)
@@ -79,13 +78,14 @@ keymap('n', '<leader>fb', ':Telescope buffers<CR>', opts)
 -- keymap('n', '<leader>fh', ':Telescope man_pages<CR>', opts)
 keymap('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
 
-keymap('n', '<leader>e', ':Telescope file_browser<CR>', opts)
-keymap(
-  'n',
-  '<leader>e',
-  "<cmd>lua require('telescope').extensions.file_browser.file_browser(require('telescope.themes').get_dropdown{ previewer = false})<cr>",
-  opts
-)
+-- keymap('n', '<leader>e', ':Telescope file_browser<CR>', opts)
+-- keymap(
+--   'n',
+--   '<leader>e',
+--   "<cmd>lua require('telescope').extensions.file_browser.file_browser(require('telescope.themes').get_dropdown{ previewer = false})<cr>",
+--   opts
+-- )
+
 -- keymap('n', '<leader>ft', ':Telescope treesitter<CR>', opts)
 -- builtin.git_files search through git ls-files
 -- builtin.grep_string search under cursor in cwd
