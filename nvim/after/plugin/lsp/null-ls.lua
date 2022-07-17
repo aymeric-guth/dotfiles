@@ -1,6 +1,6 @@
-local status_ok, handlers = pcall(require, "av.handlers")
+local status_ok, handlers = pcall(require, 'av.handlers')
 if not status_ok then
-	return
+  return
 end
 
 local on_attach = handlers.on_attach
@@ -79,8 +79,8 @@ null_ls.setup({
         buffer = bufnr,
         callback = function()
           -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-          -- vim.lsp.buf.format({ bufnr = bufnr })
-          vim.lsp.buf.formatting_sync()
+          vim.lsp.buf.format({ bufnr = bufnr })
+          -- vim.lsp.buf.formatting_sync()
         end,
       })
     end

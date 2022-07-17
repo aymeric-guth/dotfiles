@@ -21,12 +21,12 @@ if not status_ok then
 end
 
 -- :PackerSync on_save
--- vim.cmd([[
---     augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost packer.lua source <afile> | PackerSync
---     augroup end
--- ]])
+vim.cmd([[
+    augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost packer.lua source <afile> | PackerSync
+    augroup end
+]])
 
 packer.init({
   ensure_dependencies = true, -- Should packer install plugin dependencies?
@@ -95,6 +95,9 @@ packer.init({
 })
 
 return require('packer').startup(function(use)
+  use('kyazdani42/nvim-web-devicons')
+  use('nvim-lualine/lualine.nvim')
+  use('dstein64/vim-startuptime')
   -- Packer
   use('wbthomason/packer.nvim')
 
@@ -113,6 +116,9 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } },
   })
   use({ 'nvim-telescope/telescope-fzf-native.nvim', branch = 'main', run = 'make' })
+  --[[
+  -- Navigation
+  --]]
   use({
     'kyazdani42/nvim-tree.lua',
     requires = {
@@ -120,16 +126,15 @@ return require('packer').startup(function(use)
     },
     tag = 'nightly', -- optional, updated every week. (see issue #1193)
   })
-  -- bufferline
   use({ 'akinsho/bufferline.nvim', branch = 'main', requires = 'kyazdani42/nvim-web-devicons' })
-  -- bbye
   use({ 'moll/vim-bbye', branch = 'master' })
-
-  --
+  use({ 'ThePrimeagen/harpoon', branch = 'master' })
   use('mbbill/undotree')
 
   use('simrat39/symbols-outline.nvim')
+  --[[
   -- LSP
+  --]]
   use('hrsh7th/cmp-nvim-lsp')
   use('hrsh7th/cmp-buffer')
   use('hrsh7th/cmp-path')

@@ -1,5 +1,7 @@
+local utils = require('av.utils')
+local noremap = utils.noremap
+
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 -- Leader Key
@@ -12,6 +14,27 @@ vim.g.loaded_perl_provider = 0
 -- keymap("n", "<C-i>", "<C-w>i", opts)
 -- keymap("n", "<C-k>", "<C-w>k", opts)
 -- keymap("n", "<C-l>", "<C-w>l", opts)
+
+-- <Alt-h>
+-- keymap('n', '˙', '', opts)
+-- <Alt-S-h>
+-- keymap('n', 'Ó', '', opts)
+-- <Alt-l>
+-- keymap('n', '¬', '', opts)
+-- <Alt-S-l>
+-- keymap('n', 'Ò', '', opts)
+-- <Alt-j>
+
+keymap('n', '<M-j>', '}', opts)
+keymap('n', '<M-S-j>', '<S-g>', opts)
+-- keymap('n', '∆', '}', opts)
+-- <Alt-S-j>
+-- keymap('n', 'Ô', '', opts)
+-- <Alt-k>
+keymap('n', '<M-k>', '{', opts)
+keymap('n', '<M-S-k>', 'gg', opts)
+-- <Alt-S-k>
+-- keymap('n', '', '', opts)
 
 keymap('n', '<leader>e', ':NvimTreeToggle <CR>', opts)
 keymap('n', '<leader>r', ':SymbolsOutline<CR>', opts)
@@ -31,12 +54,19 @@ keymap('n', '<S-l>', ':bnext<CR>', opts)
 keymap('n', '<S-h>', ':bprevious<CR>', opts)
 keymap('n', '<leader>q', ':Bdelete<CR>', opts)
 
+--[[
+Telescope
+--]]
 keymap('n', '<leader>ff', ':Telescope find_files<CR>', opts)
 keymap('n', '<leader>fg', ':Telescope live_grep<CR>', opts)
-keymap('n', '<leader>fb', ':Telescope buffers<CR>', opts)
-keymap('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
-keymap('n', '<leader>ft', ':Telescope treesitter<CR>', opts)
 
+keymap('n', '<leader>ft', ':Telescope current_buffer_fuzzy_find<CR>', opts)
+keymap('n', '<leader>fb', ':Telescope buffers<CR>', opts)
+-- Help
+-- keymap('n', '<leader>fh', ':Telescope man_pages<CR>', opts)
+keymap('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
+
+-- keymap('n', '<leader>ft', ':Telescope treesitter<CR>', opts)
 -- builtin.git_files search through git ls-files
 -- builtin.grep_string search under cursor in cwd
 

@@ -3,6 +3,7 @@ meson
 virtualenv
 pytest
 git+https://git.ars-virtualis.org/yul/lsfiles@master
+git+https://git.ars-virtualis.org/yul/utils@master
 six
 ### VIM
 pynvim

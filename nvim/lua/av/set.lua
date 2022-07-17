@@ -1,29 +1,30 @@
 vim.opt.wildignore = {
-	"*.pyc",
-	"*_build/*",
-	"**/coverage/*",
-	"**/node_modules/*",
-	"**/android/*",
-	"**/ios/*",
-	"**/.git/*",
-	"TabNine",
-	".stfolder",
-	".vscode",
-	".venv",
-	"venv",
-	".mypy_cache",
-	".atom",
-	".pytest_cache",
-	".DS_Store",
-	"__pycache__",
-	".local",
+  '*.pyc',
+  '*_build/*',
+  '**/coverage/*',
+  '**/node_modules/*',
+  '**/android/*',
+  '**/ios/*',
+  '**/.git/*',
+  'TabNine',
+  '.stfolder',
+  '.vscode',
+  '.venv',
+  'venv',
+  '.mypy_cache',
+  '.atom',
+  '.pytest_cache',
+  '.DS_Store',
+  '__pycache__',
+  '.local',
 }
 
 -- vim.opt.guicursor = ""
+-- vim.opt.guicursor = 'a:blinkon100'
 
 vim.opt.foldenable = false
-vim.opt.encoding = "utf-8"
-vim.opt.guifont = "monospace:h17"
+vim.opt.encoding = 'utf-8'
+vim.opt.guifont = 'monospace:h17'
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -41,7 +42,7 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = vim.fn.stdpath("cache")
+vim.opt.undodir = vim.fn.stdpath('cache')
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -50,8 +51,8 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+vim.opt.signcolumn = 'yes'
+vim.opt.isfname:append('@-@')
 
 -- Give more space for displaying messages.
 vim.opt.cmdheight = 1
@@ -61,6 +62,6 @@ vim.opt.cmdheight = 1
 vim.opt.updatetime = 50
 
 -- Don't pass messages to |ins-completion-menu|.
-vim.opt.shortmess:append("c")
+vim.opt.shortmess:append('c')
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = '80'
