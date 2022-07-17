@@ -1,5 +1,5 @@
-local status_ok, symbols_outline = pcall(require, "symbols-outline")
-if not status_ok then
+local status, symbols_outline = pcall(require, "symbols-outline")
+if not status then
 	return
 end
 

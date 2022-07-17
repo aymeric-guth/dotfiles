@@ -8,7 +8,7 @@ if not status_ok then
   return
 end
 
-local status_ok, icons = pcall(require, 'av.icons')
+local status_ok, icons = pcall(require, 'av.ui.icons')
 if not status_ok then
   return
 end

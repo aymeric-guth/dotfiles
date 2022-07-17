@@ -1,12 +1,15 @@
-local status_ok, telescope = pcall(require, 'telescope')
-if not status_ok then
+local status, telescope = pcall(require, 'telescope')
+if not status then
   return
 end
-
 local actions = require('telescope.actions')
--- To get fzf loaded and working with telescope, you need to call
--- load_extension, somewhere after setup function:
-local fb_actions = telescope.extensions.file_browser.actions
+
+local file_browser = telescope.extensions.file_browser
+if not file_browser then
+    return
+end
+local fb_actions = file_browser.actions
+
 telescope.setup({
   defaults = {
     -- Default configuration for telescope goes here:

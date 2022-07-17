@@ -1,9 +1,8 @@
-local status_ok, handlers = pcall(require, "av.handlers")
-if not status_ok then
+local status, handlers = pcall(require, "av.lsp.handlers")
+if not status then
 	return
 end
 
-local handlers = require("av.handlers")
 local on_attach = handlers.on_attach
 local capabilities = handlers.capabilities
 local lsp_flags = handlers.lsp_flags

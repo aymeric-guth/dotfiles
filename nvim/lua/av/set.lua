@@ -66,6 +66,7 @@ vim.opt.shortmess:append('c')
 
 vim.opt.colorcolumn = '80'
 
+vim.g.python3_host_prog = 'python3'
 vim.g.sqlite_clib_path = '/opt/local/lib/libsqlite3.dylib'
 
 vim.opt.foldmethod = 'expr'

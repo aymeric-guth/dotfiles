@@ -1,5 +1,5 @@
-local status_ok, handlers = pcall(require, 'av.handlers')
-if not status_ok then
+local status, handlers = pcall(require, 'av.lsp.handlers')
+if not status then
   return
 end
 

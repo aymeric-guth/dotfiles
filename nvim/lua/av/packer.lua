@@ -96,9 +96,7 @@ packer.init({
 
 return require('packer').startup(function(use)
   use('kyazdani42/nvim-web-devicons')
-  use('nvim-lualine/lualine.nvim')
   use('dstein64/vim-startuptime')
-  -- use({ 'SidOfc/carbon.nvim' })
   -- Packer
   use('wbthomason/packer.nvim')
 
