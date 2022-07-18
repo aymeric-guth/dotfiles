@@ -1,17 +1,15 @@
-local status_ok, cmp = pcall(require, 'cmp')
-if not status_ok then
+local status, cmp = pcall(require, 'cmp')
+if not status then
   return
 end
 
-local status_ok, compare = pcall(require, 'cmp.config.compare')
-if not status_ok then
+local status, lunarsnip = pcall(require, 'lunarsnip')
+if not status then
   return
 end
 
-local status_ok, icons = pcall(require, 'av.ui.icons')
-if not status_ok then
-  return
-end
+local compare = require('cmp.config.compare')
+local icons = require('av.ui.icons')
 local kind_icons = icons.kind
 
 -- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
@@ -26,7 +24,7 @@ local kind_icons = icons.kind
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      luasnip.lsp_expand(args.body)
     end,
   },
 
@@ -56,30 +54,37 @@ cmp.setup({
     fields = { 'kind', 'abbr', 'menu' },
     format = function(entry, vim_item)
       vim_item.kind = kind_icons[vim_item.kind]
+
       if entry.source.name == 'cmp_tabnine' then
         vim_item.kind = icons.misc.TabNine
         vim_item.kind_hl_group = 'CmpItemKindTabnine'
       end
+
       if entry.source.name == 'copilot' then
         vim_item.kind = icons.git.Octoface
         vim_item.kind_hl_group = 'CmpItemKindCopilot'
       end
+
       if entry.source.name == 'emoji' then
         vim_item.kind = icons.misc.Smiley
         vim_item.kind_hl_group = 'CmpItemKindEmoji'
       end
+
       if entry.source.name == 'nvim_lsp' then
         vim_item.kind = icons.misc.Robot
         vim_item.kind_hl_group = 'CmpItemKindLsp'
       end
+
       if entry.source.name == 'buffer' then
         vim_item.kind = icons.misc.Buffer
         vim_item.kind_hl_group = 'CmpItemKindBuffer'
       end
+
       if entry.source.name == 'path' then
         vim_item.kind = icons.misc.Path
         vim_item.kind_hl_group = 'CmpItemKindPath'
       end
+
       if entry.source.name == 'nvim_lua' then
         vim_item.kind = icons.misc.Vim
         vim_item.kind_hl_group = 'CmpItemKindLua'
@@ -98,9 +103,8 @@ cmp.setup({
   },
 
   sources = {
-    -- { name = "crates", group_index = 1 },
     { name = 'null_ls', group_index = 1 },
-    --{ name = "nvim_lsp", group_index = 1 },
+    { name = 'nvim_lsp', group_index = 1 },
     { name = 'nvim_lua', group_index = 1 },
     -- { name = "copilot", group_index = 2 },
     { name = 'cmp_tabnine', group_index = 2 },

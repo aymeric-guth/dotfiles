@@ -1,60 +1,114 @@
-return {
-  -- Mappings.
-  -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  opts = { noremap = true, silent = true },
-  -- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-  -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-  -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-  -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+local status, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+if not status then
+  return
+end
 
-  -- Use an on_attach function to only map the following keys
-  -- after the language server attaches to the current buffer
-  on_attach = function(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+local M = {}
 
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set('n', '<leader>wl', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, bufopts)
-    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, bufopts)
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
-    if client.name ~= 'null-ls' then
-      client.server_capabilities.document_formatting = false
-      -- client.resolved_capabilities.document_formatting = false
-    end
-    -- local rc = client.resolved_capabilities
-    -- rc.document_formatting = false
-    -- rc.document_range_formatting = false
-    -- rc.document_highlight = false
-    -- rc.document_symbol = false
-    -- rc.workspace_symbol = false
-    -- rc.rename = false
-    -- rc.hover = false
-    -- rc.completion = false
-    -- rc.code_action = false
-    -- rc.documenrt_publish_diagnostics = false
-  end,
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 
-  -- Setup lspconfig.
-  capabilities = require('cmp_nvim_lsp').update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-  ),
-  lsp_flags = {
-    -- This is the default in Nvim 0.7+
-    debounce_text_changes = 150,
-  },
+M.setup = function()
+  local icons = require('av.ui.icons')
+  local signs = {
+
+    { name = 'DiagnosticSignError', text = icons.diagnostics.Error },
+    { name = 'DiagnosticSignWarn', text = icons.diagnostics.Warning },
+    { name = 'DiagnosticSignHint', text = icons.diagnostics.Hint },
+    { name = 'DiagnosticSignInfo', text = icons.diagnostics.Information },
+  }
+
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
+  end
+
+  local config = {
+    -- disable virtual text
+    virtual_text = false,
+    -- show signs
+    signs = {
+      active = signs,
+    },
+    update_in_insert = true,
+    underline = true,
+    severity_sort = true,
+    float = {
+      focusable = true,
+      style = 'minimal',
+      border = 'rounded',
+      source = 'always',
+      header = '',
+      prefix = '',
+      -- width = 40,
+    },
+  }
+
+  vim.diagnostic.config(config)
+
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = 'rounded',
+    width = 60,
+    -- height = 30,
+  })
+
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    border = 'rounded',
+    width = 60,
+    -- height = 30,
+  })
+end
+
+local function lsp_highlight_document(client)
+  -- if client.server_capabilities.document_highlight then
+  local status, illuminate = pcall(require, 'illuminate')
+  if not status then
+    return
+  end
+  illuminate.on_attach(client)
+  -- end
+end
+
+local function attach_navic(client, bufnr)
+  vim.g.navic_silence = true
+  local status, navic = pcall(require, 'nvim-navic')
+  if not status then
+    return
+  end
+  navic.attach(client, bufnr)
+end
+
+local function lsp_keymaps(bufnr)
+  local opts = { noremap = true, silent = true }
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]])
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<M-f>', '<cmd>Format<cr>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<M-a>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<M-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+end
+
+M.on_attach = function(client, bufnr)
+  lsp_keymaps(bufnr)
+  lsp_highlight_document(client)
+  attach_navic(client, bufnr)
+end
+
+M.lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
 }
+
+return M

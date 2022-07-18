@@ -1,19 +1,12 @@
-local status, handlers = pcall(require, 'av.lsp.handlers')
+local status, null_ls = pcall(require, 'null-ls')
 if not status then
   return
 end
 
-local on_attach = handlers.on_attach
-local capabilities = handlers.capabilities
-local lsp_flags = handlers.lsp_flags
-
-local status_ok, null_ls = pcall(require, 'null-ls')
-if not status_ok then
-  return
-end
-
+local handlers = require('av.lsp.handlers')
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
+
 local null_ls_opts = {
   formatting.astyle.with({
     filetypes = { 'c', 'cpp' },
@@ -64,14 +57,15 @@ local null_ls_opts = {
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+
 null_ls.setup({
   debug = false,
-  capabilities = capabilities,
-  lsp_flags = lsp_flags,
+  capabilities = handlers.capabilities,
+  lsp_flags = handlers.lsp_flags,
   sources = null_ls_opts,
   -- you can reuse a shared lspconfig on_attach callback here
   on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
+    handlers.on_attach(client, bufnr)
     if client.supports_method('textDocument/formatting') then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
       vim.api.nvim_create_autocmd('BufWrite', {

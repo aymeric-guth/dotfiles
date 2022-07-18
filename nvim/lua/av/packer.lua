@@ -137,9 +137,10 @@ return require('packer').startup(function(use)
   use({ 'akinsho/bufferline.nvim', branch = 'main', requires = 'kyazdani42/nvim-web-devicons' })
   use({ 'moll/vim-bbye', branch = 'master' })
   use({ 'ThePrimeagen/harpoon', branch = 'master' })
-  use('mbbill/undotree')
 
   use('simrat39/symbols-outline.nvim')
+  use('mbbill/undotree')
+
   --[[
   -- LSP
   --]]
@@ -157,6 +158,9 @@ return require('packer').startup(function(use)
   use('L3MON4D3/LuaSnip')
   use('saadparwaiz1/cmp_luasnip')
   use('folke/trouble.nvim')
+  use({ 'SmiteshP/nvim-navic', branch = 'master' })
+  use({ 'RRethy/vim-illuminate', branch = 'master' })
+  -- use('ray-x/lsp_signature.nvim')
 
   -- Colorschemes
   use('gruvbox-community/gruvbox')

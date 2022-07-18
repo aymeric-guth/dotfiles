@@ -1,39 +1,36 @@
-local status, handlers = pcall(require, "av.lsp.handlers")
+local status, lspconfig = pcall(require, 'lspconfig')
 if not status then
-	return
+  return
 end
 
-local on_attach = handlers.on_attach
-local capabilities = handlers.capabilities
-local lsp_flags = handlers.lsp_flags
-
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-	return
+if not lspconfig.pyright then
+  return
 end
 
-lspconfig["pyright"].setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	lsp_flags = lsp_flags,
-	settings = {
-		enabled = false,
-		pyright = {
-			disableLanguageServices = true,
-			disableOrganizeImports = true,
-		},
-		python = {
-			analysis = {
-				autoImportCompletions = false,
-				diagnosticMode = "workspace",
-				--diagnosticSeverityOverrides = {}
-				--extraPaths = {},
-				--logLevel = "Information",
-				--stubPath = {},
-				--typeCheckingMode = "strict",
-				--typeshedPaths = {},
-				useLibraryCodeForTypes = true,
-			},
-		},
-	},
+local handlers = require('av.lsp.handlers')
+
+lspconfig.pyright.setup({
+  on_attach = handlers.on_attach,
+  capabilities = handlers.capabilities,
+  lsp_flags = handlers.lsp_flags,
+  settings = {
+    enabled = false,
+    pyright = {
+      disableLanguageServices = true,
+      disableOrganizeImports = true,
+    },
+    python = {
+      analysis = {
+        autoImportCompletions = false,
+        diagnosticMode = 'workspace',
+        --diagnosticSeverityOverrides = {}
+        --extraPaths = {},
+        --logLevel = "Information",
+        --stubPath = {},
+        --typeCheckingMode = "strict",
+        --typeshedPaths = {},
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
 })
