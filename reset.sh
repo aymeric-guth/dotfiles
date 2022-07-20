@@ -6,6 +6,6 @@ rm -rf $HOME/.local/share/nvim
 #rm -rf $HOME/.cache/zsh
 #rm -rf $HOME/.local/share/zsh
 
-python3 -m pip install --upgrade pip;
-python3 -m pip freeze --user | xargs -I{} python3 -m pip uninstall -y {};
-python3 -m pip install -r $DOTCONF/requirements.txt;
+#python3 -m pip install --upgrade pip;
+#python3 -m pip freeze --user | xargs -I{} python3 -m pip uninstall -y {};
+#python3 -m pip install -r $DOTCONF/requirements.txt;

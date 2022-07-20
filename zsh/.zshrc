@@ -121,7 +121,7 @@ zstyle ':completion:*:*:git:*' script $ZCOMPLETIONS/git-completion.bash
 
 
 # Environment variables set everywhere
-export EDITOR=$(which nvim)
+export EDITOR=$(which nano)
 
 # direnv hook
 eval "$(direnv hook zsh)"

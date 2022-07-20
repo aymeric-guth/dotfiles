@@ -103,10 +103,6 @@ return require('packer').startup(function(use)
   use('nvim-lua/popup.nvim')
   use('nvim-lua/plenary.nvim')
 
-  -- Configurations for Nvim LSP
-  use('neovim/nvim-lspconfig')
-  use('jose-elias-alvarez/null-ls.nvim')
-
   -- Telescope + deps: fuzzy finder
   use({
     'nvim-telescope/telescope.nvim',
@@ -118,9 +114,6 @@ return require('packer').startup(function(use)
   -- binary: sqlite3 @3.39.0
   use({
     'nvim-telescope/telescope-frecency.nvim',
-    config = function()
-      require('telescope').load_extension('frecency')
-    end,
     requires = { 'tami5/sqlite.lua' },
   })
 
@@ -144,22 +137,32 @@ return require('packer').startup(function(use)
   --[[
   -- LSP
   --]]
-  use('hrsh7th/cmp-nvim-lsp')
-  use('hrsh7th/cmp-buffer')
-  use('hrsh7th/cmp-path')
-  use('hrsh7th/cmp-cmdline')
-  use('hrsh7th/nvim-cmp')
+  -- Configurations for Nvim LSP
+  use('neovim/nvim-lspconfig')
+  use('jose-elias-alvarez/null-ls.nvim')
+
+  --[[
+  -- CMP
+  --]]
+  use({ 'hrsh7th/cmp-nvim-lsp', branch = 'main' })
+  use({ 'hrsh7th/cmp-buffer', branch = 'main' })
+  use({ 'hrsh7th/cmp-path', branch = 'main' })
+  use({ 'hrsh7th/cmp-cmdline', branch = 'main' })
+  use({ 'hrsh7th/nvim-cmp', branch = 'main' })
   -- patched installer to force tabnine in .local
   use({
     'tzachar/cmp-tabnine',
     run = '$DOTCONF/patches/tabnine/install.sh',
     requires = 'hrsh7th/nvim-cmp',
   })
-  use('L3MON4D3/LuaSnip')
-  use('saadparwaiz1/cmp_luasnip')
+  use({ 'L3MON4D3/LuaSnip', branch = 'master' })
+  use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })
   use('folke/trouble.nvim')
   use({ 'SmiteshP/nvim-navic', branch = 'master' })
   use({ 'RRethy/vim-illuminate', branch = 'master' })
+  -- use({ 'github/copilot.vim', branch = 'release' })
+  -- use({ 'zbirenbaum/copilot.lua', branch = 'master' })
+  -- use({ 'zbirenbaum/copilot-cmp', branch = 'master', module = 'copilot_cmp' })
   -- use('ray-x/lsp_signature.nvim')
 
   -- Colorschemes

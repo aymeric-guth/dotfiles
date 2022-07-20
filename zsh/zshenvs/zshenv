@@ -6,3 +6,6 @@ export MANWIDTH=999
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+### Tools
+export TOOLS="/opt/tools"
+PATH=$TOOLS/bin:$PATH

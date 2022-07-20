@@ -28,12 +28,10 @@ export CONFIG="$DEV/config-sync"
 export WINEDIR="${HOME}/.wine/drive_c"
 export IFA="${DESKTOP}/IFA"
 
-
 ### Homebrew
 PATH="/usr/local/Homebrew/bin:${PATH}"
 PATH="/usr/local/sbin:${PATH}"
 export HOMEBREW_GITHUB_API_TOKEN=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
-
 
 ### Novall
 export NOVALL="${DESKTOP}/Novall"
@@ -72,3 +70,4 @@ PATH="$HOME/.local/bin:$PATH"
 ### Rust
 # User installed executables
 PATH="$HOME/.cargo/bin:$PATH"
+

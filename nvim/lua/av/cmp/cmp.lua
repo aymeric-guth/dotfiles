@@ -3,7 +3,7 @@ if not status then
   return
 end
 
-local status, lunarsnip = pcall(require, 'lunarsnip')
+local status, luasnip = pcall(require, 'luasnip')
 if not status then
   return
 end
@@ -22,6 +22,7 @@ local kind_icons = icons.kind
 -- vim.api.nvim_set_hl(0, "CmpItemKindLua", { fg = "#F64D00" })
 
 cmp.setup({
+  --  preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -37,9 +38,9 @@ cmp.setup({
       border = 'rounded',
       winhighlight = 'NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None',
     },
-    experimental = {
-      ghost_text = true,
-    },
+    -- experimental = {
+    --   ghost_text = true,
+    -- },
   },
 
   mapping = cmp.mapping.preset.insert({
@@ -102,17 +103,17 @@ cmp.setup({
     end,
   },
 
-  sources = {
-    { name = 'null_ls', group_index = 1 },
-    { name = 'nvim_lsp', group_index = 1 },
-    { name = 'nvim_lua', group_index = 1 },
-    -- { name = "copilot", group_index = 2 },
-    { name = 'cmp_tabnine', group_index = 2 },
-    { name = 'luasnip', group_index = 3 },
-    { name = 'buffer', group_index = 4 },
-    { name = 'path', group_index = 4 },
-    { name = 'emoji', group_index = 4 },
-  },
+  sources = cmp.config.sources({
+    { name = 'null_ls' },
+    { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
+    { name = 'copilot' },
+    { name = 'cmp_tabnine' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+    -- { name = 'emoji' },
+  }),
 
   sorting = {
     priority_weight = 2,
@@ -136,26 +137,33 @@ cmp.setup({
 })
 
 -- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    { name = 'buffer' },
-  }),
-})
+-- cmp.setup.filetype('gitcommit', {
+--   sources = cmp.config.sources({
+--     { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+--     { name = 'buffer' },
+--   }),
+-- })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' },
-  },
-})
+-- cmp.setup.cmdline('/', {
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = {
+--     { name = 'buffer' },
+--   },
+-- })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' },
-    { name = 'cmdline' },
-  }),
-})
+-- cmp.setup.cmdline(':', {
+--   mapping = cmp.mapping.preset.cmdline(),
+--   sources = cmp.config.sources({
+--     { name = 'path' },
+--     { name = 'cmdline' },
+--   }),
+-- })
+
+vim.cmd([[
+    augroup NvimCmp
+    au!
+    au FileType TelescopePrompt lua require('cmp').setup.buffer { enabled = false }
+    augroup END
+]])
