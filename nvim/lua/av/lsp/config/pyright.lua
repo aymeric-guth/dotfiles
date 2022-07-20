@@ -1,5 +1,6 @@
 return {
   settings = {
+    project = os.getenv('DOTCONF') .. '/pyrightconfig.json',
     pyright = {
       disableLanguageServices = false,
       disableOrganizeImports = true,

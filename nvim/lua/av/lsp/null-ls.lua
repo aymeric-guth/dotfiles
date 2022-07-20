@@ -14,14 +14,14 @@ local null_ls_opts = {
   }),
   diagnostics.cppcheck.with({
     filetypes = { 'c', 'cpp' },
-    --            --cppcheck-build-dir=path
     extra_args = {
       '--enable=all',
+      '--cppcheck-build-dir=$ROOT',
       '--suppress=missingIncludeSystem',
       -- "--enable=warning,style,performance,portability,information,unusedFunction,missingInclude",
       '--std=c11',
       '--platform=unix64',
-      '$FILENAME',
+      -- '$FILENAME',
     },
   }),
   formatting.black.with({

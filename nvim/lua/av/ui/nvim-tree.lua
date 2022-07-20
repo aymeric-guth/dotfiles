@@ -104,7 +104,7 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
       },
     },
     special_files = { 'Cargo.toml', 'Makefile', 'README.md', 'readme.md' },
-    symlink_destination = true,
+    symlink_destination = false,
   },
   hijack_directories = {
     enable = true,
@@ -135,11 +135,11 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
     custom = { '^.git$' },
     exclude = {},
   },
-  filesystem_watchers = {
-    enable = false,
-    interval = 100,
-    debounce_delay = 50,
-  },
+  -- filesystem_watchers = {
+  --   enable = false,
+  --   interval = 100,
+  --   debounce_delay = 50,
+  -- },
   git = {
     enable = true,
     ignore = true,

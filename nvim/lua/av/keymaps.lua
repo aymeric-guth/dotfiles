@@ -44,7 +44,6 @@ keymap('n', '<M-S-k>', 'gg', opts)
 
 keymap('n', '<leader>e', ':NvimTreeToggle <CR>', opts)
 keymap('n', '<leader>r', ':SymbolsOutline<CR>', opts)
-keymap('n', '<leader>d', ':TroubleToggle<CR>', opts)
 keymap('n', '<leader>z', ':UndotreeToggle<CR>', opts)
 
 keymap('n', '<C-=>', '<Nop>', opts)
@@ -75,7 +74,7 @@ keymap('n', '<leader>fg', ':Telescope live_grep<CR>', opts)
 keymap('n', '<leader>ft', ':Telescope current_buffer_fuzzy_find<CR>', opts)
 keymap('n', '<leader>fb', ':Telescope buffers<CR>', opts)
 -- Help
--- keymap('n', '<leader>fh', ':Telescope man_pages<CR>', opts)
+keymap('n', '<leader>fm', ':Telescope man_pages<CR>', opts)
 keymap('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
 
 -- keymap('n', '<leader>e', ':Telescope file_browser<CR>', opts)
@@ -99,3 +98,43 @@ keymap('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
 -- 	":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep for > ')})<cr>",
 -- 	opts
 -- )
+
+keymap('n', '<leader>d', ':TroubleToggle<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>Trouble<cr>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>xw',
+  '<cmd>Trouble workspace_diagnostics<cr>',
+  { silent = true, noremap = true }
+)
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>xd',
+  '<cmd>Trouble document_diagnostics<cr>',
+  { silent = true, noremap = true }
+)
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>xl',
+  '<cmd>Trouble loclist<cr>',
+  { silent = true, noremap = true }
+)
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>xq',
+  '<cmd>Trouble quickfix<cr>',
+  { silent = true, noremap = true }
+)
+vim.api.nvim_set_keymap(
+  'n',
+  'gR',
+  '<cmd>Trouble lsp_references<cr>',
+  { silent = true, noremap = true }
+)
+
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>tc',
+  '<cmd>TSContextToggle<CR>',
+  { silent = true, noremap = true }
+)
