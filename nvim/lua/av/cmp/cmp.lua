@@ -12,14 +12,14 @@ local compare = require('cmp.config.compare')
 local icons = require('av.ui.icons')
 local kind_icons = icons.kind
 
--- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
--- vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
--- vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
--- vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
--- vim.api.nvim_set_hl(0, "CmpItemKindLsp", { fg = "#6CC644" })
--- vim.api.nvim_set_hl(0, "CmpItemKindBuffer", { fg = "#CA42F0" })
--- vim.api.nvim_set_hl(0, "CmpItemKindPath", { fg = "#FDE030" })
--- vim.api.nvim_set_hl(0, "CmpItemKindLua", { fg = "#F64D00" })
+vim.api.nvim_set_hl(0, 'CmpItemKindCopilot', { fg = '#6CC644' })
+vim.api.nvim_set_hl(0, 'CmpItemKindTabnine', { fg = '#CA42F0' })
+vim.api.nvim_set_hl(0, 'CmpItemKindEmoji', { fg = '#FDE030' })
+vim.api.nvim_set_hl(0, 'CmpItemKindCrate', { fg = '#F64D00' })
+vim.api.nvim_set_hl(0, 'CmpItemKindLsp', { fg = '#6CC644' })
+vim.api.nvim_set_hl(0, 'CmpItemKindBuffer', { fg = '#CA42F0' })
+vim.api.nvim_set_hl(0, 'CmpItemKindPath', { fg = '#FDE030' })
+vim.api.nvim_set_hl(0, 'CmpItemKindLua', { fg = '#F64D00' })
 
 cmp.setup({
   --  preselect = cmp.PreselectMode.None,
@@ -66,11 +66,6 @@ cmp.setup({
         vim_item.kind_hl_group = 'CmpItemKindCopilot'
       end
 
-      if entry.source.name == 'emoji' then
-        vim_item.kind = icons.misc.Smiley
-        vim_item.kind_hl_group = 'CmpItemKindEmoji'
-      end
-
       if entry.source.name == 'nvim_lsp' then
         vim_item.kind = icons.misc.Robot
         vim_item.kind_hl_group = 'CmpItemKindLsp'
@@ -94,6 +89,7 @@ cmp.setup({
       vim_item.menu = ({
         nvim_lsp = '',
         nvim_lua = '',
+        cmp_tabnine = '',
         luasnip = '',
         buffer = '',
         path = '',
@@ -104,11 +100,10 @@ cmp.setup({
   },
 
   sources = cmp.config.sources({
-    { name = 'null_ls' },
+    { name = 'cmp_tabnine' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'copilot' },
-    { name = 'cmp_tabnine' },
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },

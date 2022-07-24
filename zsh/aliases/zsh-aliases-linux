@@ -16,8 +16,5 @@ alias ls='ls --color=auto'
 alias up='docker-compose up --build'
 alias down='docker-compose down'
 alias run='docker-compose run'
-#alias exe='docker exec -it'
-
 
 alias nvim="XDG_CONFIG_HOME=$DOTCONF XDG_DATA_HOME=$HOME/.local/share XDG_CACHE_HOME=$HOME/.cache PATH=$HOME/bin/lua-language-server:$PATH nvim"
-alias python3="python3.7"

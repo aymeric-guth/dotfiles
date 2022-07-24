@@ -4,3 +4,4 @@ source $ZENVS/zshenv
 
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
+# export RUST_SRC_PATH="$TOOLS/cargo"

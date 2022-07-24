@@ -70,4 +70,4 @@ PATH="$HOME/.local/bin:$PATH"
 ### Rust
 # User installed executables
 PATH="$HOME/.cargo/bin:$PATH"
-
+PATH="$ENV/bin:$PATH"

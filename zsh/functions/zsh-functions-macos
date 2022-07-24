@@ -27,7 +27,7 @@ upgrade() {
     sudo npm install -g npm@latest;
     sudo npm update -g;
     ### Pull updates from github
-    python3 ${ENV}/github.py;
+    github;
     ### Rust crates
     LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all;
     ### Neovim

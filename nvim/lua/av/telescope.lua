@@ -95,7 +95,8 @@ telescope.setup({
     -- },
   },
 })
-
-telescope.load_extension('fzf')
-telescope.load_extension('frecency')
+pcall(telescope.load_extension, 'fzf')
+pcall(telescope.load_extension, 'frecency')
+-- telescope.load_extension('fzf')
+-- telescope.load_extension('frecency')
 -- telescope.load_extension('file_browser')

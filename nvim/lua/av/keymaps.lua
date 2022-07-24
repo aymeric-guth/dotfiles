@@ -54,6 +54,8 @@ keymap('n', '<C-+>', '<Nop>', opts)
 keymap('n', '<C-+>', ':vertical resize +2<CR>', opts)
 keymap('n', '<C-_>', ':vertical resize -2<CR>', opts)
 
+keymap('n', '<leader>c', '"*yy', opts)
+keymap('n', '<leader>p', '"*p', opts)
 -- Naviagate buffers
 keymap('n', '<S-l>', ':bnext<CR>', opts)
 keymap('n', '<S-h>', ':bprevious<CR>', opts)
