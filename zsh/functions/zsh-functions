@@ -40,7 +40,15 @@ function _upgrade() {
     zsh-update-plugins;
     ### PIP, Python3 global packages
     python3 -m pip install --upgrade pip;
-    python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
+    # python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
     python3 -m pip install -r $DOTCONF/requirements.txt;
-
 }
+
+avgen() { python3 ${ENV}/avgen.py $PWD $1 }
+
+github() { 
+    pushd $ENV/github;
+    GITHUB_REPOS=$GITHUB_REPOS python github.py;
+    popd;
+}
+

@@ -18,3 +18,5 @@ alias down='docker-compose down'
 alias run='docker-compose run'
 
 alias nvim="XDG_CONFIG_HOME=$DOTCONF XDG_DATA_HOME=$HOME/.local/share XDG_CACHE_HOME=$HOME/.cache PATH=$HOME/bin/lua-language-server:$PATH nvim"
+
+alias clangd='clangd-15'

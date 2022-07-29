@@ -1,4 +1,6 @@
 ### Tools
+python-lsp-server[flake8,mccabe,rope,pycodestyle,pydocstyle]@git+https://github.com/python-lsp/python-lsp-server.git@develop
+setuptools
 meson
 virtualenv
 pytest
@@ -8,7 +10,6 @@ six
 ### VIM
 pynvim
 black
-python-lsp-server[flake8,mccabe,rope,pycodestyle,pydocstyle]@git+https://github.com/python-lsp/python-lsp-server.git@develop
 git+https://github.com/python-lsp/pylsp-mypy@master
 pyright
 git+https://github.com/adrienverge/yamllint@master

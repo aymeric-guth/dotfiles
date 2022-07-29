@@ -8,13 +8,6 @@ fe() { find -E $1 -regex ".*\.($2)" }
 
 # adb_connect() { adb connect "${IPADDR}:5555" }
 
-avgen() { python3 ${ENV}/avgen.py $PWD $1 }
-
-github() { 
-    pushd $ENV/github;
-    GITHUB_REPOS=$GITHUB_REPOS python github.py;
-    popd;
-}
 
 upgrade() {
     _upgrade;

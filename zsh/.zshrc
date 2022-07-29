@@ -137,3 +137,5 @@ fi
 # source $ZDOTDIR/vim-mode.sh
 
 export PATH
+
+export PATH="$HOME/.poetry/bin:$PATH"

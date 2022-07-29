@@ -14,9 +14,6 @@ export CLICOLOR=1
 #PATH="${PATH}:${ANDROID_HOME}/platform-tools"
 #export GRADLE_USER_HOME="~/.gradle"
 
-### USER DEV ENV ###
-export DEV="${HOME}/Desktop/dev"
-export ENV="${DEV}/env"
 # export THOTS="${HOME}/Downloads/InstaScrap"
 export NOTES="${HOME}/Desktop/Notes"
 export GITHUB_REPOS="${HOME}/Desktop/Repos"

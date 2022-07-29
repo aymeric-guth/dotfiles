@@ -1,10 +1,10 @@
 local lspconfig = require('lspconfig')
 local servers = {
-  -- 'clangd',
+  'clangd',
   'pylsp',
   'pyright',
-  -- 'sumneko_lua',
-  -- 'taplo',
+  'sumneko_lua',
+  'taplo',
 }
 local handlers = require('av.lsp.handlers')
 

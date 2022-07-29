@@ -2,7 +2,7 @@ return {
   setup = {
     clangd = {
       cmd = {
-        'clangd',
+        'clangd-15',
         '--background-index',
         '--suggest-missing-includes',
         '--clang-tidy',

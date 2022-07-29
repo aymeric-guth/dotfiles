@@ -6,6 +6,11 @@ export MANWIDTH=999
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+### USER DEV ENV ###
+export DEV="${HOME}/Desktop/dev"
+export ENV="${DEV}/env"
+
 ### Tools
+export GITHUB_REPOS="${HOME}/Desktop/Repos"
 export TOOLS="/opt/tools"
 PATH=$TOOLS/bin:$PATH

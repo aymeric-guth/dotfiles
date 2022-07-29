@@ -3,7 +3,7 @@
 source $ZALIASES/zsh-aliases
 
 alias ls='ls -G'
-alias av='~/./av-mp.sh'
+alias av='python3 $DEV/Network/mplayer_old/mplayer.py'
 
 # docker
 alias up='docker compose up --build'
