@@ -18,11 +18,14 @@ function _upgrade_nvim() {
 }
 
 function _upgrade_lua() {
-    git clone  --depth 1 https://github.com/sumneko/lua-language-server ~/lua-language-server;
+    pushd /tmp;
+    git clone  --depth 1 https://github.com/sumneko/lua-language-server;
     cd lua-language-server && git submodule update --depth 1 --init --recursive;
     cd 3rd/luamake && ./compile/install.sh;
-    cd ../.. && ./3rd/luamake/luamake rebuild;
+    cd ../.. && ZDOTDIR=/tmp HOME=/tmp ./3rd/luamake/luamake rebuild;
     rm -rf ~/bin/lua-language-server;
     cp -rf bin ~/bin/lua-language-server;
     cd .. && rm -rf lua-language-server;
+    popd;
 }
+

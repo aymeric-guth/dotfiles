@@ -42,7 +42,7 @@ keymap('n', '<M-S-k>', 'gg', opts)
 -- <Alt-S-k>
 -- keymap('n', '', '', opts)
 
-keymap('n', '<leader>e', ':NvimTreeToggle <CR>', opts)
+keymap('n', '<leader>e', ':NvimTreeToggle<CR>', opts)
 keymap('n', '<leader>r', ':SymbolsOutline<CR>', opts)
 keymap('n', '<leader>z', ':UndotreeToggle<CR>', opts)
 

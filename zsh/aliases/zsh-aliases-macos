@@ -6,8 +6,8 @@ alias ls='ls -G'
 alias av='python3 $DEV/Network/mplayer_old/mplayer.py'
 
 # docker
-alias up='docker compose up --build'
-alias down='docker compose down'
+# alias up='docker compose up --build'
+# alias down='docker compose down'
 alias run='docker compose run'
 #alias exe='docker exec -it'
 
@@ -39,3 +39,4 @@ alias lua-language-server="$HOME/bin/lua-language-server/bin/lua-language-server
 alias nvim="XDG_CONFIG_HOME=${DOTCONF} XDG_DATA_HOME=${HOME}/.local/share XDG_CACHE_HOME=${HOME}/.cache PATH=/opt/local/libexec/llvm-14/bin:${HOME}/bin/lua-language-server/bin:${PATH} nvim"
 
 alias flX="pushd $DEV/Network/mplayer && source .envrc && exe && popd"
+alias COMPOSE_CMD='docker compose'

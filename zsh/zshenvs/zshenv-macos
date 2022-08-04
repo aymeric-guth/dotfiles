@@ -68,3 +68,5 @@ PATH="$HOME/.local/bin:$PATH"
 # User installed executables
 PATH="$HOME/.cargo/bin:$PATH"
 PATH="$ENV/bin:$PATH"
+
+export COMPOSE_CMD="docker compose"

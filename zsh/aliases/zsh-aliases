@@ -20,5 +20,8 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
 alias kubectl="minikube kubectl --"
 
-alias vim-config="pushd $DOTCONF && nvim && popd"
+alias cfg="pushd $DOTCONF && nvim -c NvimTreeToggle && popd"
 
+alias tn="tmux -u -f $DOTCONF/tmux/.tmux.conf new"
+alias ta="tmux -u -f $DOTCONF/tmux/.tmux.conf attach"
+alias tc="nvim $DOTCONF/tmux/.tmux.conf"

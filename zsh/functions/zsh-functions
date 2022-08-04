@@ -52,3 +52,18 @@ github() {
     popd;
 }
 
+function up() {
+    if [ $COMPOSEFILE ]; then
+        eval "$COMPOSE_CMD --file $COMPOSEFILE up --build $1 $2 $3" 
+    else
+        eval "$COMPOSE_CMD up --build $1 $2 $3"
+    fi
+}
+
+function down() {
+    if [ $COMPOSEFILE ]; then
+        eval "$COMPOSE_CMD --file $COMPOSEFILE down $1 $2 $3" 
+    else
+        eval "$COMPOSE_CMD down $1 $2 $3"
+    fi
+}

@@ -56,5 +56,8 @@ cleanup() {
     rm -rf $HOME/node_modules;
 }
 
-ig-scraper() { $SCRIPTDIR/instagram/venv/bin/python $SCRIPTDIR/instagram/main.py $1 }
-exe() { eval $EXE }
+function ig-scraper() { $SCRIPTDIR/instagram/venv/bin/python $SCRIPTDIR/instagram/main.py $1 }
+
+function exe() { eval $EXE }
+
+
