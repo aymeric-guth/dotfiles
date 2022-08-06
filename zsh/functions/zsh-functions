@@ -67,3 +67,10 @@ function down() {
         eval "$COMPOSE_CMD down $1 $2 $3"
     fi
 }
+
+function tmux_switch_right() {
+    eval "tmux select-pane -R"
+}
+function tmux_switch_left() {
+    eval "tmux select-pane -L"
+}

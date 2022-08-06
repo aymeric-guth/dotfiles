@@ -71,13 +71,3 @@ vim.g.sqlite_clib_path = '/opt/local/lib/libsqlite3.dylib'
 
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-
--- vim.api.nvim_create_autocmd({ 'BufEnter' }, {
---   pattern = { '*' },
---   command = 'normal zx',
--- })
---
--- vim.api.nvim_create_autocmd({ 'BufReadPost,FileReadPost' }, {
---   pattern = { '*' },
---   command = 'normal zR',
--- })

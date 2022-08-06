@@ -154,6 +154,7 @@ return require('packer').startup(function(use)
     'tzachar/cmp-tabnine',
     run = '$DOTCONF/patches/tabnine/install.sh',
     requires = 'hrsh7th/nvim-cmp',
+    branch = 'main',
   })
   use({ 'L3MON4D3/LuaSnip', branch = 'master' })
   use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })
@@ -168,7 +169,12 @@ return require('packer').startup(function(use)
   -- Colorschemes
   use('gruvbox-community/gruvbox')
   use('folke/tokyonight.nvim')
-  use('luisiacc/gruvbox-baby')
+  use({
+    'luisiacc/gruvbox-baby',
+  })
+  use({
+    'sainnhe/gruvbox-material',
+  })
 
   -- Autopairs
   use('windwp/nvim-autopairs')
@@ -182,6 +188,8 @@ return require('packer').startup(function(use)
   -- use('nvim-treesitter/playground')
   use({ 'nvim-treesitter/nvim-treesitter-context', branch = 'master' })
 
+  -- kitty-config syntax highlight
+  use({ 'fladson/vim-kitty', branch = 'main' })
   -- git
   use('lewis6991/gitsigns.nvim')
 

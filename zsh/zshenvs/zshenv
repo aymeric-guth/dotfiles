@@ -14,3 +14,4 @@ export ENV="${DEV}/env"
 export GITHUB_REPOS="${HOME}/Desktop/Repos"
 export TOOLS="/opt/tools"
 PATH=$TOOLS/bin:$PATH
+

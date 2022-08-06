@@ -22,6 +22,8 @@ alias kubectl="minikube kubectl --"
 
 alias cfg="pushd $DOTCONF && nvim -c NvimTreeToggle && popd"
 
-alias tn="tmux -u -f $DOTCONF/tmux/.tmux.conf new"
-alias ta="tmux -u -f $DOTCONF/tmux/.tmux.conf attach"
-alias tc="nvim $DOTCONF/tmux/.tmux.conf"
+alias tmux="tmux -f $DOTCONF/tmux/.tmux.conf"
+
+alias tn="tmux -u new"
+alias ta="tmux -u attach"
+#alias tc="nvim $DOTCONF/tmux/.tmux.conf"
