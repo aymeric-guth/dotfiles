@@ -42,6 +42,8 @@ function _upgrade() {
     python3 -m pip install --upgrade pip;
     # python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
     python3 -m pip install -r $DOTCONF/requirements.txt;
+    ### Neovim
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
 }
 
 avgen() { python3 ${ENV}/avgen.py $PWD $1 }

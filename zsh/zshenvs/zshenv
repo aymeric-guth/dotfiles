@@ -14,4 +14,8 @@ export ENV="${DEV}/env"
 export GITHUB_REPOS="${HOME}/Desktop/Repos"
 export TOOLS="/opt/tools"
 PATH=$TOOLS/bin:$PATH
+export CHTSH='http://192.168.1.200:8002'
 
+### DOTFILES CFG
+export TMUX_DIR=$DOTFILES/tmux
+export TMUX_CONF=$TMUX_DIR/.tmux.conf

@@ -8,6 +8,11 @@ if not status then
   return
 end
 
+local status, lspkind = pcall(require, 'lspkind')
+if not status then
+  return
+end
+
 local compare = require('cmp.config.compare')
 local icons = require('av.ui.icons')
 local kind_icons = icons.kind
@@ -20,6 +25,15 @@ vim.api.nvim_set_hl(0, 'CmpItemKindLsp', { fg = '#6CC644' })
 vim.api.nvim_set_hl(0, 'CmpItemKindBuffer', { fg = '#CA42F0' })
 vim.api.nvim_set_hl(0, 'CmpItemKindPath', { fg = '#FDE030' })
 vim.api.nvim_set_hl(0, 'CmpItemKindLua', { fg = '#F64D00' })
+
+local source_mapping = {
+  cmp_tabnine = icons.misc.TabNine,
+  copilot = icons.git.Octoface,
+  nvim_lsp = icons.misc.Robot,
+  buffer = icons.misc.Buffer,
+  path = icons.misc.Path,
+  nvim_lua = icons.misc.Vim,
+}
 
 cmp.setup({
   --  preselect = cmp.PreselectMode.None,
@@ -52,51 +66,14 @@ cmp.setup({
   }),
 
   formatting = {
-    fields = { 'kind', 'abbr', 'menu' },
-    format = function(entry, vim_item)
-      vim_item.kind = kind_icons[vim_item.kind]
-
-      if entry.source.name == 'cmp_tabnine' then
-        vim_item.kind = icons.misc.TabNine
-        vim_item.kind_hl_group = 'CmpItemKindTabnine'
-      end
-
-      if entry.source.name == 'copilot' then
-        vim_item.kind = icons.git.Octoface
-        vim_item.kind_hl_group = 'CmpItemKindCopilot'
-      end
-
-      if entry.source.name == 'nvim_lsp' then
-        vim_item.kind = icons.misc.Robot
-        vim_item.kind_hl_group = 'CmpItemKindLsp'
-      end
-
-      if entry.source.name == 'buffer' then
-        vim_item.kind = icons.misc.Buffer
-        vim_item.kind_hl_group = 'CmpItemKindBuffer'
-      end
-
-      if entry.source.name == 'path' then
-        vim_item.kind = icons.misc.Path
-        vim_item.kind_hl_group = 'CmpItemKindPath'
-      end
-
-      if entry.source.name == 'nvim_lua' then
-        vim_item.kind = icons.misc.Vim
-        vim_item.kind_hl_group = 'CmpItemKindLua'
-      end
-
-      vim_item.menu = ({
-        nvim_lsp = '',
-        nvim_lua = '',
-        cmp_tabnine = '',
-        luasnip = '',
-        buffer = '',
-        path = '',
-        emoji = '',
-      })[entry.source.name]
-      return vim_item
-    end,
+    format = lspkind.cmp_format({
+      mode = 'symbol_text',
+      maxwidth = 50,
+      before = function(entry, vim_item)
+        vim_item.menu = source_mapping[entry.source.name]
+        return vim_item
+      end,
+    }),
   },
 
   sources = cmp.config.sources({

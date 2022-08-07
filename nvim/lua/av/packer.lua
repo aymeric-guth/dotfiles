@@ -175,6 +175,7 @@ return require('packer').startup(function(use)
   use({
     'sainnhe/gruvbox-material',
   })
+  use({ 'onsails/lspkind.nvim', branch = 'master' })
 
   -- Autopairs
   use('windwp/nvim-autopairs')
@@ -192,6 +193,7 @@ return require('packer').startup(function(use)
   use({ 'fladson/vim-kitty', branch = 'main' })
   -- git
   use('lewis6991/gitsigns.nvim')
+  use('dbeniamine/cheat.sh-vim')
 
   -- Packer boostraping
   if PACKER_BOOTSTRAP then

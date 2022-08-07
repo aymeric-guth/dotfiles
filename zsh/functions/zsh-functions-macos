@@ -24,7 +24,7 @@ upgrade() {
     ### Rust crates
     LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all;
     ### Neovim
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
+    # nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
 }
 
 cleanup() {
