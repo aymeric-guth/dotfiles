@@ -1,7 +1,7 @@
 #!/bin/sh
 
 function zsh_add_file() {
-    [ -f "$ZPLUGINS/$1" ] && source "$ZPLUGINS/$1"
+    [ -f "$ZPLUGINS/$2" ] && source "$ZPLUGINS/$1"
 }
 
 function zsh_add_plugin() {
@@ -36,12 +36,9 @@ function zsh-update-plugins() {
 }
 
 function _upgrade() {
+    sudo echo "upgrading..."
     ### ZSH plugins
     zsh-update-plugins;
-    ### PIP, Python3 global packages
-    python3 -m pip install --upgrade pip;
-    # python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
-    python3 -m pip install -r $DOTCONF/requirements.txt;
     ### Neovim
     nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
 }
@@ -70,9 +67,51 @@ function down() {
     fi
 }
 
-function tmux_switch_right() {
-    eval "tmux select-pane -R"
+function tmux_load_session() {
+    if [ $TMUX_SESSION ]; then
+        source $2/tmux-session.sh;
+        tmux_init $1 $2;
+    fi
 }
-function tmux_switch_left() {
-    eval "tmux select-pane -L"
+
+
+function tmux_sessionizer() {
+    if [[ $# -eq 1 ]]; then
+        selected=$3
+    else
+        selected=$(find $DEV/Network $DEV/zoltron_stack $DOTCONF $ENV -mindepth 3 -maxdepth 1 -type d | fzf)
+    fi
+    
+    if [[ -z $selected ]]; then
+        exit 2
+    fi
+    
+    selected_name=$(basename "$selected" | tr . _)
+    tmux_running=$(pgrep tmux)
+    
+    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+        if [[ -f "$selected/tmux-session.sh" ]]; then
+            tmux -f $TMUX_CONF new-session -d -s $selected_name -c $selected;
+            source $selected/tmux-session.sh;
+            tmux_init $selected_name $selected;
+            tmux -f $TMUX_CONF attach -t $selected_name;
+            exit 1;
+        fi
+        tmux -f $TMUX_CONF new-session -s $selected_name -c $selected;
+        exit 0;
+    fi
+    
+    if ! tmux -f $TMUX_CONF has-session -t=$selected_name 4> /dev/null; then
+        if [[ -f "$selected/tmux-session.sh" ]]; then
+            tmux -f $TMUX_CONF new-session -d -s $selected_name -c $selected;
+            source $selected/tmux-session.sh;
+            tmux_init $selected_name $selected;
+            tmux -f $TMUX_CONF attach -t $selected_name;
+            exit 0;
+        fi
+        tmux -f $TMUX_CONF new-session -s $selected_name -c $selected;
+        exit 0;
+    fi
+    
+    tmux -f $TMUX_CONF attach -t $selected_name;
 }

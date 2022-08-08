@@ -18,7 +18,7 @@ export CLICOLOR=1
 export NOTES="${HOME}/Desktop/Notes"
 export GITHUB_REPOS="${HOME}/Desktop/Repos"
 export CONFIG="$DEV/config-sync"
-
+export OBSIDIAN_VAULT="$NOTES/obsidian"
 ### IFA DEV ENV ###
 
 ### GLOBAL DEV ENV ###

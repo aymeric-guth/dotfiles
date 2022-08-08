@@ -28,32 +28,44 @@ local null_ls_opts = {
     filetypes = { 'python' },
     extra_args = { '--fast' },
   }),
-  formatting.remark,
-  formatting.prettier,
-  -- 	formatting.prettier.with({
-  -- 		filetypes = {
-  -- 			"javascript",
-  -- 			"javascriptreact",
-  -- 			"typescript",
-  -- 			"typescriptreact",
-  -- 			"vue",
-  -- 			"css",
-  -- 			"scss",
-  -- 			"less",
-  -- 			"html",
-  -- 			"json",
-  -- 			"jsonc",
-  -- 			"yaml",
-  -- 			"markdown",
-  -- 			"graphql",
-  -- 			"handlebars",
-  -- 		},
-  -- 	}),
+  -- formatting.remark.with({
+  --   filetypes = { 'markdown' },
+  -- }),
+  -- formatting.mdformat.with({
+  --   filetypes = { 'markdown' },
+  -- }),
+  -- markdown code-block formatter
+  formatting.cbfmt.with({
+    filetypes = { 'markdown' },
+  }),
+  diagnostics.markdownlint.with({
+    filetypes = { 'markdown' },
+  }),
+  formatting.prettier.with({
+    filetypes = {
+      'javascript',
+      'javascriptreact',
+      'typescript',
+      'typescriptreact',
+      'vue',
+      'css',
+      'scss',
+      'less',
+      'html',
+      'json',
+      'jsonc',
+      'yaml',
+      -- 'markdown',
+      'graphql',
+      'handlebars',
+    },
+  }),
   formatting.stylua.with({
     filetypes = { 'lua' },
   }),
   formatting.taplo.with({ filetypes = { 'toml' } }),
   diagnostics.yamllint.with({ filetypes = { 'yaml' } }),
+  -- diagnostics.hadolint.with({ filetypes = { 'dockerfile' } }),
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})

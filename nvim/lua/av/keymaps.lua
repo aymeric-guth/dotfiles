@@ -47,7 +47,7 @@ nnoremap(',p', '"0p')
 nnoremap(',P', '"0P')
 
 nnoremap('<leader>e', ':NvimTreeToggle<CR>')
-nnoremap('<leader>r', ':SymbolsOutline<CR>')
+nnoremap('<leader>so', ':SymbolsOutline<CR>')
 nnoremap('<leader>z', ':UndotreeToggle<CR>')
 
 nnoremap('<leader>y', '"+yy')
@@ -78,7 +78,7 @@ keymap('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
 --[[
 -- Trouble
 --]]
-nnoremap('<leader>d', ':TroubleToggle<CR>')
+nnoremap('<leader>do', ':TroubleToggle<CR>')
 nnoremap('<leader>xx', '<cmd>Trouble<cr>')
 nnoremap('<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>')
 nnoremap('<leader>xd', '<cmd>Trouble document_diagnostics<cr>')

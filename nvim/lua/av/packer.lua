@@ -103,6 +103,14 @@ return require('packer').startup(function(use)
   use('nvim-lua/popup.nvim')
   use('nvim-lua/plenary.nvim')
 
+  -- Obsidian
+  -- use({ '$GITHUB_REPOS/tabular' })
+  -- use({
+  --   'preservim/vim-markdown',
+  --   branch = 'master',
+  -- })
+  -- use({ 'epwalsh/obsidian.nvim', branch = 'main' })
+
   -- Telescope + deps: fuzzy finder
   use({
     'nvim-telescope/telescope.nvim',
@@ -161,21 +169,6 @@ return require('packer').startup(function(use)
   use('folke/trouble.nvim')
   use({ 'SmiteshP/nvim-navic', branch = 'master' })
   use({ 'RRethy/vim-illuminate', branch = 'master' })
-  -- use({ 'github/copilot.vim', branch = 'release' })
-  -- use({ 'zbirenbaum/copilot.lua', branch = 'master' })
-  -- use({ 'zbirenbaum/copilot-cmp', branch = 'master', module = 'copilot_cmp' })
-  -- use('ray-x/lsp_signature.nvim')
-
-  -- Colorschemes
-  use('gruvbox-community/gruvbox')
-  use('folke/tokyonight.nvim')
-  use({
-    'luisiacc/gruvbox-baby',
-  })
-  use({
-    'sainnhe/gruvbox-material',
-  })
-  use({ 'onsails/lspkind.nvim', branch = 'master' })
 
   -- Autopairs
   use('windwp/nvim-autopairs')
@@ -186,14 +179,30 @@ return require('packer').startup(function(use)
     run = ':TSUpdate',
     branch = 'master',
   })
-  -- use('nvim-treesitter/playground')
   use({ 'nvim-treesitter/nvim-treesitter-context', branch = 'master' })
-
   -- kitty-config syntax highlight
   use({ 'fladson/vim-kitty', branch = 'main' })
   -- git
   use('lewis6991/gitsigns.nvim')
   use('dbeniamine/cheat.sh-vim')
+
+  --[[
+  -- UI
+  --]]
+  -- Colorschemes
+  use('gruvbox-community/gruvbox')
+  use('folke/tokyonight.nvim')
+  use({ 'luisiacc/gruvbox-baby', branch = 'main' })
+  use({
+    'sainnhe/gruvbox-material',
+  })
+  -- Misc
+  use({ 'onsails/lspkind.nvim', branch = 'master' })
+  use({
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+  })
+  use({ 'norcalli/nvim-colorizer.lua' })
 
   -- Packer boostraping
   if PACKER_BOOTSTRAP then

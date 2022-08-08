@@ -22,6 +22,7 @@ alias kubectl="minikube kubectl --"
 
 alias cfg="pushd $DOTCONF && nvim -c NvimTreeToggle && popd"
 
-alias tmux="tmux -f $TMUX_CONF"
+alias tmux="XDG_CONFIG_HOME=$DOTCONF tmux"
 alias tn="tmux -u new"
 alias ta="tmux -u attach"
+alias tx="tmuxinator"

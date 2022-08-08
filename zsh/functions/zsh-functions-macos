@@ -11,6 +11,10 @@ fe() { find -E $1 -regex ".*\.($2)" }
 
 upgrade() {
     _upgrade;
+    ### PIP, Python3 global packages
+    python3 -m pip install --upgrade pip;
+    python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
+    python3 -m pip install -r $DOTCONF/requirements.txt;
     ### Macports
     sudo port selfupdate;
     sudo port upgrade outdated;
@@ -23,8 +27,6 @@ upgrade() {
     github;
     ### Rust crates
     LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all;
-    ### Neovim
-    # nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
 }
 
 cleanup() {
@@ -59,5 +61,3 @@ cleanup() {
 function ig-scraper() { $SCRIPTDIR/instagram/venv/bin/python $SCRIPTDIR/instagram/main.py $1 }
 
 function exe() { eval $EXE }
-
-

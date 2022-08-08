@@ -4,6 +4,7 @@ source $ZENVS/zshenv
 
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
+PATH="$ENV/bin:$PATH"
 # export RUST_SRC_PATH="$TOOLS/cargo"
 
 export COMPOSE_CMD="docker-compose"

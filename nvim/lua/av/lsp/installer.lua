@@ -5,6 +5,8 @@ local servers = {
   'pyright',
   'sumneko_lua',
   'taplo',
+  'bashls',
+  'dockerls',
 }
 local handlers = require('av.lsp.handlers')
 
