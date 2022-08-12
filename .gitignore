@@ -13,3 +13,4 @@ venv
 .zsh_history
 .luarc.json
 github-copilot
+configstore
