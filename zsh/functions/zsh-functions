@@ -1,7 +1,7 @@
 #!/bin/sh
 
 function zsh_add_file() {
-    [ -f "$ZPLUGINS/$2" ] && source "$ZPLUGINS/$1"
+    [ -f "$ZPLUGINS/$1" ] && source "$ZPLUGINS/$1"
 }
 
 function zsh_add_plugin() {
@@ -40,7 +40,11 @@ function _upgrade() {
     ### ZSH plugins
     zsh-update-plugins;
     ### Neovim
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
+    # nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
+}
+
+function _cleanup() {
+    echo '';
 }
 
 avgen() { python3 ${ENV}/avgen.py $PWD $1 }
@@ -115,3 +119,69 @@ function tmux_sessionizer() {
     
     tmux -f $TMUX_CONF attach -t $selected_name;
 }
+
+function lazygit() {
+    branch=$(git symbolic-ref --short HEAD);
+    if [[ -z $branch ]]; then
+        echo "Not a git repo";
+        return 1;
+    fi
+
+    git add .
+    git commit -m "$(date)"
+    remote=$(git remote show)
+    if [[ -z $remote ]]; then
+        echo "Origin is not set"
+        return 2
+    fi
+
+    git push -u ${remote} ${branch}
+}
+
+function build() {
+    if [[ $BUILD_CMD ]]; then
+        eval "$BUILD_CMD"
+    else
+        eval "$COMPOSE_CMD build"
+    fi
+}
+
+function run() {
+    if [[ $RUN_CMD ]]; then
+        eval "$RUN_CMD"
+    elif [[ $1 ]]; then
+        eval "$COMPOSE_CMD} run $1"
+    else
+        echo "Must specify a target"
+        return 1
+    fi
+}
+
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+# function _fzf_compgen_path() {
+#   fd --hidden --follow --exclude ".git" . "$1"
+# }
+
+# Use fd to generate the list for directory completion
+# function _fzf_compgen_dir() {
+#     fd --type d --hidden --follow --exclude ".git" . "$1"
+# }
+
+# (EXPERIMENTAL) Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+# function _fzf_comprun() {
+#     local command=$1
+#     shift
+# 
+#     case "$command" in
+#         cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
+#         export|unset) fzf "$@" --preview "eval 'echo \$'{}" ;;
+#         ssh)          fzf "$@" --preview 'dig {}' ;;
+#         *)            fzf "$@" ;;
+#     esac
+# }
+

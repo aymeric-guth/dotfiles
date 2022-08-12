@@ -49,7 +49,6 @@ PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 ### CMake
 export MACOSX_DEPLOYMENT_TARGET=10.14
-export RSN=$HOME/Desktop/RSN
 #export DYLD_LIBRARY_PATH="/opt/local/lib:/opt/local/libexec/llvm-14/lib"
 #export DYLD_FALLBACK_LIBRARY_PATH="/opt/local/lib:/opt/local/libexec/llvm-14/lib"
 
@@ -67,6 +66,8 @@ PATH="$HOME/.local/bin:$PATH"
 ### Rust
 # User installed executables
 PATH="$HOME/.cargo/bin:$PATH"
-PATH="$ENV/bin:$PATH"
+PATH="$DOTCONF/bin:$PATH"
 
+export NEOVIM_OPTS="XDG_CONFIG_HOME=${DOTCONF} XDG_DATA_HOME=${HOME}/.local/share XDG_CACHE_HOME=${HOME}/.cache PATH=/opt/local/libexec/llvm-14/bin:${HOME}/bin/lua-language-server/bin:${PATH}"
+export NEOVIM_BIN="/usr/local/bin/nvim"
 export COMPOSE_CMD="docker compose"

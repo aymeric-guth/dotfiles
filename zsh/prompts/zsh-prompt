@@ -2,7 +2,12 @@
 
 function show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    echo ">>"
+    if [[ $TMUX ]]; then
+        glyph="❯"
+    else
+        glyph=">"
+    fi
+    echo "${glyph}${glyph}"
   fi
 }
 
@@ -51,10 +56,15 @@ function set-prompt() {
   local git_branch="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
   git_branch=${git_branch//\%/%%}  # escape '%'
   
+  if [[ $TMUX ]]; then
+      glyph="❯"
+  else
+      glyph=">"
+  fi
   local top_left='%F{green}%n@%m%f:%F{blue}%~%f'
   local top_right="%F{green}${git_branch}%f"
-  local bottom_left="%B%F{%(?.green.red)}$(show_virtual_env)>%f%b "
-  # local bottom_left='%B%F{%(?.green.red)}%#%f%b '
+  local bottom_left="%B%F{%(?.green.red)}$(show_virtual_env)${glyph}%f%b "
+  # local bottom_left="%B%F{%(?.green.red)}$(show_virtual_env)>%f%b "
   local bottom_right='%F{yellow}%y%f'
   
   local REPLY

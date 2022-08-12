@@ -3,13 +3,8 @@
 source $ZALIASES/zsh-aliases
 
 alias ls='ls -G'
-alias av='python3 $DEV/Network/mplayer_old/mplayer.py'
-
-# docker
-# alias up='docker compose up --build'
-# alias down='docker compose down'
-alias run='docker compose run'
-#alias exe='docker exec -it'
+alias ns='netstat -p tcp nltu'
+alias ncdu='ncdu --exclude=/Users/yul/.av-mp'
 
 
 # Wine Executables
@@ -31,14 +26,10 @@ alias makempy='make CROSS=x86_64-linux-musl-'
 
 alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
 
-alias ns='netstat -p tcp nltu'
-alias ncdu='ncdu --exclude=/Users/yul/.av-mp'
 
 alias lua-language-server="$HOME/bin/lua-language-server/bin/lua-language-server" "$@"
 
-export NEOVIM_OPTS="XDG_CONFIG_HOME=${DOTCONF} XDG_DATA_HOME=${HOME}/.local/share XDG_CACHE_HOME=${HOME}/.cache PATH=/opt/local/libexec/llvm-14/bin:${HOME}/bin/lua-language-server/bin:${PATH}"
-export NEOVIM_BIN="/usr/local/bin/nvim"
 alias nvim="$NEOVIM_OPTS $NEOVIM_BIN"
 
+alias av='python3 $DEV/Network/mplayer_old/mplayer.py'
 alias flX="pushd $DEV/Network/mplayer && source .envrc && exe && popd"
-alias COMPOSE_CMD='docker compose'

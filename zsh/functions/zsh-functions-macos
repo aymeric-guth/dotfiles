@@ -56,6 +56,13 @@ cleanup() {
     ### Misc
     echo "removing misc artifacts"
     rm -rf $HOME/node_modules;
+
+    ### Docker
+    docker container prune;
+    docker image prune -a;
+    docker network prune;
+    docker volume prune;
+    docker builder prune;
 }
 
 function ig-scraper() { $SCRIPTDIR/instagram/venv/bin/python $SCRIPTDIR/instagram/main.py $1 }

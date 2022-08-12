@@ -15,23 +15,6 @@ zle_highlight=('paste:none')
 # beeping is annoying
 unsetopt BEEP
 
-# completions
-export ZSH_COMPDUMP=$ZDATA/.zcompdump
-autoload -Uz compinit
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$ZDATA/.zcompcache"
-zstyle ':completion:*' menu select
-# zstyle ':completion::complete:lsof:*' menu yes select
-zmodload zsh/complist
-# compinit
-_comp_options+=(globdots) # Include hidden files.
-
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-
-# Colors
-autoload -Uz colors && colors
 
 export ZPLUGINS="$ZDATA/plugins"
 export ZFUNCTIONS="$ZDOTDIR/functions"
@@ -39,34 +22,55 @@ export ZENVS="$ZDOTDIR/zshenvs"
 export ZALIASES="$ZDOTDIR/aliases"
 export ZPROMPTS="$ZDOTDIR/prompts"
 export ZCOMPLETIONS="$ZDOTDIR/completions"
+export ZSH_COMPDUMP=$ZDATA/.zcompdump
 
+# completions
+fpath=($ZCOMPLETIONS $fpath)
+fpath=("/Users/yul/Desktop/Repos/zsh-completions/src" $fpath)
+autoload -Uz compinit
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$ZDATA/.zcompcache"
+zstyle ':completion:*' menu select
+# zstyle ':completion::complete:lsof:*' menu yes select
+zmodload zsh/complist
+_comp_options+=(globdots) # Include hidden files.
+compinit -d $ZDATA/.zcompdump-$ZSH_VERSION
+
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+autoload -U edit-command-line
+
+# Colors
+autoload -Uz colors && colors
 
 case "$(uname -s)" in
     Darwin)
         # Imports
         source "$ZENVS/zshenv-macos"
-        source "$ZALIASES/zsh-aliases-macos"
         source "$ZFUNCTIONS/zsh-functions-macos"
         source "$ZPROMPTS/zsh-prompt"
+        source "$ZALIASES/zsh-aliases-macos"
         # https://github.com/junegunn/fzf
         [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
         [ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
         [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
-        [ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
+        # [ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
         ;;
+
     Linux)
         # Imports
         source "$ZENVS/zshenv-linux"
-        source "$ZALIASES/zsh-aliases-linux"
         source "$ZFUNCTIONS/zsh-functions-linux"
         source "$ZPROMPTS/zsh-prompt"
+        source "$ZALIASES/zsh-aliases-linux"
         # https://github.com/junegunn/fzf
         [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
         [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
         [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
         [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
         [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-        [ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
+        # [ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
         ;;
     *)
         ;;
@@ -77,12 +81,7 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
-
-# kube-ps1 @0.7.0_5
-# zsh_add_plugin "MichaelAquilina/zsh-auto-notify"
-# zsh_add_plugin MichaelAquilina/zsh-you-should-use
-# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
-# More completions: https://github.com/zsh-users/zsh-completions
+#zsh_add_plugin "marlonrichert/zsh-autocomplete"
 
 # Key-bindings
 # bindkey -s '^o' 'ranger^M'
@@ -103,6 +102,7 @@ zle -N history-substring-search-up
 zle -N history-substring-search-down
 zle -N tmux-sessionizer
 zle -N fzf-path
+zle -N edit-command-line
 
 bindkey -s '^f' "tmux-sessionizer\n"
 bindkey -s '^x' "fzf-path\n"
@@ -113,27 +113,25 @@ bindkey "^[[3~" delete-char
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
-compinit -d $ZDATA/.zcompdump-$ZSH_VERSION
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+bindkey "^e" edit-command-line
 
-# Completion
-source "$ZCOMPLETIONS/.minikube-completion"
-fpath=($ZCOMPLETIONS $fpath)
-zstyle ':completion:*:*:git:*' script $ZCOMPLETIONS/git-completion.bash
-# source "$ZCOMPLETIONS/git-completion.bash"
-# source "$ZCOMPLETIONS/git-completion.zsh"
-
+# "^[[A" up
+# "^[[B" down
+# "^[[C" right
+# "^[[D" left
 
 # direnv hook
 eval "$(direnv hook zsh)"
-# export EDITOR=nano
-export EDITOR=$HOME/bin/editor
+export EDITOR=$DOTCONF/bin/editor
+export MANPAGER="$EDITOR +Man!"
 
-
-#determines search program for fzf
+# determines search program for fzf
 if type fd &> /dev/null; then
     export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
 elif type rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files --hidden --ignore-file $DOTCONF/.gitignore'
+    export FZF_DEFAULT_COMMAND='rg --files --hidden'
 fi
 
 # source $ZDOTDIR/vim-mode.sh

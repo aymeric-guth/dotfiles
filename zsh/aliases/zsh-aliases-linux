@@ -12,13 +12,7 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias ns='netstat -plntu'
 alias ls='ls --color=auto'
 
-# docker
-# alias up='docker-compose up --build'
-# alias down='docker-compose down'
-alias run='docker-compose run'
 
-export NEOVIM_OPTS="XDG_CONFIG_HOME=$DOTCONF XDG_DATA_HOME=$HOME/.local/share XDG_CACHE_HOME=$HOME/.cache PATH=$HOME/bin/lua-language-server:$PATH"
-export NEOVIM_BIN="/usr/local/bin/nvim"
 alias nvim="$NEOVIM_OPTS $NEOVIM_BIN"
 
 alias clangd='clangd-15'

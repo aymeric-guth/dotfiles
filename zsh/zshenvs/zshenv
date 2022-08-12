@@ -3,8 +3,10 @@
 HISTSIZE=1000000
 SAVEHIST=1000000
 export MANWIDTH=999
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
+# export LANG=en_US.UTF-8
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
 
 ### USER DEV ENV ###
 export DEV="${HOME}/Desktop/dev"
@@ -18,3 +20,6 @@ PATH=$TOOLS/bin:$PATH
 ### DOTFILES CONF
 export TMUX_DIR=$DOTCONF/tmux
 export TMUX_CONF=$TMUX_DIR/tmux.conf
+
+### WORK
+export RSN="$HOME/Desktop/Novall/rsn"

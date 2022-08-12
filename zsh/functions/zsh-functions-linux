@@ -29,3 +29,7 @@ function _upgrade_lua() {
     popd;
 }
 
+function cleanup() {
+    _cleanup;
+    sudo apt autoremove;
+}

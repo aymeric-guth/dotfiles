@@ -1,0 +1,40 @@
+#!/bin/sh
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$(find $DEV/Network $DEV/zoltron_stack $DOTCONF $ENV -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 2
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    if [[ -f "$selected/tmux-session.sh" ]]; then
+        tmux -f $TMUX_CONF new-session -d -s $selected_name -c $selected;
+        source $selected/tmux-session.sh;
+        tmux_init $selected_name $selected;
+        tmux -f $TMUX_CONF attach -t $selected_name;
+        exit 0;
+    fi
+    tmux -f $TMUX_CONF new-session -s $selected_name -c $selected;
+    exit 0;
+fi
+
+if ! tmux -f $TMUX_CONF has-session -t=$selected_name 4> /dev/null; then
+    if [[ -f "$selected/tmux-session.sh" ]]; then
+        tmux -f $TMUX_CONF new-session -d -s $selected_name -c $selected;
+        source $selected/tmux-session.sh;
+        tmux_init $selected_name $selected;
+        tmux -f $TMUX_CONF attach -t $selected_name;
+        exit 0;
+    fi
+    tmux -f $TMUX_CONF new-session -s $selected_name -c $selected;
+    exit 0;
+fi
+
+tmux -f $TMUX_CONF attach -t $selected_name;
