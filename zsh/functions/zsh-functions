@@ -1,5 +1,9 @@
 #!/bin/sh
 
+source $ZFUNCTIONS/helpers.sh
+source $ZFUNCTIONS/cleanup.sh
+source $ZFUNCTIONS/upgrade.sh
+
 function zsh_add_file() {
     [ -f "$ZPLUGINS/$1" ] && source "$ZPLUGINS/$1"
 }
@@ -11,7 +15,7 @@ function zsh_add_plugin() {
         zsh_add_file "$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
         zsh_add_file "$PLUGIN_NAME/$PLUGIN_NAME.zsh"
     else
-        git clone "https://github.com/$1.git" "$ZPLUGINS/$PLUGIN_NAME"
+        git clone --depth 1 "https://github.com/$1.git" "$ZPLUGINS/$PLUGIN_NAME"
     fi
 }
 
@@ -69,55 +73,6 @@ function down() {
     else
         eval "$COMPOSE_CMD down $1 $2 $3"
     fi
-}
-
-function tmux_load_session() {
-    if [ $TMUX_SESSION ]; then
-        source $2/tmux-session.sh;
-        tmux_init $1 $2;
-    fi
-}
-
-
-function tmux_sessionizer() {
-    if [[ $# -eq 1 ]]; then
-        selected=$3
-    else
-        selected=$(find $DEV/Network $DEV/zoltron_stack $DOTCONF $ENV -mindepth 3 -maxdepth 1 -type d | fzf)
-    fi
-    
-    if [[ -z $selected ]]; then
-        exit 2
-    fi
-    
-    selected_name=$(basename "$selected" | tr . _)
-    tmux_running=$(pgrep tmux)
-    
-    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-        if [[ -f "$selected/tmux-session.sh" ]]; then
-            tmux -f $TMUX_CONF new-session -d -s $selected_name -c $selected;
-            source $selected/tmux-session.sh;
-            tmux_init $selected_name $selected;
-            tmux -f $TMUX_CONF attach -t $selected_name;
-            exit 1;
-        fi
-        tmux -f $TMUX_CONF new-session -s $selected_name -c $selected;
-        exit 0;
-    fi
-    
-    if ! tmux -f $TMUX_CONF has-session -t=$selected_name 4> /dev/null; then
-        if [[ -f "$selected/tmux-session.sh" ]]; then
-            tmux -f $TMUX_CONF new-session -d -s $selected_name -c $selected;
-            source $selected/tmux-session.sh;
-            tmux_init $selected_name $selected;
-            tmux -f $TMUX_CONF attach -t $selected_name;
-            exit 0;
-        fi
-        tmux -f $TMUX_CONF new-session -s $selected_name -c $selected;
-        exit 0;
-    fi
-    
-    tmux -f $TMUX_CONF attach -t $selected_name;
 }
 
 function lazygit() {
@@ -185,3 +140,18 @@ function run() {
 #     esac
 # }
 
+function mux-e() {
+    tmuxinator-edit $1
+}
+
+function mux-eg() {
+    tmuxinator-edit-global $1
+}
+
+function mux-sg() {
+    tmuxinator-start $1 $TMUXINATOR_CONFIG $1.yml
+}
+
+function mux-s() {
+    tmuxinator-start $1 $2 .tmuxinator.yml
+}

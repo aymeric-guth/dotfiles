@@ -1,0 +1,18 @@
+#!/bin/sh
+
+. "$ZFUNCTIONS/helpers.sh"
+
+if ! is_git_repo; then
+    echo "not a github repo $PWD"
+    exit 1
+fi
+
+if ! test -f "$PWD/.tmuxinator.yml"; then
+    if ! test -f "$TMUXINATOR_CONFIG/sample/.tmuxinator.yml"; then
+        echo "tmuxinator session template not found, defaulting to blank file"
+    else
+        cp "$TMUXINATOR_CONFIG/sample/.tmuxinator.yml" "$PWD/.tmuxinator.yml"
+    fi
+fi
+
+editor "$PWD/.tmuxinator.yml"

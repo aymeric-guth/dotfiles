@@ -10,13 +10,6 @@ function upgrade() {
     sudo apt update && sudo apt upgrade -y;
  }
 
-function _upgrade_nvim() {
-    git clone --depth 1 https://github.com/neovim/neovim ~/neovim;
-    cd ~/neovim && make CMAKE_BUILD_TYPE=Release;
-    sudo make install;
-    cd .. && sudo rm -rf neovim;
-}
-
 function _upgrade_lua() {
     pushd /tmp;
     git clone  --depth 1 https://github.com/sumneko/lua-language-server;

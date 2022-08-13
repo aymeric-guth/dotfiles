@@ -6,10 +6,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='LC_ALL=C  grep --color=auto'
 #alias grep='LC_ALL=C  grep --color=auto --exclude-dir={.av-mp}'
-# confirm before overwriting something
-# alias cp="cp -i"
-# alias mv='mv -i'
-# alias rm='rm -i'
 
 alias df='df -h'     # human-readable sizes
 # gpg encryption
@@ -28,6 +24,7 @@ alias tmux="XDG_CONFIG_HOME=$DOTCONF tmux"
 alias tn="tmux -u new"
 alias ta="tmux -u attach"
 alias tx="tmuxinator"
+alias mux="tmuxinator"
 
 alias vim-kb="nvim $DOTCONF/nvim/lua/av/keymaps.lua"
-alias v="$EDITOR"
+alias v="editor $@"

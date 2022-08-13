@@ -26,7 +26,6 @@ alias makempy='make CROSS=x86_64-linux-musl-'
 
 alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
 
-
 alias lua-language-server="$HOME/bin/lua-language-server/bin/lua-language-server" "$@"
 
 alias nvim="$NEOVIM_OPTS $NEOVIM_BIN"

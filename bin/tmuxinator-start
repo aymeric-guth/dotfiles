@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if ! test -f "$2/$3"; then
+    echo "project does not exists"
+    exit 1
+fi
+
+tmuxinator start \
+    --project-config="$2/$3" \
+    project="$1" \
+    workspace="$2"

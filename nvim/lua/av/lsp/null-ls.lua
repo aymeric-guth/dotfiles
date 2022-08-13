@@ -6,11 +6,16 @@ end
 local handlers = require('av.lsp.handlers')
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
+local code_actions = null_ls.builtins.code_actions
 
 local null_ls_opts = {
   formatting.astyle.with({
-    filetypes = { 'c', 'cpp' },
+    filetypes = { 'c', 'cpp', 'cxx' },
     extra_args = { '--options=${DOTCONF}/.astylerc', '--project=none' },
+  }),
+
+  code_actions.shellcheck.with({
+    filetypes = { 'sh' },
   }),
 
   -- diagnostics.cppcheck.with({
@@ -46,7 +51,7 @@ local null_ls_opts = {
     filetypes = { 'markdown' },
   }),
 
-  formatting.prettier.with({
+  formatting.prettierd.with({
     filetypes = {
       'javascript',
       'javascriptreact',
@@ -71,8 +76,8 @@ local null_ls_opts = {
   }),
 
   formatting.taplo.with({ filetypes = { 'toml' } }),
-  diagnostics.yamllint.with({ filetypes = { 'yaml' } }),
-  -- diagnostics.hadolint.with({ filetypes = { 'dockerfile' } }),
+  -- diagnostics.yamllint.with({ filetypes = { 'yaml' } }),
+  diagnostics.hadolint.with({ filetypes = { 'dockerfile' } }),
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})

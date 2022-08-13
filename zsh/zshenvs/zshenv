@@ -16,10 +16,10 @@ export ENV="${DEV}/env"
 export GITHUB_REPOS="${HOME}/Desktop/Repos"
 export TOOLS="/opt/tools"
 PATH=$TOOLS/bin:$PATH
-
-### DOTFILES CONF
-export TMUX_DIR=$DOTCONF/tmux
-export TMUX_CONF=$TMUX_DIR/tmux.conf
+export EDITOR=$DOTCONF/bin/editor
+export MANPAGER="$EDITOR +Man!"
+export TMUXINATOR_CONFIG="$DEV/tmuxinator"
+export TMUX_CONFIG="$DOTCONF/tmux/tmux.conf"
 
 ### WORK
 export RSN="$HOME/Desktop/Novall/rsn"

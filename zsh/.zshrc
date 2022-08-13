@@ -9,12 +9,8 @@ setopt interactive_comments
 stty stop undef # Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
 
-# cd -> pushd
-# setopt auto_pushd
-
 # beeping is annoying
 unsetopt BEEP
-
 
 export ZPLUGINS="$ZDATA/plugins"
 export ZFUNCTIONS="$ZDOTDIR/functions"
@@ -46,66 +42,51 @@ autoload -Uz colors && colors
 
 case "$(uname -s)" in
     Darwin)
-        # Imports
         source "$ZENVS/zshenv-macos"
         source "$ZFUNCTIONS/zsh-functions-macos"
         source "$ZPROMPTS/zsh-prompt"
         source "$ZALIASES/zsh-aliases-macos"
-        # https://github.com/junegunn/fzf
+
         [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
         [ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
         [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
-        # [ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
         ;;
 
     Linux)
-        # Imports
         source "$ZENVS/zshenv-linux"
         source "$ZFUNCTIONS/zsh-functions-linux"
         source "$ZPROMPTS/zsh-prompt"
         source "$ZALIASES/zsh-aliases-linux"
-        # https://github.com/junegunn/fzf
+
         [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
         [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
         [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
         [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
         [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-        # [ -f $ZCOMPLETIONS/_fnm ] && fpath+="$ZCOMPLETIONS/"
         ;;
+
     *)
+        exit 1
         ;;
 esac
+
+source "$ZENVS/after.sh"
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
-#zsh_add_plugin "marlonrichert/zsh-autocomplete"
-
-# Key-bindings
-# bindkey -s '^o' 'ranger^M'
-# bindkey -s '^f' 'zi^M'
-# bindkey -s '^s' 'ncdu^M'
-# bindkey -s '^n' 'nvim $(fzf)^M'
-# bindkey -s '^v' 'nvim\n'
-# bindkey -s '^z' 'zi^M'
-# bindkey '^[[P' delete-char
-# bindkey "^p" up-line-or-beginning-search # Up
-# bindkey "^n" down-line-or-beginning-search # Down
-# bindkey "^k" up-line-or-beginning-search # Up
-# bindkey "^j" down-line-or-beginning-search # Down
-# bindkey -r "^u"
-# bindkey -r "^d"
 
 zle -N history-substring-search-up
 zle -N history-substring-search-down
-zle -N tmux-sessionizer
-zle -N fzf-path
 zle -N edit-command-line
 
-bindkey -s '^f' "tmux-sessionizer\n"
+bindkey -s '^f' "project-launcher\n"
 bindkey -s '^x' "fzf-path\n"
+bindkey -s "^s" "tmux attach\n"
+bindkey -s "^v" "editor .\n"
+bindkey -s "^k" "exit\n"
 
 bindkey "^[[5~" beginning-of-line
 bindkey "^[[6~" end-of-line
@@ -117,15 +98,8 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey "^e" edit-command-line
 
-# "^[[A" up
-# "^[[B" down
-# "^[[C" right
-# "^[[D" left
-
 # direnv hook
 eval "$(direnv hook zsh)"
-export EDITOR=$DOTCONF/bin/editor
-export MANPAGER="$EDITOR +Man!"
 
 # determines search program for fzf
 if type fd &> /dev/null; then

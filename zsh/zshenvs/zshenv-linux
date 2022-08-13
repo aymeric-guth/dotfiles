@@ -5,9 +5,8 @@ source $ZENVS/zshenv
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 PATH="$DOTCONF/bin:$PATH"
-# export RUST_SRC_PATH="$TOOLS/cargo"
 
 export NEOVIM_OPTS="XDG_CONFIG_HOME=$DOTCONF XDG_DATA_HOME=$HOME/.local/share XDG_CACHE_HOME=$HOME/.cache PATH=$HOME/bin/lua-language-server:$PATH"
 export NEOVIM_BIN="/usr/local/bin/nvim"
-export COMPOSE_CMD="docker-compose"
 
+export COMPOSE_CMD="docker-compose"

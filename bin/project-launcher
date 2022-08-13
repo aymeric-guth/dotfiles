@@ -1,0 +1,19 @@
+#!/bin/sh
+
+selected=$(find $PERSONAL_PROJECTS $WORK_PROJECTS -mindepth 1 -maxdepth 1 -type d | fzf)
+if test -z "$selected" ; then
+    exit 1
+fi
+
+selected_name=$(basename "$selected")
+#selected_name=$(basename "$selected" | tr . _)
+
+if test -f "$selected/.tmuxinator.yml"; then
+    tmuxinator start \
+        --project-config="$selected/.tmuxinator.yml" \
+        project="$selected_name" \
+        workspace="$selected"
+else
+    echo "tmuxinator session not found"
+    exit 1
+fi
