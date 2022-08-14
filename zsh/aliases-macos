@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source $ZALIASES/zsh-aliases
+. "$ZDOTDIR/aliases"
 
 alias ls='ls -G'
 alias ns='netstat -p tcp nltu'
@@ -26,9 +26,5 @@ alias makempy='make CROSS=x86_64-linux-musl-'
 
 alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
 
-alias lua-language-server="$HOME/bin/lua-language-server/bin/lua-language-server" "$@"
-
-alias nvim="$NEOVIM_OPTS $NEOVIM_BIN"
-
 alias av='python3 $DEV/Network/mplayer_old/mplayer.py'
-alias flX="pushd $DEV/Network/mplayer && source .envrc && exe && popd"
+alias flX='pushd $DEV/Network/mplayer && source .envrc && exe && popd'

@@ -3,10 +3,8 @@
 HISTSIZE=1000000
 SAVEHIST=1000000
 export MANWIDTH=999
-# export LC_ALL=en_US.UTF-8
-# export LANG=en_US.UTF-8
-export LC_ALL=en_US.utf-8
-export LANG=en_US.utf-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 ### USER DEV ENV ###
 export DEV="${HOME}/Desktop/dev"
@@ -18,8 +16,8 @@ export TOOLS="/opt/tools"
 PATH=$TOOLS/bin:$PATH
 export EDITOR=$DOTCONF/bin/editor
 export MANPAGER="$EDITOR +Man!"
-export TMUXINATOR_CONFIG="$DEV/tmuxinator"
 export TMUX_CONFIG="$DOTCONF/tmux/tmux.conf"
+export TMUXINATOR_CONFIG="$DEV/tmuxinator"
 
 ### WORK
 export RSN="$HOME/Desktop/Novall/rsn"

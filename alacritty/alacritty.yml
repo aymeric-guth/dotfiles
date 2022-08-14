@@ -134,6 +134,8 @@ key_bindings:
   - { key: D, mods: Command, chars: "\x01%" }
   - { key: D, mods: Command|Shift, chars: "\x01\"" }
   - { key: W, mods: Command, chars: "\x01," }
-  - { key: Q, mods: Alt, chars: "\x1bq" }
+  # - { key: q, mods: alt, chars: "\x1bq" }
+  - { key: Q, mods: Alt, chars: "\x01q" }
+  - { key: Q, mods: Control, chars: "\x01q" }
 
   # - { key: W, mods: Shift|Command, chars: "" }

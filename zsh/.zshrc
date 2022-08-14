@@ -13,19 +13,16 @@ unsetopt BEEP
 
 export ZPLUGINS="$ZDATA/plugins"
 export ZFUNCTIONS="$ZDOTDIR/functions"
-export ZENVS="$ZDOTDIR/zshenvs"
-export ZALIASES="$ZDOTDIR/aliases"
-export ZPROMPTS="$ZDOTDIR/prompts"
 export ZCOMPLETIONS="$ZDOTDIR/completions"
-export ZSH_COMPDUMP=$ZDATA/.zcompdump
+export ZSH_COMPDUMP="$ZDATA/.zcompdump"
 
 # completions
 fpath=($ZCOMPLETIONS $fpath)
-fpath=("/Users/yul/Desktop/Repos/zsh-completions/src" $fpath)
+#fpath=("/Users/yul/Desktop/Repos/zsh-completions/src" $fpath)
 autoload -Uz compinit
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$ZDATA/.zcompcache"
+zstyle ':completion:*' cache-path "$ZSH_COMPDUMP"
 zstyle ':completion:*' menu select
 # zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
@@ -41,10 +38,9 @@ autoload -Uz colors && colors
 
 case "$(uname -s)" in
     Darwin)
-        source "$ZENVS/zshenv-macos"
+        source "$ZDOTDIR/zshenv-macos"
         source "$ZFUNCTIONS/zsh-functions-macos"
-        source "$ZPROMPTS/zsh-prompt"
-        source "$ZALIASES/zsh-aliases-macos"
+        source "$ZDOTDIR/aliases-macos"
 
         [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
         [ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
@@ -52,10 +48,9 @@ case "$(uname -s)" in
         ;;
 
     Linux)
-        source "$ZENVS/zshenv-linux"
+        source "$ZDOTDIR/zshenv-linux"
         source "$ZFUNCTIONS/zsh-functions-linux"
-        source "$ZPROMPTS/zsh-prompt"
-        source "$ZALIASES/zsh-aliases-linux"
+        source "$ZDOTDIR/aliases-linux"
 
         [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
         [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
@@ -69,7 +64,8 @@ case "$(uname -s)" in
         ;;
 esac
 
-source "$ZENVS/after.sh"
+source "$ZDOTDIR/zshenv-after"
+source "$ZDOTDIR/prompt"
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -88,10 +84,6 @@ bindkey -s "^k" "exit\n"
 bindkey -s '^f' "tmuxinator-start\n"
 bindkey -s "^n" "tmuxinator-edit\n"
 bindkey -s "^g" "tmuxinator-debug\n"
-bindkey -s "^q" "hello-world\n"
-bindkey -s "\eq" "hello-world\n"
-bindkey -s '\eh' '^l hello'
-bindkey '\eg' clear-screen
 
 bindkey "^[[5~" beginning-of-line
 bindkey "^[[6~" end-of-line

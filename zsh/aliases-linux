@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source $ZALIASES/zsh-aliases
+. "$ZDOTDIR/aliases"
 
 alias free='free -m' # show sizes in MB
 
@@ -11,8 +11,5 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
 alias ns='netstat -plntu'
 alias ls='ls --color=auto'
-
-
-alias nvim="$NEOVIM_OPTS $NEOVIM_BIN"
 
 alias clangd='clangd-15'

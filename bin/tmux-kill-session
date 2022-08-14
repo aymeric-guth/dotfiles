@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if ! test -z "$TMUX"; then
+    tmux kill-session
+fi

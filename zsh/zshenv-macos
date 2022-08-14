@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source $ZENVS/zshenv
+. "$ZDOTDIR/zshenv"
 
 export CLICOLOR=1
 
