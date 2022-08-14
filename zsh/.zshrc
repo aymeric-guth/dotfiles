@@ -7,9 +7,8 @@ setopt appendhistory
 setopt autocd extendedglob nomatch menucomplete
 setopt interactive_comments
 stty stop undef # Disable ctrl-s to freeze terminal.
+stty start undef # Disable ctrl-q to freeze terminal.
 zle_highlight=('paste:none')
-
-# beeping is annoying
 unsetopt BEEP
 
 export ZPLUGINS="$ZDATA/plugins"
@@ -82,11 +81,17 @@ zle -N history-substring-search-up
 zle -N history-substring-search-down
 zle -N edit-command-line
 
-bindkey -s '^f' "project-launcher\n"
 bindkey -s '^x' "fzf-path\n"
 bindkey -s "^s" "tmux attach\n"
 bindkey -s "^v" "editor .\n"
 bindkey -s "^k" "exit\n"
+bindkey -s '^f' "tmuxinator-start\n"
+bindkey -s "^n" "tmuxinator-edit\n"
+bindkey -s "^g" "tmuxinator-debug\n"
+bindkey -s "^q" "hello-world\n"
+bindkey -s "\eq" "hello-world\n"
+bindkey -s '\eh' '^l hello'
+bindkey '\eg' clear-screen
 
 bindkey "^[[5~" beginning-of-line
 bindkey "^[[6~" end-of-line

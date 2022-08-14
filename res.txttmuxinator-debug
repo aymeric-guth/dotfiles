@@ -1,0 +1,64 @@
+#!/opt/local/bin/zsh
+
+# Clear rbenv variables before starting tmux
+unset RBENV_VERSION
+unset RBENV_DIR
+
+tmux -f $TMUX_CONFIG start-server;
+
+cd /Users/yul/Desktop/dev/Network/mplayer
+
+# Run on_project_start command.
+
+
+
+  # Run pre command.
+  
+  
+  # Run on_project_first_start command.
+  
+
+  # Create the session and the first window. Manually switch to root
+  # directory if required to support tmux < 1.9
+  TMUX= tmux -f $TMUX_CONFIG new-session -d -s mplayer -n editor
+  tmux -f $TMUX_CONFIG send-keys -t mplayer:1 cd\ /Users/yul/Desktop/dev/Network/mplayer C-m
+
+
+  # Create other windows.
+  tmux -f $TMUX_CONFIG new-window -c /Users/yul/Desktop/dev/Network/mplayer -t mplayer:2 -n runtime
+  tmux -f $TMUX_CONFIG new-window -c /Users/yul/Desktop/dev/Network/mplayer -t mplayer:3 -n shell
+
+
+  # Window "editor"
+  tmux -f $TMUX_CONFIG send-keys -t mplayer:1 editor\ . C-m
+
+
+  # Window "runtime"
+  tmux -f $TMUX_CONFIG send-keys -t mplayer:2.0 python\ -m\ src C-m
+
+  tmux -f $TMUX_CONFIG splitw -c /Users/yul/Desktop/dev/Network/mplayer -t mplayer:2
+  tmux -f $TMUX_CONFIG select-layout -t mplayer:2 tiled
+  tmux -f $TMUX_CONFIG send-keys -t mplayer:2.1 python\ src/logger.py C-m
+
+  tmux -f $TMUX_CONFIG select-layout -t mplayer:2 tiled
+
+  tmux -f $TMUX_CONFIG select-layout -t mplayer:2 even-horizontal
+  tmux -f $TMUX_CONFIG select-pane -t mplayer:2.0
+
+
+  # Window "shell"
+
+
+  tmux -f $TMUX_CONFIG select-window -t mplayer:1
+  tmux -f $TMUX_CONFIG select-pane -t mplayer:1.0
+
+  if [ -z "$TMUX" ]; then
+    tmux -f $TMUX_CONFIG -u attach-session -t mplayer
+  else
+    tmux -f $TMUX_CONFIG -u switch-client -t mplayer
+  fi
+
+
+    
+# Run on_project_exit command.
+

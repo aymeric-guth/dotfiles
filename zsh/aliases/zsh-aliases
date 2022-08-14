@@ -26,5 +26,9 @@ alias ta="tmux -u attach"
 alias tx="tmuxinator"
 alias mux="tmuxinator"
 
+alias muxd="tmuxinator-debug"
+alias muxe="tmuxinator-edit"
+alias muxs="tmuxinator-start"
+
 alias vim-kb="nvim $DOTCONF/nvim/lua/av/keymaps.lua"
 alias v="editor $@"

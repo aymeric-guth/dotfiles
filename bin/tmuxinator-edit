@@ -1,18 +1,26 @@
 #!/bin/sh
 
+selected=$(find $PERSONAL_PROJECTS $WORK_PROJECTS -mindepth 1 -maxdepth 1 -type d | fzf)
+if test -z "$selected" ; then
+    exit 1
+fi
+
 . "$ZFUNCTIONS/helpers.sh"
 
-if ! is_git_repo; then
+if ! is_git_repo "$selected"; then
     echo "not a github repo $PWD"
     exit 1
 fi
 
-if ! test -f "$PWD/.tmuxinator.yml"; then
+if ! test -f "$selected/.tmuxinator.yml"; then
     if ! test -f "$TMUXINATOR_CONFIG/sample/.tmuxinator.yml"; then
         echo "tmuxinator session template not found, defaulting to blank file"
     else
-        cp "$TMUXINATOR_CONFIG/sample/.tmuxinator.yml" "$PWD/.tmuxinator.yml"
+        cp "$TMUXINATOR_CONFIG/sample/.tmuxinator.yml" "$selected/.tmuxinator.yml"
     fi
 fi
 
-editor "$PWD/.tmuxinator.yml"
+tmuxinator start \
+    --project-config="$TMUXINATOR_CONFIG/edit/.tmuxinator.yml" \
+    project="config-$(basename "$selected")" \
+    workspace="$selected"

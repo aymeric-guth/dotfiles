@@ -1,12 +1,6 @@
 name: <%= @settings["project"] %> 
 root: <%= @settings["workspace"] %>
 
-# Optional tmux socket
-# socket_name: foo
-
-# Note that the pre and post options have been deprecated and will be replaced by
-# project hooks.
-
 # Project hooks
 
 # Runs on project start, always
@@ -30,9 +24,6 @@ root: <%= @settings["workspace"] %>
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 tmux_options: -f $TMUX_CONFIG 
 
-# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
-# tmux_command: byobu
-
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
 # startup_window: editor
 
@@ -45,5 +36,18 @@ tmux_options: -f $TMUX_CONFIG
 windows:
   - global: editor .
   - neovim: editor ./nvim
-  - zsh: editor ./zsh
-  - bin: editor ./bin
+  - shell: 
+      layout: even-horizontal
+      panes:
+        - editor ./zsh
+        - editor ./bin
+  - tmux:
+      layout: even-horizontal
+      panes:
+        - editor ./tmux/tmux.conf
+        - editor $TMUXINATOR_CONFIG/sample/.tmuxinator.yml
+  - terminal:
+      layout: even-horizontal
+      panes:
+        - editor ./alacritty/alacritty.yml
+        - editor ./kitty/kitty.conf
