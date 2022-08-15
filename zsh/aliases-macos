@@ -6,7 +6,6 @@ alias ls='ls -G'
 alias ns='netstat -p tcp nltu'
 alias ncdu='ncdu --exclude=/Users/yul/.av-mp'
 
-
 # Wine Executables
 alias vgmtrans='wine ${WINEDIR}/vgmtrans/bin/vgmtrans.exe'
 alias spctool='wine ${WINEDIR}/SPCTool/SPCTool.exe'
@@ -27,4 +26,9 @@ alias makempy='make CROSS=x86_64-linux-musl-'
 alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
 
 alias av='python3 $DEV/Network/mplayer_old/mplayer.py'
-alias flX='pushd $DEV/Network/mplayer && source .envrc && exe && popd'
+flX() {
+    cwd="$PWD"
+    cd "$DEV/Network/mplayer" || exit 1
+    python -m src
+    cd "$cwd" || exit 1
+}

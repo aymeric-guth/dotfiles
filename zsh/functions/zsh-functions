@@ -45,6 +45,10 @@ function _upgrade() {
     zsh-update-plugins;
     ### Neovim
     # nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
+    ### PIP, Python3 global packages
+    python3 -m pip install --upgrade pip;
+    python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
+    python3 -m pip install -r $DOTCONF/requirements.txt;
 }
 
 function _cleanup() {
@@ -140,18 +144,3 @@ function run() {
 #     esac
 # }
 
-function mux-e() {
-    tmuxinator-edit $1
-}
-
-function mux-eg() {
-    tmuxinator-edit-global $1
-}
-
-function mux-sg() {
-    tmuxinator-start $1 $TMUXINATOR_CONFIG $1.yml
-}
-
-function mux-s() {
-    tmuxinator-start $1 $2 .tmuxinator.yml
-}

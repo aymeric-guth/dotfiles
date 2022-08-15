@@ -16,12 +16,18 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
 alias kubectl="minikube kubectl --"
 
-alias cfg='tmuxinator-start $DOTCONF'
 alias tn="tmux -u new"
 alias ta="tmux -u attach"
 
-alias muxd="tmuxinator-debug"
-alias muxe="tmuxinator-edit"
-alias muxs="tmuxinator-start"
+alias tx="tmuxp"
+alias txi="tmuxp import tmuxinator"
+
+cfg() {
+    if ! test -z "$TMUX"; then
+        editor "$DOTCONF"
+    else
+        tmuxp-start "$DOTCONF"
+    fi
+}
 
 v() { editor "$@"; }

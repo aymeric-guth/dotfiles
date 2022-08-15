@@ -13,12 +13,13 @@ fi
 selected_name=$(basename "$selected")
 #selected_name=$(basename "$selected" | tr . _)
 
-if test -f "$selected/.tmuxinator.yml"; then
-    tmuxinator start \
-        --project-config="$selected/.tmuxinator.yml" \
-        project="$selected_name" \
-        workspace="$selected"
+if test -f "$selected/$TMUX_TEMPLATE"; then
+    PROJECT_NAME="$selected_name" \
+    WORKSPACE="$selected" \
+    tmuxp load \
+        -f "$TMUX_CONFIG" \
+        "$selected/$TMUX_TEMPLATE"
 else
-    echo "tmuxinator session not found"
+    echo "tmuxp session not found"
     exit 1
 fi

@@ -11,10 +11,6 @@ fe() { find -E $1 -regex ".*\.($2)" }
 
 upgrade() {
     _upgrade;
-    ### PIP, Python3 global packages
-    python3 -m pip install --upgrade pip;
-    python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
-    python3 -m pip install -r $DOTCONF/requirements.txt;
     ### Macports
     sudo port selfupdate;
     sudo port upgrade outdated;

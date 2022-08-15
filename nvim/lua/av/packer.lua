@@ -135,7 +135,7 @@ return require('packer').startup(function(use)
     },
     branch = 'master',
   })
-  use({ 'akinsho/bufferline.nvim', branch = 'main', requires = 'kyazdani42/nvim-web-devicons' })
+  -- use({ 'akinsho/bufferline.nvim', branch = 'main', requires = 'kyazdani42/nvim-web-devicons' })
   use({ 'moll/vim-bbye', branch = 'master' })
   use({ 'ThePrimeagen/harpoon', branch = 'master' })
 
@@ -158,12 +158,12 @@ return require('packer').startup(function(use)
   use({ 'hrsh7th/cmp-cmdline', branch = 'main' })
   use({ 'hrsh7th/nvim-cmp', branch = 'main' })
   -- patched installer to force tabnine in .local
-  use({
-    'tzachar/cmp-tabnine',
-    run = '$DOTCONF/patches/tabnine/install.sh',
-    requires = 'hrsh7th/nvim-cmp',
-    branch = 'main',
-  })
+  -- use({
+  --   'tzachar/cmp-tabnine',
+  --   run = '$DOTCONF/patches/tabnine/install.sh',
+  --   requires = 'hrsh7th/nvim-cmp',
+  --   branch = 'main',
+  -- })
   use({ 'L3MON4D3/LuaSnip', branch = 'master' })
   use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })
   use('folke/trouble.nvim')

@@ -81,9 +81,12 @@ bindkey -s '^x' "fzf-path\n"
 bindkey -s "^s" "tmux attach\n"
 bindkey -s "^v" "editor .\n"
 bindkey -s "^k" "exit\n"
-bindkey -s '^f' "tmuxinator-start\n"
-bindkey -s "^n" "tmuxinator-edit\n"
-bindkey -s "^g" "tmuxinator-debug\n"
+# bindkey -s '^f' "tmuxinator-start\n"
+# bindkey -s "^n" "tmuxinator-edit\n"
+# bindkey -s "^g" "tmuxinator-debug\n"
+bindkey -s '^f' "tmuxp-start\n"
+bindkey -s "^n" "tmuxp-edit\n"
+bindkey -s "^g" "tmuxp-debug\n"
 
 bindkey "^[[5~" beginning-of-line
 bindkey "^[[6~" end-of-line
@@ -105,6 +108,7 @@ elif type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
 fi
 
+eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"
 # source $ZDOTDIR/vim-mode.sh
 
 export PATH

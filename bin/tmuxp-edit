@@ -1,0 +1,27 @@
+#!/bin/sh
+
+selected=$(find $PERSONAL_PROJECTS $WORK_PROJECTS -mindepth 1 -maxdepth 1 -type d | fzf)
+if test -z "$selected" ; then
+    exit 1
+fi
+
+. "$ZFUNCTIONS/helpers.sh"
+
+if ! is_git_repo "$selected"; then
+    echo "not a github repo $PWD"
+    exit 1
+fi
+
+if ! test -f "$selected/$TMUX_TEMPLATE"; then
+    if ! test -f "$TMUXP_CONFIGDIR/templates/$TMUX_TEMPLATE"; then
+        echo "tmuxinator session template not found, defaulting to blank file"
+    else
+        cp "$TMUXP_CONFIGDIR/templates/$TMUX_TEMPLATE" "$selected/$TMUX_TEMPLATE"
+    fi
+fi
+
+PROJECT_NAME="config-$(basename "$selected")" \
+WORKSPACE="$selected" \
+tmuxp load \
+    -f "$TMUX_CONFIG" \
+    "$TMUXP_CONFIGDIR/edit/$TMUX_TEMPLATE"

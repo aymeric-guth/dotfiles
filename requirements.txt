@@ -14,6 +14,7 @@ black
 git+https://github.com/python-lsp/pylsp-mypy@master
 pyright
 git+https://github.com/adrienverge/yamllint@master
+git+https://github.com/tmux-python/tmuxp@master
 ### Temp
 httpx
 pydantic

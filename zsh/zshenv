@@ -17,7 +17,9 @@ PATH=$TOOLS/bin:$PATH
 export EDITOR=$DOTCONF/bin/editor
 export MANPAGER="$EDITOR +Man!"
 export TMUX_CONFIG="$DOTCONF/tmux/tmux.conf"
-export TMUXINATOR_CONFIG="$DEV/tmuxinator"
+export TMUXINATOR_CONFIG="$DEV/Network/tmuxinator"
+export TMUXP_CONFIGDIR="$DEV/Network/tmuxp"
+export TMUX_TEMPLATE=".tmuxp.yaml"
 
 ### WORK
 export RSN="$HOME/Desktop/Novall/rsn"
