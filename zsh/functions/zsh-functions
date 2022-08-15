@@ -115,3 +115,12 @@ function run() {
         return 1
     fi
 }
+
+rebuild-font-cache() {
+    fc-cache -f -v
+}
+
+my-backward-delete-word() {
+    local WORDCHARS=${WORDCHARS/\//}
+    zle backward-delete-word
+}

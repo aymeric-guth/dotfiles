@@ -40,7 +40,7 @@ windows:
     layout: even-horizontal
     panes:
       - shell_command:
-        - cd ./alacritty && editor alacritty.yml
+        - cd ./alacritty && editor .
         focus: true
       - shell_command:
         - cd ./kitty && editor kitty.conf

@@ -78,11 +78,13 @@ zsh_add_plugin "zsh-users/zsh-history-substring-search"
 zle -N history-substring-search-up
 zle -N history-substring-search-down
 zle -N edit-command-line
+zle -N my-backward-delete-word
 
 bindkey -s '^x' "fzf-path\n"
 bindkey -s "^s" "tmux attach\n"
 bindkey -s "^v" "editor .\n"
 bindkey -s "^k" "exit\n"
+bindkey '^W' my-backward-delete-word
 # bindkey -s '^f' "tmuxinator-start\n"
 # bindkey -s "^n" "tmuxinator-edit\n"
 # bindkey -s "^g" "tmuxinator-debug\n"
