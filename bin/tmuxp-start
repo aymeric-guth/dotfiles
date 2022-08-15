@@ -3,8 +3,7 @@
 if ! test -z "$1"; then
     selected="$1"
 else
-    selected=$(find $PERSONAL_PROJECTS -mindepth 1 -maxdepth 1 -type d | fzf)
-    # selected=$(find $PERSONAL_PROJECTS $WORK_PROJECTS -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find $PERSONAL_PROJECTS $WORK_PROJECTS -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 if test -z "$selected" ; then
     exit 1

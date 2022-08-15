@@ -55,7 +55,7 @@ function GruvboxMaterial()
   -- g.gruvbox_material_colors_override~
 end
 
--- ColorGruvboxBaby()
+ColorGruvboxBaby()
 -- ColorGruvboxCommunity()
-ColorTokyoNight()
+-- ColorTokyoNight()
 -- GruvboxMaterial()

@@ -4,8 +4,8 @@ _upgrade_nvim_ext() {
     if ! command -v nvim 1> /dev/null; then
         return 1
     fi
-    nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync";
-    nvim --headless -c "TSUpdateSync" -c "qa" > /dev/null 2>&1;
+    editor --headless -c "autocmd User PackerComplete quitall" -c "PackerSync";
+    editor --headless -c "TSUpdateSync" -c "qa" > /dev/null 2>&1;
 }
 
 _bootstrap_nvim() {
