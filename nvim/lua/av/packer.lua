@@ -160,7 +160,7 @@ return require('packer').startup(function(use)
   -- patched installer to force tabnine in .local
   -- use({
   --   'tzachar/cmp-tabnine',
-  --   run = '$DOTCONF/patches/tabnine/install.sh',
+  --   run = '$DOTFILES/patches/tabnine/install.sh',
   --   requires = 'hrsh7th/nvim-cmp',
   --   branch = 'main',
   -- })

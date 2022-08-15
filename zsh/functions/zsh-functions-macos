@@ -55,5 +55,3 @@ cleanup() {
 }
 
 function ig-scraper() { $SCRIPTDIR/instagram/venv/bin/python $SCRIPTDIR/instagram/main.py $1 }
-
-function exe() { eval $EXE }

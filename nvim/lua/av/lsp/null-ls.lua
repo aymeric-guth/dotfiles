@@ -11,7 +11,7 @@ local code_actions = null_ls.builtins.code_actions
 local null_ls_opts = {
   formatting.astyle.with({
     filetypes = { 'c', 'cpp', 'cxx' },
-    extra_args = { '--options=${DOTCONF}/.astylerc', '--project=none' },
+    extra_args = { '--options=${DOTFILES}/.astylerc', '--project=none' },
   }),
 
   code_actions.shellcheck.with({

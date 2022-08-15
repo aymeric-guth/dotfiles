@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 # bindkey -e will be emacs mode
 bindkey -v

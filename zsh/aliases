@@ -21,9 +21,9 @@ alias ta="tmux -u attach"
 
 cfg() {
     if ! test -z "$TMUX"; then
-        editor "$DOTCONF"
+        editor "$DOTFILES"
     else
-        tmuxp-start "$DOTCONF"
+        tmuxp-start "$DOTFILES"
     fi
 }
 
