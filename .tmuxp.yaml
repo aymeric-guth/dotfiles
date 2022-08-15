@@ -21,6 +21,8 @@ windows:
     panes:
       - shell_command:
         - cd ./zsh && editor .
+        focus: true
+      - shell_command:
         - cd ./bin && editor .
   
   - window_name: tmux
@@ -29,6 +31,7 @@ windows:
     panes:
       - shell_command:
         - cd ./tmux && editor tmux.conf
+        focus: true
       - shell_command:
         - cd $TMUXP_CONFIGDIR/templates && editor $TMUX_TEMPLATE
 
@@ -38,5 +41,6 @@ windows:
     panes:
       - shell_command:
         - cd ./alacritty && editor alacritty.yml
+        focus: true
       - shell_command:
         - cd ./kitty && editor kitty.conf

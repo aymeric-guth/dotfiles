@@ -17,6 +17,7 @@ if test -f "$selected/$TMUX_TEMPLATE"; then
     PROJECT_NAME="$selected_name" \
     WORKSPACE="$selected" \
     tmuxp load \
+        --yes \
         -f "$TMUX_CONFIG" \
         "$selected/$TMUX_TEMPLATE"
 else

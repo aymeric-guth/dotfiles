@@ -19,9 +19,6 @@ alias kubectl="minikube kubectl --"
 alias tn="tmux -u new"
 alias ta="tmux -u attach"
 
-alias tx="tmuxp"
-alias txi="tmuxp import tmuxinator"
-
 cfg() {
     if ! test -z "$TMUX"; then
         editor "$DOTCONF"
@@ -31,3 +28,8 @@ cfg() {
 }
 
 v() { editor "$@"; }
+
+mux() {
+    tmuxp-start "$TMUXP_CONFIGDIR/anonymous"
+}
+alias muxd="tmuxp debug-info"

@@ -23,5 +23,6 @@ fi
 PROJECT_NAME="config-$(basename "$selected")" \
 WORKSPACE="$selected" \
 tmuxp load \
+    --yes \
     -f "$TMUX_CONFIG" \
     "$TMUXP_CONFIGDIR/edit/$TMUX_TEMPLATE"

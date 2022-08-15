@@ -63,6 +63,7 @@ nnoremap('<leader>q', ':Bdelete<CR>')
 --[[
 Telescope
 --]]
+-- nnoremap geh <cmd>Telescope find_files hidden=true<cr>
 nnoremap(
   '<leader>ff',
   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>"
