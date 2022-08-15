@@ -79,7 +79,7 @@ function down() {
     fi
 }
 
-function lazygit() {
+function _lazygit() {
     branch=$(git symbolic-ref --short HEAD);
     if [[ -z $branch ]]; then
         echo "Not a git repo";
