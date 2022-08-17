@@ -13,6 +13,15 @@ selected_name=$(basename "$selected")
 #selected_name=$(basename "$selected" | tr . _)
 
 if test -f "$selected/$TMUX_TEMPLATE"; then
+    if [ "$selected_name" = anonymous ]; then
+        PROJECT_NAME="$(uuid)" \
+        WORKSPACE="$(pwd)" \
+        tmuxp load \
+            --yes \
+            -f "$TMUX_CONFIG" \
+            "$TMUXP_CONFIGDIR/anonymous/$TMUX_TEMPLATE"
+        exit 0
+    fi
     PROJECT_NAME="$selected_name" \
     WORKSPACE="$selected" \
     tmuxp load \

@@ -22,4 +22,4 @@ export TMUXP_CONFIGDIR="$DEV/Network/tmuxp"
 export TMUX_TEMPLATE=".tmuxp.yaml"
 
 ### WORK
-export RSN="$HOME/Desktop/Novall/rsn"
+export RSN="$HOME/Desktop/Novall/RSN"

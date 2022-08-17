@@ -12,4 +12,3 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias ns='netstat -plntu'
 alias ls='ls --color=auto'
 
-alias clangd='clangd-15'

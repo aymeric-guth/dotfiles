@@ -7,7 +7,8 @@ key_bindings:
   - { key: J, mods: Command|Shift, chars: "\x01\x0a" }
   - { key: K, mods: Command|Shift, chars: "\x01\x0b" }
   - { key: L, mods: Command|Shift, chars: "\x01\x0c" }
-  - { key: Return, mods: Command|Shift, chars: "\x01\x7a" }
+  - { key: F, mods: Command|Shift, chars: "\x01\x7a" }
+  # - { key: Return, mods: Command|Shift, chars: "\x01\x7a" }
   - { key: H, mods: Command|Alt, chars: "\x01O" }
   - { key: J, mods: Command|Alt, chars: "\x01Q" }
   - { key: K, mods: Command|Alt, chars: "\x01R" }

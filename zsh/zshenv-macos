@@ -71,3 +71,6 @@ PATH="$DOTFILES/bin:$PATH"
 export NEOVIM_OPTS="XDG_CONFIG_HOME=${DOTFILES} XDG_DATA_HOME=${HOME}/.local/share XDG_CACHE_HOME=${HOME}/.cache PATH=/opt/local/libexec/llvm-14/bin:${HOME}/bin/lua-language-server/bin:${PATH}"
 export NEOVIM_BIN="/usr/local/bin/nvim"
 export COMPOSE_CMD="docker compose"
+
+export CC="/opt/local/libexec/llvm-14/bin/clang"
+export CCXX="/opt/local/libexec/llvm-14/bin/clang++"

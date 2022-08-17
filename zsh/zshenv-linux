@@ -6,7 +6,7 @@ PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cargo/bin:$PATH"
 PATH="$DOTFILES/bin:$PATH"
 
-export NEOVIM_OPTS="XDG_CONFIG_HOME=$DOTFILES XDG_DATA_HOME=$HOME/.local/share XDG_CACHE_HOME=$HOME/.cache PATH=$HOME/bin/lua-language-server:$PATH"
+export NEOVIM_OPTS="XDG_CONFIG_HOME=$DOTFILES XDG_DATA_HOME=$HOME/.local/share XDG_CACHE_HOME=$HOME/.cache"
 export NEOVIM_BIN="/usr/local/bin/nvim"
 
 export COMPOSE_CMD="docker-compose"

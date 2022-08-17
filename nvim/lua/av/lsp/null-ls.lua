@@ -64,7 +64,7 @@ local null_ls_opts = {
       'html',
       'json',
       'jsonc',
-      'yaml',
+      -- 'yaml',
       -- 'markdown',
       'graphql',
       'handlebars',
@@ -78,6 +78,8 @@ local null_ls_opts = {
   formatting.taplo.with({ filetypes = { 'toml' } }),
   -- diagnostics.yamllint.with({ filetypes = { 'yaml' } }),
   diagnostics.hadolint.with({ filetypes = { 'dockerfile' } }),
+  diagnostics.ansiblelint.with({ filetypes = { 'yaml.ansible' } }),
+  formatting.cmake_format.with({ filetypes = { 'cmake' } })
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})

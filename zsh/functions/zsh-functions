@@ -124,3 +124,17 @@ my-backward-delete-word() {
     local WORDCHARS=${WORDCHARS/\//}
     zle backward-delete-word
 }
+
+
+cmake_inspect() {
+    if [ ! -f ./CMakeLists.txt ]; then
+        echo "CMakeLists not found"
+        return 1
+    fi
+    if [ -d ./build ]; then
+        rm -rf ./build
+    fi
+    mkdir build && cd build || return 1
+    cmake ..
+    cmake -LA | awk '{if(f)print} /-- Cache values/{f=1}'
+}

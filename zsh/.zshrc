@@ -21,6 +21,9 @@ export ZSH_COMPDUMP="$ZDATA/.zcompdump"
 # completions
 fpath=($ZCOMPLETIONS $fpath)
 #fpath=("/Users/yul/Desktop/Repos/zsh-completions/src" $fpath)
+autoload -U bashcompinit
+# bashcompinit
+
 autoload -Uz compinit
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
@@ -29,7 +32,7 @@ zstyle ':completion:*' menu select
 # zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files.
-compinit -d $ZDATA/.zcompdump-$ZSH_VERSION
+compinit -d "$ZDATA/.zcompdump-$ZSH_VERSION"
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -85,12 +88,12 @@ bindkey -s "^s" "tmux attach\n"
 bindkey -s "^v" "editor .\n"
 bindkey -s "^k" "exit\n"
 bindkey '^W' my-backward-delete-word
-# bindkey -s '^f' "tmuxinator-start\n"
-# bindkey -s "^n" "tmuxinator-edit\n"
-# bindkey -s "^g" "tmuxinator-debug\n"
+
 bindkey -s '^f' "tmuxp-start\n"
 bindkey -s "^n" "tmuxp-edit\n"
-bindkey -s "^g" "tmuxp-debug\n"
+bindkey -s "^g" "tmuxp debug-info | editor -R\n"
+bindkey -s "^a" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n" 
+#bindkey -s "^g" "tmuxp-debug\n"
 
 bindkey "^[[5~" beginning-of-line
 bindkey "^[[6~" end-of-line
@@ -113,6 +116,16 @@ elif type rg &> /dev/null; then
 fi
 
 eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"
+eval $(register-python-argcomplete ansible)
+eval $(register-python-argcomplete ansible-config)
+eval $(register-python-argcomplete ansible-console)
+eval $(register-python-argcomplete ansible-doc)
+eval $(register-python-argcomplete ansible-galaxy)
+eval $(register-python-argcomplete ansible-inventory)
+eval $(register-python-argcomplete ansible-playbook)
+eval $(register-python-argcomplete ansible-pull)
+eval $(register-python-argcomplete ansible-vault)
+
 # source $ZDOTDIR/vim-mode.sh
 
 export PATH

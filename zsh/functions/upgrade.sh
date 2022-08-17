@@ -9,8 +9,8 @@ _upgrade_nvim_ext() {
 }
 
 _bootstrap_nvim() {
-    editor --headless -c \"autocmd User PackerComplete quitall\";
-    #editor "--headless -c 'TSInstallSync python lua rust c cpp' -c 'qa' &> /dev/null;
+    #editor --headless -c \"autocmd User PackerComplete quitall\";
+    editor --headless -c 'TSInstallSync python lua rust c cpp' -c 'qa' &> /dev/null;
 }
 
 _upgrade_nvim() {
@@ -20,4 +20,14 @@ _upgrade_nvim() {
     cd neovim && make CMAKE_BUILD_TYPE=Release
     sudo make install
     cd "$cwd" || return
+}
+
+_upgrade_python_user() {
+    python3 -m pip install --upgrade pip;
+    tmp="$(mktemp)"
+    python3 -m pip freeze --user > "$tmp"
+    python3 -m pip uninstall -y -r "$tmp"
+    # bash version
+    # python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
+    python3 -m pip install -r "$DOTFILES/requirements.txt"
 }
