@@ -21,7 +21,7 @@ export ZSH_COMPDUMP="$ZDATA/.zcompdump"
 # completions
 fpath=($ZCOMPLETIONS $fpath)
 #fpath=("/Users/yul/Desktop/Repos/zsh-completions/src" $fpath)
-autoload -U bashcompinit
+# autoload -U bashcompinit
 # bashcompinit
 
 autoload -Uz compinit
@@ -41,11 +41,14 @@ autoload -U edit-command-line
 # Colors
 autoload -Uz colors && colors
 
+source "$ZDOTDIR/zshenv"
+
 case "$(uname -s)" in
     Darwin)
-        source "$ZDOTDIR/zshenv-macos"
+        export CLICOLOR=1
         source "$ZFUNCTIONS/zsh-functions-macos"
         source "$ZDOTDIR/aliases-macos"
+        export COMPOSE_CMD="docker compose"
 
         [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
         [ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
@@ -53,9 +56,9 @@ case "$(uname -s)" in
         ;;
 
     Linux)
-        source "$ZDOTDIR/zshenv-linux"
         source "$ZFUNCTIONS/zsh-functions-linux"
         source "$ZDOTDIR/aliases-linux"
+        export COMPOSE_CMD="docker-compose"
 
         [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
         [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
@@ -69,7 +72,6 @@ case "$(uname -s)" in
         ;;
 esac
 
-source "$ZDOTDIR/zshenv-after"
 source "$ZDOTDIR/prompt"
 
 # Plugins
@@ -92,8 +94,7 @@ bindkey '^W' my-backward-delete-word
 bindkey -s '^f' "tmuxp-start\n"
 bindkey -s "^n" "tmuxp-edit\n"
 bindkey -s "^g" "tmuxp debug-info | editor -R\n"
-bindkey -s "^a" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n" 
-#bindkey -s "^g" "tmuxp-debug\n"
+bindkey -s "^a" 'tmuxp-start "$TMUXP_CONFIGDIR/anonymous"\n'
 
 bindkey "^[[5~" beginning-of-line
 bindkey "^[[6~" end-of-line
@@ -115,17 +116,15 @@ elif type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
 fi
 
-eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"
-eval $(register-python-argcomplete ansible)
-eval $(register-python-argcomplete ansible-config)
-eval $(register-python-argcomplete ansible-console)
-eval $(register-python-argcomplete ansible-doc)
-eval $(register-python-argcomplete ansible-galaxy)
-eval $(register-python-argcomplete ansible-inventory)
-eval $(register-python-argcomplete ansible-playbook)
-eval $(register-python-argcomplete ansible-pull)
-eval $(register-python-argcomplete ansible-vault)
-
-# source $ZDOTDIR/vim-mode.sh
+# eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"
+# eval $(register-python-argcomplete ansible)
+# eval $(register-python-argcomplete ansible-config)
+# eval $(register-python-argcomplete ansible-console)
+# eval $(register-python-argcomplete ansible-doc)
+# eval $(register-python-argcomplete ansible-galaxy)
+# eval $(register-python-argcomplete ansible-inventory)
+# eval $(register-python-argcomplete ansible-playbook)
+# eval $(register-python-argcomplete ansible-pull)
+# eval $(register-python-argcomplete ansible-vault)
 
 export PATH

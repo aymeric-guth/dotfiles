@@ -1,29 +1,27 @@
 #!/bin/sh
 
-if ! test -z "$1"; then
+if [ -n "$1" ]; then
     selected="$1"
 else
     selected=$(find $PERSONAL_PROJECTS $WORK_PROJECTS -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
-if test -z "$selected" ; then
+if [ -z "$selected" ]; then
     exit 1
 fi
 
 selected_name=$(basename "$selected")
 #selected_name=$(basename "$selected" | tr . _)
 
-if test -f "$selected/$TMUX_TEMPLATE"; then
+if [ -f "$selected/$TMUX_TEMPLATE" ]; then
     if [ "$selected_name" = anonymous ]; then
-        PROJECT_NAME="$(uuid)" \
-        WORKSPACE="$(pwd)" \
-        tmuxp load \
-            --yes \
-            -f "$TMUX_CONFIG" \
-            "$TMUXP_CONFIGDIR/anonymous/$TMUX_TEMPLATE"
-        exit 0
+        PROJECT_NAME="$(uuid)"
+        WORKSPACE="$(pwd)"
+    else
+        PROJECT_NAME="$selected_name"
+        WORKSPACE="$selected"
     fi
-    PROJECT_NAME="$selected_name" \
-    WORKSPACE="$selected" \
+    PROJECT_NAME="$PROJECT_NAME" \
+    WORKSPACE="$WORKSPACE" \
     tmuxp load \
         --yes \
         -f "$TMUX_CONFIG" \

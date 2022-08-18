@@ -4,11 +4,11 @@ source $ZFUNCTIONS/helpers.sh
 source $ZFUNCTIONS/cleanup.sh
 source $ZFUNCTIONS/upgrade.sh
 
-function zsh_add_file() {
+zsh_add_file() {
     [ -f "$ZPLUGINS/$1" ] && source "$ZPLUGINS/$1"
 }
 
-function zsh_add_plugin() {
+zsh_add_plugin() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
     if [ -d "$ZPLUGINS/$PLUGIN_NAME" ]; then 
         # For plugins
@@ -19,7 +19,7 @@ function zsh_add_plugin() {
     fi
 }
 
-function zsh_add_completion() {
+zsh_add_completion() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
     if [ -d "$ZPLUGINS/$PLUGIN_NAME" ]; then 
         # For completions
@@ -35,27 +35,12 @@ function zsh_add_completion() {
     if [ "$2" = true ] && compinit "${completion_file:1}"
 }
 
-function zsh-update-plugins() {
-    find "$ZPLUGINS" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q;
-}
-
-function _upgrade() {
+_upgrade() {
     sudo echo "upgrading..."
-    ### ZSH plugins
-    zsh-update-plugins;
-    ### Neovim
-    # nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync';
-    ### PIP, Python3 global packages
-    python3 -m pip install --upgrade pip;
-    python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
-    python3 -m pip install -r $DOTFILES/requirements.txt;
+    _upgrade_zsh_plugins
+    _upgrade_python_packages
+    _upgrade_npm_packages
 }
-
-function _cleanup() {
-    echo '';
-}
-
-avgen() { python3 ${ENV}/avgen.py $PWD $1 }
 
 github() { 
     pushd $ENV/github;
@@ -63,7 +48,7 @@ github() {
     popd;
 }
 
-function up() {
+up() {
     if [ $COMPOSEFILE ]; then
         eval "$COMPOSE_CMD --file $COMPOSEFILE up --build $1 $2 $3" 
     else
@@ -71,7 +56,7 @@ function up() {
     fi
 }
 
-function down() {
+down() {
     if [ $COMPOSEFILE ]; then
         eval "$COMPOSE_CMD --file $COMPOSEFILE down $1 $2 $3" 
     else
@@ -79,37 +64,19 @@ function down() {
     fi
 }
 
-function _lazygit() {
-    branch=$(git symbolic-ref --short HEAD);
-    if [[ -z $branch ]]; then
-        echo "Not a git repo";
-        return 1;
-    fi
-
-    git add .
-    git commit -m "$(date)"
-    remote=$(git remote show)
-    if [[ -z $remote ]]; then
-        echo "Origin is not set"
-        return 2
-    fi
-
-    git push -u ${remote} ${branch}
-}
-
-function build() {
+build() {
     if [[ $BUILD_CMD ]]; then
-        eval "$BUILD_CMD"
+        eval "$BUILD_CMD $*"
     else
-        eval "$COMPOSE_CMD build"
+        eval "$COMPOSE_CMD build $*"
     fi
 }
 
-function run() {
+run() {
     if [[ $RUN_CMD ]]; then
-        eval "$RUN_CMD"
+        eval "$RUN_CMD $*"
     elif [[ $1 ]]; then
-        eval "$COMPOSE_CMD} run $1"
+        eval "$COMPOSE_CMD run $*"
     else
         echo "Must specify a target"
         return 1
@@ -124,7 +91,6 @@ my-backward-delete-word() {
     local WORDCHARS=${WORDCHARS/\//}
     zle backward-delete-word
 }
-
 
 cmake_inspect() {
     if [ ! -f ./CMakeLists.txt ]; then

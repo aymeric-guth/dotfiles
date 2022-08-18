@@ -8,7 +8,6 @@ fe() { find -E $1 -regex ".*\.($2)" }
 
 # adb_connect() { adb connect "${IPADDR}:5555" }
 
-
 upgrade() {
     _upgrade;
     ### Macports
@@ -16,35 +15,18 @@ upgrade() {
     sudo port upgrade outdated;
     ### Homebrew
     brew upgrade;
-    ### NPM, Node global packages
-    sudo npm install -g npm@latest;
-    sudo npm update -g;
-    ### Pull updates from github
-    github;
     ### Rust crates
     LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all;
 }
 
 cleanup() {
-    ### Macports -- slow
-    echo "cleaning MacPorts cache"
-    sudo port uninstall leaves;
-    sudo port -f clean --all all;
-    ### Homebrew
-    echo "cleaning Homebrew cache"
-    brew autoremove;
-    brew cleanup --prune=all;
-    ### Python
-    echo "cleaning pip cache"
-    python3 -m pip cache purge;
-    ### Rust
-    echo "cleaning cargo cache"
-    cargo cache clean-unref;
-    cargo cache --autoclean;
-    ### JS/TS
-    echo "cleaning npm cache"
-    sudo npm prune;
-    sudo npm cache clean --force;
+    sudo echo "Cleanup"
+    _cleanup_docker
+    _cleanup_macports
+    _cleanup_homebrew
+    _cleanup_python
+    _cleanup_cargo
+    _cleanup_npm
     ### App cache
     echo "removing user app-cache"
     sudo rm -rf $HOME/Library/Caches/*;

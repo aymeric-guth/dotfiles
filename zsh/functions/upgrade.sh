@@ -1,6 +1,6 @@
 #!/bin/sh
 
-_upgrade_nvim_ext() {
+_upgrade_nvim_plugins() {
     if ! command -v nvim 1> /dev/null; then
         return 1
     fi
@@ -13,16 +13,7 @@ _bootstrap_nvim() {
     editor --headless -c 'TSInstallSync python lua rust c cpp' -c 'qa' &> /dev/null;
 }
 
-_upgrade_nvim() {
-    cwd="$PWD"
-    cd /tmp && sudo rm -rf neovim
-    git clone --depth 1 https://github.com/neovim/neovim
-    cd neovim && make CMAKE_BUILD_TYPE=Release
-    sudo make install
-    cd "$cwd" || return
-}
-
-_upgrade_python_user() {
+_upgrade_python_packages() {
     python3 -m pip install --upgrade pip;
     tmp="$(mktemp)"
     python3 -m pip freeze --user > "$tmp"
@@ -30,4 +21,8 @@ _upgrade_python_user() {
     # bash version
     # python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
     python3 -m pip install -r "$DOTFILES/requirements.txt"
+}
+
+_upgrade_zsh_plugins() {
+    find "$ZPLUGINS" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q;
 }
