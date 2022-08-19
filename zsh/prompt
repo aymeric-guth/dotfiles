@@ -1,6 +1,6 @@
 #!/bin/sh
 
-function show_virtual_env() {
+show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
     if [[ $TMUX ]]; then
         glyph="❯"
@@ -11,7 +11,7 @@ function show_virtual_env() {
   fi
 }
 
-function prompt-length() {
+prompt-length() {
   emulate -L zsh
   local -i COLUMNS=${2:-COLUMNS}
   local -i x y=${#1} m
@@ -71,7 +71,7 @@ function set-prompt() {
   fill-line "$top_left" "$top_right"
   
   PROMPT=$REPLY$'\n'$bottom_left
-  RPROMPT=$bottom_right
+  # RPROMPT=$bottom_right
 }
 
 setopt no_prompt_{bang,subst} prompt_{cr,percent,sp}

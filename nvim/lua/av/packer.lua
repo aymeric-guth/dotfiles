@@ -104,12 +104,12 @@ return require('packer').startup(function(use)
   use('nvim-lua/plenary.nvim')
 
   -- Obsidian
-  -- use({ '$GITHUB_REPOS/tabular' })
-  -- use({
-  --   'preservim/vim-markdown',
-  --   branch = 'master',
-  -- })
-  -- use({ 'epwalsh/obsidian.nvim', branch = 'main' })
+  use({ '$GITHUB_REPOS/tabular' })
+  use({
+    'preservim/vim-markdown',
+    branch = 'master',
+  })
+  use({ 'epwalsh/obsidian.nvim', branch = 'main' })
 
   -- Telescope + deps: fuzzy finder
   use({
@@ -193,7 +193,7 @@ return require('packer').startup(function(use)
   use('gruvbox-community/gruvbox')
   use('folke/tokyonight.nvim')
   use({ 'luisiacc/gruvbox-baby', branch = 'main' })
-  use({'sainnhe/gruvbox-material'})
+  use({ 'sainnhe/gruvbox-material' })
   -- Misc
   use({ 'onsails/lspkind.nvim', branch = 'master' })
   use({
