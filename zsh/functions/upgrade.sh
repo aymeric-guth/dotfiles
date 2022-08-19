@@ -26,3 +26,8 @@ _upgrade_python_packages() {
 _upgrade_zsh_plugins() {
     find "$ZPLUGINS" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q;
 }
+
+_upgrade_npm_packages() {
+    sudo npm install npm@latest -g
+    sudo npm update -g
+}

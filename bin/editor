@@ -1,3 +1,4 @@
 #!/bin/sh
 
+. "$DOTFILES/.env"
 eval "$NEOVIM_OPTS $NEOVIM_BIN $*"

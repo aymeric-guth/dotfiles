@@ -5,12 +5,12 @@ source $ZFUNCTIONS/zsh-functions
 f() { find -E $1 -regex ".*\.($2)" -print0 | xargs -0 grep -n $3 }
 
 function upgrade() {
-    _upgrade;
+    _upgrade
     # APT
-    sudo apt update && sudo apt upgrade -y;
+    sudo apt-get update && sudo apt-get upgrade -y
  }
 
 function cleanup() {
-    _cleanup;
-    sudo apt autoremove;
+    _cleanup
+    sudo apt autoremove
 }

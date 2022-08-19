@@ -13,6 +13,7 @@ _cleanup_macports() {
     ### Macports -- slow
     echo "cleaning MacPorts cache"
     sudo port uninstall leaves
+    sudo port -f uninstall inactive
     sudo port -f clean --all all
 }
 

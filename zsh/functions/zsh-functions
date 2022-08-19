@@ -42,6 +42,14 @@ _upgrade() {
     _upgrade_npm_packages
 }
 
+_cleanup() {
+    sudo echo "cleaning up"
+    _cleanup_docker
+    _cleanup_python
+    _cleanup_cargo
+    _cleanup_npm
+}
+
 github() { 
     pushd $ENV/github;
     GITHUB_REPOS=$GITHUB_REPOS python github.py;
