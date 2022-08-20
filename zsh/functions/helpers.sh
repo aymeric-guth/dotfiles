@@ -4,14 +4,18 @@ is_git_repo() {
     ! test -z "$(find "${1:-$PWD}" -mindepth 1 -maxdepth 1 -type d -iname ".git")"
 }
 
-addToPath() {
-    if [[ "$PATH" != *"$1"* ]]; then
-        export PATH=$PATH:$1
+append_to_path() {
+    # echo "append_to_path: $1"
+    # echo "PATH: $PATH"
+    if ! echo "$PATH" | grep -q "$1"; then
+        export PATH="$PATH:$1"
     fi
 }
 
-addToPathFront() {
-    if [[ "$PATH" != *"$1"* ]]; then
-        export PATH=$1:$PATH
+prepend_to_path() {
+    # echo "prepend_to_path: $1"
+    # echo "PATH: $PATH"
+    if ! echo "$PATH" | grep -q "$1"; then
+        export PATH="$1:$PATH"
     fi
 }

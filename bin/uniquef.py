@@ -5,7 +5,7 @@ import sys
 import pathlib
 
 
-def main(argv: list[str]) -> int:
+def main(argv):
     dirs = []
     for item in argv:
         p = pathlib.Path(item[:-1])

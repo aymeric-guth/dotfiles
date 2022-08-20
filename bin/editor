@@ -1,4 +1,3 @@
 #!/bin/sh
 
-. "$DOTFILES/.env"
-eval "$NEOVIM_OPTS $NEOVIM_BIN $*"
+eval "$NEOVIM_OPTS nvim $*"

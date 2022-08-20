@@ -1,4 +1,9 @@
-# #!/bin/sh
+#!/bin/sh
+
+if [ -f /etc/zprofile ]; then
+    PATH=""
+    . /etc/zprofile
+fi
 
 export ZDOTDIR="$DOTFILES/zsh"
 export ZDATA="$HOME/.local/share/zsh"
@@ -20,7 +25,6 @@ export ZSH_COMPDUMP="$ZDATA/.zcompdump"
 
 # completions
 fpath=($ZCOMPLETIONS $fpath)
-#fpath=("/Users/yul/Desktop/Repos/zsh-completions/src" $fpath)
 # autoload -U bashcompinit
 # bashcompinit
 
@@ -41,7 +45,6 @@ autoload -U edit-command-line
 # Colors
 autoload -Uz colors && colors
 
-source "$ZDOTDIR/zshenv"
 
 case "$(uname -s)" in
     Darwin)
@@ -72,6 +75,7 @@ case "$(uname -s)" in
         ;;
 esac
 
+source "$ZDOTDIR/zshenv"
 source "$ZDOTDIR/prompt"
 
 # Plugins

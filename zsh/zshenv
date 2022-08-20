@@ -1,26 +1,18 @@
 #!/bin/sh
 
-. "$DOTFILES/.env"
 HISTSIZE=1000000
 SAVEHIST=1000000
 export MANWIDTH=999
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-export EDITOR=$DOTFILES/bin/editor
+export EDITOR="$DOTFILES/bin/editor"
 export MANPAGER="$EDITOR +Man!"
 export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
 export TMUX_TEMPLATE=".tmuxp.yaml"
 
-if [ -n $TOOLZ ]; then
-    PATH="$TOOLZ/bin:$PATH"
-fi
-if [ -d "$HOME/.local/bin" ]; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-if [ -d "$HOME/.cargo/bin" ]; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
-PATH="$DOTFILES/bin:$PATH"
+[ -d "$TOOLZ" ] && prepend_to_path "$TOOLZ/bin"
+prepend_to_path "$DOTFILES/bin"
+[ -f "$DOTFILES/.env" ] && . "$DOTFILES/.env"
 
 export TMUXP_CONFIGDIR="${TMUXP_CONFIGDIR:-"~/.config/tmuxp"}"

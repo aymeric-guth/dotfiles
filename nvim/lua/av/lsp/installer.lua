@@ -11,9 +11,13 @@ local servers = {
 local handlers = require('av.lsp.handlers')
 
 for _, server in pairs(servers) do
+  local capabilities = handlers.capabilities
+  if server == 'clangd' then
+    capabilities.offsetEncoding = 'utf-8'
+  end
   local opts = {
     on_attach = handlers.on_attach,
-    capabilities = handlers.capabilities,
+    capabilities = capabilities,
     lsp_flags = handlers.lsp_flags,
   }
   local lsp = require('av.lsp.config.' .. server)

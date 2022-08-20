@@ -1,7 +1,7 @@
 #!/bin/sh
 
-cd /tmp || exit 1
-sudo rm -rf cppcheck
+tmp="$(mktemp -d -t ci-XXXXXXXXXX)"
+cd "$tmp" || exit 1
 git clone --depth 1 https://github.com/danmar/cppcheck
 cd cppcheck || exit 1
 mkdir build && cd build || exit 1
@@ -15,3 +15,4 @@ cmake -G Ninja \
     -DUSE_BOOST=ON \
     ..
 ninja
+sudo ninja install

@@ -33,7 +33,9 @@ _cleanup_python() {
 _cleanup_cargo() {
     ### Rust
     echo "cleaning cargo cache"
+    # remove crates that are not referenced in a Cargo.toml from the cache
     cargo cache clean-unref
+    # Removes crate source checkouts and git repo checkouts
     cargo cache --autoclean
 }
 
@@ -42,4 +44,9 @@ _cleanup_npm() {
     echo "cleaning npm cache"
     sudo npm prune
     sudo npm cache clean --force
+}
+
+_cleanup_apt() {
+    sudo apt autoremove
+    sudo apt-get clean
 }

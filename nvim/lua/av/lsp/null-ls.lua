@@ -18,16 +18,16 @@ local null_ls_opts = {
     filetypes = { 'sh' },
   }),
 
-  -- diagnostics.cppcheck.with({
-  --   filetypes = { 'c', 'cpp' },
-  --   extra_args = {
-  --     '--enable=all',
-  --     '--cppcheck-build-dir=$ROOT',
-  --     '--suppress=missingIncludeSystem',
-  --     '--std=c11',
-  --     '--platform=unix64',
-  --   },
-  -- }),
+  diagnostics.cppcheck.with({
+    filetypes = { 'c', 'cpp' },
+    extra_args = {
+      '--enable=all',
+      -- '--cppcheck-build-dir=$ROOT',
+      '--suppress=missingIncludeSystem',
+      '--std=c11',
+      '--platform=unix64',
+    },
+  }),
 
   formatting.black.with({
     filetypes = { 'python' },
@@ -79,7 +79,7 @@ local null_ls_opts = {
   -- diagnostics.yamllint.with({ filetypes = { 'yaml' } }),
   diagnostics.hadolint.with({ filetypes = { 'dockerfile' } }),
   diagnostics.ansiblelint.with({ filetypes = { 'yaml.ansible' } }),
-  formatting.cmake_format.with({ filetypes = { 'cmake' } })
+  formatting.cmake_format.with({ filetypes = { 'cmake' } }),
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})

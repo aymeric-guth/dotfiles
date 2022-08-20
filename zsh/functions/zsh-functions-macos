@@ -9,14 +9,13 @@ fe() { find -E $1 -regex ".*\.($2)" }
 # adb_connect() { adb connect "${IPADDR}:5555" }
 
 upgrade() {
-    _upgrade;
-    ### Macports
-    sudo port selfupdate;
-    sudo port upgrade outdated;
-    ### Homebrew
-    brew upgrade;
-    ### Rust crates
-    LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all;
+    sudo echo "upgrading..."
+    _upgrade_zsh_plugins
+    _upgrade_python_packages
+    _upgrade_npm_packages
+    _upgrade_macports
+    _upgrade_homebrew
+    _upgrade_cargo_crates
 }
 
 cleanup() {

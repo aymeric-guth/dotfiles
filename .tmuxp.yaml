@@ -35,12 +35,16 @@ windows:
       - shell_command:
         - cd $TMUXP_CONFIGDIR/templates && editor $TMUX_TEMPLATE
 
-  - window_name: terminal
-    start_directory: .
-    layout: even-horizontal
+  - window_name: alacritty
+    start_directory: ./alacritty
+    layout: tiled
     panes:
       - shell_command:
-        - cd ./alacritty && editor .
+        - editor alacritty-macos.yml
+      - shell_command:
+        - editor alacritty-linux.yml
+      - shell_command:
+        - editor keymaps.yml
         focus: true
       - shell_command:
-        - cd ./kitty && editor kitty.conf
+        - editor colorschemes.yml

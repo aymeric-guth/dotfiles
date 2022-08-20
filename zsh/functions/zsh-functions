@@ -35,21 +35,6 @@ zsh_add_completion() {
     if [ "$2" = true ] && compinit "${completion_file:1}"
 }
 
-_upgrade() {
-    sudo echo "upgrading..."
-    _upgrade_zsh_plugins
-    _upgrade_python_packages
-    _upgrade_npm_packages
-}
-
-_cleanup() {
-    sudo echo "cleaning up"
-    _cleanup_docker
-    _cleanup_python
-    _cleanup_cargo
-    _cleanup_npm
-}
-
 github() { 
     pushd $ENV/github;
     GITHUB_REPOS=$GITHUB_REPOS python github.py;

@@ -4,13 +4,17 @@ return {
       cmd = {
         'clangd',
         '--background-index',
+        '--pch-storage=memory',
         '--suggest-missing-includes',
         '--clang-tidy',
         '--header-insertion=iwyu',
+        '--completion-style=detailed',
       },
-      -- Required for lsp-status
       init_options = {
         clangdFileStatus = true,
+        usePlaceholders = true,
+        completeUnimported = true,
+        semanticHighlighting = true,
       },
     },
   },

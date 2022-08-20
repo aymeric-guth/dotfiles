@@ -12,3 +12,6 @@ configstore
 .stfolder
 .stversions
 .env
+package-lock.json
+reset.sh
+stignore

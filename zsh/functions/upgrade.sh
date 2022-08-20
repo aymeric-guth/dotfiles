@@ -20,7 +20,7 @@ _upgrade_python_packages() {
     python3 -m pip uninstall -y -r "$tmp"
     # bash version
     # python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
-    python3 -m pip install -r "$DOTFILES/requirements.txt"
+    python3 -m pip install --user -r "$DOTFILES/requirements.txt"
 }
 
 _upgrade_zsh_plugins() {
@@ -33,6 +33,21 @@ _upgrade_npm_packages() {
 }
 
 _upgrade_cargo_crates() {
-    # LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all
-    cargo install-update --all
+    # list installed crates
+    # cargo install --list
+    # upgrade all installed crates with plugin install-all
+    cargo install-update -aLIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all
+}
+
+_upgrade_macports() {
+    sudo port selfupdate
+    sudo port upgrade outdated
+}
+
+_upgrade_homebrew() {
+    brew upgrade
+}
+
+_upgrade_apt() {
+    sudo apt-get update && sudo apt-get upgrade -y
 }
