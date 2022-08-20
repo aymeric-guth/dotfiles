@@ -1,4 +1,31 @@
-#!/bin/sh
+#!/bin/zsh
+
+hostmapping() {
+
+    case "$(hostname)" in
+        eihwaz)
+            print '(\U16D6)'
+            ;;
+        iMac)
+            print '(\U16D6)'
+            ;;
+        ansuz)
+            print '(\U16D6)'
+            ;;
+        laguz)
+            print '(\U16D6)'
+            ;;
+        sowilo)
+            print '(\U16D6)'
+            ;;
+        berkana)
+            print '(\U16D6)'
+            ;;
+        *)
+            print '%m'
+            ;;
+    esac
+}
 
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
@@ -61,7 +88,9 @@ function set-prompt() {
   else
       glyph=">"
   fi
+  # local _host="$(hostmapping)"
   local top_left='%F{green}%n@%m%f:%F{blue}%~%f'
+  # local top_left="%F{green}%n@${_host}%f:%F{blue}%~%f"
   local top_right="%F{green}${git_branch}%f"
   local bottom_left="%B%F{%(?.green.red)}$(show_virtual_env)${glyph}%f%b "
   # local bottom_left="%B%F{%(?.green.red)}$(show_virtual_env)>%f%b "

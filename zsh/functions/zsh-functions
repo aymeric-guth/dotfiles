@@ -112,3 +112,14 @@ cmake_inspect() {
     cmake ..
     cmake -LA | awk '{if(f)print} /-- Cache values/{f=1}'
 }
+
+hostmapping() {
+    case "$(hostname)" in
+        eihwaz)
+            print '\U16D6'
+            ;;
+        *)
+            print '%m'
+            ;;
+    esac
+}

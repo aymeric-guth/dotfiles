@@ -1,5 +1,5 @@
 local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+-- local keymap = vim.api.nvim_set_keymap
 
 local nnoremap = function(lhs, rhs)
   return vim.api.nvim_set_keymap('n', lhs, rhs, opts)
@@ -9,6 +9,10 @@ local inoremap = function(lhs, rhs)
 end
 local vnoremap = function(lhs, rhs)
   return vim.api.nvim_set_keymap('v', lhs, rhs, { noremap = true, silent = true })
+end
+
+local nvnoremap = function(lhs, rhs)
+  return vim.keymap.set({ 'n', 'v' }, lhs, rhs, opts)
 end
 
 -- Leader Key
@@ -32,17 +36,16 @@ vim.g.loaded_perl_provider = 0
 -- <C-Alt-S-key>
 -- <C-S-key>
 -- <Alt-j>
-nnoremap('<M-j>', '}')
-nnoremap('∆', '}')
+nvnoremap('<M-j>', '}')
+nvnoremap('∆', '}')
 -- <Alt-k>
-nnoremap('<M-k>', '{')
-nnoremap('˚', '{')
+nvnoremap('<M-k>', '{')
+nvnoremap('˚', '{')
 
 --[[
 -- Basic
 --]]
-nnoremap(';', ':')
-vnoremap(';', ':')
+nvnoremap(';', ':')
 nnoremap(',p', '"0p')
 nnoremap(',P', '"0P')
 
@@ -73,8 +76,8 @@ nnoremap('<leader>fb', ':Telescope current_buffer_fuzzy_find<CR>')
 nnoremap('<leader>fB', ':Telescope buffers<CR>')
 nnoremap('<leader>fs', ':Telescope grep_string<CR>')
 -- Help
-keymap('n', '<leader>fm', ':Telescope man_pages<CR>', opts)
-keymap('n', '<leader>fh', ':Telescope help_tags<CR>', opts)
+nnoremap('<leader>fm', ':Telescope man_pages<CR>')
+nnoremap('<leader>fh', ':Telescope help_tags<CR>')
 
 --[[
 -- Trouble

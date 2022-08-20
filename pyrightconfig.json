@@ -7,7 +7,7 @@
   },
   "venv": ".venv",
   "venvPath": ".",
-  "typeshedPath": "/Users/yul/Desktop/Repos/typeshed",
+  "typeshedPath": "$GITHUB_REPOS/typeshed",
   "reportMissingImports": true,
   "reportMissingTypeStubs": false,
   "pythonVersion": "3.10",

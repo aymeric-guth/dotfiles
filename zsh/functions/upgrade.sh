@@ -31,3 +31,8 @@ _upgrade_npm_packages() {
     sudo npm install npm@latest -g
     sudo npm update -g
 }
+
+_upgrade_cargo_crates() {
+    # LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all
+    cargo install-update --all
+}

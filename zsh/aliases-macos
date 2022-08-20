@@ -4,7 +4,7 @@
 
 alias ls='ls -G'
 alias ns='netstat -p tcp nltu'
-alias ncdu='ncdu --exclude=/Users/yul/.av-mp'
+alias ncdu='ncdu --exclude=~/.av-mp'
 
 # Wine Executables
 alias vgmtrans='wine ${WINEDIR}/vgmtrans/bin/vgmtrans.exe'
