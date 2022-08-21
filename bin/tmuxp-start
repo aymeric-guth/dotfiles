@@ -10,7 +10,6 @@ if [ -z "$selected" ]; then
 fi
 
 selected_name=$(basename "$selected")
-#selected_name=$(basename "$selected" | tr . _)
 
 if [ -f "$selected/$TMUX_TEMPLATE" ]; then
     if [ "$selected_name" = anonymous ]; then

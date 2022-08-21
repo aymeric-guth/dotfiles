@@ -14,7 +14,6 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
-alias kubectl="minikube kubectl --"
 
 alias tn="tmux -u new"
 alias ta="tmux -u attach"
@@ -33,3 +32,5 @@ mux() {
     tmuxp-start "$TMUXP_CONFIGDIR/anonymous"
 }
 alias muxd="tmuxp debug-info"
+alias k="kubectl"
+alias m="minikube"

@@ -11,8 +11,8 @@ export MANPAGER="$EDITOR +Man!"
 export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
 export TMUX_TEMPLATE=".tmuxp.yaml"
 
-[ -d "$TOOLZ" ] && prepend_to_path "$TOOLZ/bin"
-prepend_to_path "$DOTFILES/bin"
 [ -f "$DOTFILES/.env" ] && . "$DOTFILES/.env"
+[ -d "$TOOLZ" ] && prepend_to_path "$TOOLZ/bin" && export MANPATH="$TOOLZ/share/man:$MANPATH"
+prepend_to_path "$DOTFILES/bin"
 
 export TMUXP_CONFIGDIR="${TMUXP_CONFIGDIR:-"~/.config/tmuxp"}"

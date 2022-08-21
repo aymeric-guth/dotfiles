@@ -1,10 +1,10 @@
 #!/bin/sh
 
-cd /tmp|| exit 1
-sudo rm -rf Bear
+tmp="$(mktemp -d -t ci-XXXXXXXXXX)"
+cd "$tmp" || exit 1
 git clone --depth 1 https://github.com/rizsotto/Bear
 cd Bear || exit 1
-rm -rf build && mkdir build && cd build || exit 1
+mkdir build && cd build || exit 1
 cmake \
   -G Ninja \
   -DCMAKE_INSTALL_PREFIX="$TOOLZ" \

@@ -71,6 +71,7 @@ nnoremap(
   '<leader>ff',
   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>"
 )
+nnoremap('<leader>fF', ':Telescope find_files hidden=true no_ignore=true<CR>')
 nnoremap('<leader>fg', ':Telescope live_grep<CR>')
 nnoremap('<leader>fb', ':Telescope current_buffer_fuzzy_find<CR>')
 nnoremap('<leader>fB', ':Telescope buffers<CR>')
@@ -78,6 +79,12 @@ nnoremap('<leader>fs', ':Telescope grep_string<CR>')
 -- Help
 nnoremap('<leader>fm', ':Telescope man_pages<CR>')
 nnoremap('<leader>fh', ':Telescope help_tags<CR>')
+nnoremap('<leader>fc', ':Telescope commands<CR>')
+nnoremap('<leader>fo', ':Telescope vim_options<CR>')
+nnoremap('<leader>fr', ':Telescope registers<CR>')
+nnoremap('<leader>fa', ':Telescope autocommands<CR>')
+nnoremap('<leader>fk', ':Telescope keymaps<CR>')
+nnoremap('<leader>ft', ':Telescope treesitter<CR>')
 
 --[[
 -- Trouble

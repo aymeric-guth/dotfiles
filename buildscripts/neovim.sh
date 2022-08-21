@@ -1,7 +1,7 @@
 #!/bin/sh
 
-cd /tmp || exit 1
-sudo rm -rf neovim
+tmp="$(mktemp -d -t ci-XXXXXXXXXX)"
+cd "$tmp" || exit 1
 git clone --depth 1 https://github.com/neovim/neovim
 cd neovim || exit 1
 mkdir .deps && cd .deps || exit 1

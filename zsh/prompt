@@ -106,3 +106,4 @@ function set-prompt() {
 setopt no_prompt_{bang,subst} prompt_{cr,percent,sp}
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd set-prompt
+

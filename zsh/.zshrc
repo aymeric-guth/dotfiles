@@ -2,11 +2,13 @@
 
 if [ -f /etc/zprofile ]; then
     PATH=""
+    MANPATH=""
     . /etc/zprofile
 fi
 
 export ZDOTDIR="$DOTFILES/zsh"
 export ZDATA="$HOME/.local/share/zsh"
+
 HISTFILE="$ZDATA/.zsh_history"
 setopt appendhistory
 
@@ -20,19 +22,17 @@ unsetopt BEEP
 
 export ZPLUGINS="$ZDATA/plugins"
 export ZFUNCTIONS="$ZDOTDIR/functions"
-export ZCOMPLETIONS="$ZDOTDIR/completions"
-export ZSH_COMPDUMP="$ZDATA/.zcompdump"
 
-# completions
-fpath=($ZCOMPLETIONS $fpath)
-# autoload -U bashcompinit
-# bashcompinit
+# COMPLETIONS
+fpath=("$ZDOTDIR/completions" $fpath)
 
-autoload -Uz compinit
+autoload -U -z compinit
+# autoload -U +X bashcompinit
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$ZSH_COMPDUMP"
+zstyle ':completion:*' cache-path "$ZDATA/.zcompcache"
 zstyle ':completion:*' menu select
+zstyle ':completion:*' verbose yes
 # zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files.
@@ -44,7 +44,6 @@ autoload -U edit-command-line
 
 # Colors
 autoload -Uz colors && colors
-
 
 case "$(uname -s)" in
     Darwin)
@@ -75,12 +74,31 @@ case "$(uname -s)" in
         ;;
 esac
 
+# fpath=("$ZFUNCTIONS" $fpath)
 source "$ZDOTDIR/zshenv"
 source "$ZDOTDIR/prompt"
 
+source <(kubectl completion zsh)
+source <(minikube completion zsh)
+# This config allows minikube to run kubernetes with the docker container locally
+# eval $(minikube docker-env)
+
+# eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"
+# eval $(register-python-argcomplete ansible)
+# eval $(register-python-argcomplete ansible-config)
+# eval $(register-python-argcomplete ansible-console)
+# eval $(register-python-argcomplete ansible-doc)
+# eval $(register-python-argcomplete ansible-galaxy)
+# eval $(register-python-argcomplete ansible-inventory)
+# eval $(register-python-argcomplete ansible-playbook)
+# eval $(register-python-argcomplete ansible-pull)
+# eval $(register-python-argcomplete ansible-vault)
+
 # Plugins
+zsh_add_plugin "Aloxaf/fzf-tab"
+zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+# zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
 
@@ -111,7 +129,8 @@ bindkey "^[[1;3D" backward-word
 bindkey "^e" edit-command-line
 
 # direnv hook
-eval "$(direnv hook zsh)"
+source <(direnv hook zsh)
+# eval "$(direnv hook zsh)"
 
 # determines search program for fzf
 if type fd &> /dev/null; then
@@ -120,15 +139,5 @@ elif type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
 fi
 
-# eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"
-# eval $(register-python-argcomplete ansible)
-# eval $(register-python-argcomplete ansible-config)
-# eval $(register-python-argcomplete ansible-console)
-# eval $(register-python-argcomplete ansible-doc)
-# eval $(register-python-argcomplete ansible-galaxy)
-# eval $(register-python-argcomplete ansible-inventory)
-# eval $(register-python-argcomplete ansible-playbook)
-# eval $(register-python-argcomplete ansible-pull)
-# eval $(register-python-argcomplete ansible-vault)
-
+export MANPATH
 export PATH
