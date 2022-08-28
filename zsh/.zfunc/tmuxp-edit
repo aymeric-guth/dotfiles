@@ -1,0 +1,22 @@
+selected=$(fzf-projects "$@")
+selected_name=$(basename "$selected")
+
+if ! is-git-repo "$selected"; then
+    echo "not a github repo $PWD"
+    return 1
+fi
+
+if [ ! -f "$selected/$TMUX_TEMPLATE" ]; then
+    if [ ! -f "$TMUXP_CONFIGDIR/templates/$TMUX_TEMPLATE" ]; then
+        echo "tmuxp session template not found, defaulting to blank file"
+    else
+        cp "$TMUXP_CONFIGDIR/templates/$TMUX_TEMPLATE" "$selected/$TMUX_TEMPLATE"
+    fi
+fi
+
+PROJECT_NAME="config-$(basename "$selected")" \
+WORKSPACE="$selected" \
+tmuxp load \
+    --yes \
+    -f "$TMUX_CONFIG" \
+    "$TMUXP_CONFIGDIR/edit/$TMUX_TEMPLATE"

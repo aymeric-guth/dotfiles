@@ -9,3 +9,6 @@ cargo install --git https://github.com/tree-sitter/tree-sitter tree-sitter-cli -
 cargo install --git https://github.com/lukas-reineke/cbfmt cbfmt --locked || exit 1
 # utilisation de LIBSSH2_SYS_USE_PKG_CONFIG pour palier a une erreur de linker
 LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install --git https://github.com/nabijaczleweli/cargo-update --locked || exit 1
+cargo install --git https://github.com/sharkdp/bat bat --locked || exit 1
+cargo install --git https://github.com/dduan/tre tre-command --locked || exit 1
+cargo install --git https://github.com/Peltoche/lsd.git --branch master || exit 1

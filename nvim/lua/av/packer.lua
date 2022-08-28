@@ -20,12 +20,12 @@ if not status then
 end
 
 -- :PackerSync on_save
--- vim.cmd([[
---     augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost packer.lua source <afile> | PackerSync
---     augroup end
--- ]])
+vim.cmd([[
+    augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost packer.lua source <afile> | PackerSync
+    augroup end
+]])
 
 packer.init({
   ensure_dependencies = true, -- Should packer install plugin dependencies?
@@ -201,7 +201,12 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   })
   use({ 'norcalli/nvim-colorizer.lua' })
-
+  use({
+    'iamcco/markdown-preview.nvim',
+    run = function()
+      vim.fn['mkdp#util#install']()
+    end,
+  })
   -- Packer boostraping
   if PACKER_BOOTSTRAP then
     -- :autocmd User MyPlugin echom 'got MyPlugin event'

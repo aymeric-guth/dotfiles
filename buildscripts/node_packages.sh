@@ -10,3 +10,4 @@ sudo npm install -g dockerfile-language-server-nodejs
 # sudo npm install -g eslint
 # sudo npm install -g tree-sitter
 # sudo npm install -g textlint
+sudo npm install -g @ansible/ansible-language-server

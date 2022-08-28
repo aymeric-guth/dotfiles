@@ -1,0 +1,2 @@
+[ -n "$TMUX" ] && return 1
+tmux attach   

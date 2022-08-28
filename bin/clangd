@@ -1,3 +1,0 @@
-#!/bin/sh
-
-[ -n "$LLVM_ROOT" ] && "$LLVM_ROOT/bin/clangd" "$@" || exit 1

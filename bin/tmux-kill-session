@@ -1,5 +1,0 @@
-#!/bin/sh
-
-if [ -n "$TMUX" ]; then
-    tmux kill-session
-fi

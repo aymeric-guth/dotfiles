@@ -8,6 +8,12 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 
+-- if vim.fn.executable('astyle') == 1 then
+--   formatting.astyle.with({
+--     filetypes = { 'c', 'cpp', 'cxx' },
+--     extra_args = { '--options=${DOTFILES}/.astylerc', '--project=none' },
+--   })
+-- end,
 local null_ls_opts = {
   formatting.astyle.with({
     filetypes = { 'c', 'cpp', 'cxx' },
@@ -18,16 +24,16 @@ local null_ls_opts = {
     filetypes = { 'sh' },
   }),
 
-  diagnostics.cppcheck.with({
-    filetypes = { 'c', 'cpp' },
-    extra_args = {
-      '--enable=all',
-      -- '--cppcheck-build-dir=$ROOT',
-      '--suppress=missingIncludeSystem',
-      '--std=c11',
-      '--platform=unix64',
-    },
-  }),
+  -- diagnostics.cppcheck.with({
+  --   filetypes = { 'c', 'cpp' },
+  --   extra_args = {
+  --     '--enable=all',
+  --     -- '--cppcheck-build-dir=$ROOT',
+  --     '--suppress=missingIncludeSystem',
+  --     '--std=c11',
+  --     '--platform=unix64',
+  --   },
+  -- }),
 
   formatting.black.with({
     filetypes = { 'python' },
@@ -64,7 +70,7 @@ local null_ls_opts = {
       'html',
       'json',
       'jsonc',
-      -- 'yaml',
+      'yaml',
       -- 'markdown',
       'graphql',
       'handlebars',

@@ -19,7 +19,7 @@ alias tn="tmux -u new"
 alias ta="tmux -u attach"
 
 cfg() {
-    if ! test -z "$TMUX"; then
+    if [ -n "$TMUX" ]; then
         editor "$DOTFILES"
     else
         tmuxp-start "$DOTFILES"

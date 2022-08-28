@@ -67,7 +67,25 @@ vim.opt.shortmess:append('c')
 vim.opt.colorcolumn = '80'
 
 vim.g.python3_host_prog = 'python3'
-vim.g.sqlite_clib_path = '/opt/local/lib/libsqlite3.dylib'
+-- vim.g.sqlite_clib_path = '/opt/local/lib/libsqlite3.dylib'
 
-vim.opt.foldmethod = 'expr'
+-- vim.opt.foldmethod = 'expr'
+-- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldmethod = 'manual'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+vim.o.formatoptions = 'rqnj'
+
+vim.cmd([[
+    augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=200})
+    augroup END
+]])
+
+vim.cmd([[
+    augroup roslaunch_ext
+    autocmd!
+    au BufRead,BufNewFile *.launch setfiletype roslaunch
+    augroup END
+]])

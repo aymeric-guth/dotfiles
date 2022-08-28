@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#export CC=
+#export CXX=
 tmp="$(mktemp -d -t ci-XXXXXXXXXX)"
 cd "$tmp" || exit 1
 git clone --depth 1 https://github.com/neovim/neovim

@@ -7,10 +7,16 @@ local servers = {
   'taplo',
   'bashls',
   'dockerls',
+  'gopls',
+  'golangci_lint_ls',
+  'ansiblels',
 }
 local handlers = require('av.lsp.handlers')
 
 for _, server in pairs(servers) do
+  -- if vim.fn.executable(server) == 0 then
+  --   goto continue
+  -- end
   local capabilities = handlers.capabilities
   if server == 'clangd' then
     capabilities.offsetEncoding = 'utf-8'
@@ -23,4 +29,5 @@ for _, server in pairs(servers) do
   local lsp = require('av.lsp.config.' .. server)
   opts = vim.tbl_deep_extend('force', lsp, opts)
   lspconfig[server].setup(opts)
+  ::continue::
 end

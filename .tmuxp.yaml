@@ -2,49 +2,43 @@ session_name: $PROJECT_NAME
 start_directory: $WORKSPACE
 
 windows:
-
   - window_name: global
     start_directory: .
     panes:
       - shell_command:
-        - editor .  
+          - editor .
 
   - window_name: neovim
-    start_directory: ./nvim
-    panes:
-      - shell_command:
-        - editor .
-
-  - window_name: shell 
     start_directory: .
     layout: even-horizontal
     panes:
       - shell_command:
-        - cd ./zsh && editor .
+          - editor ./nvim/.
+
+  - window_name: shell
+    start_directory: .
+    layout: even-horizontal
+    panes:
+      - shell_command:
+          - cd ./zsh && editor .
         focus: true
       - shell_command:
-        - cd ./bin && editor .
-  
+          - cd ./bin && editor .
+
   - window_name: tmux
     start_directory: .
     layout: even-horizontal
     panes:
       - shell_command:
-        - cd ./tmux && editor tmux.conf
+          - cd ./tmux && editor tmux.conf
         focus: true
       - shell_command:
-        - cd $TMUXP_CONFIGDIR/templates && editor $TMUX_TEMPLATE
+          - cd $TMUXP_CONFIGDIR/templates && editor $TMUX_TEMPLATE
 
   - window_name: alacritty
     start_directory: ./alacritty
     layout: tiled
     panes:
       - shell_command:
-        - editor alacritty-macos.yml
-      - shell_command:
-        - editor alacritty-linux.yml
-      - shell_command:
-        - editor keymaps.yml
+          - editor keymaps.yml
         focus: true
-      - shell_command:
-        - editor colorschemes.yml

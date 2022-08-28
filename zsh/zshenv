@@ -6,13 +6,11 @@ export MANWIDTH=999
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-export EDITOR="$DOTFILES/bin/editor"
-export MANPAGER="$EDITOR +Man!"
-export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
+[ -f "$DOTFILES/bin/editor" ] && export EDITOR="$DOTFILES/bin/editor" && export MANPAGER="$EDITOR +Man!"
 export TMUX_TEMPLATE=".tmuxp.yaml"
 
 [ -f "$DOTFILES/.env" ] && . "$DOTFILES/.env"
-[ -d "$TOOLZ" ] && prepend_to_path "$TOOLZ/bin" && export MANPATH="$TOOLZ/share/man:$MANPATH"
-prepend_to_path "$DOTFILES/bin"
+[ -d "$TOOLZ" ] && prepend-to-path "$TOOLZ/bin" && export MANPATH="$TOOLZ/share/man:$MANPATH"
+prepend-to-path "$DOTFILES/bin"
 
 export TMUXP_CONFIGDIR="${TMUXP_CONFIGDIR:-"~/.config/tmuxp"}"

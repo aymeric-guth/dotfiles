@@ -32,6 +32,7 @@ key_bindings:
   - { key: M, mods: Command, chars: "\x01T" }
   - { key: M, mods: Shift|Command, chars: "\x01S" }
   - { key: N, mods: Shift|Command, chars: "\x01U" }
+  - { key: Space, mods: Shift, chars: "\x0d" }
   # - { key: W, mods: Shift|Command, chars: "" }
   # - { key: Space, mods: Command|Alt|Shift|Control, chars: "" }
   # - { key: Space, mods: Shift, chars: "" }

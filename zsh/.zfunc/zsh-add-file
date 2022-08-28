@@ -1,0 +1,1 @@
+[ -f "$ZPLUGINS/$1" ] && . "$ZPLUGINS/$1"

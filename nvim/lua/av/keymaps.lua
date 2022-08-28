@@ -49,6 +49,12 @@ nvnoremap(';', ':')
 nnoremap(',p', '"0p')
 nnoremap(',P', '"0P')
 
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_liststyle = 3
+-- vim.g.netrw_browse_split = 4
+-- vim.g.netrw_altv = 1
+-- vim.g.netrw_winsize = 25
+
 nnoremap('<leader>e', ':NvimTreeToggle<CR>')
 nnoremap('<leader>so', ':SymbolsOutline<CR>')
 nnoremap('<leader>z', ':UndotreeToggle<CR>')
@@ -73,6 +79,7 @@ nnoremap(
 )
 nnoremap('<leader>fF', ':Telescope find_files hidden=true no_ignore=true<CR>')
 nnoremap('<leader>fg', ':Telescope live_grep<CR>')
+nnoremap('<leader>fG', ':Telescope live_grep hidden=true no_ignore=true<CR>')
 nnoremap('<leader>fb', ':Telescope current_buffer_fuzzy_find<CR>')
 nnoremap('<leader>fB', ':Telescope buffers<CR>')
 nnoremap('<leader>fs', ':Telescope grep_string<CR>')
