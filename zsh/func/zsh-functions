@@ -1,44 +1,8 @@
 #!/bin/sh
 
-source $ZFUNCTIONS/cleanup.sh
-source $ZFUNCTIONS/upgrade.sh
+. "$ZDOTDIR/func/cleanup.sh"
+. "$ZDOTDIR/func/upgrade.sh"
 
-zsh_add_file() {
-    [ -f "$ZPLUGINS/$1" ] && source "$ZPLUGINS/$1"
-}
-
-zsh_add_plugin() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZPLUGINS/$PLUGIN_NAME" ]; then 
-        # For plugins
-        zsh_add_file "$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
-        zsh_add_file "$PLUGIN_NAME/$PLUGIN_NAME.zsh"
-    else
-        git clone --depth 1 "https://github.com/$1.git" "$ZPLUGINS/$PLUGIN_NAME"
-    fi
-}
-
-zsh_add_completion() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZPLUGINS/$PLUGIN_NAME" ]; then 
-        # For completions
-        completion_file_path=$(ls $ZPLUGINS/$PLUGIN_NAME/_*)
-        fpath+="$(dirname "${completion_file_path}")"
-        zsh_add_file "$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
-    else
-        git clone "https://github.com/$1.git" "$ZPLUGINS/$PLUGIN_NAME"
-        fpath+=$(ls $ZPLUGINS/$PLUGIN_NAME/_*)
-        [ -f "$ZDATA/.zcompdump" ] && "$ZDATA/.zcompdump"
-    fi
-    completion_file="$(basename "${completion_file_path}")"
-    if [ "$2" = true ] && compinit "${completion_file:1}"
-}
-
-github() { 
-    pushd $ENV/github;
-    GITHUB_REPOS=$GITHUB_REPOS python github.py;
-    popd;
-}
 
 up() {
     if [ $COMPOSEFILE ]; then
@@ -75,10 +39,6 @@ run() {
     fi
 }
 
-rebuild-font-cache() {
-    fc-cache -f -v
-}
-
 cmake_inspect() {
     if [ ! -f ./CMakeLists.txt ]; then
         echo "CMakeLists not found"
@@ -109,9 +69,10 @@ ch() {
   cols=$(( COLUMNS / 3 ))
   sep='{::}'
 
-  cp -f ~/Library/Application\ Support/Chromium/Default/History /tmp/h
+  historyfile="$HOME/Library/Application Support/Chromium/Default/History"
+  [ ! -f "$historyfile" ] && return 1 || cp "$historyfile" /tmp/h
 
-  sqlite3 -separator $sep /tmp/h \
+  sqlite3 -readonly -separator $sep /tmp/h \
     "select substr(title, 1, $cols), url 
     from urls order by last_visit_time desc" \
   | awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' \
@@ -119,3 +80,4 @@ ch() {
   | sed 's#.*\(https*://\)#\1#' \
   | xargs open
 }
+

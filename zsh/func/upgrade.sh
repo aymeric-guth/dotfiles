@@ -4,13 +4,13 @@ _upgrade_nvim_plugins() {
     if ! command -v nvim 1> /dev/null; then
         return 1
     fi
-    editor --headless -c "autocmd User PackerComplete quitall" -c "PackerSync";
-    editor --headless -c "TSUpdateSync" -c "qa" > /dev/null 2>&1;
+    editor --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"
+    editor --headless -c "TSUpdateSync" -c "qa" > /dev/null 2>&1
 }
 
 _bootstrap_nvim() {
     #editor --headless -c \"autocmd User PackerComplete quitall\";
-    editor --headless -c 'TSInstallSync python lua rust c cpp' -c 'qa' &> /dev/null;
+    editor --headless -c 'TSInstallSync python lua rust c cpp' -c 'qa' &> /dev/null
 }
 
 _upgrade_python_packages() {
@@ -24,7 +24,7 @@ _upgrade_python_packages() {
 }
 
 _upgrade_zsh_plugins() {
-    find "$ZPLUGINS" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q;
+    find "$ZDATA/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q;
 }
 
 _upgrade_npm_packages() {
@@ -36,7 +36,7 @@ _upgrade_cargo_crates() {
     # list installed crates
     # cargo install --list
     # upgrade all installed crates with plugin install-all
-    cargo install-update -aLIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all
+    LIBSSH2_SYS_USE_PKG_CONFIG=whatever cargo install-update --all
 }
 
 _upgrade_macports() {

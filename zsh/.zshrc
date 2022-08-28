@@ -20,9 +20,6 @@ stty start undef # Disable ctrl-q to freeze terminal.
 zle_highlight=('paste:none')
 unsetopt BEEP
 
-export ZPLUGINS="$ZDATA/plugins"
-export ZFUNCTIONS="$ZDOTDIR/functions"
-
 fpath=("$ZDOTDIR/.zfunc" "${fpath[@]}" )
 autoload -Uz $fpath[1]/*(.:t)
 
@@ -51,10 +48,9 @@ autoload -Uz colors && colors
 case "$(uname -s)" in
     Darwin)
         export CLICOLOR=1
-        source "$ZFUNCTIONS/zsh-functions-macos"
+        source "$ZDOTDIR/func/zsh-functions-macos"
         source "$ZDOTDIR/aliases-macos"
         export COMPOSE_CMD="docker compose"
-        export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
 
         [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
         [ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
@@ -62,10 +58,9 @@ case "$(uname -s)" in
         ;;
 
     Linux)
-        source "$ZFUNCTIONS/zsh-functions-linux"
+        source "$ZDOTDIR/func/zsh-functions-linux"
         source "$ZDOTDIR/aliases-linux"
         export COMPOSE_CMD="docker-compose"
-        export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
 
         [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
         [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
@@ -79,7 +74,6 @@ case "$(uname -s)" in
         ;;
 esac
 
-# fpath=("$ZFUNCTIONS" $fpath)
 source "$ZDOTDIR/zshenv"
 source "$ZDOTDIR/prompt"
 
@@ -100,28 +94,32 @@ source "$ZDOTDIR/prompt"
 # eval $(register-python-argcomplete ansible-vault)
 
 # Plugins
-zsh_add_plugin "Aloxaf/fzf-tab"
-zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
-zsh_add_plugin "zsh-users/zsh-autosuggestions"
-# zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-zsh_add_plugin "hlissner/zsh-autopair"
-zsh_add_plugin "zsh-users/zsh-history-substring-search"
+my-zsh-add-plugin "Aloxaf/fzf-tab"
+my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
+# zsh-add-plugin "zsh-users/zsh-syntax-highlighting"
+my-zsh-add-plugin "zsh-users/zsh-autosuggestions"
+my-zsh-add-plugin "hlissner/zsh-autopair"
+my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
 
 zle -N history-substring-search-up
 zle -N history-substring-search-down
 zle -N edit-command-line
 zle -N my-backward-delete-word
 
-bindkey -s "^x" "fzf-path\n"
-bindkey -s "^s" "tmux-attach\n"
-bindkey -s "^v" "editor .\n"
-bindkey -s "^k" "exit\n"
+# push-line
+bindkey -r "^Q" 
+bindkey -r "^[Q"
+bindkey -r "^[q"
+bindkey -s "^X" "fzf-path\n"
+bindkey -s "^S" "tmux-attach\n"
+bindkey -s "^V" "editor .\n"
+bindkey -s "^K" "exit\n"
 bindkey "^w" my-backward-delete-word
 
-bindkey -s "^f" "tmuxp-start\n"
-bindkey -s "^n" "tmuxp-edit\n"
-bindkey -s "^g" "tmuxp debug-info | editor -R\n"
-bindkey -s "^a" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
+bindkey -s "^F" "tmuxp-start\n"
+bindkey -s "^N" "tmuxp-edit\n"
+bindkey -s "^G" "tmuxp debug-info | editor -R\n"
+bindkey -s "^A" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
 
 bindkey "^[[5~" beginning-of-line
 bindkey "^[[6~" end-of-line
@@ -131,8 +129,8 @@ bindkey "^[[B" history-substring-search-down
 
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
-bindkey "^e" edit-command-line
-bindkey '^ ' autosuggest-accept
+bindkey "^E" edit-command-line
+bindkey "^ " autosuggest-accept
 
 # direnv hook
 source <(direnv hook zsh)
