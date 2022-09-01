@@ -10,17 +10,12 @@ local servers = {
   'gopls',
   'golangci_lint_ls',
   'ansiblels',
+  -- 'ccls',
 }
 local handlers = require('av.lsp.handlers')
 
 for _, server in pairs(servers) do
-  -- if vim.fn.executable(server) == 0 then
-  --   goto continue
-  -- end
   local capabilities = handlers.capabilities
-  if server == 'clangd' then
-    capabilities.offsetEncoding = 'utf-8'
-  end
   local opts = {
     on_attach = handlers.on_attach,
     capabilities = capabilities,

@@ -7,7 +7,7 @@ local handlers = require('av.lsp.handlers')
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
-
+-- handlers.capabilities.offsetEncoding = { 'utf-16' }
 -- if vim.fn.executable('astyle') == 1 then
 --   formatting.astyle.with({
 --     filetypes = { 'c', 'cpp', 'cxx' },
@@ -70,7 +70,7 @@ local null_ls_opts = {
       'html',
       'json',
       'jsonc',
-      'yaml',
+      -- 'yaml',
       -- 'markdown',
       'graphql',
       'handlebars',

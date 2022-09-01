@@ -1,0 +1,4 @@
+#!/bin/sh
+
+[ ! -f "$CCLS_PATH" ] && return 1
+eval "$CCLS_PATH"
