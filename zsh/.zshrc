@@ -49,6 +49,7 @@ case "$(uname -s)" in
     Darwin)
         export CLICOLOR=1
         source "$ZDOTDIR/func/zsh-functions-macos"
+        source "$ZDOTDIR/zshenv"
         source "$ZDOTDIR/aliases-macos"
         export COMPOSE_CMD="docker compose"
 
@@ -59,6 +60,7 @@ case "$(uname -s)" in
 
     Linux)
         source "$ZDOTDIR/func/zsh-functions-linux"
+        source "$ZDOTDIR/zshenv"
         source "$ZDOTDIR/aliases-linux"
         export COMPOSE_CMD="docker-compose"
 
@@ -74,7 +76,6 @@ case "$(uname -s)" in
         ;;
 esac
 
-source "$ZDOTDIR/zshenv"
 source "$ZDOTDIR/prompt"
 
 # source <(kubectl completion zsh)

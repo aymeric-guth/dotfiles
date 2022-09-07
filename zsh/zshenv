@@ -20,7 +20,7 @@ prepend-to-path "$DOTFILES/bin"
 # export VISUAL="$EDITOR"
 # export MANPAGER="$EDITOR +Man!"
 
-export EDITOR="$DOTFILES/zsh/.zfunc/editor" && export VISUAL="$EDITOR" && export MANPAGER="$EDITOR +Man!"
+export EDITOR="$DOTFILES/bin/editor" && export VISUAL="$EDITOR" && export MANPAGER="$EDITOR +Man!"
 
 export TMUX_TEMPLATE=".tmuxp.yaml"
 export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"

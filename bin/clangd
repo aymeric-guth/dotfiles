@@ -1,4 +1,3 @@
 #!/bin/sh
 
-[ ! -f "$CLANGD_PATH" ] && return 1
-eval "$CLANGD_PATH"
+[ -f "$CLANGD_PATH" ] && eval "$CLANGD_PATH" || return 1

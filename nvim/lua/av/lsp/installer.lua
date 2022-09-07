@@ -7,14 +7,19 @@ local servers = {
   'taplo',
   'bashls',
   'dockerls',
-  'gopls',
-  'golangci_lint_ls',
   'ansiblels',
+  -- 'gopls',
+  -- 'golangci_lint_ls',
+  -- 'rust_analyzer',
   -- 'ccls',
 }
 local handlers = require('av.lsp.handlers')
 
 for _, server in pairs(servers) do
+  -- if vim.fn.executable(server) == 0 then
+  --   goto continue
+  -- end
+
   local capabilities = handlers.capabilities
   local opts = {
     on_attach = handlers.on_attach,

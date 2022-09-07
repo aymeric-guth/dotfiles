@@ -40,6 +40,10 @@ local null_ls_opts = {
     extra_args = { '--fast' },
   }),
 
+  formatting.rustfmt.with({
+    filetypes = { 'rust' },
+  }),
+
   -- formatting.remark.with({
   --   filetypes = { 'markdown' },
   -- }),

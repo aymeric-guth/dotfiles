@@ -26,11 +26,8 @@ cfg() {
     fi
 }
 
-v() { editor "$@"; }
-
-mux() {
-    tmuxp-start "$TMUXP_CONFIGDIR/anonymous"
-}
+v() { editor "$@" }
+mux() { tmuxp-start "$TMUXP_CONFIGDIR/anonymous" }
 alias muxd="tmuxp debug-info"
 alias k="kubectl"
 alias m="minikube"
