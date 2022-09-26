@@ -1,0 +1,3 @@
+#!/bin/sh
+
+[ -f "$CLANGD_PATH" ] && eval "$CLANGD_PATH" --fallback-style=none "$*" || return 1

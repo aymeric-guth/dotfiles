@@ -19,18 +19,18 @@ alias tn="tmux -u new"
 alias ta="tmux -u attach"
 
 cfg() {
-    if [ -n "$TMUX" ]; then
-        editor "$DOTFILES"
-    else
-        tmuxp-start "$DOTFILES"
-    fi
+  [ -n "$TMUX" ] && editor "$DOTFILES" || tmuxp-start "$DOTFILES"
+    # if [ -n "$TMUX" ]; then
+    #     editor "$DOTFILES"
+    # else
+    #     tmuxp-start "$DOTFILES"
+    # fi
 }
 
 v() { editor "$@"; }
-
-mux() {
-    tmuxp-start "$TMUXP_CONFIGDIR/anonymous"
-}
+mux() { tmuxp-start "$TMUXP_CONFIGDIR/anonymous"; }
 alias muxd="tmuxp debug-info"
 alias k="kubectl"
 alias m="minikube"
+setenv() { TMUX_TEMPLATE=".tmuxp-2.yaml" tmuxp-start "$DOTFILES"; }
+kb() { TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DOTFILES"; }

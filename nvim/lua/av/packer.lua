@@ -109,7 +109,7 @@ return require('packer').startup(function(use)
     'preservim/vim-markdown',
     branch = 'master',
   })
-  use({ 'epwalsh/obsidian.nvim', branch = 'main' })
+  -- use({ 'epwalsh/obsidian.nvim', branch = 'main' })
 
   -- Telescope + deps: fuzzy finder
   use({

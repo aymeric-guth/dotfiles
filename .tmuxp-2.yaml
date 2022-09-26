@@ -1,0 +1,21 @@
+session_name: $PROJECT_NAME
+start_directory: $WORKSPACE
+
+windows:
+
+  - window_name: device-specific
+    start_directory: $DOTFILES
+    layout: even-horizontal
+    panes:
+      - shell_command:
+        - editor .env
+
+  - window_name: zshrc
+    start_directory: $DOTFILES/zsh
+    layout: even-horizontal
+    panes:
+      - shell_command:
+        - editor zshenv
+        focus: true
+      - shell_command:
+        - editor .zshrc

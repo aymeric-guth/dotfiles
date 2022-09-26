@@ -32,3 +32,9 @@ flX() {
     python -m src
     cd "$cwd" || exit 1
 }
+clear() {
+  if [ -n "$TMUX" ]; then
+    tmux clear-history
+  fi
+  /opt/local/bin/clear
+}

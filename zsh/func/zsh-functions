@@ -81,3 +81,53 @@ ch() {
   | xargs open
 }
 
+chf() {
+  # https://gist.github.com/dshnkao/10865f32d69e40dc591e08e3af970e9d
+  local cols sep
+  cols=$(( COLUMNS / 3 ))
+  sep='{::}'
+
+  historyfile="$HOME/.mozilla/firefox/z6833bcl.default-release/places.sqlite"
+  [ ! -f "$historyfile" ] && return 1 || cp "$historyfile" /tmp/h
+  DB_PATH=/tmp/h
+  FINDER=fzf
+
+  QUERY="
+  SELECT
+      url, title FROM moz_places
+  WHERE
+      url NOT LIKE '%google%search%'
+  ORDER BY
+      visit_count DESC,
+      last_visit_date DESC;
+  "
+
+  SEP="∙"
+
+  ENTRY=$(
+  sqlite3 "$DB_PATH" "$QUERY" | \
+      sed -E 's/^https?:\/\///' | \
+      sed -E "s/\\/?\\|/ $SEP /" | \
+      sed -E "s/$SEP $//" | \
+      fzf
+  )
+
+  URL=$( echo "$ENTRY" | sed "s/$SEP.*//g" )
+  [ ! -n "$URL" = "" ] && return 0
+
+# google search if input end with .
+# if [ "${URL: -1}" = "." ]; then
+#     SEARCH="${URL:: -1}"
+#     URL="google.com/search?q=$SEARCH"
+# fi
+
+  case $(uname) in
+      'Linux')
+          xdg-open "https://$URL"
+          ;;
+      'Darwin')
+          open "https://$URL"
+          ;;
+  esac
+}
+

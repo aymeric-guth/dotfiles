@@ -21,7 +21,7 @@ attach-closing-while
 # indent-namespaces
 indent-after-parens
 indent-continuation=1
-# indent-labels
+indent-labels
 indent-preproc-block
 indent-preproc-cond
 indent-preproc-define
