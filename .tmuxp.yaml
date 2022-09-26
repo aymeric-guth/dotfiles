@@ -2,6 +2,7 @@ session_name: $PROJECT_NAME
 start_directory: $WORKSPACE
 
 windows:
+
   - window_name: global
     start_directory: .
     panes:
@@ -40,5 +41,7 @@ windows:
     layout: tiled
     panes:
       - shell_command:
-          - editor keymaps.yml
+          - editor .
         focus: true
+      - shell_command:
+          - editor ../kitty/kitty.conf

@@ -109,7 +109,7 @@ return require('packer').startup(function(use)
     'preservim/vim-markdown',
     branch = 'master',
   })
-  use({ 'epwalsh/obsidian.nvim', branch = 'main' })
+  -- use({ 'epwalsh/obsidian.nvim', branch = 'main' })
 
   -- Telescope + deps: fuzzy finder
   use({
@@ -207,6 +207,7 @@ return require('packer').startup(function(use)
       vim.fn['mkdp#util#install']()
     end,
   })
+  -- use({ 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' })
   -- Packer boostraping
   if PACKER_BOOTSTRAP then
     -- :autocmd User MyPlugin echom 'got MyPlugin event'

@@ -14,6 +14,11 @@ if not status then
   return
 end
 
+local gwidth = vim.api.nvim_list_uis()[1].width
+local gheight = vim.api.nvim_list_uis()[1].height
+local width = 60
+local height = 20
+
 nvim_tree.setup({
   auto_reload_on_write = true,
   create_in_closed_folder = false,
@@ -31,12 +36,12 @@ nvim_tree.setup({
   sync_root_with_cwd = false,
   reload_on_bufenter = false,
   respect_buf_cwd = false,
-  
+
   view = {
     adaptive_size = false,
     centralize_selection = false,
     width = 30,
-    height = 30,
+    -- height = 30,
     hide_root_folder = false,
     side = 'left',
     preserve_window_proportions = false,
@@ -51,8 +56,19 @@ nvim_tree.setup({
         { key = 'v', cb = tree_cb('vsplit') },
       },
     },
+    float = {
+      enable = true,
+      open_win_config = {
+        relative = 'editor',
+        border = 'rounded',
+        width = width,
+        height = height,
+        row = (gheight - height) * 0.4,
+        col = (gwidth - width) * 0.5,
+      },
+    },
   },
-  
+
   renderer = {
     add_trailing = false,
     group_empty = false,
@@ -108,7 +124,7 @@ nvim_tree.setup({
     special_files = { 'Cargo.toml', 'Makefile', 'README.md', 'readme.md' },
     symlink_destination = false,
   },
-  
+
   hijack_directories = {
     enable = true,
     auto_open = true,

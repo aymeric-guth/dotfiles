@@ -113,7 +113,6 @@ bindkey -r "^[Q"
 bindkey -r "^[q"
 bindkey -s "^X" "fzf-path\n"
 bindkey -s "^S" "tmux-attach\n"
-bindkey -s "^V" "editor .\n"
 bindkey -s "^K" "exit\n"
 bindkey "^w" my-backward-delete-word
 

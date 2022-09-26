@@ -1,5 +1,5 @@
 return {
-    settings = {
-        taplo = {},
-    },
+  settings = {
+    taplo = {},
+  },
 }

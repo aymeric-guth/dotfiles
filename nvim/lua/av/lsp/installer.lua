@@ -8,6 +8,7 @@ local servers = {
   'bashls',
   'dockerls',
   'ansiblels',
+  'dartls',
   -- 'gopls',
   -- 'golangci_lint_ls',
   -- 'rust_analyzer',
@@ -26,6 +27,9 @@ for _, server in pairs(servers) do
     capabilities = capabilities,
     lsp_flags = handlers.lsp_flags,
   }
+  if (server == "dartls") then
+    opts.capabilities.textDocument.formatting = vim.lsp.util.make_formatting_params()
+  end
   local lsp = require('av.lsp.config.' .. server)
   opts = vim.tbl_deep_extend('force', lsp, opts)
   lspconfig[server].setup(opts)
