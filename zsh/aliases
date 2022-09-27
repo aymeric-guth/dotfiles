@@ -34,3 +34,5 @@ alias k="kubectl"
 alias m="minikube"
 setenv() { TMUX_TEMPLATE=".tmuxp-2.yaml" tmuxp-start "$DOTFILES"; }
 kb() { TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DOTFILES"; }
+alias r="run"
+alias b="build"
