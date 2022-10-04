@@ -104,7 +104,7 @@ return require('packer').startup(function(use)
   use('nvim-lua/plenary.nvim')
 
   -- Obsidian
-  use({ '$GITHUB_REPOS/tabular' })
+  -- use({ '$GITHUB_REPOS/tabular' })
   use({
     'preservim/vim-markdown',
     branch = 'master',
@@ -158,12 +158,12 @@ return require('packer').startup(function(use)
   use({ 'hrsh7th/cmp-cmdline', branch = 'main' })
   use({ 'hrsh7th/nvim-cmp', branch = 'main' })
   -- patched installer to force tabnine in .local
-  -- use({
-  --   'tzachar/cmp-tabnine',
-  --   run = '$DOTFILES/patches/tabnine/install.sh',
-  --   requires = 'hrsh7th/nvim-cmp',
-  --   branch = 'main',
-  -- })
+  use({
+    'tzachar/cmp-tabnine',
+    -- run = '$DOTFILES/patches/tabnine/install.sh',
+    requires = 'hrsh7th/nvim-cmp',
+    branch = 'main',
+  })
   use({ 'L3MON4D3/LuaSnip', branch = 'master' })
   use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })
   use('folke/trouble.nvim')

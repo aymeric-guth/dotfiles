@@ -7,7 +7,7 @@ local handlers = require('av.lsp.handlers')
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
-handlers.capabilities.textDocument.formatting = true
+-- handlers.capabilities.textDocument.formatting = true
 -- handlers.capabilities.offsetEncoding = { 'utf-16' }
 
 local null_ls_opts = {

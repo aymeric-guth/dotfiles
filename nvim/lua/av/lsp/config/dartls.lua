@@ -1,7 +1,6 @@
-return {}
--- return {
---   dart = {
---     completeFunctionCalls = true,
---     showTodos = true,
---   },
--- }
+return {
+  dart = {
+    completeFunctionCalls = true,
+    showTodos = true,
+  },
+}

@@ -55,6 +55,7 @@ case "$(uname -s)" in
 
         [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
         [ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
+        # [ -f "$ZDOTDIR/keybinds.zsh" ] && source "$ZDOTDIR/keybinds.zsh"
         [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
         ;;
 
@@ -131,6 +132,11 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey "^E" edit-command-line
 bindkey "^ " autosuggest-accept
+
+bindkey -r "^R"
+bindkey "^H" fzf-history-widget
+bindkey -s "^R" "run\n"
+bindkey -s "^B" "build\n"
 
 # direnv hook
 source <(direnv hook zsh)
