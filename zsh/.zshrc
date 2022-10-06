@@ -84,6 +84,10 @@ source "$ZDOTDIR/prompt"
 # This config allows minikube to run kubernetes with the docker container locally
 # eval $(minikube docker-env)
 
+if  command -v k3s 1> /dev/null; then
+    source <(k3s completion zsh)
+fi
+
 # eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"
 # eval $(register-python-argcomplete ansible)
 # eval $(register-python-argcomplete ansible-config)
