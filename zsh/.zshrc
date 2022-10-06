@@ -1,10 +1,6 @@
 #!/bin/sh
 
-if [ -f /etc/zprofile ]; then
-    PATH=""
-    MANPATH=""
-    . /etc/zprofile
-fi
+[ -f /etc/zprofile ] && export PATH= && export MANPATH= && . "/etc/zprofile"
 
 export ZDOTDIR="$DOTFILES/zsh"
 export ZDATA="$HOME/.local/share/zsh"
@@ -79,12 +75,16 @@ esac
 
 source "$ZDOTDIR/prompt"
 
-# source <(kubectl completion zsh)
+# Completion
 # source <(minikube completion zsh)
 # This config allows minikube to run kubernetes with the docker container locally
 # eval $(minikube docker-env)
 
-if  command -v k3s 1> /dev/null; then
+if command -v kubetcl 1> /dev/null; then
+    source <(kubectl completion zsh)
+fi
+
+if command -v k3s 1> /dev/null; then
     source <(k3s completion zsh)
 fi
 

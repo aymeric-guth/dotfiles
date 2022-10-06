@@ -16,6 +16,6 @@ if [ -f "$selected/$TMUX_TEMPLATE" ]; then
         -f "$TMUX_CONFIG" \
         "$selected/$TMUX_TEMPLATE"
 else
-    echo "tmuxp session not found"
+    echo "tmuxp session not found for workspace=$WORKSPACE"
     return 1
 fi
