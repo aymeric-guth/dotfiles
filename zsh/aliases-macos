@@ -28,10 +28,7 @@ alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne
 
 alias av='python3 $DEV/Network/mplayer_old/mplayer.py'
 flX() {
-    cwd="$PWD"
-    cd "$DEV/Network/mplayer" || exit 1
-    python -m src
-    cd "$cwd" || exit 1
+    TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DEV/Network/mplayer"
 }
 clear() {
   if [ -n "$TMUX" ]; then

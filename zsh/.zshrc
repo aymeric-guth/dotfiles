@@ -51,7 +51,6 @@ case "$(uname -s)" in
 
         [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
         [ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
-        # [ -f "$ZDOTDIR/keybinds.zsh" ] && source "$ZDOTDIR/keybinds.zsh"
         [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
         ;;
 
@@ -141,6 +140,7 @@ bindkey -r "^R"
 bindkey "^H" fzf-history-widget
 bindkey -s "^R" "run\n"
 bindkey -s "^B" "build\n"
+bindkey -s "^U" "up\n"
 
 # direnv hook
 source <(direnv hook zsh)
