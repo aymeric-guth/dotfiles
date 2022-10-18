@@ -1,0 +1,40 @@
+zle -N history-substring-search-up
+zle -N history-substring-search-down
+zle -N edit-command-line
+zle -N my-backward-delete-word
+
+# push-line
+bindkey -r "^Q" 
+bindkey -r "^[Q"
+bindkey -r "^[q"
+bindkey -r "^R"
+bindkey -r "^S"
+
+bindkey -s "^X" "fzf-path\n"
+bindkey -s "^K" "exit\n"
+bindkey "^w" my-backward-delete-word
+
+if [ -z "$TMUX" ] && [ -z "$SSH_CLIENT" ]; then
+  bindkey -s "^F" "tmuxp-start\n"
+  bindkey -s "^N" "tmuxp-edit\n"
+  bindkey -s "^G" "tmuxp debug-info | editor -R\n"
+  bindkey -s "^A" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
+  bindkey -s "^S" "tmux-attach\n"
+fi
+
+bindkey "^[[5~" beginning-of-line
+bindkey "^[[6~" end-of-line
+bindkey "^[[3~" delete-char
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
+
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+bindkey "^E" edit-command-line
+bindkey "^ " autosuggest-accept
+
+bindkey "^H" fzf-history-widget
+bindkey -s "^R" "run\n"
+bindkey -s "^B" "build\n"
+bindkey -s "^U" "up\n"
+

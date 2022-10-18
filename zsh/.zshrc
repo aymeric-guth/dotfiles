@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# hack to avoid OSX related PATH duplication
 [ -f /etc/zprofile ] && export PATH= && export MANPATH= && . "/etc/zprofile"
 
 export ZDOTDIR="$DOTFILES/zsh"
@@ -72,7 +73,7 @@ case "$(uname -s)" in
         ;;
 esac
 
-source "$ZDOTDIR/prompt"
+[ -f "$ZDOTDIR/prompt" ] && source "$ZDOTDIR/prompt"
 
 # Completion
 # source <(minikube completion zsh)
@@ -108,41 +109,7 @@ my-zsh-add-plugin "zsh-users/zsh-autosuggestions"
 my-zsh-add-plugin "hlissner/zsh-autopair"
 my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
 
-zle -N history-substring-search-up
-zle -N history-substring-search-down
-zle -N edit-command-line
-zle -N my-backward-delete-word
-
-# push-line
-bindkey -r "^Q" 
-bindkey -r "^[Q"
-bindkey -r "^[q"
-bindkey -s "^X" "fzf-path\n"
-bindkey -s "^S" "tmux-attach\n"
-bindkey -s "^K" "exit\n"
-bindkey "^w" my-backward-delete-word
-
-bindkey -s "^F" "tmuxp-start\n"
-bindkey -s "^N" "tmuxp-edit\n"
-bindkey -s "^G" "tmuxp debug-info | editor -R\n"
-bindkey -s "^A" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
-
-bindkey "^[[5~" beginning-of-line
-bindkey "^[[6~" end-of-line
-bindkey "^[[3~" delete-char
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
-
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
-bindkey "^E" edit-command-line
-bindkey "^ " autosuggest-accept
-
-bindkey -r "^R"
-bindkey "^H" fzf-history-widget
-bindkey -s "^R" "run\n"
-bindkey -s "^B" "build\n"
-bindkey -s "^U" "up\n"
+[ -f "$ZDOTDIR/keybinds" ] && source "$ZDOTDIR/keybinds"
 
 # direnv hook
 source <(direnv hook zsh)
