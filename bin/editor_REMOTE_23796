@@ -1,0 +1,3 @@
+#!/bin/sh
+
+[ -n "$NEOVIM_OPTS" ] && eval "$NEOVIM_OPTS" nvim "$*" || return 1

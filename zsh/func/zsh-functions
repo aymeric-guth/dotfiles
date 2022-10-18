@@ -116,6 +116,7 @@ chf() {
 
   case $(uname) in
       'Linux')
+	  # xdg-open
           open "https://$URL"
           ;;
       'Darwin')

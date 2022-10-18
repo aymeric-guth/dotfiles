@@ -89,7 +89,6 @@ fi
 
 [ -f /etc/zsh/zsh_autocomplete_croc ] && PROG=croc _CLI_ZSH_AUTOCOMPLETE_HACK=1 source /etc/zsh/zsh_autocomplete_croc
 
-
 # eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"
 # eval $(register-python-argcomplete ansible)
 # eval $(register-python-argcomplete ansible-config)
