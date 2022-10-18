@@ -15,6 +15,7 @@ export EDITOR="$DOTFILES/bin/editor" && export VISUAL="$EDITOR" && export MANPAG
 export TMUX_TEMPLATE=".tmuxp.yaml"
 export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
 export TMUXP_CONFIGDIR="${TMUXP_CONFIGDIR:-"~/.config/tmuxp"}"
+export GIT_CONFIG_GLOBAL="$DOTFILES/.gitconfig"
 
 [ -n "$GOWORK" ] && export WORK_PROJECTS="$WORK_PROJECTS" || export WORK_PROJECTS=
 [ -n "$GOMNS" ] && export SCHOOL_PROJECTS="$SCHOOL_PROJECTS" || export SCHOOL_PROJECTS=
