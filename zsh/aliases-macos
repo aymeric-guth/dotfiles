@@ -4,6 +4,7 @@
 
 alias ls='ls -G'
 alias ns='netstat -p tcp nltu'
+alias ns="netstat -anvp tcp | awk 'NR<3 || /LISTEN/'"
 alias ncdu='ncdu --exclude=~/.av-mp'
 
 # Wine Executables
@@ -27,14 +28,8 @@ alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne
 
 alias av='python3 $DEV/Network/mplayer_old/mplayer.py'
 flX() {
-    cwd="$PWD"
-    cd "$DEV/Network/mplayer" || exit 1
-    python -m src
-    cd "$cwd" || exit 1
+    TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DEV/Network/mplayer"
 }
 clear() {
-  if [ -n "$TMUX" ]; then
-    tmux clear-history
-  fi
-  /opt/local/bin/clear
+  [ -n "$TMUX" ] && { tmux clear-history; return 0; } || /opt/local/bin/clear
 }

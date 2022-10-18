@@ -90,7 +90,6 @@ chf() {
   historyfile="$HOME/.mozilla/firefox/z6833bcl.default-release/places.sqlite"
   [ ! -f "$historyfile" ] && return 1 || cp "$historyfile" /tmp/h
   DB_PATH=/tmp/h
-  FINDER=fzf
 
   QUERY="
   SELECT
@@ -112,18 +111,12 @@ chf() {
       fzf
   )
 
-  URL=$( echo "$ENTRY" | sed "s/$SEP.*//g" )
-  [ ! -n "$URL" = "" ] && return 0
-
-# google search if input end with .
-# if [ "${URL: -1}" = "." ]; then
-#     SEARCH="${URL:: -1}"
-#     URL="google.com/search?q=$SEARCH"
-# fi
+  URL=$(echo "$ENTRY" | sed "s/$SEP.*//g")
+  [ -z "$URL" ] && return 0
 
   case $(uname) in
       'Linux')
-          xdg-open "https://$URL"
+          open "https://$URL"
           ;;
       'Darwin')
           open "https://$URL"

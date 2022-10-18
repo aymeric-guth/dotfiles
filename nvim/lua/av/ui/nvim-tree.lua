@@ -1,21 +1,21 @@
 local status, nvim_tree = pcall(require, 'nvim-tree')
 if not status then
+  error('nvim-tree')
   return
 end
 
 local status, nvim_tree_config = pcall(require, 'nvim-tree.config')
 if not status then
+  error('nvim-tree.config')
   return
 end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 local status, icons = pcall(require, 'av.ui.icons')
 if not status then
+  error('av.ui.icons')
   return
 end
-
-local width = 60
-local height = 20
 
 nvim_tree.setup({
   auto_reload_on_write = true,
@@ -39,7 +39,6 @@ nvim_tree.setup({
     adaptive_size = false,
     centralize_selection = false,
     width = 30,
-    -- height = 30,
     hide_root_folder = false,
     side = 'left',
     preserve_window_proportions = false,
@@ -55,14 +54,14 @@ nvim_tree.setup({
       },
     },
     float = {
-      enable = true,
+      enable = false,
       open_win_config = {
-        relative = 'win',
+        relative = 'editor',
         border = 'rounded',
-        width = width,
-        height = height,
-        row = (vim.api.nvim_list_uis()[1].height - height) * 0.5,
-        col = (vim.api.nvim_list_uis()[1].width - width) * 0.5,
+        width = vim.api.nvim_list_uis()[1].width * 0.5,
+        height = vim.api.nvim_list_uis()[1].height * 0.5,
+        -- row = 1, --vim.api.nvim_list_uis()[1].height * 0.33 * 0.5,
+        -- col = 1, --vim.api.nvim_list_uis()[1].width * 0.33 * 0.5,
       },
     },
   },

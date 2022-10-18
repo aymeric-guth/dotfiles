@@ -1,10 +1,6 @@
 #!/bin/sh
 
-if [ -f /etc/zprofile ]; then
-    PATH=""
-    MANPATH=""
-    . /etc/zprofile
-fi
+[ -f /etc/zprofile ] && export PATH= && export MANPATH= && . "/etc/zprofile"
 
 export ZDOTDIR="$DOTFILES/zsh"
 export ZDATA="$HOME/.local/share/zsh"
@@ -78,10 +74,21 @@ esac
 
 source "$ZDOTDIR/prompt"
 
-# source <(kubectl completion zsh)
+# Completion
 # source <(minikube completion zsh)
 # This config allows minikube to run kubernetes with the docker container locally
 # eval $(minikube docker-env)
+
+if command -v kubetcl 1> /dev/null; then
+    source <(kubectl completion zsh)
+fi
+
+if command -v k3s 1> /dev/null; then
+    source <(k3s completion zsh)
+fi
+
+[ -f /etc/zsh/zsh_autocomplete_croc ] && PROG=croc _CLI_ZSH_AUTOCOMPLETE_HACK=1 source /etc/zsh/zsh_autocomplete_croc
+
 
 # eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"
 # eval $(register-python-argcomplete ansible)
@@ -131,6 +138,12 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey "^E" edit-command-line
 bindkey "^ " autosuggest-accept
+
+bindkey -r "^R"
+bindkey "^H" fzf-history-widget
+bindkey -s "^R" "run\n"
+bindkey -s "^B" "build\n"
+bindkey -s "^U" "up\n"
 
 # direnv hook
 source <(direnv hook zsh)

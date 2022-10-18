@@ -11,3 +11,7 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
 alias ns='netstat -plntu'
 alias ls='ls --color=auto'
+
+clear() {
+  [ -n "$TMUX" ] && { tmux clear-history; return 0; } || /usr/bin/clear
+}

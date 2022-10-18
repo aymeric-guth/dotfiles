@@ -1,4 +1,5 @@
 selected=$(fzf-projects "$@")
+[ ! -d "$selected" ] && return 1
 selected_name=$(basename "$selected")
 
 if [ -f "$selected/$TMUX_TEMPLATE" ]; then
@@ -9,6 +10,7 @@ if [ -f "$selected/$TMUX_TEMPLATE" ]; then
         project_name="$selected_name"
         workspace="$selected"
     fi
+
     PROJECT_NAME="$project_name" \
     WORKSPACE="$workspace" \
     tmuxp load \
@@ -16,6 +18,6 @@ if [ -f "$selected/$TMUX_TEMPLATE" ]; then
         -f "$TMUX_CONFIG" \
         "$selected/$TMUX_TEMPLATE"
 else
-    echo "tmuxp session not found"
+    echo "tmuxp session not found for workspace=$WORKSPACE"
     return 1
 fi

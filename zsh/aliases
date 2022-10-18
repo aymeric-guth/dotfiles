@@ -14,17 +14,12 @@ alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 
-
-alias tn="tmux -u new"
-alias ta="tmux -u attach"
-
 cfg() {
-  [ -n "$TMUX" ] && editor "$DOTFILES" || tmuxp-start "$DOTFILES"
-    # if [ -n "$TMUX" ]; then
-    #     editor "$DOTFILES"
-    # else
-    #     tmuxp-start "$DOTFILES"
-    # fi
+    if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
+      editor "$DOTFILES"
+    else
+      tmuxp-start "$DOTFILES"
+    fi
 }
 
 v() { editor "$@"; }
@@ -36,3 +31,4 @@ setenv() { TMUX_TEMPLATE=".tmuxp-2.yaml" tmuxp-start "$DOTFILES"; }
 kb() { TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DOTFILES"; }
 alias r="run"
 alias b="build"
+alias lz="lazygit"

@@ -1,4 +1,5 @@
 selected=$(fzf-projects "$@")
+[ ! -d "$selected" ] && return 1
 selected_name=$(basename "$selected")
 
 if ! is-git-repo "$selected"; then
