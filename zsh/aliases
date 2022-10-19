@@ -31,13 +31,6 @@ alias r="run"
 alias b="build"
 alias lz="lazygit"
 
-clear() {
-  if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
-    tmux clear-history
-  fi
-  printf '\033[2J\033[H'
-}
-
 setenv() { 
   if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
     [ -f "$DOTFILES/.env" ] && editor "$DOTFILES/.env"

@@ -18,7 +18,7 @@ if [ -z "$TMUX" ] && [ -z "$SSH_CLIENT" ]; then
   bindkey -s "^F" "tmuxp-start\n"
   bindkey -s "^N" "tmuxp-edit\n"
   bindkey -s "^G" "tmuxp debug-info | editor -R\n"
-  bindkey -s "^A" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
+  bindkey -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
   bindkey -s "^S" "tmux-attach\n"
 fi
 
