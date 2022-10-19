@@ -30,6 +30,3 @@ alias av='python3 $DEV/Network/mplayer_old/mplayer.py'
 flX() {
     TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DEV/Network/mplayer"
 }
-clear() {
-  [ -n "$TMUX" ] && { tmux clear-history; return 0; } || /opt/local/bin/clear
-}

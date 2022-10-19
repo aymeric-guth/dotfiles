@@ -1,4 +1,5 @@
 key_bindings:
+  - { key: L, mods: Control, chars: "\x01V" }
   - { key: H, mods: Command, chars: "\x01h" }
   - { key: J, mods: Command, chars: "\x01j" }
   - { key: K, mods: Command, chars: "\x01k" }

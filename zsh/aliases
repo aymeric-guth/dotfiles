@@ -27,8 +27,23 @@ mux() { tmuxp-start "$TMUXP_CONFIGDIR/anonymous"; }
 alias muxd="tmuxp debug-info"
 alias k="kubectl"
 alias m="minikube"
-setenv() { TMUX_TEMPLATE=".tmuxp-2.yaml" tmuxp-start "$DOTFILES"; }
-kb() { TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DOTFILES"; }
 alias r="run"
 alias b="build"
 alias lz="lazygit"
+
+clear() {
+  if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
+    tmux clear-history
+  fi
+  printf '\033[2J\033[H'
+}
+
+setenv() { 
+  if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
+    [ -f "$DOTFILES/.env" ] && editor "$DOTFILES/.env"
+  else
+    TMUX_TEMPLATE=".tmuxp-2.yaml" tmuxp-start "$DOTFILES"
+  fi
+}
+
+kb() { TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DOTFILES"; }

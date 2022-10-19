@@ -1,8 +1,13 @@
 #!/bin/sh
 
-# [ -n "$NEOVIM_OPTS" ] && eval "$NEOVIM_OPTS" nvim "$*" || return 1
 if command -v nvim 1> /dev/null; then
-  eval "$NEOVIM_OPTS" nvim "$*"
+  eval "XDG_CONFIG_HOME=$DOTFILES" nvim "$*"
+elif command -v vim 1> /dev/null; then
+  vim "$*"
+elif command -v vi 1> /dev/null; then
+  vi "$*"
+elif command -v nano 1> /dev/null; then
+  nano "$*"
 else
   return 1
 fi

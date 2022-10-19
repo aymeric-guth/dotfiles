@@ -207,7 +207,7 @@ return require('packer').startup(function(use)
       vim.fn['mkdp#util#install']()
     end,
   })
-  -- use({ 'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim' })
+  use({ 'ojroques/nvim-osc52', branch = 'main' })
   -- Packer boostraping
   if PACKER_BOOTSTRAP then
     -- :autocmd User MyPlugin echom 'got MyPlugin event'
