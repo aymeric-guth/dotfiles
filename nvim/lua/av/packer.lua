@@ -104,7 +104,6 @@ return require('packer').startup(function(use)
   use('nvim-lua/plenary.nvim')
 
   -- Obsidian
-  -- use({ '$GITHUB_REPOS/tabular' })
   use({
     'preservim/vim-markdown',
     branch = 'master',
@@ -118,7 +117,6 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } },
   })
   use({ 'nvim-telescope/telescope-fzf-native.nvim', branch = 'main', run = 'make' })
-  -- use('nvim-telescope/telescope-file-browser.nvim')
   -- binary: sqlite3 @3.39.0
   use({
     'nvim-telescope/telescope-frecency.nvim',
@@ -142,33 +140,35 @@ return require('packer').startup(function(use)
   use('simrat39/symbols-outline.nvim')
   use('mbbill/undotree')
 
-  --[[
-  -- LSP
-  --]]
-  -- Configurations for Nvim LSP
-  use('neovim/nvim-lspconfig')
-  use('jose-elias-alvarez/null-ls.nvim')
+  if os.getenv('NEOVIM_FULL') then
+    --[[
+    -- LSP
+    --]]
+    -- Configurations for Nvim LSP
+    use('neovim/nvim-lspconfig')
+    use('jose-elias-alvarez/null-ls.nvim')
 
-  --[[
-  -- CMP
-  --]]
-  use({ 'hrsh7th/cmp-nvim-lsp', branch = 'main' })
-  use({ 'hrsh7th/cmp-buffer', branch = 'main' })
-  use({ 'hrsh7th/cmp-path', branch = 'main' })
-  use({ 'hrsh7th/cmp-cmdline', branch = 'main' })
-  use({ 'hrsh7th/nvim-cmp', branch = 'main' })
-  -- patched installer to force tabnine in .local
-  use({
-    'tzachar/cmp-tabnine',
-    run = '$DOTFILES/patches/tabnine/install.sh',
-    requires = 'hrsh7th/nvim-cmp',
-    branch = 'main',
-  })
-  use({ 'L3MON4D3/LuaSnip', branch = 'master' })
-  use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })
-  use('folke/trouble.nvim')
-  use({ 'SmiteshP/nvim-navic', branch = 'master' })
-  use({ 'RRethy/vim-illuminate', branch = 'master' })
+    --[[
+    -- CMP
+    --]]
+    use({ 'hrsh7th/cmp-nvim-lsp', branch = 'main' })
+    use({ 'hrsh7th/cmp-buffer', branch = 'main' })
+    use({ 'hrsh7th/cmp-path', branch = 'main' })
+    use({ 'hrsh7th/cmp-cmdline', branch = 'main' })
+    use({ 'hrsh7th/nvim-cmp', branch = 'main' })
+    -- patched installer to force tabnine in .local
+    use({
+      'tzachar/cmp-tabnine',
+      run = '$DOTFILES/patches/tabnine/install.sh',
+      requires = 'hrsh7th/nvim-cmp',
+      branch = 'main',
+    })
+    use({ 'L3MON4D3/LuaSnip', branch = 'master' })
+    use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })
+    use('folke/trouble.nvim')
+    use({ 'SmiteshP/nvim-navic', branch = 'master' })
+    use({ 'RRethy/vim-illuminate', branch = 'master' })
+  end
 
   -- Autopairs
   use('windwp/nvim-autopairs')
