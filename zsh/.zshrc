@@ -17,23 +17,24 @@ stty start undef # Disable ctrl-q to freeze terminal.
 zle_highlight=('paste:none')
 unsetopt BEEP
 
-fpath=("$ZDOTDIR/.zfunc" "${fpath[@]}" )
-autoload -Uz $fpath[1]/*(.:t)
+fpath=("$ZDOTDIR/.zfunc" "${fpath[@]}")
+autoload -U -z $fpath[1]/*(.:t)
 
 # COMPLETIONS
 fpath=("$ZDOTDIR/completions" $fpath)
 
 autoload -U -z compinit
 # autoload -U +X bashcompinit
+compinit -u -d "$ZDATA/.zcompdump-$ZSH_VERSION"
 zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$ZDATA/.zcompcache"
+zstyle ':completion:*' use-cache 1
+zstyle ':completion:*' cache-path "$HOME/.cache/zsh"
+# zstyle ':completion:*' cache-path "$ZDATA/.zcompcache"
 zstyle ':completion:*' menu select
 zstyle ':completion:*' verbose yes
 # zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files.
-compinit -u -d "$ZDATA/.zcompdump-$ZSH_VERSION"
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -44,7 +45,7 @@ autoload -Uz colors && colors
 
 case "$(uname -s)" in
     Darwin)
-        export CLICOLOR=1
+        # export CLICOLOR=1
         source "$ZDOTDIR/func/zsh-functions-macos"
         source "$ZDOTDIR/zshenv"
         source "$ZDOTDIR/aliases-macos"
@@ -73,7 +74,15 @@ case "$(uname -s)" in
         ;;
 esac
 
-[ -f "$ZDOTDIR/prompt" ] && source "$ZDOTDIR/prompt"
+# [ -f "$ZDOTDIR/prompt" ] && source "$ZDOTDIR/prompt"
+if [ -d "$GITHUB_REPOS/pure" ]; then
+    fpath+=("$GITHUB_REPOS/pure")
+    autoload -U promptinit; promptinit
+    zstyle :prompt:pure:prompt:success color green
+    prompt pure
+elif [ -f "$ZDOTDIR/prompt" ]; then
+    source "$ZDOTDIR/prompt"
+fi
 
 # Completion
 # source <(minikube completion zsh)

@@ -1,19 +1,16 @@
 local status, nvim_tree = pcall(require, 'nvim-tree')
 if not status then
-  error('nvim-tree')
   return
 end
 
 local status, nvim_tree_config = pcall(require, 'nvim-tree.config')
 if not status then
-  error('nvim-tree.config')
   return
 end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 local status, icons = pcall(require, 'av.ui.icons')
 if not status then
-  error('av.ui.icons')
   return
 end
 

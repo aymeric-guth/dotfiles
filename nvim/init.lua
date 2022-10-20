@@ -7,7 +7,7 @@ require('av.set')
 require('av.keymaps')
 require('av.packer')
 
-if os.getenv('NEOVIM_FULL') then
+if os.getenv('NEOVIM_FULL') ~= nil then
   require('av.cmp')
   require('av.lsp')
 end

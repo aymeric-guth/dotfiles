@@ -1,5 +1,5 @@
 ### Tools
-python-lsp-server[flake8,mccabe,rope,pycodestyle,pydocstyle]@git+https://github.com/python-lsp/python-lsp-server.git@develop
+# python-lsp-server[flake8,mccabe,rope,pycodestyle,pydocstyle]@git+https://github.com/python-lsp/python-lsp-server.git@develop
 setuptools
 meson
 virtualenv
@@ -7,20 +7,18 @@ pytest
 git+https://git.ars-virtualis.org/yul/lsfiles@master
 git+https://git.ars-virtualis.org/yul/utils@master
 six
-git+https://github.com/executablebooks/mdformat@master
 ansible
 argcomplete
 ### VIM
 pynvim
-black
-git+https://github.com/python-lsp/pylsp-mypy@master
-pyright
-git+https://github.com/adrienverge/yamllint@master
-git+https://github.com/tmux-python/tmuxp@master
-git+https://github.com/ansible/ansible-lint@main
-cmakelang
-git+https://github.com/ansible/ansible-lint@main
-git+https://github.com/adrienverge/yamllint@master
+# black
+# git+https://github.com/executablebooks/mdformat@master
+# git+https://github.com/python-lsp/pylsp-mypy@master
+# pyright
+# git+https://github.com/adrienverge/yamllint@master
+# git+https://github.com/tmux-python/tmuxp@master
+# cmakelang
+# git+https://github.com/ansible/ansible-lint@main
 ### Temp
-httpx
-pydantic
+# httpx
+# pydantic

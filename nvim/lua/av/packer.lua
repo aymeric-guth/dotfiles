@@ -140,7 +140,7 @@ return require('packer').startup(function(use)
   use('simrat39/symbols-outline.nvim')
   use('mbbill/undotree')
 
-  if os.getenv('NEOVIM_FULL') then
+  if os.getenv('NEOVIM_FULL') ~= nil then
     --[[
     -- LSP
     --]]
