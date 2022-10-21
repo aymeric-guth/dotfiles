@@ -74,7 +74,6 @@ case "$(uname -s)" in
         ;;
 esac
 
-# [ -f "$ZDOTDIR/prompt" ] && source "$ZDOTDIR/prompt"
 if [ -d "$GITHUB_REPOS/pure" ]; then
     fpath+=("$GITHUB_REPOS/pure")
     autoload -U promptinit; promptinit

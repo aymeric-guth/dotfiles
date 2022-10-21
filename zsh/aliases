@@ -1,7 +1,10 @@
 #!/bin/sh
 
+# croc --pass YOURPASSWORD --relay "myreal.example.com:9009" send [filename]
+# --pass FILEWITHPASSWORD
+# ansible-vault, keepass
 
-if command lsd 1> /dev/null; then
+if command -v lsd 1> /dev/null; then
   alias ll='XDG_CONFIG_DIR=$DOTFILES lsd -lh'
   alias la='XDG_CONFIG_DIR=$DOTFILES lsd -lA'
 else
