@@ -51,9 +51,9 @@ case "$(uname -s)" in
         source "$ZDOTDIR/aliases-macos"
         export COMPOSE_CMD="docker compose"
 
-        [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
-        [ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
-        [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
+        # [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
+        # [ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
+        # [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
         ;;
 
     Linux)
@@ -62,11 +62,11 @@ case "$(uname -s)" in
         source "$ZDOTDIR/aliases-linux"
         export COMPOSE_CMD="docker-compose"
 
-        [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-        [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-        [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
-        [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
-        [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+        # [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+        # [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+        # [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
+        # [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+        # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
         ;;
 
     *)

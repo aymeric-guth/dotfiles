@@ -41,7 +41,7 @@ windows:
 
   - window_name: alacritty
     start_directory: ./alacritty
-    layout: tiled
+    layout: even-horizontal
     panes:
       - shell_command:
           - editor .

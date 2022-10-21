@@ -18,14 +18,8 @@ alias looping='wine ${WINEDIR}/Looping32.exe'
 # Divers
 alias insta='python3 ~/Desktop/Network/thot_bot/minimal_api/minimal_scraper.py'
 
-alias esptool='python3 -m esptool --port ${MCU}'
-alias rshell='rshell --port ${MCU} --baud 115200'
-alias mpy='~/./bin/micropython'
-alias makempy='make CROSS=x86_64-linux-musl-'
-
 alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
 
-alias av='python3 $DEV/Network/mplayer_old/mplayer.py'
 flX() {
-    TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DEV/Network/mplayer"
+    TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DEV/personal/mplayer"
 }

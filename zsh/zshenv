@@ -6,7 +6,7 @@ export MANWIDTH=999
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-[ -f "$DOTFILES/.env" ] && . "$DOTFILES/.env"
+[ -f "$ENVFILE" ] && . "$ENVFILE"
 [ -d "$TOOLZ" ] && prepend-to-path "$TOOLZ/bin" && export MANPATH="$TOOLZ/share/man:$MANPATH"
 prepend-to-path "$DOTFILES/bin"
 
@@ -17,6 +17,13 @@ export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
 export TMUXP_CONFIGDIR="${TMUXP_CONFIGDIR:-"~/.config/tmuxp"}"
 export GIT_CONFIG_GLOBAL="$DOTFILES/.gitconfig"
 
+# Setup fzf
+if [ -d "$GITHUB_REPOS/.fzf" ]; then
+    prepend-to-path "$GITHUB_REPOS/.fzf/bin"
+    [ -d "$GITHUB_REPOS/.fzf/shell/completion.zsh" ] && source "$GITHUB_REPOS/.fzf/shell/completion.zsh"
+    [ -d "$GITHUB_REPOS/.fzf/shell/key-bindings.zsh" ] && source "$GITHUB_REPOS/.fzf/shell/key-bindings.zsh"
+fi
+
 [ -n "$GOWORK" ] && export WORK_PROJECTS="$WORK_PROJECTS" || export WORK_PROJECTS=
-[ -n "$GOMNS" ] && export SCHOOL_PROJECTS="$SCHOOL_PROJECTS" || export SCHOOL_PROJECTS=
-export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS $SCHOOL_PROJECTS"
+[ -n "$GOLEARN" ] && export LEARNING_PROJECTS="$LEARNING_PROJECTS" || export LEARNING_PROJECTS=
+export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS $LEARNING_PROJECTS"
