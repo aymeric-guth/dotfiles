@@ -1,5 +1,8 @@
-session_name: "$PROJECT_NAME-kb"
+session_name: "keybinds"
 start_directory: $WORKSPACE 
+environment:
+  PROJECT_NAME: "keybinds"
+  WORKSPACE: $WORKSPACE
 
 windows:
 
@@ -13,7 +16,7 @@ windows:
     start_directory: $DOTFILES/zsh
     panes:
       - shell_command:
-        - editor ./.zshrc
+        - editor ./keybinds
 
   - window_name: tmux
     start_directory: $DOTFILES/tmux

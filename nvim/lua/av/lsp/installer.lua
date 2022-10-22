@@ -8,10 +8,10 @@ local servers = {
   'bashls',
   'dockerls',
   'ansiblels',
-  'dartls',
+  -- 'dartls',
   -- 'gopls',
   -- 'golangci_lint_ls',
-  'rust_analyzer',
+  -- 'rust_analyzer',
   -- 'ccls',
 }
 local handlers = require('av.lsp.handlers')
@@ -27,6 +27,7 @@ for _, server in pairs(servers) do
     capabilities = capabilities,
     lsp_flags = handlers.lsp_flags,
   }
+
   -- if (server == "dartls") then
   --   opts.capabilities.textDocument.formatting = vim.lsp.util.make_formatting_params()
   -- end

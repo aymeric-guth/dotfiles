@@ -5,8 +5,10 @@
 
 export ZDOTDIR="$DOTFILES/zsh"
 export ZDATA="$HOME/.local/share/zsh"
+export ZCACHE="$HOME/.cache/zsh"
+[ ! -d "$ZCACHE" ] && mkdir -p "$ZCACHE"
 
-HISTFILE="$ZDATA/.zsh_history"
+export HISTFILE="$ZDATA/.zsh_history"
 setopt appendhistory
 
 # some useful options (man zshoptions)
@@ -25,11 +27,10 @@ fpath=("$ZDOTDIR/completions" $fpath)
 
 autoload -U -z compinit
 # autoload -U +X bashcompinit
-compinit -u -d "$ZDATA/.zcompdump-$ZSH_VERSION"
+compinit -u -d "$ZCACHE/.zcompdump-$ZSH_VERSION"
 zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache 1
-zstyle ':completion:*' cache-path "$HOME/.cache/zsh"
-# zstyle ':completion:*' cache-path "$ZDATA/.zcompcache"
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$ZCACHE/.zcompcache"
 zstyle ':completion:*' menu select
 zstyle ':completion:*' verbose yes
 # zstyle ':completion::complete:lsof:*' menu yes select
@@ -50,10 +51,6 @@ case "$(uname -s)" in
         source "$ZDOTDIR/zshenv"
         source "$ZDOTDIR/aliases-macos"
         export COMPOSE_CMD="docker compose"
-
-        # [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
-        # [ -f /opt/local/share/fzf/shell/key-bindings.zsh ] && source /opt/local/share/fzf/shell/key-bindings.zsh
-        # [ -f /opt/local/share/fzf/shell/completion.zsh ] && source /opt/local/share/fzf/shell/completion.zsh
         ;;
 
     Linux)
@@ -61,12 +58,6 @@ case "$(uname -s)" in
         source "$ZDOTDIR/zshenv"
         source "$ZDOTDIR/aliases-linux"
         export COMPOSE_CMD="docker-compose"
-
-        # [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
-        # [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-        # [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
-        # [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
-        # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
         ;;
 
     *)
@@ -94,6 +85,10 @@ fi
 
 if command -v k3s 1> /dev/null; then
     source <(k3s completion zsh)
+fi
+
+if command -v rustup 1> /dev/null; then
+    eval $(rustup completions zsh)
 fi
 
 [ -f "$ZDOTDIR/completions/_croc" ] && PROG=croc _CLI_ZSH_AUTOCOMPLETE_HACK=1 source "$ZDOTDIR/completions/_croc"

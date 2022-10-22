@@ -14,13 +14,14 @@ _bootstrap_nvim() {
 }
 
 _upgrade_python_packages() {
-    python3 -m pip install --upgrade pip;
-    tmp="$(mktemp)"
-    python3 -m pip freeze --user > "$tmp"
-    python3 -m pip uninstall -y -r "$tmp"
-    # bash version
-    # python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
-    python3 -m pip install --user -r "$DOTFILES/requirements.txt"
+  [ -f "$DOTFILES/env/requirements.txt" ] || return 1
+  python3 -m pip install --upgrade pip;
+  tmp="$(mktemp)"
+  python3 -m pip freeze --user > "$tmp"
+  python3 -m pip uninstall -y -r "$tmp"
+  # bash version
+  # python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
+  python3 -m pip install --user -r "$DOTFILES/env/requirements.txt"
 }
 
 _upgrade_zsh_plugins() {

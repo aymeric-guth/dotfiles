@@ -40,12 +40,13 @@ local null_ls_opts = {
     extra_args = { '--fast' },
   }),
 
-  formatting.rustfmt.with({
-    filetypes = { 'rust' },
-  }),
-  formatting.dart_format.with({
-    filetypes = { 'dart' },
-  }),
+  -- formatting.rustfmt.with({
+  --   filetypes = { 'rust' },
+  -- }),
+  -- formatting.dart_format.with({
+  --   filetypes = { 'dart' },
+  -- }),
+
   -- formatting.remark.with({
   --   filetypes = { 'markdown' },
   -- }),

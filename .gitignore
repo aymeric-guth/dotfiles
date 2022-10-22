@@ -14,4 +14,4 @@ configstore
 .env
 package-lock.json
 reset.sh
-stignore
+env/**

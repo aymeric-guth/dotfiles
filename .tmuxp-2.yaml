@@ -4,11 +4,10 @@ start_directory: $WORKSPACE
 windows:
 
   - window_name: device-specific
-    start_directory: $DOTFILES
     layout: even-horizontal
     panes:
       - shell_command:
-        - editor .env
+        - editor $DOTFILES/env/.env
 
   - window_name: zshrc
     start_directory: $DOTFILES/zsh
