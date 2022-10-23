@@ -4,6 +4,12 @@ if not status then
 end
 
 tabnine:setup({
+  env = {
+    XDG_CACHE_HOME = '',
+    XDG_CONFIG_HOME = '',
+    XDG_DATA_HOME = '',
+    HOME = vim.fn.stdpath('data'),
+  },
   max_lines = 1000,
   max_num_results = 20,
   sort = true,

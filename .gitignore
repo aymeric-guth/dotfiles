@@ -15,3 +15,5 @@ configstore
 package-lock.json
 reset.sh
 env/**
+.luarc.json
+TabNine

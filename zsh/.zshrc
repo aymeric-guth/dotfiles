@@ -5,6 +5,7 @@
 
 export ZDOTDIR="$DOTFILES/zsh"
 export ZDATA="$HOME/.local/share/zsh"
+[ ! -d "$ZDATA" ] && mkdir -p "$ZDATA"
 export ZCACHE="$HOME/.cache/zsh"
 [ ! -d "$ZCACHE" ] && mkdir -p "$ZCACHE"
 
@@ -44,18 +45,18 @@ autoload -U edit-command-line
 # Colors
 autoload -Uz colors && colors
 
+source "$ZDOTDIR/zshenv"
+
 case "$(uname -s)" in
     Darwin)
         # export CLICOLOR=1
         source "$ZDOTDIR/func/zsh-functions-macos"
-        source "$ZDOTDIR/zshenv"
         source "$ZDOTDIR/aliases-macos"
         export COMPOSE_CMD="docker compose"
         ;;
 
     Linux)
         source "$ZDOTDIR/func/zsh-functions-linux"
-        source "$ZDOTDIR/zshenv"
         source "$ZDOTDIR/aliases-linux"
         export COMPOSE_CMD="docker-compose"
         ;;

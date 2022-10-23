@@ -156,13 +156,14 @@ return require('packer').startup(function(use)
     use({ 'hrsh7th/cmp-path', branch = 'main' })
     use({ 'hrsh7th/cmp-cmdline', branch = 'main' })
     use({ 'hrsh7th/nvim-cmp', branch = 'main' })
-    -- patched installer to force tabnine in .local
+    -- patched installer to force tabnine config in .local
     use({
       'tzachar/cmp-tabnine',
       run = '$DOTFILES/patches/tabnine/install.sh',
       requires = 'hrsh7th/nvim-cmp',
       branch = 'main',
     })
+    -- use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
     use({ 'L3MON4D3/LuaSnip', branch = 'master' })
     use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })
     use('folke/trouble.nvim')

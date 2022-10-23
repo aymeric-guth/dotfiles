@@ -43,7 +43,7 @@ alias lz="lazygit"
 
 setenv() { 
   if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
-    editor "$ENVFILE"
+    editor "$DOTFILES/env/.env-$(uname -n)"
   else
     TMUX_TEMPLATE=".tmuxp-2.yaml" tmuxp-start "$DOTFILES"
   fi

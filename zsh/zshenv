@@ -6,7 +6,9 @@ export MANWIDTH=999
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-[ -f "$DOTFILES/env/.env" ] && . "$DOTFILES/env/.env"
+[ -f "$DOTFILES/env/.env-`uname -n`" ] && source "$DOTFILES/env/.env-`uname -n`"
+[ -z "$PROJECTS_ROOT" ] && export PROJECTS_ROOT="$HOME"
+
 [ -d "$TOOLZ" ] && prepend-to-path "$TOOLZ/bin" && export MANPATH="$TOOLZ/share/man:$MANPATH"
 prepend-to-path "$DOTFILES/bin"
 

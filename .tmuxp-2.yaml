@@ -7,7 +7,7 @@ windows:
     layout: even-horizontal
     panes:
       - shell_command:
-        - editor $DOTFILES/env/.env
+        - editor "$DOTFILES/env/.env-$(uname -n)"
 
   - window_name: zshrc
     start_directory: $DOTFILES/zsh

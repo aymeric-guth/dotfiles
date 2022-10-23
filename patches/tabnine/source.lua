@@ -129,7 +129,7 @@ local function binary()
       platform = arch .. '-unknown-linux-musl'
     end
   end
-  return latest.path .. '/' .. platform .. '/' .. 'TabNine'
+  return latest.path .. '/' .. platform .. '/' .. 'TabNine', latest.version
 end
 
 local Source = {
@@ -139,16 +139,25 @@ local Source = {
   -- change till next run of the tabnine process
   hub_url = 'Unknown',
 }
+local last_instance = nil
 
 function Source.new()
-  local self = setmetatable({}, { __index = Source })
-  self._on_exit(Source, 0)
-  return self
+  last_instance = setmetatable({}, { __index = Source })
+  last_instance:on_exit(0)
+  return last_instance
 end
 
-Source.open_tabnine_hub = function(self, quiet)
+function Source.get_hub_url(self)
+  if self == nil then
+    -- this happens when nvim < 0.7 and vim.api.nvim_add_user_command does not exist
+    self = last_instance
+  end
+  return self.hub_url
+end
+
+function Source.open_tabnine_hub(self, quiet)
   local req = {}
-  req.version = '3.3.0'
+  req.version = self.tabnine_version
   req.request = {
     Configuration = {
       quiet = quiet,
@@ -157,21 +166,21 @@ Source.open_tabnine_hub = function(self, quiet)
 
   if self == nil then
     -- this happens when nvim < 0.7 and vim.api.nvim_add_user_command does not exist
-    self = Source
+    self = last_instance
   end
   pcall(fn.chansend, self.job, fn.json_encode(req) .. '\n')
 end
 
-Source.is_available = function()
-  return (Source.job ~= 0)
+function Source.is_available(self)
+  return (self.job ~= 0)
 end
 
-Source.get_debug_name = function()
+function Source.get_debug_name()
   return 'TabNine'
 end
 
-Source._do_complete = function(ctx)
-  if Source.job == 0 then
+function Source._do_complete(self, ctx)
+  if self.job == 0 then
     return
   end
   local max_lines = conf:get('max_lines')
@@ -189,7 +198,8 @@ Source._do_complete = function(ctx)
     region_includes_end = true
   end
 
-  local lines_before = api.nvim_buf_get_lines(0, cursor.line - max_lines, cursor.line - 1, false)
+  local lines_before =
+    api.nvim_buf_get_lines(0, math.max(0, cursor.line - max_lines), cursor.line, false)
   table.insert(lines_before, cur_line_before)
   local before = table.concat(lines_before, '\n')
 
@@ -198,17 +208,20 @@ Source._do_complete = function(ctx)
   local after = table.concat(lines_after, '\n')
 
   local req = {}
-  req.version = '3.3.0'
+  req.version = self.tabnine_version
   req.request = {
     Autocomplete = {
       before = before,
       after = after,
       region_includes_beginning = region_includes_beginning,
       region_includes_end = region_includes_end,
-      -- filename = fn["expand"]("%:p"),
       filename = vim.uri_from_bufnr(0):gsub('file://', ''),
       max_num_results = conf:get('max_num_results'),
       correlation_id = ctx.context.id,
+      line = cursor.line,
+      offset = #before + 1,
+      character = cursor.col,
+      indentation_size = (api.nvim_buf_get_option(0, 'tabstop') or 4),
     },
   }
 
@@ -216,7 +229,20 @@ Source._do_complete = function(ctx)
   -- if there is an error, e.g., the channel is dead, we expect on_exit will be
   -- called in the future and restart the server
   -- we use pcall as we do not want to spam the user with error messages
-  pcall(fn.chansend, Source.job, fn.json_encode(req) .. '\n')
+  pcall(fn.chansend, self.job, fn.json_encode(req) .. '\n')
+end
+
+function Source.prefetch(self, file_path)
+  local req = {}
+  req.version = self.tabnine_version
+  req.request = {
+    Prefetch = {
+      filename = file_path,
+      -- filename = vim.uri_from_bufnr(0):gsub('file://', ''),
+    },
+  }
+
+  pcall(fn.chansend, self.job, fn.json_encode(req) .. '\n')
 end
 
 --- complete
@@ -225,39 +251,47 @@ function Source.complete(self, ctx, callback)
     callback()
     return
   end
-  Source.pending[ctx.context.id] = { ctx = ctx, callback = callback }
-  Source._do_complete(ctx)
+  self.pending[ctx.context.id] = { ctx = ctx, callback = callback, job = self.job }
+  self:_do_complete(ctx)
 end
 
-Source._on_exit = function(self, code)
+function Source.on_exit(self, job, code)
+  if job ~= self.job then
+    return
+  end
   -- restart..
   if code == 143 then
     -- nvim is exiting. do not restart
     return
   end
 
-  local bin = binary()
+  local bin, version = binary()
   if not bin then
     return
   end
-  Source.pending = {}
-  Source.job = fn.jobstart({ bin, '--client=cmp.vim' }, {
-    on_stderr = nil,
-    on_exit = Source._on_exit,
-    on_stdout = Source._on_stdout,
+  self.tabnine_version = version
+  self.pending = {}
+  self.job = fn.jobstart({ bin, '--client=cmp.vim' }, {
     env = {
       XDG_CACHE_HOME = '',
       XDG_CONFIG_HOME = '',
       XDG_DATA_HOME = '',
       HOME = vim.fn.stdpath('data'),
     },
+    on_stderr = nil,
+    on_exit = function(j, c, _)
+      self:on_exit(j, c)
+    end,
+    on_stdout = function(_, data, _)
+      self:on_stdout(data)
+    end,
   })
 
   -- fire off a hub request to get the url
   self:open_tabnine_hub(true)
 end
 
-Source._on_stdout = function(_, data, _)
+function Source.on_stdout(self, data)
   -- {
   --   "old_prefix": "wo",
   --   "results": [
@@ -275,21 +309,24 @@ Source._on_stdout = function(_, data, _)
   local base_priority = conf:get('priority')
 
   for _, jd in ipairs(data) do
-    if jd ~= nil and jd ~= '' then
-      local response = json_decode(jd)
-      local id = (response or {}).correlation_id
+    if jd ~= nil and jd ~= '' and jd ~= 'null' then
+      local response = (json_decode(jd) or {})
+      local id = response.correlation_id
       if response == nil then
         dump('TabNine: json decode error: ', jd)
       elseif (response.message or ''):find('http://127.0.0.1') then
-        Source.hub_url = response.message:match('.*(http://127.0.0.1.*)')
+        self.hub_url = response.message:match('.*(http://127.0.0.1.*)')
       elseif id == nil then
+        -- dump('TabNine: No correlation id: ', jd)
         -- ignore this message
-      elseif Source.pending[id] == nil then
+      elseif self.pending[id] == nil then
         dump('TabNine: unknown message: ', jd)
+      elseif self.pending[id].job ~= self.job then
+        -- a message from an old job. skip it
       else
-        local ctx = Source.pending[id].ctx
-        local callback = Source.pending[id].callback
-        Source.pending[id] = nil
+        local ctx = self.pending[id].ctx
+        local callback = self.pending[id].callback
+        self.pending[id] = nil
 
         local cursor = ctx.context.cursor
 
@@ -355,12 +392,20 @@ Source._on_stdout = function(_, data, _)
                 item['detail'] = result.detail
               end
             end
+
             if result.kind then
               item['kind'] = result.kind
             end
+
             if result.documentation then
               item['documentation'] = result.documentation
             end
+
+            if result.new_prefix:find('.*\n.*') then
+              item['data']['multiline'] = true
+              item['documentation'] = result.new_prefix
+            end
+
             if result.deprecated then
               item['deprecated'] = result.deprecated
             end
