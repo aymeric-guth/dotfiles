@@ -186,7 +186,7 @@ return require('packer').startup(function(use)
   -- git
   use('lewis6991/gitsigns.nvim')
   use('dbeniamine/cheat.sh-vim')
-
+  use({ 'ellisonleao/glow.nvim' })
   --[[
   -- UI
   --]]
@@ -202,12 +202,6 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   })
   use({ 'norcalli/nvim-colorizer.lua' })
-  use({
-    'iamcco/markdown-preview.nvim',
-    run = function()
-      vim.fn['mkdp#util#install']()
-    end,
-  })
   use({ 'ojroques/nvim-osc52', branch = 'main' })
   -- Packer boostraping
   if PACKER_BOOTSTRAP then

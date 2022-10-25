@@ -50,3 +50,6 @@ setenv() {
 }
 
 kb() { TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DOTFILES"; }
+
+alias fdi="fd --no-ignore-vcs --no-ignore-parent --hidden"
+alias rgi="rg --no-ignore-vcs --no-ignore-parent --hidden"

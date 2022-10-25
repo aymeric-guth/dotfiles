@@ -114,3 +114,8 @@ nnoremap('<C-h>', "<cmd>lua require('harpoon.ui').nav_file(1)<cr>")
 nnoremap('<C-t>', "<cmd>lua require('harpoon.ui').nav_file(2)<cr>")
 nnoremap('<C-n>', "<cmd>lua require('harpoon.ui').nav_file(3)<cr>")
 nnoremap('<C-s>', "<cmd>lua require('harpoon.ui').nav_file(4)<cr>")
+
+--[[
+-- Glow
+--]]
+nnoremap('<leader>a', '<cmd>:Glow<cr>')
