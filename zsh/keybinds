@@ -16,18 +16,13 @@ bindkey -s "^K" "exit\n"
 bindkey "^w" my-backward-delete-word
 
 if [ -z "$TMUX" ] && [ -z "$SSH_CLIENT" ]; then
-  zle -N tmuxp-start
-  zle -N tmuxp-edit
-  zle -N tmuxp-debug
-  # zle -N tmux-attach
-  bindkey "^F" tmuxp-start
-  bindkey "^N" tmuxp-edit
-  bindkey "^G" tmuxp-debug
+  bindkey -s "^F" "tmuxp-start\n"
+  bindkey -s "^N" "tmuxp-edit\n"
+  bindkey -s "^G" "tmuxp-debug\n"
   bindkey -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
   bindkey -s "^S" "tmux-attach\n"
 else
-  zle -N vanilla-start
-  bindkey "^F" vanilla-start
+  bindkey -s "^F" "vanilla-start\n"
 fi
 
 bindkey "^[[5~" beginning-of-line
