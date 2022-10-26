@@ -14,14 +14,15 @@ _bootstrap_nvim() {
 }
 
 _upgrade_python_packages() {
-  [ -f "$AV_CONFIG_USER/requirements.txt" ] || return 1
+  requirement_file="$DOTFILES/env/requirements-$(uname -n).txt"
+  [ ! -f "$requirement_file" ] && return 1
   python3 -m pip install --upgrade pip;
   tmp="$(mktemp)"
   python3 -m pip freeze --user > "$tmp"
   python3 -m pip uninstall -y -r "$tmp"
   # bash version
   # python3 -m pip uninstall -y -r <(python3 -m pip freeze --user);
-  python3 -m pip install --user -r "$AV_CONFIG_USER/requirements.txt"
+  python3 -m pip install --user -r "$requirement_file"
 }
 
 _upgrade_zsh_plugins() {
