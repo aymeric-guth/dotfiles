@@ -2,7 +2,7 @@ selected=$(fzf-projects "$@")
 [ ! -d "$selected" ] && return 1
 selected_name=$(basename "$selected")
 
-if ! is-git-repo "$selected"; then
+if ! git-is-repo "$selected"; then
     echo "not a github repo $PWD"
     return 1
 fi

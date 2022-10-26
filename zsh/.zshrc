@@ -4,10 +4,8 @@
 [ -f /etc/zprofile ] && export PATH= && export MANPATH= && . "/etc/zprofile"
 
 export ZDOTDIR="$DOTFILES/zsh"
-export ZDATA="$HOME/.local/share/zsh"
-[ ! -d "$ZDATA" ] && mkdir -p "$ZDATA"
-export ZCACHE="$HOME/.cache/zsh"
-[ ! -d "$ZCACHE" ] && mkdir -p "$ZCACHE"
+export ZDATA="$HOME/.local/share/zsh" && [ ! -d "$ZDATA" ] && mkdir -p "$ZDATA"
+export ZCACHE="$HOME/.cache/zsh" && [ ! -d "$ZCACHE" ] && mkdir -p "$ZCACHE"
 
 export HISTFILE="$ZDATA/.zsh_history"
 setopt appendhistory
@@ -20,12 +18,12 @@ stty start undef # Disable ctrl-q to freeze terminal.
 zle_highlight=('paste:none')
 unsetopt BEEP
 
+# loads functions in .zfunc
 fpath=("$ZDOTDIR/.zfunc" "${fpath[@]}")
 autoload -U -z $fpath[1]/*(.:t)
 
-# COMPLETIONS
+# Completion Engine config
 fpath=("$ZDOTDIR/completions" $fpath)
-
 autoload -U -z compinit
 # autoload -U +X bashcompinit
 compinit -u -d "$ZCACHE/.zcompdump-$ZSH_VERSION"
@@ -41,8 +39,6 @@ _comp_options+=(globdots) # Include hidden files.
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 autoload -U edit-command-line
-
-# Colors
 autoload -Uz colors && colors
 
 source "$ZDOTDIR/zshenv"
@@ -66,6 +62,7 @@ case "$(uname -s)" in
         ;;
 esac
 
+# Prompt
 if [ -d "$GITHUB_REPOS/pure" ]; then
     fpath+=("$GITHUB_REPOS/pure")
     autoload -U promptinit; promptinit
@@ -75,35 +72,24 @@ elif [ -f "$ZDOTDIR/prompt" ]; then
     source "$ZDOTDIR/prompt"
 fi
 
-# Completion
-# source <(minikube completion zsh)
-# This config allows minikube to run kubernetes with the docker container locally
-# eval $(minikube docker-env)
-
-if command -v kubetcl 1> /dev/null; then
-    source <(kubectl completion zsh)
-fi
-
-if command -v k3s 1> /dev/null; then
-    source <(k3s completion zsh)
-fi
-
-if command -v rustup 1> /dev/null; then
-    eval $(rustup completions zsh)
-fi
-
+# Completions
+[[ $commands[minikube] ]] && source <(minikube completion zsh) && eval $(minikube docker-env)
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+[[ $commands[k3s] ]] && source <(k3s completion zsh)
+[[ $commands[k3d] ]] && source <(k3d completion zsh)
+[[ $commands[rustup] ]] && eval $(rustup completions zsh)
 [ -f "$ZDOTDIR/completions/_croc" ] && PROG=croc _CLI_ZSH_AUTOCOMPLETE_HACK=1 source "$ZDOTDIR/completions/_croc"
-
-# eval "$(_TMUXP_COMPLETE=zsh_source tmuxp)"
-# eval $(register-python-argcomplete ansible)
-# eval $(register-python-argcomplete ansible-config)
-# eval $(register-python-argcomplete ansible-console)
-# eval $(register-python-argcomplete ansible-doc)
-# eval $(register-python-argcomplete ansible-galaxy)
-# eval $(register-python-argcomplete ansible-inventory)
-# eval $(register-python-argcomplete ansible-playbook)
-# eval $(register-python-argcomplete ansible-pull)
-# eval $(register-python-argcomplete ansible-vault)
+if command -v ansible 1> /dev/null; then
+    eval $(register-python-argcomplete ansible)
+    eval $(register-python-argcomplete ansible-config)
+    eval $(register-python-argcomplete ansible-console)
+    eval $(register-python-argcomplete ansible-doc)
+    eval $(register-python-argcomplete ansible-galaxy)
+    eval $(register-python-argcomplete ansible-inventory)
+    eval $(register-python-argcomplete ansible-playbook)
+    eval $(register-python-argcomplete ansible-pull)
+    eval $(register-python-argcomplete ansible-vault)
+fi
 
 # Plugins
 my-zsh-add-plugin "Aloxaf/fzf-tab"

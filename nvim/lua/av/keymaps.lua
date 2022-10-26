@@ -118,4 +118,4 @@ nnoremap('<C-s>', "<cmd>lua require('harpoon.ui').nav_file(4)<cr>")
 --[[
 -- Glow
 --]]
-nnoremap('<leader>a', '<cmd>:Glow<cr>')
+nnoremap('<leader>rmd', '<cmd>:Glow<cr>')

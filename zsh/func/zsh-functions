@@ -112,16 +112,13 @@ chf() {
   )
 
   URL=$(echo "$ENTRY" | sed "s/$SEP.*//g")
-  [ -z "$URL" ] && return 0
-
-  case $(uname) in
-      'Linux')
-	  # xdg-open
-          open "https://$URL"
-          ;;
-      'Darwin')
-          open "https://$URL"
-          ;;
-  esac
+  [ -z "$URL" ] && return 0 || open "https://$URL"
 }
 
+s() {
+    if git-is-repo "$(pwd)"; then
+        return "$(git status --porcelain=v1 2>/dev/null | wc -l)"
+    else
+        return 1
+    fi
+}

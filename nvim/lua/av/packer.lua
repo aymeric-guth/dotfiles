@@ -169,6 +169,11 @@ return require('packer').startup(function(use)
     use('folke/trouble.nvim')
     use({ 'SmiteshP/nvim-navic', branch = 'master' })
     use({ 'RRethy/vim-illuminate', branch = 'master' })
+    --[[
+    -- DAP
+    --]]
+    use({ 'mfussenegger/nvim-dap', branch = 'master' })
+    use({ 'williamboman/mason.nvim' })
   end
 
   -- Autopairs

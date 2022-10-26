@@ -35,12 +35,11 @@ cfg() {
 v() { editor "$@"; }
 mux() { tmuxp-start "$TMUXP_CONFIGDIR/anonymous"; }
 alias muxd="tmuxp debug-info"
-alias k="kubectl"
+alias k="kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml"
 alias m="minikube"
 alias r="run"
 alias b="build"
 alias lz="lazygit"
-
 setenv() { 
   if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
     editor "$DOTFILES/env/.env-$(uname -n)"

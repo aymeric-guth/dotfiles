@@ -13,7 +13,6 @@ export LANG=en_US.UTF-8
 prepend-to-path "$DOTFILES/bin"
 
 export EDITOR="$DOTFILES/bin/editor" && export VISUAL="$EDITOR" && export MANPAGER="$EDITOR -c 'Man!' -o -"
-
 export TMUX_TEMPLATE=".tmuxp.yaml"
 export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
 export TMUXP_CONFIGDIR="${TMUXP_CONFIGDIR:-"~/.config/tmuxp"}"

@@ -10,6 +10,7 @@ require('av.packer')
 if os.getenv('NEOVIM_FULL') ~= nil then
   require('av.cmp')
   require('av.lsp')
+  require('av.dap')
 end
 
 require('av.telescope')
