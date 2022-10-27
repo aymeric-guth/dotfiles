@@ -8,6 +8,7 @@ local servers = {
   'bashls',
   'dockerls',
   'ansiblels',
+  'csharp_ls',
   -- 'dartls',
   -- 'gopls',
   -- 'golangci_lint_ls',
