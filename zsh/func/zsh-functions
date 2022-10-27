@@ -122,3 +122,21 @@ s() {
         return 1
     fi
 }
+
+k3s-agent-start() {
+    [ -f /etc/systemd/system/k3s-agent.service ] && systemctl start k3s-agent.service
+}
+
+k3s-agent-stop() {
+    [ -f /etc/systemd/system/k3s-agent.service ] && systemctl stop k3s-agent.service
+    _cleanup_docker
+}
+
+k3s-master-start() {
+    [ -f /etc/systemd/system/k3s.service ] && systemctl start k3s.service
+}
+
+k3s-master-stop() {
+    [ -f /etc/systemd/system/k3s.service ] && systemctl stop k3s.service
+    _cleanup_docker
+}
