@@ -35,8 +35,7 @@ cfg() {
 v() { editor "$@"; }
 mux() { tmuxp-start "$TMUXP_CONFIGDIR/anonymous"; }
 alias muxd="tmuxp debug-info"
-alias k="kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml"
-alias m="minikube"
+alias k="k3s kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml"
 alias r="run"
 alias b="build"
 alias lz="lazygit"
