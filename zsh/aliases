@@ -51,4 +51,12 @@ kb() { TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DOTFILES"; }
 
 alias fdi="fd --no-ignore-vcs --no-ignore-parent --hidden"
 alias rgi="rg --no-ignore-vcs --no-ignore-parent --hidden"
-alias nuget="mono $HOME/.local/bin/nuget.exe"
+
+exe() {
+  return 1
+}
+alias E="exe"
+
+alias glow='glow --config $DOTFILES/glow.yml'
+alias g='glow --config $DOTFILES/glow.yml'
+

@@ -72,58 +72,36 @@ elif [ -f "$ZDOTDIR/prompt" ]; then
     source "$ZDOTDIR/prompt"
 fi
 
-# Completions
-[[ $commands[minikube] ]] && source <(minikube completion zsh) && eval $(minikube docker-env)
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-[[ $commands[k3s] ]] && source <(k3s completion zsh)
-[[ $commands[k3d] ]] && source <(k3d completion zsh)
-[[ $commands[rustup] ]] && eval $(rustup completions zsh)
-[ -f "$ZDOTDIR/completions/_croc" ] && PROG=croc _CLI_ZSH_AUTOCOMPLETE_HACK=1 source "$ZDOTDIR/completions/_croc"
-if command -v ansible 1> /dev/null; then
-    eval $(register-python-argcomplete ansible)
-    eval $(register-python-argcomplete ansible-config)
-    eval $(register-python-argcomplete ansible-console)
-    eval $(register-python-argcomplete ansible-doc)
-    eval $(register-python-argcomplete ansible-galaxy)
-    eval $(register-python-argcomplete ansible-inventory)
-    eval $(register-python-argcomplete ansible-playbook)
-    eval $(register-python-argcomplete ansible-pull)
-    eval $(register-python-argcomplete ansible-vault)
-fi
-# zsh parameter completion for the dotnet CLI
-_dotnet_zsh_complete() 
-{
-  local completions=("$(dotnet complete "$words")")
-  # If the completion list is empty, just continue with filename selection
-  if [ -z "$completions" ]
-  then
-    _arguments '*::arguments: _normal'
-    return
-  fi
-  # This is not a variable assigment, don't remove spaces!
-  _values = "${(ps:\n:)completions}"
-}
-compdef _dotnet_zsh_complete dotnet
+[ -f "$ZDOTDIR/zcomp" ] && [ -n "$ZCOMP" ] && source "$ZDOTDIR/zcomp"
 
 # Plugins
-my-zsh-add-plugin "Aloxaf/fzf-tab"
 my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
 # zsh-add-plugin "zsh-users/zsh-syntax-highlighting"
 my-zsh-add-plugin "zsh-users/zsh-autosuggestions"
 my-zsh-add-plugin "hlissner/zsh-autopair"
 my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
+if [ -n "$FZF" ]; then
+    my-zsh-add-plugin "Aloxaf/fzf-tab"
+    # determines search program for fzf
+    if type fd &> /dev/null; then
+        export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
+    elif type rg &> /dev/null; then
+        export FZF_DEFAULT_COMMAND='rg --files --hidden'
+    fi
+fi
 
 [ -f "$ZDOTDIR/keybinds" ] && source "$ZDOTDIR/keybinds"
 
 # direnv hook
 source <(direnv hook zsh)
 
-# determines search program for fzf
-if type fd &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
-elif type rg &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='rg --files --hidden'
-fi
 
 export MANPATH
 export PATH
+
+# HACK source .func
+if [ -n "$TMUX" ]; then
+  if [ -f "$WORKSPACE/.func.sh" ]; then
+      source "$WORKSPACE/.func.sh"
+  fi
+fi

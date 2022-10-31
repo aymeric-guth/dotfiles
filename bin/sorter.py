@@ -7,7 +7,7 @@ def main() -> int:
     if len(sys.argv) < 2:
         return 1
     p = pathlib.Path(sys.argv[1])
-    if p.exists() and p.is_file():
+    if p.exists():
         with p.open("r") as f:
             raw = f.read()
     else:
