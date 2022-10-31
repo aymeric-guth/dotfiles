@@ -103,13 +103,6 @@ return require('packer').startup(function(use)
   use('nvim-lua/popup.nvim')
   use('nvim-lua/plenary.nvim')
 
-  -- Obsidian
-  use({
-    'preservim/vim-markdown',
-    branch = 'master',
-  })
-  -- use({ 'epwalsh/obsidian.nvim', branch = 'main' })
-
   -- Telescope + deps: fuzzy finder
   use({
     'nvim-telescope/telescope.nvim',
@@ -133,7 +126,6 @@ return require('packer').startup(function(use)
     },
     branch = 'master',
   })
-  -- use({ 'akinsho/bufferline.nvim', branch = 'main', requires = 'kyazdani42/nvim-web-devicons' })
   use({ 'moll/vim-bbye', branch = 'master' })
   use({ 'ThePrimeagen/harpoon', branch = 'master' })
 
@@ -192,6 +184,7 @@ return require('packer').startup(function(use)
   use('lewis6991/gitsigns.nvim')
   use('dbeniamine/cheat.sh-vim')
   use({ 'ellisonleao/glow.nvim' })
+
   --[[
   -- UI
   --]]

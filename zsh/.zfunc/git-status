@@ -1,5 +1,6 @@
-if git-is-repo "$(pwd)"; then
+if git-is-repo "${1:-`$(pwd)`}"; then
     return "$(git status --porcelain=v1 2>/dev/null | wc -l)"
 else
-    return 1
+    >&2 echo "not a .git repo"
+    return 0
 fi
