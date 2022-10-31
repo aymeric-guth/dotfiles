@@ -1,5 +1,8 @@
-session_name: $PROJECT_NAME
+session_name: environment
 start_directory: $WORKSPACE
+environment:
+  PROJECT_NAME: environment
+  WORKSPACE: $WORKSPACE
 
 windows:
 
@@ -8,6 +11,9 @@ windows:
     panes:
       - shell_command:
         - editor "$DOTFILES/env/.env-$(uname -n)"
+        focus: true
+      - shell_command:
+        - editor "$DOTFILES/env/requirements-$(uname -n).txt"
 
   - window_name: zshrc
     start_directory: $DOTFILES/zsh
