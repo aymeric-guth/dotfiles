@@ -60,3 +60,8 @@ alias E="exe"
 alias glow='glow --config $DOTFILES/glow.yml'
 alias g='glow --config $DOTFILES/glow.yml'
 
+jw() {
+  [ -d "$WORKSPACE" ] && cd "$WORKSPACE" || return 1
+}
+alias pudb='XDG_CONFIG_HOME=$DOTFILES pudb'
+# [ -n DEBUG ] && alias python3='XDG_CONFIG_HOME=$DOTFILES pudb'

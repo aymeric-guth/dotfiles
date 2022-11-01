@@ -79,7 +79,16 @@ nnoremap(
 )
 nnoremap('<leader>fF', ':Telescope find_files hidden=true no_ignore=true<CR>')
 nnoremap('<leader>fg', ':Telescope live_grep<CR>')
-nnoremap('<leader>fG', ':Telescope live_grep hidden=true no_ignore=true<CR>')
+
+-- nnoremap(
+--   '<leader>fG',
+--   ':Telescope live_grep hidden=true no_ignore=true no_ignore_vcs=true no_ignore_parent=true<CR>'
+-- )
+nnoremap(
+  '<leader>fG',
+  "<cmd>lua require('telescope.builtin').live_grep({no_ignore=true, hidden=true, no_ignore_vcs=true, no_ignore_parent=true})<cr>"
+)
+
 nnoremap('<leader>fb', ':Telescope current_buffer_fuzzy_find<CR>')
 nnoremap('<leader>fB', ':Telescope buffers<CR>')
 nnoremap('<leader>fs', ':Telescope grep_string<CR>')

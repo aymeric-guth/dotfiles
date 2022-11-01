@@ -8,6 +8,7 @@ export ZDATA="$HOME/.local/share/zsh" && [ ! -d "$ZDATA" ] && mkdir -p "$ZDATA"
 export ZCACHE="$HOME/.cache/zsh" && [ ! -d "$ZCACHE" ] && mkdir -p "$ZCACHE"
 
 export HISTFILE="$ZDATA/.zsh_history"
+setopt HIST_IGNORE_SPACE
 setopt appendhistory
 
 # some useful options (man zshoptions)

@@ -1,22 +1,26 @@
 #!/bin/sh
 
-venv_install() {
-    if [ -f requirements.txt ]; then
-        .venv/bin/python -m pip install -r requirements.txt
-    fi
+python_venv_gen() {
+  ( project-env-valid ) || return 1
+  echo "deleting previous venv"
+  [ -d .venv ] && rm -rf .venv
+  echo "creating new venv"
+  python3 -m virtualenv .venv || return 1
+  echo "installing requirements"
+  [ -f requirements.txt ] && .venv/bin/python -m pip install -r requirements.txt
+  echo "reloading direnv"
+  [ -n "${commands[direnv]}" ] && direnv reload
 }
 
-venv_gen() {
-    if [ ! -d .venv ]; then
-        python3 -m virtualenv .venv
-    fi
-    venv_install
-}
+project_clean() {
+  ( ! env-check-project ) && return 1
+  # .venv
+  # .pytest_cache
+  # .mypy_cache
+  # __pycache__
 
-venv_reload() {
-    if [ -d .venv ]; then
-        rm -rf .venv || return 1
-    fi
-    venv_gen
+  rm -rf .venv
+  rm -rf .mypy_cache
+  rm -rf .pytest_cache
+  return 0
 }
-
