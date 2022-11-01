@@ -8,11 +8,8 @@ vim.opt.wildignore = {
   '**/.git/*',
   'TabNine',
   '.stfolder',
-  '.vscode',
   '.venv',
-  'venv',
   '.mypy_cache',
-  '.atom',
   '.pytest_cache',
   '.DS_Store',
   '__pycache__',
@@ -89,3 +86,4 @@ vim.cmd([[
     au BufRead,BufNewFile *.launch setfiletype roslaunch
     augroup END
 ]])
+vim.lsp.set_log_level('warn')

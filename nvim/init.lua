@@ -15,8 +15,6 @@ end
 
 require('av.telescope')
 require('av.tree-sitter')
--- require('av.gitsigns')
 require('av.harpoon')
--- require('av.obsidian')
 require('av.ui')
 require('av.nvim-osc52')
