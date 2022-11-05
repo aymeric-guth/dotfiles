@@ -16,6 +16,7 @@ upgrade() {
     _upgrade_macports
     _upgrade_homebrew
     _upgrade_cargo_crates
+    _upgrade_snap
 }
 
 cleanup() {

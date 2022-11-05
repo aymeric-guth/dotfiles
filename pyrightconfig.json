@@ -1,6 +1,13 @@
 {
-  "include": ["src"],
-  "exclude": ["**/node_modules", "**/__pycache__", "essais", "scripts", "docs"],
+  "include": ["$PROJECT_NAME"],
+  "exclude": [
+    "**/node_modules",
+    "**/__pycache__",
+    "essais",
+    "scripts",
+    "docs",
+    ".venv"
+  ],
   "ignore": ["src/oldstuff", "essais", "scripts", "docs"],
   "defineConstant": {
     "DEBUG": true
@@ -14,7 +21,7 @@
   "pythonPlatform": "All",
   "executionEnvironments": [
     {
-      "root": "src"
+      "root": "$PROJECT_NAME"
     }
   ]
 }

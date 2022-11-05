@@ -7,7 +7,7 @@ return {
     },
     python = {
       analysis = {
-        autoImportCompletions = false,
+        autoImportCompletions = true,
         diagnosticMode = 'workspace',
         --diagnosticSeverityOverrides = {}
         --extraPaths = {},

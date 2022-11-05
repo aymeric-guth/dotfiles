@@ -7,7 +7,7 @@ f() { find -E $1 -regex ".*\.($2)" -print0 | xargs -0 grep -n $3 }
 function upgrade() {
     sudo echo "upgrading..."
     _upgrade_zsh_plugins
-    _upgrade_python_packages
+    # _upgrade_python_packages
     _upgrade_npm_packages
     _upgrade_apt 
  }

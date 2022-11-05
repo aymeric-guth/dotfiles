@@ -53,3 +53,7 @@ _upgrade_homebrew() {
 _upgrade_apt() {
     sudo apt-get update && sudo apt-get upgrade -y
 }
+
+_upgrade_snap() {
+  sudo snap refresh
+}

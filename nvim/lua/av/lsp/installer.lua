@@ -1,7 +1,7 @@
 local lspconfig = require('lspconfig')
 local servers = {
   'clangd',
-  'pylsp',
+  -- 'pylsp',
   'pyright',
   'sumneko_lua',
   'taplo',
