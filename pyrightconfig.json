@@ -1,14 +1,7 @@
 {
   "include": ["$PROJECT_NAME"],
-  "exclude": [
-    "**/node_modules",
-    "**/__pycache__",
-    "essais",
-    "scripts",
-    "docs",
-    ".venv"
-  ],
-  "ignore": ["src/oldstuff", "essais", "scripts", "docs"],
+  "exclude": ["**/node_modules", "**/__pycache__", "essais", ".venv"],
+  "ignore": [".git", "build", "dist", "**.egg-info", "docs"],
   "defineConstant": {
     "DEBUG": true
   },
@@ -16,7 +9,7 @@
   "venvPath": ".",
   "typeshedPath": "$GITHUB_REPOS/typeshed",
   "reportMissingImports": true,
-  "reportMissingTypeStubs": false,
+  "reportMissingTypeStubs": true,
   "pythonVersion": "3.11",
   "pythonPlatform": "All",
   "executionEnvironments": [

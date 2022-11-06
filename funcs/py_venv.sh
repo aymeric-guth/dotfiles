@@ -34,7 +34,14 @@ python_build() {
   .venv/bin/python -m build . --wheel || return 1
 }
 
-python_deploy() {
+python_deploy_global() {
+  ( project-env-valid ) || return 1
+  eggname="$(generate_eggname "py3-none-any.whl")" || return 1
+  echo "besoin d'un bon moyen de localiser avec fiabilité l'interpreteur sys" && return 1
+  # .venv/bin/python -m pip install --force-reinstall "dist/${eggname}" || return 1
+}
+
+python_deploy_venv() {
   ( project-env-valid ) || return 1
   eggname="$(generate_eggname "py3-none-any.whl")" || return 1
   .venv/bin/python -m pip install --force-reinstall "dist/${eggname}" || return 1
