@@ -31,13 +31,11 @@ python_build() {
   ( project-env-valid ) || return 1
   [ ! -f .venv/bin/python ] && return 1
   [ -z "$VIRTUAL_ENV" ] && return 1
-  python_clean || return 1
   .venv/bin/python -m build . --wheel || return 1
 }
 
 python_deploy() {
   ( project-env-valid ) || return 1
-  python_build || return 1
   eggname="$(generate_eggname "py3-none-any.whl")" || return 1
   .venv/bin/python -m pip install --force-reinstall "dist/${eggname}" || return 1
 }

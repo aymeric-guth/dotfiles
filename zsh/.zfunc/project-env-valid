@@ -1,6 +1,6 @@
 [ -z "$WORKSPACE" ] && { echo "WORKSPACE is undefined"; return 1; }
 [ -z "$PROJECT_NAME" ] && { echo "PROJECT_NAME is undefined"; return 1; }
 [ "$(PWD)" != "$WORKSPACE" ] && { echo "CWD does not match WORKSPACE"; return 1; }
-[ "$(basename "$(PWD)")" != "$PROJECT_NAME" ] && { echo "Current dirname does not match PROJECT_NAME"; return 1; }
+# [ "$(basename "$(PWD)")" != "$PROJECT_NAME" ] && { echo "Current dirname does not match PROJECT_NAME"; return 1; }
 ( ! git-is-repo ) && { echo "CWD is not a .git repo"; return 1; }
 return 0

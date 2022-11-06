@@ -21,13 +21,7 @@ down() {
 }
 
 build() {
-
-    if [ -f .func.sh ]; then
-        source .func.sh && build
-        return 0
-    else
-        eval "$COMPOSE_CMD build $*"
-    fi
+    eval "$COMPOSE_CMD build $*"
 }
 
 run() {
