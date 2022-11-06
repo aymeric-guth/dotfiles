@@ -5,6 +5,7 @@ python_venv_gen() {
   echo "deleting previous venv"
   [ -d .venv ] && rm -rf .venv
   echo "creating new venv"
+  # TODO: problématique quand déjà dans un venv, utiliser la ref à l'interpreteur sys
   python3 -m virtualenv .venv || return 1
   echo "installing requirements"
   [ -f requirements.txt ] && .venv/bin/python -m pip install -r requirements.txt
@@ -17,6 +18,8 @@ python_project_clean() {
   rm -rf .pytest_cache || return 1
   rm -rf .mypy_cache || return 1
   rm -rf .venv || return 1
+  # a test
+  # find . -type d -name "__pycache__" -print0 | xargs -0 -I {} /bin/rm -rf "{}"
   python_clean || return 1
 }
 
