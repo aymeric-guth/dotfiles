@@ -65,3 +65,10 @@ jw() {
 }
 alias pudb='XDG_CONFIG_HOME=$DOTFILES pudb'
 # [ -n DEBUG ] && alias python3='XDG_CONFIG_HOME=$DOTFILES pudb'
+
+tf() {
+  [ ! -n "${commands[tag_finder]}" ] && return 1
+  selected="$(tag_finder | fzf)"
+  [ -z "$selected" ] && return 1
+  obs find "#$selected"
+}

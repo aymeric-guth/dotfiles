@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if command -v nvim 1> /dev/null; then
-  eval "XDG_CONFIG_HOME=$DOTFILES" nvim "$*"
+  XDG_CONFIG_HOME="$DOTFILES" nvim "$*"
 elif command -v vim 1> /dev/null; then
   vim "$*"
 elif command -v vi 1> /dev/null; then
