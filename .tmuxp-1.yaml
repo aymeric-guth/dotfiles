@@ -4,6 +4,9 @@ environment:
   PROJECT_NAME: "keybinds"
   WORKSPACE: $WORKSPACE
 
+plugins:
+  - tmuxp_plugin_loader.plugin.Loader
+
 windows:
 
   - window_name: neovim

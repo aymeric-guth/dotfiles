@@ -1,0 +1,1 @@
+find `echo $PROJECTS` -mindepth 1 -maxdepth 1 -type d \( -not -iname "_*" -not -iname ".*" \) -print0 | xargs -n1 -0 -I{} fre --store $DOTFILES/.local/share/fre/fre-projects.json --add {}

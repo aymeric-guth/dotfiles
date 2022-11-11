@@ -1,7 +1,9 @@
 if [ -n "$1" ]; then
     selected="$1"
 else
-    selected="$(find `echo $PROJECTS` -mindepth 1 -maxdepth 1 -type d \( -not -iname "_*" -not -iname ".*" \) | fzf)"
+    # selected="$(find `echo $PROJECTS` -mindepth 1 -maxdepth 1 -type d \( -not -iname "_*" -not -iname ".*" \) | fzf)"
+    # selected="$(fre --store $DOTFILES/.local/share/fre/fre-projects.json --sorted | fzf --no-sort)"
+    selected="$(match_pairs <(find `echo $PROJECTS` -mindepth 1 -maxdepth 1 -type d \( -not -iname "_*" -not -iname ".*" \)) <(fre --store $DOTFILES/.local/share/fre/fre-projects.json --sorted) | fzf --no-sort)"
 fi
 [ ! -d "$selected" ] && return 1
 echo "$selected" && return 0

@@ -4,6 +4,9 @@ environment:
   WORKSPACE: $WORKSPACE
   PROJECT_NAME: $PROJECT_NAME
 
+plugins:
+  - tmuxp_plugin_loader.plugin.Loader
+
 windows:
 
   - window_name: global

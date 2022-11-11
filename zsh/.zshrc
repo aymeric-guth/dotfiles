@@ -103,6 +103,8 @@ fi
 
 [ -f "$ZDOTDIR/keybinds" ] && source "$ZDOTDIR/keybinds"
 
+# POST LOAD
+# everything else is loaded
 # direnv hook
 source <(direnv hook zsh)
 
@@ -118,3 +120,9 @@ if [ -n "$TMUX" ]; then
 fi
 source-func() {emulate -L zsh; [ -f .func.sh ] && source .func.sh}
 add-zsh-hook precmd source-func
+
+fre_chpwd() {
+  fre --store $DOTFILES/.local/share/fre/fre.json --add "$(pwd)"
+}
+typeset -gaU chpwd_functions
+chpwd_functions+=fre_chpwd

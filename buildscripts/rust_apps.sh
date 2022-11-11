@@ -12,3 +12,4 @@ cargo install --git https://github.com/sharkdp/fd fd-find --locked || exit 1
 cargo install --git https://github.com/sharkdp/bat bat --locked || exit 1
 cargo install --git https://github.com/dduan/tre tre-command --locked || exit 1
 cargo install --git https://github.com/Peltoche/lsd.git --branch master || exit 1
+cargo install --git https://github.com/camdencheek/fre --branch master || exit 1

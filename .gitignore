@@ -17,3 +17,4 @@ reset.sh
 env/**
 .luarc.json
 TabNine
+.local

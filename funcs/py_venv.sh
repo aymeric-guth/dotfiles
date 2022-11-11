@@ -40,7 +40,9 @@ python_build() {
 python_deploy_global() {
   ( project-env-valid ) || return 1
   eggname="$(generate_eggname "py3-none-any.whl")" || return 1
-  echo "besoin d'un bon moyen de localiser avec fiabilité l'interpreteur sys" && return 1
+  /opt/local/bin/python3.11 -m pip install --force-reinstall "dist/${eggname}" || return 1
+  echo "besoin d'un bon moyen de localiser avec fiabilité l'interpreteur sys"
+  # echo "besoin d'un bon moyen de localiser avec fiabilité l'interpreteur sys" && return 1
   # .venv/bin/python -m pip install --force-reinstall "dist/${eggname}" || return 1
 }
 
