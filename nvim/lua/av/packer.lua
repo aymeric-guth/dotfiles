@@ -164,8 +164,8 @@ return require('packer').startup(function(use)
     --[[
     -- DAP
     --]]
-    use({ 'mfussenegger/nvim-dap', branch = 'master' })
-    use({ 'williamboman/mason.nvim' })
+    -- use({ 'mfussenegger/nvim-dap', branch = 'master' })
+    -- use({ 'williamboman/mason.nvim' })
   end
 
   -- Autopairs

@@ -17,9 +17,13 @@ windows:
 
   - window_name: zsh
     start_directory: $DOTFILES/zsh
+    layout: even-horizontal
     panes:
       - shell_command:
         - editor ./keybinds
+        focus: true
+      - shell_command:
+        - editor ./aliases
 
   - window_name: tmux
     start_directory: $DOTFILES/tmux
@@ -32,9 +36,3 @@ windows:
     panes:
       - shell_command:
         - editor ./keymaps.yml
-
-  - window_name: kitty
-    start_directory: $DOTFILES/kitty
-    panes:
-      - shell_command:
-        - editor ./kitty.conf

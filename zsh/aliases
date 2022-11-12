@@ -52,16 +52,14 @@ kb() { TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DOTFILES"; }
 alias fdi="fd --no-ignore-vcs --no-ignore-parent --hidden"
 alias rgi="rg --no-ignore-vcs --no-ignore-parent --hidden"
 
-exe() {
-  return 1
-}
-alias E="exe"
-
 alias glow='glow --config $DOTFILES/glow.yml'
 alias g='glow --config $DOTFILES/glow.yml'
 
 jw() {
   [ -d "$WORKSPACE" ] && cd "$WORKSPACE" || return 1
+}
+je() {
+  [ -d "$WORKSPACE/external" ] && cd "$WORKSPACE/external" || return 1
 }
 alias pudb='XDG_CONFIG_HOME=$DOTFILES pudb'
 # [ -n DEBUG ] && alias python3='XDG_CONFIG_HOME=$DOTFILES pudb'
@@ -72,3 +70,18 @@ tf() {
   [ -z "$selected" ] && return 1
   obs find "#$selected"
 }
+
+fn() {
+  [ -z "$WORKSPACE" ] && return 1
+  editor "$WORKSPACE/.func.sh" && . "$WORKSPACE/.func.sh"
+}
+
+#project_frecent() {
+#  selected="$(fre --store $DOTFILES/.local/share/fre/fre-projects.json --sorted --limit 1)"
+#  [ ! -d "$selected" ] && return 1
+#  if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
+#    editor "$selected"
+#  else
+#    tmuxp-start "$selected"
+#  fi
+#}

@@ -3,7 +3,6 @@
 zle -N history-substring-search-up
 zle -N history-substring-search-down
 zle -N edit-command-line
-zle -N my-backward-delete-word
 
 # push-line
 bindkey -r "^Q" 
@@ -55,3 +54,5 @@ fi
 bindkey -s "^R" "run\n"
 bindkey -s "^B" "build\n"
 bindkey -s "^U" "up\n"
+
+bindkey -s 'ƒ' "project-most-frecent\n"
