@@ -32,7 +32,7 @@ cfg() {
     fi
 }
 
-v() { editor "$@"; }
+v() { editor '$*'; }
 mux() { tmuxp-start "$TMUXP_CONFIGDIR/anonymous"; }
 alias muxd="tmuxp debug-info"
 alias k="k3s kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml"
@@ -76,12 +76,10 @@ fn() {
   editor "$WORKSPACE/.func.sh" && . "$WORKSPACE/.func.sh"
 }
 
-#project_frecent() {
-#  selected="$(fre --store $DOTFILES/.local/share/fre/fre-projects.json --sorted --limit 1)"
-#  [ ! -d "$selected" ] && return 1
-#  if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
-#    editor "$selected"
-#  else
-#    tmuxp-start "$selected"
-#  fi
-#}
+no() {
+  if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
+    editor "$OBSIDIAN_VAULT"
+  else
+    tmuxp-start $TMUXP_CONFIGDIR/notes
+  fi
+}
