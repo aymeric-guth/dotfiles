@@ -1,0 +1,9 @@
+case "$1" in
+    jw|ll|la|fn|lz)
+      return 0
+        ;;
+
+    *)
+      return 1
+      ;;
+esac

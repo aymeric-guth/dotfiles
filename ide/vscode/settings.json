@@ -1,0 +1,55 @@
+{
+    "workbench.iconTheme": "gruvbox-material-icon-theme",
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "editor.fontFamily": "Fira Code, FiraCode-Light, Menlo, Consolas, DejaVu Sans Mono, monospace",
+    "editor.fontSize": 16,
+    "workbench.fontAliasing": "antialiased",
+    "files.exclude": {
+      "**/.classpath": true,
+      "**/.factorypath": true,
+      "**/.stfolder": true,
+      "**/.stversions": true,
+      "**/.project": false,
+      "**/.settings": false,
+      "**/.mypy_cache": true,
+      "**/.py": true,
+      "**/.git": true,
+      "**/.idea": true,
+      "**/.pytest_cache": true,
+      "**/__pycache__": true,
+      "**/.ipynb_checkpoints": true
+    },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.languageServer": "Pylance",
+    "[javascript]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2
+    },
+    "[css]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2
+    },
+    "[html]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2
+    },
+    "[python]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 4
+    },
+    "[c]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2
+    },
+    "[cpp]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2
+    },
+    "[json]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2
+    },
+    "window.zoomLevel": 3
+  }
+  

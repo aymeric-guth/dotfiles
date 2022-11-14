@@ -126,3 +126,6 @@ fre_chpwd() {
 }
 typeset -gaU chpwd_functions
 chpwd_functions+=fre_chpwd
+
+zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
+zle -N zle-line-pre-redraw

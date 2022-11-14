@@ -17,6 +17,14 @@ bindkey -r "^S"
 bindkey "^K" exit-zero
 bindkey "^W" my-backward-delete-word
 
+repeat-last() {
+  BUFFER="fc -e : -1"
+	zle accept-line
+}
+
+zle -N repeat-last
+bindkey '^Y' repeat-last
+
 #if [ -z "$TMUX" ] && [ -z "$SSH_CLIENT" ]; then
 #  bindkey -s "^F" "tmuxp-start\n"
 #  bindkey -s "^N" "tmuxp-edit\n"
@@ -47,6 +55,7 @@ bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 bindkey "^E" edit-command-line
 bindkey "^ " autosuggest-accept
+# bindkey "^M" repeat-last
 
 if command -v fzf 1> /dev/null; then
   zle -N fzf-path
@@ -59,3 +68,4 @@ bindkey -s "^B" "build\n"
 bindkey -s "^U" "up\n"
 
 bindkey -s 'ƒ' "project-most-frecent\n"
+#bindkey -s '^I' "_test\n"

@@ -32,7 +32,7 @@ cfg() {
     fi
 }
 
-v() { editor '$*'; }
+v() { editor "$*"; }
 mux() { tmuxp-start "$TMUXP_CONFIGDIR/anonymous"; }
 alias muxd="tmuxp debug-info"
 alias k="k3s kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml"

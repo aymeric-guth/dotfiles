@@ -57,3 +57,10 @@ python_tools_gen() {
   [ -f pyproject.toml ] && return 1
   expand_toml < "$DOTFILES/starters/python/pyproject.toml" > "$WORKSPACE/pyproject.toml" || return 1
 }
+
+python_test_pytest() {
+  ( project-env-valid ) || return 1
+  [ ! -f .venv/bin/python ] && return 1
+  [ -z "$VIRTUAL_ENV" ] && return 1
+  [ -n "${commands[pytest]}" ] && pytest tests || return 1
+}
