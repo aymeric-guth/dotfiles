@@ -1,5 +1,5 @@
 case "$1" in
-    jw|ll|la|fn|lz)
+    jw|fn|lz|tf|cfg|kb)
       return 0
         ;;
 

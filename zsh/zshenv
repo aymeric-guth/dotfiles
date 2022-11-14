@@ -7,14 +7,14 @@ export MANWIDTH=999
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-[ -f "$DOTFILES/env/.env-ehwaz" ] && source "$DOTFILES/env/.env-ehwaz"
-#[ -f "$DOTFILES/env/.env-`uname -n`" ] && source "$DOTFILES/env/.env-`uname -n`"
+# [ -f "$DOTFILES/env/.env-ehwaz" ] && source "$DOTFILES/env/.env-ehwaz"
+[ -f "$DOTFILES/env/.env-`uname -n`" ] && source "$DOTFILES/env/.env-`uname -n`"
 [ -z "$PROJECTS_ROOT" ] && export PROJECTS_ROOT="$HOME"
 
 [ -d "$TOOLZ" ] && prepend-to-path "$TOOLZ/bin" && export MANPATH="$TOOLZ/share/man:$MANPATH"
 prepend-to-path "$DOTFILES/bin"
 
-export EDITOR="$DOTFILES/bin/editor" && export VISUAL="$EDITOR" && export MANPAGER="$EDITOR -c 'Man!' -o -"
+export EDITOR=editor && export VISUAL="$EDITOR" && export MANPAGER="$EDITOR -c 'Man!' -o -"
 export TMUX_TEMPLATE=".tmuxp.yaml"
 export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
 export TMUXP_CONFIGDIR="${TMUXP_CONFIGDIR:-"~/.config/tmuxp"}"

@@ -1,0 +1,142 @@
+#!/bin/sh
+
+. "$ZDOTDIR/func/cleanup.sh"
+. "$ZDOTDIR/func/upgrade.sh"
+
+
+up() {
+    if [ $COMPOSEFILE ]; then
+        eval "$COMPOSE_CMD --file $COMPOSEFILE up --build $1 $2 $3" 
+    else
+        eval "$COMPOSE_CMD up --build $1 $2 $3"
+    fi
+}
+
+down() {
+    if [ $COMPOSEFILE ]; then
+        eval "$COMPOSE_CMD --file $COMPOSEFILE down $1 $2 $3" 
+    else
+        eval "$COMPOSE_CMD down $1 $2 $3"
+    fi
+}
+
+build() {
+    if [[ $BUILD_CMD ]]; then
+        eval "$BUILD_CMD $*"
+    else
+        eval "$COMPOSE_CMD build $*"
+    fi
+}
+
+run() {
+    if [[ $RUN_CMD ]]; then
+        eval "$RUN_CMD $*"
+    elif [[ $1 ]]; then
+        eval "$COMPOSE_CMD run $*"
+    else
+        echo "Must specify a target"
+        return 1
+    fi
+}
+
+cmake_inspect() {
+    if [ ! -f ./CMakeLists.txt ]; then
+        echo "CMakeLists not found"
+        return 1
+    fi
+    if [ -d ./build ]; then
+        rm -rf ./build
+    fi
+    mkdir build && cd build || return 1
+    cmake ..
+    cmake -LA | awk '{if(f)print} /-- Cache values/{f=1}'
+}
+
+hostmapping() {
+    case "$(hostname)" in
+        eihwaz)
+            print '\U16D6'
+            ;;
+        *)
+            print '%m'
+            ;;
+    esac
+}
+
+# ch - browse chrome history
+ch() {
+  local cols sep
+  cols=$(( COLUMNS / 3 ))
+  sep='{::}'
+
+  historyfile="$HOME/Library/Application Support/Chromium/Default/History"
+  [ ! -f "$historyfile" ] && return 1 || cp "$historyfile" /tmp/h
+
+  sqlite3 -readonly -separator $sep /tmp/h \
+    "select substr(title, 1, $cols), url 
+    from urls order by last_visit_time desc" \
+  | awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' \
+  | fzf --ansi --multi \
+  | sed 's#.*\(https*://\)#\1#' \
+  | xargs open
+}
+
+chf() {
+  # https://gist.github.com/dshnkao/10865f32d69e40dc591e08e3af970e9d
+  local cols sep
+  cols=$(( COLUMNS / 3 ))
+  sep='{::}'
+
+  historyfile="$HOME/.mozilla/firefox/z6833bcl.default-release/places.sqlite"
+  [ ! -f "$historyfile" ] && return 1 || cp "$historyfile" /tmp/h
+  DB_PATH=/tmp/h
+
+  QUERY="
+  SELECT
+      url, title FROM moz_places
+  WHERE
+      url NOT LIKE '%google%search%'
+  ORDER BY
+      visit_count DESC,
+      last_visit_date DESC;
+  "
+
+  SEP="∙"
+
+  ENTRY=$(
+  sqlite3 "$DB_PATH" "$QUERY" | \
+      sed -E 's/^https?:\/\///' | \
+      sed -E "s/\\/?\\|/ $SEP /" | \
+      sed -E "s/$SEP $//" | \
+      fzf
+  )
+
+  URL=$(echo "$ENTRY" | sed "s/$SEP.*//g")
+  [ -z "$URL" ] && return 0 || open "https://$URL"
+}
+
+s() {
+    if git-is-repo "$(pwd)"; then
+        return "$(git status --porcelain=v1 2>/dev/null | wc -l)"
+    else
+        return 1
+    fi
+}
+
+k3s-agent-start() {
+    [ -f /etc/systemd/system/k3s-agent.service ] && systemctl start k3s-agent.service
+}
+
+k3s-agent-stop() {
+    [ -f /etc/systemd/system/k3s-agent.service ] && systemctl stop k3s-agent.service
+    _cleanup_docker
+}
+
+k3s-master-start() {
+    [ -f /etc/systemd/system/k3s.service ] && systemctl start k3s.service
+}
+
+k3s-master-stop() {
+    [ -f /etc/systemd/system/k3s.service ] && systemctl stop k3s.service
+    _cleanup_docker
+}

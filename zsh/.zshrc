@@ -113,19 +113,16 @@ export MANPATH
 export PATH
 
 # HACK source .func
-if [ -n "$TMUX" ]; then
-  if [ -f "$WORKSPACE/.func.sh" ]; then
-      source "$WORKSPACE/.func.sh"
-  fi
-fi
 source-func() {emulate -L zsh; [ -f .func.sh ] && source .func.sh}
 add-zsh-hook precmd source-func
 
-fre_chpwd() {
-  fre --store $DOTFILES/.local/share/fre/fre.json --add "$(pwd)"
-}
-typeset -gaU chpwd_functions
-chpwd_functions+=fre_chpwd
+if [ -n "$FRE" ]; then
+    fre_chpwd() {
+      fre --store $DOTFILES/.local/share/fre/fre.json --add "$(pwd)"
+    }
+    typeset -gaU chpwd_functions
+    chpwd_functions+=fre_chpwd
+fi
 
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
 zle -N zle-line-pre-redraw

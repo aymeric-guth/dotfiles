@@ -1,0 +1,23 @@
+selected=$(fzf-projects "$@")
+[ ! -d "$selected" ] && return 1
+selected_name=$(basename "$selected")
+
+if [ -f "$selected/$TMUX_TEMPLATE" ]; then
+    if [ "$selected_name" = anonymous ]; then
+        project_name="$(uuid)"
+        workspace="$(pwd)"
+    else
+        project_name="$selected_name"
+        workspace="$selected"
+    fi
+
+    PROJECT_NAME="$project_name" \
+    WORKSPACE="$workspace" \
+    tmuxp load \
+        --yes \
+        -f "$TMUX_CONFIG" \
+        "$selected/$TMUX_TEMPLATE"
+else
+    echo "tmuxp session not found for workspace=$workspace"
+    return 1
+fi

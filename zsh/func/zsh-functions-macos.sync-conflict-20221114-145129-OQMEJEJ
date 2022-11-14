@@ -1,0 +1,38 @@
+#!/bin/sh
+
+. "$ZDOTDIR/func/zsh-functions"
+
+f() { find -E $1 -regex ".*\.($2)" -print0 | xargs -0 grep -n -d skip $3 }
+#f() { find -E $1 -regex ".*\.($2)" -print0 | xargs -0 grep -n $3 }
+fe() { find -E $1 -regex ".*\.($2)" }
+
+# adb_connect() { adb connect "${IPADDR}:5555" }
+
+upgrade() {
+    sudo echo "upgrading..."
+    _upgrade_zsh_plugins
+    _upgrade_python_packages
+    _upgrade_npm_packages
+    _upgrade_macports
+    _upgrade_homebrew
+    _upgrade_cargo_crates
+}
+
+cleanup() {
+    sudo echo "Cleanup"
+    _cleanup_docker
+    _cleanup_macports
+    _cleanup_homebrew
+    _cleanup_python
+    _cleanup_cargo
+    _cleanup_npm
+    ### App cache
+    echo "removing user app-cache"
+    sudo rm -rf $HOME/Library/Caches/*;
+    sudo rm -rf $HOME/.cache/*;
+    ### Misc
+    echo "removing misc artifacts"
+    rm -rf $HOME/node_modules;
+}
+
+function ig-scraper() { $SCRIPTDIR/instagram/venv/bin/python $SCRIPTDIR/instagram/main.py $1 }
