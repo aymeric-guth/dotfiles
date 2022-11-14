@@ -109,3 +109,14 @@ syncthing_clean_stversions() {
 	echo "dry-run"
 	return 1
 }
+
+nvim_clean() {
+	[ -d "$HOME/.cache/nvim" ] && rm -rf "$HOME/.cache/nvim"
+	[ -d "$HOME/.local/share/nvim" ] && rm -rf "$HOME/.local/share/nvim"
+	[ -d "$HOME/.local/state/nvim" ] && rm -rf "$HOME/.local/state/nvim"
+}
+
+zsh_clean() {
+	[ -d "$ZCACHE" ] && rm -rf "$ZCACHE"
+	[ -d "$ZDATA" ] && rm -rf "$ZDATA"
+}
