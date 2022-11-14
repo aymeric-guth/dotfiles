@@ -24,6 +24,11 @@ local null_ls_opts = {
     filetypes = { 'sh' },
   }),
 
+  -- https://github.com/mvdan/sh
+  formatting.shfmt.with({
+    filetypes = { 'sh' },
+  }),
+
   diagnostics.cppcheck.with({
     filetypes = { 'c', 'cpp' },
     extra_args = {

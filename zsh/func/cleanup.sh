@@ -1,61 +1,111 @@
 #!/bin/sh
 
 _cleanup_docker() {
-    ### Docker
-    yes | docker container prune;
-    yes | docker image prune -a;
-    yes | docker network prune;
-    yes | docker volume prune;
-    yes | docker builder prune;
+	### Docker
+	yes | docker container prune
+	yes | docker image prune -a
+	yes | docker network prune
+	yes | docker volume prune
+	yes | docker builder prune
 }
 
 _cleanup_macports() {
-    ### Macports -- slow
-    echo "cleaning MacPorts cache"
-    sudo port uninstall leaves
-    sudo port -f uninstall inactive
-    sudo port -f clean --all all
+	### Macports -- slow
+	echo "cleaning MacPorts cache"
+	sudo port uninstall leaves
+	sudo port -f uninstall inactive
+	sudo port -f clean --all all
 }
 
 _cleanup_homebrew() {
-    ### Homebrew
-    echo "cleaning Homebrew cache"
-    brew autoremove;
-    brew cleanup --prune=all;
+	### Homebrew
+	echo "cleaning Homebrew cache"
+	brew autoremove
+	brew cleanup --prune=all
 }
 
 _cleanup_python() {
-    ### Python
-    echo "cleaning pip cache"
-    python3 -m pip cache purge;
+	### Python
+	echo "cleaning pip cache"
+	python3 -m pip cache purge
 }
 
 _cleanup_cargo() {
-    ### Rust
-    echo "cleaning cargo cache"
-    # remove crates that are not referenced in a Cargo.toml from the cache
-    cargo cache clean-unref
-    # Removes crate source checkouts and git repo checkouts
-    cargo cache --autoclean
+	### Rust
+	echo "cleaning cargo cache"
+	# remove crates that are not referenced in a Cargo.toml from the cache
+	cargo cache clean-unref
+	# Removes crate source checkouts and git repo checkouts
+	cargo cache --autoclean
 }
 
 _cleanup_npm() {
-    ### JS/TS
-    echo "cleaning npm cache"
-    sudo npm prune
-    sudo npm cache clean --force
+	### JS/TS
+	echo "cleaning npm cache"
+	sudo npm prune
+	sudo npm cache clean --force
 }
 
 _cleanup_apt() {
-    sudo apt autoremove
-    sudo apt-get clean
+	sudo apt autoremove
+	sudo apt-get clean
 }
 
 project_clean() {
-  [ -z "$WORKSPACE" ] && { echo "WORKSPACE is undefined"; return 1; }
-  [ -z "$PROJECT_NAME" ] && { echo "PROJECT_NAME is undefined"; return 1; }
-  [ "$(PWD)" != "$WORKSPACE" ] && { echo "CWD does not match WORKSPACE"; return 1; }
-  [ "$(basename "$(PWD)")" != "$PROJECT_NAME" ] && { echo "Current dirname does not match PROJECT_NAME"; return 1; }
-  ( ! git-is-repo ) && { echo "CWD is not a .git repo"; return 1; }
-  return 0
+	[ -z "$WORKSPACE" ] && {
+		echo "WORKSPACE is undefined"
+		return 1
+	}
+	[ -z "$PROJECT_NAME" ] && {
+		echo "PROJECT_NAME is undefined"
+		return 1
+	}
+	[ "$(PWD)" != "$WORKSPACE" ] && {
+		echo "CWD does not match WORKSPACE"
+		return 1
+	}
+	[ "$(basename "$(PWD)")" != "$PROJECT_NAME" ] && {
+		echo "Current dirname does not match PROJECT_NAME"
+		return 1
+	}
+	(! git-is-repo) && {
+		echo "CWD is not a .git repo"
+		return 1
+	}
+	return 0
+}
+
+_syncthing_target_valid() {
+	# echo "\$1=$1"
+	[ ! -d "$1" ] && {
+		echo "$1 is not a valid dir"
+		return 1
+	}
+	[ ! -d "$1/.stfolder" ] && {
+		echo "stfolder not found"
+		return 1
+	}
+	[ ! -d "$1/.stversions" ] && {
+		echo "stversions not found"
+		return 1
+	}
+	return 0
+}
+
+syncthing_clean_conflict() {
+	set -- "${1:-$PWD}"
+	# echo "\$1=$1"
+	(_syncthing_target_valid "$1") || return 1
+	find . -iname "*sync-conflict*" -type f -print0 2>/dev/null | xargs -0 -n1 echo
+	echo "dry-run"
+	return 1
+}
+
+syncthing_clean_stversions() {
+	set -- "${1:-$PWD}"
+	# echo "\$1=$1"
+	(_syncthing_target_valid "$1") || return 1
+	find "$1/.stversions" -maxdepth 1 -mindepth 1 -print0 2>/dev/null | xargs -0 -n1 echo
+	echo "dry-run"
+	return 1
 }

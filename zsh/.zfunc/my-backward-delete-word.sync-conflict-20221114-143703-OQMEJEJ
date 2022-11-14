@@ -1,2 +1,0 @@
-local WORDCHARS=${WORDCHARS/\//}
-zle backward-delete-word

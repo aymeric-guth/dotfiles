@@ -1,9 +1,9 @@
 case "$1" in
-    jw|fn|lz|tf|cfg|kb)
-      return 0
-        ;;
+jw | fn | lz | tf | cfg | kb)
+	return 0
+	;;
 
-    *)
-      return 1
-      ;;
+*)
+	return 1
+	;;
 esac
