@@ -85,10 +85,6 @@ _syncthing_target_valid() {
 		echo "stfolder not found"
 		return 1
 	}
-	[ ! -d "$1/.stversions" ] && {
-		echo "stversions not found"
-		return 1
-	}
 	return 0
 }
 
@@ -96,15 +92,16 @@ syncthing_clean_conflict() {
 	set -- "${1:-$PWD}"
 	# echo "\$1=$1"
 	(_syncthing_target_valid "$1") || return 1
-	find . -iname "*sync-conflict*" -type f -print0 2>/dev/null | xargs -0 -n1 echo
-	echo "dry-run"
-	return 1
+	find . -iname "*sync-conflict*" -type f -print0 2>/dev/null | xargs -0 -n1 rm
+	# echo "dry-run"
+	# return 1
 }
 
 syncthing_clean_stversions() {
 	set -- "${1:-$PWD}"
 	# echo "\$1=$1"
 	(_syncthing_target_valid "$1") || return 1
+	[ ! -d "$1/.stversions" ] && return 1
 	find "$1/.stversions" -maxdepth 1 -mindepth 1 -print0 2>/dev/null | xargs -0 -n1 echo
 	echo "dry-run"
 	return 1
