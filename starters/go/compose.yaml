@@ -1,0 +1,30 @@
+services:
+
+  app:
+    build:
+      context: ./app
+      args:
+        BUILD_ARGS: ""
+    container_name: app
+    restart: always
+    environment:
+      DSN: "host=postgres port=${DB_PORT} user=${DB_USER} password=${DB_PASS} dbname=${DB_NAME} sslmode=disable timezone=UTC connect_timeout=5"
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ./backing-services/db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    # volumes:
+    #   - "./db-data:/var/lib/postgresql/data:rw"
+    #   - "db-data:/var/lib/postgresql/data_old:rw"
+    healthcheck:
+      test: /postgres.sh
+      interval: "5s"
+    ports:
+      - ${DB_HOST}:${DB_PORT}
