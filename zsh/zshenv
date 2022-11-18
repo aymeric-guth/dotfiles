@@ -1,6 +1,5 @@
 #!/bin/sh
 
-echo "zshenv"
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 export MANWIDTH=999
@@ -8,7 +7,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # [ -f "$DOTFILES/env/.env-ehwaz" ] && source "$DOTFILES/env/.env-ehwaz"
-[ -f "$DOTFILES/env/.env-`uname -n`" ] && source "$DOTFILES/env/.env-`uname -n`"
+[ -f "$DOTFILES/env/.env-$(uname -n)" ] && source "$DOTFILES/env/.env-$(uname -n)"
 [ -z "$PROJECTS_ROOT" ] && export PROJECTS_ROOT="$HOME"
 
 [ -d "$TOOLZ" ] && prepend-to-path "$TOOLZ/bin" && export MANPATH="$TOOLZ/share/man:$MANPATH"
@@ -22,9 +21,9 @@ export GIT_CONFIG_GLOBAL="$DOTFILES/.gitconfig"
 
 # Setup fzf
 if [ -n "$FZF" ]; then
-    prepend-to-path "$GITHUB_REPOS/fzf/bin"
-    [ -f "$GITHUB_REPOS/fzf/shell/completion.zsh" ] && source "$GITHUB_REPOS/fzf/shell/completion.zsh"
-    [ -f "$GITHUB_REPOS/fzf/shell/key-bindings.zsh" ] && source "$GITHUB_REPOS/fzf/shell/key-bindings.zsh"
+	prepend-to-path "$GITHUB_REPOS/fzf/bin"
+	[ -f "$GITHUB_REPOS/fzf/shell/completion.zsh" ] && source "$GITHUB_REPOS/fzf/shell/completion.zsh"
+	[ -f "$GITHUB_REPOS/fzf/shell/key-bindings.zsh" ] && source "$GITHUB_REPOS/fzf/shell/key-bindings.zsh"
 fi
 
 # Setup LUA language-server
