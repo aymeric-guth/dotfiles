@@ -136,3 +136,13 @@ k3s-master-stop() {
     [ -f /etc/systemd/system/k3s.service ] && systemctl stop k3s.service
     _cleanup_docker
 }
+
+hex() {
+  filename=$(resolve_path "$1")
+  [ ! -f "$filename" ] && return 1
+  /Applications/imhex.app/Contents/MacOS/imhex "$filename" &
+}
+
+my-zsh-prof() {
+  for i in $(seq 1 10); do /usr/bin/time $(which zsh) -i -c exit; done;
+}

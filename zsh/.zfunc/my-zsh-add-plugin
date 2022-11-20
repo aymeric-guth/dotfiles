@@ -1,8 +1,8 @@
 PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-if [ -d "$ZDATA/plugins/$PLUGIN_NAME" ]; then 
-    # For plugins
-    my-zsh-add-file "$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
-    my-zsh-add-file "$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+if [ -d "$ZDATA/plugins/$PLUGIN_NAME" ]; then
+	# For plugins
+	my-zsh-add-file "$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" ||
+		my-zsh-add-file "$PLUGIN_NAME/$PLUGIN_NAME.zsh"
 else
-    git clone --depth 1 "https://github.com/$1.git" "$ZDATA/plugins/$PLUGIN_NAME"
+	git clone --depth 1 "https://github.com/$1.git" "$ZDATA/plugins/$PLUGIN_NAME"
 fi

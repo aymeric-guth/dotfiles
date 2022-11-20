@@ -102,9 +102,7 @@ syncthing_clean_stversions() {
 	# echo "\$1=$1"
 	(_syncthing_target_valid "$1") || return 1
 	[ ! -d "$1/.stversions" ] && return 1
-	find "$1/.stversions" -maxdepth 1 -mindepth 1 -print0 2>/dev/null | xargs -0 -n1 echo
-	echo "dry-run"
-	return 1
+	find "$1/.stversions" -maxdepth 1 -mindepth 1 -print0 2>/dev/null | xargs -0 -n1 rm -rf
 }
 
 nvim_clean() {
@@ -115,5 +113,6 @@ nvim_clean() {
 
 zsh_clean() {
 	[ -d "$ZCACHE" ] && rm -rf "$ZCACHE"
-	[ -d "$ZDATA" ] && rm -rf "$ZDATA"
+	# [ -d "$ZDATA" ] && rm -rf "$ZDATA"
+	find $ZDOTDIR -type f \( -iname \*.zwc -o -iname \*.zwc.old \) -print0 2>/dev/null | xargs -0 -n1 rm -f
 }

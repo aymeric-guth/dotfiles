@@ -1,11 +1,27 @@
 #!/bin/sh
 
+# zmodload zsh/zprof
 # hack to avoid OSX related PATH duplication
 [ -f /etc/zprofile ] && export PATH= && export MANPATH= && . "/etc/zprofile"
+
 
 export ZDOTDIR="$DOTFILES/zsh"
 export ZDATA="$HOME/.local/share/zsh" && [ ! -d "$ZDATA" ] && mkdir -p "$ZDATA"
 export ZCACHE="$HOME/.cache/zsh" && [ ! -d "$ZCACHE" ] && mkdir -p "$ZCACHE"
+
+### Dotfile (Re)Compilation
+# autoload -U zrecompile
+# zrecompile -pq "$ZDOTDIR/.zshrc"
+# zrecompile -pq "$ZDOTDIR/aliases"
+# zrecompile -pq "$ZDOTDIR/keybind"
+# zrecompile -pq "$ZDOTDIR/zcomp"
+# zrecompile -pq "$ZDOTDIR/zshenv"
+# zrecompile -pq "$ZDOTDIR/func/cleanup.sh"
+# zrecompile -pq "$ZDOTDIR/func/upgrade.sh"
+# zrecompile -pq "$ZDOTDIR/func/zsh-functions"
+# zrecompile -pq "$ZCACHE/.zcompdump-$ZSH_VERSION"
+# zrecompile -pq "$ZDOTDIR/.zfunc.zwc" $ZDOTDIR/.zfunc/*
+# zrecompile -pq "$ZDOTDIR/.completions.zwc" $ZDOTDIR/completions/*
 
 export HISTFILE="$ZDATA/.zsh_history"
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
@@ -113,7 +129,7 @@ export MANPATH
 export PATH
 
 # HACK source .func
-source-func() {emulate -L zsh; [ -f .func.sh ] && source .func.sh}
+source-func() { emulate -L zsh; [ -f .func.sh ] && source .func.sh; }
 add-zsh-hook precmd source-func
 
 if [ -n "$FRE" ]; then
@@ -126,3 +142,4 @@ fi
 
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
 zle -N zle-line-pre-redraw
+

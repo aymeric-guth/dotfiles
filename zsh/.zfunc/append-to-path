@@ -1,3 +1,1 @@
-if [ -d "$1" ] && ! echo "$PATH" | grep -q "$1"; then
-    export PATH="$PATH:$1"
-fi
+[ -d "$1" ] && ! (echo "$PATH" | grep -q "$1") && export PATH="$PATH:$1"
