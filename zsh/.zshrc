@@ -132,6 +132,12 @@ export PATH
 source-func() { emulate -L zsh; [ -f .func.sh ] && source .func.sh; }
 add-zsh-hook precmd source-func
 
+direnv-prompt() {
+  [ -n "$DIRENV_DIFF" ] && psvar[12]="(${psvar[12]})"
+}
+add-zsh-hook precmd direnv-prompt
+
+
 if [ -n "$FRE" ]; then
     fre_chpwd() {
       fre --store $DOTFILES/.local/share/fre/fre.json --add "$(pwd)"
@@ -142,4 +148,3 @@ fi
 
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
 zle -N zle-line-pre-redraw
-
