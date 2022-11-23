@@ -71,6 +71,7 @@ cmp.setup({
       maxwidth = 50,
       before = function(entry, vim_item)
         vim_item.menu = source_mapping[entry.source.name]
+        -- vim_item.abbr = entry:get_insert_text() .. '[' .. entry.source.name .. ']'
         return vim_item
       end,
     }),

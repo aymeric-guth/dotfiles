@@ -1,2 +1,3 @@
-local WORDCHARS=${WORDCHARS/\-.//}
+local WORDCHARS='*?_.[]~=&;!#$%^(){}<>:,'
+# local WORDCHARS=${WORDCHARS/\//}
 zle backward-delete-word

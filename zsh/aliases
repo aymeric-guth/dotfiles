@@ -83,3 +83,11 @@ no() {
     tmuxp-start $TMUXP_CONFIGDIR/notes
   fi
 }
+
+de() {
+  direnv edit "$@"
+}
+
+da() {
+  direnv allow "$@"
+}

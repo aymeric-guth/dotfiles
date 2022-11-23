@@ -127,7 +127,9 @@ return require('packer').startup(function(use)
     branch = 'master',
   })
   use({ 'moll/vim-bbye', branch = 'master' })
-  use({ 'ThePrimeagen/harpoon', branch = 'master' })
+  use({ '$DEV/personal/harpoon', branch = 'yul' })
+  -- use({ 'aymeric-guth/harpoon', branch = 'yul' })
+  -- use({ 'ThePrimeagen/harpoon', branch = 'master' })
 
   use('simrat39/symbols-outline.nvim')
   use('mbbill/undotree')

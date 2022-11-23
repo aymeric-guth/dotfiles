@@ -70,33 +70,14 @@ vim.g.python3_host_prog = 'python3'
 -- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldmethod = 'manual'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- vim.opt.verbosefile = vim.env.DEV .. '/personal/harpoon/vim.log'
 
 vim.o.formatoptions = 'rqnj'
+vim.opt.list = true
+-- local ok, icons = pcall(require, 'ui.icons')
+-- if ok then
+-- else
+--   -- end
+vim.o.listchars = 'eol:\\u21b5,space:.,tab:>~'
 
-vim.cmd([[
-    augroup highlight_yank
-    autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=200})
-    augroup END
-]])
-
-vim.cmd([[
-    augroup roslaunch_ext
-    autocmd!
-    au BufRead,BufNewFile *.launch setfiletype roslaunch
-    augroup END
-]])
 vim.lsp.set_log_level('warn')
-
--- vim.cmd([[
--- 	augroup Binary
--- 	  au!
--- 	  au BufReadPre  *.mp3 let &bin=1
--- 	  au BufReadPost *.mp3 if &bin | %!xxd
--- 	  au BufReadPost *.mp3 set ft=xxd | endif
--- 	  au BufWritePre *.mp3 if &bin | %!xxd -r
--- 	  au BufWritePre *.mp3 endif
--- 	  au BufWritePost *.mp3 if &bin | %!xxd
--- 	  au BufWritePost *.mp3 set nomod | endif
--- 	augroup END
--- ]])
