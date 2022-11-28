@@ -2,6 +2,9 @@
 
 . "$ZDOTDIR/func/cleanup.sh"
 . "$ZDOTDIR/func/upgrade.sh"
+[ -n "$FRE" ] && . "$ZDOTDIR/func/_fre.sh"
+. "$ZDOTDIR/func/_syncthing.sh"
+. "$ZDOTDIR/func/_starters.sh"
 
 
 up() {

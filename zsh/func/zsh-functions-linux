@@ -1,6 +1,7 @@
 #!/bin/sh
 
 . "$ZDOTDIR/func/zsh-functions"
+. "$ZDOTDIR/func/find.sh"
 
 f() { find -E $1 -regex ".*\.($2)" -print0 | xargs -0 grep -n $3; }
 

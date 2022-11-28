@@ -1,7 +1,7 @@
-selected="$(fre --store $DOTFILES/.local/share/fre/fre-projects.json --sorted --limit 1)"
+selected="$(fre --store ~/.cache/fre.json --sorted --limit 1)"
 [ ! -d "$selected" ] && return 1
 if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
-  editor "$selected"
+	editor "$selected"
 else
-  tmuxp-start "$selected"
+	tmuxp-start "$selected"
 fi

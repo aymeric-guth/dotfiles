@@ -91,3 +91,26 @@ de() {
 da() {
   direnv allow "$@"
 }
+
+### Builtins Overrides
+_man() {
+  # provides a unique API for builtin documentation via man
+  query="$1"
+  [ -z "$query" ] && return 1
+  if [ -z ${commands[$query]} ]; then
+    echo "command not foud: $query"
+    return 1
+  fi
+  if [ -n "$( find `echo $MANPATH | tr ":" " "` -iname '*"$query"*' | grep . )" ]; then
+    if (man "$query"); then
+      return 0
+    fi
+  fi
+  if ( ! $query --help 1,2> /dev/null ); then
+    echo "$query does not provides --help flag"
+    return 1
+  fi
+  $query --help | editor -R 
+  return 0
+}
+#alias man='_man'

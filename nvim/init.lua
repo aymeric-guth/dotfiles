@@ -3,7 +3,10 @@ if vim.loop.fs_stat(local_vimrc) then
   vim.cmd('source ' .. local_vimrc)
 end
 
-require('plenary.filetype').add_file('sh')
+local ok, plenary = pcall(require, 'plenary.filetype')
+if ok then
+  require('plenary.filetype').add_file('sh')
+end
 require('av.set')
 require('av.autocmd')
 require('av.keymaps')

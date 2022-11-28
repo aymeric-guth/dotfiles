@@ -138,13 +138,13 @@ direnv-prompt() {
 add-zsh-hook precmd direnv-prompt
 
 
-if [ -n "$FRE" ]; then
-    fre_chpwd() {
-      fre --store $DOTFILES/.local/share/fre/fre.json --add "$(pwd)"
-    }
-    typeset -gaU chpwd_functions
-    chpwd_functions+=fre_chpwd
-fi
+# if [ -n "$FRE" ]; then
+#     fre_chpwd() {
+#       fre --store $DOTFILES/.local/share/fre/fre.json --add "$(pwd)"
+#     }
+#     typeset -gaU chpwd_functions
+#     chpwd_functions+=fre_chpwd
+# fi
 
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
 zle -N zle-line-pre-redraw
