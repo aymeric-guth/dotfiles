@@ -1,7 +1,5 @@
 #!/bin/sh
 
-export HISTSIZE=1000000
-export SAVEHIST=1000000
 export MANWIDTH=999
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
