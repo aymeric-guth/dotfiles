@@ -135,11 +135,12 @@ export PATH
 source-func() { emulate -L zsh; [ -f .func.sh ] && source .func.sh; }
 add-zsh-hook precmd source-func
 
-direnv-prompt() {
+direnv_prompt() {
   [ -n "$DIRENV_DIFF" ] && psvar[12]="(${psvar[12]})"
 }
-add-zsh-hook precmd direnv-prompt
-
+add-zsh-hook precmd direnv_prompt
+zstyle :prompt:pure:path git-is-repo && basename "$PWD" || "$PWD"
+# $(basename $PWD)
 
 # if [ -n "$FRE" ]; then
 #     fre_chpwd() {

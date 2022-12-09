@@ -16,7 +16,7 @@ syncthing_clean_conflict() {
 	set -- "${1:-$PWD}"
 	# echo "\$1=$1"
 	(_syncthing_target_valid "$1") || return 1
-	find . -iname "*sync-conflict*" -type f -print0 2>/dev/null | xargs -0 -n1 rm
+	find "$1" -iname "*sync-conflict*" -type f -print0 2>/dev/null | xargs -0 -n1 rm
 	# echo "dry-run"
 	# return 1
 }

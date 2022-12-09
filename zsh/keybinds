@@ -48,11 +48,15 @@ fi
 bindkey "^[[5~" beginning-of-line
 bindkey "^[[6~" end-of-line
 bindkey "^[[3~" delete-char
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
+bindkey "˚" history-substring-search-up
+bindkey "∆" history-substring-search-down
+# bindkey "^[[A" history-substring-search-up
+# bindkey "^[[B" history-substring-search-down
 
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
+bindkey "¬" forward-word
+bindkey "˙" backward-word
+# bindkey "^[[1;3C" forward-word
+# bindkey "^[[1;3D" backward-word
 bindkey "^E" edit-command-line
 bindkey "^ " autosuggest-accept
 # bindkey "^M" repeat-last
@@ -61,6 +65,7 @@ if command -v fzf 1> /dev/null; then
   zle -N fzf-path
   bindkey "^X" fzf-path
   bindkey "^H" fzf-history-widget
+  bindkey "ç" fzf-cd-widget
 fi
 
 bindkey -s "^R" "run\n"

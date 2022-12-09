@@ -35,7 +35,8 @@ cfg() {
 v() { editor "$*"; }
 mux() { tmuxp-start "$TMUXP_CONFIGDIR/anonymous"; }
 alias muxd="tmuxp debug-info"
-alias k="k3s kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml"
+# alias k="k3s kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml"
+alias k="kubectl"
 alias r="run"
 alias b="build"
 alias lz="lazygit"
@@ -117,3 +118,4 @@ _man() {
   return 0
 }
 #alias man='_man'
+alias m='multipass'
