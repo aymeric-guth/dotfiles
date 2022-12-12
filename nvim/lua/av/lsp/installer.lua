@@ -12,7 +12,7 @@ local servers = {
   -- 'dartls',
   -- 'gopls',
   -- 'golangci_lint_ls',
-  -- 'rust_analyzer',
+  'rust_analyzer',
   -- 'ccls',
 }
 local handlers = require('av.lsp.handlers')

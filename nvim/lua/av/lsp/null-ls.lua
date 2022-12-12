@@ -11,6 +11,9 @@ local code_actions = null_ls.builtins.code_actions
 -- handlers.capabilities.offsetEncoding = { 'utf-16' }
 
 local null_ls_opts = {
+  code_actions.ltrs.with({
+    filetypes = { 'text', 'markdown' },
+  }),
 
   formatting.astyle.with({
     filetypes = { 'c', 'cpp', 'cxx' },
@@ -45,9 +48,13 @@ local null_ls_opts = {
     extra_args = { '--fast' },
   }),
 
-  -- formatting.rustfmt.with({
-  --   filetypes = { 'rust' },
-  -- }),
+  formatting.rustfmt.with({
+    filetypes = { 'rust' },
+  }),
+
+  diagnostics.ruff.with({
+    filetypes = { 'python' },
+  }),
   -- formatting.dart_format.with({
   --   filetypes = { 'dart' },
   -- }),
