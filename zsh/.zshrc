@@ -55,7 +55,7 @@ autoload -U -z $fpath[1]/*(.:t)
 # Completion Engine config
 fpath=("$ZDOTDIR/completions" $fpath)
 autoload -U -z compinit
-# autoload -U +X bashcompinit
+autoload -U +X bashcompinit
 compinit -u -d "$ZCACHE/.zcompdump-$ZSH_VERSION"
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
