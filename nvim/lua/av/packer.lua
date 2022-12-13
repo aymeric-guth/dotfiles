@@ -94,6 +94,8 @@ packer.init({
 })
 
 return require('packer').startup(function(use)
+  use('simrat39/rust-tools.nvim')
+
   use('kyazdani42/nvim-web-devicons')
   use('dstein64/vim-startuptime')
   -- Packer
@@ -166,7 +168,7 @@ return require('packer').startup(function(use)
     --[[
     -- DAP
     --]]
-    -- use({ 'mfussenegger/nvim-dap', branch = 'master' })
+    use({ 'mfussenegger/nvim-dap', branch = 'master' })
     -- use({ 'williamboman/mason.nvim' })
   end
 
