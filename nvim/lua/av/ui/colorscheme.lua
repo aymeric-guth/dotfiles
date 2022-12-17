@@ -27,6 +27,8 @@ function ColorGruvboxBaby()
   -- vim.g.gruvbox_baby_highlights = { Normal = { fg = colors.orange } }
   vim.g.gruvbox_baby_telescope_theme = true
   vim.cmd([[colorscheme gruvbox-baby]])
+  vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+  vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 end
 
 function GruvboxMaterial()

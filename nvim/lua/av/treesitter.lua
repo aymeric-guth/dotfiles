@@ -1,5 +1,5 @@
-local status, treesitter = pcall(require, 'nvim-treesitter.configs')
-if not status then
+local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
+if not ok then
   return
 end
 
@@ -13,6 +13,7 @@ treesitter.setup({
     'css',
     'dockerfile',
     'go',
+    'help',
     'html',
     'java',
     'javascript',
@@ -40,3 +41,9 @@ treesitter.setup({
     enable = true,
   },
 })
+
+local ok, _ = pcall(require, 'nvim-treesitter/playground')
+if not ok then
+  return
+end
+require('nvim-treesitter/playground').setup()

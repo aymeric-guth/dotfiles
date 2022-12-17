@@ -70,34 +70,31 @@ M.on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(
     bufnr,
     'n',
-    '<C-k>',
+    '<leader>ls',
     '<cmd>lua vim.lsp.buf.signature_help()<CR>',
     opts
   )
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lrn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(
     bufnr,
     'n',
-    '<leader>ca',
+    '<leader>lc',
     '<cmd>lua vim.lsp.buf.code_action()<CR>',
     opts
   )
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<M-a>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<M-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
-  if client.server_capabilities.document_highlight then
-    local status, illuminate = pcall(require, 'illuminate')
-    if not status then
-      return
-    end
-    illuminate.on_attach(client)
-  end
+  -- if client.server_capabilities.document_highlight then
+  --   local status, illuminate = pcall(require, 'illuminate')
+  --   if not status then
+  --     return
+  --   end
+  --   illuminate.on_attach(client)
+  -- end
 
   vim.g.navic_silence = true
   local status, navic = pcall(require, 'nvim-navic')

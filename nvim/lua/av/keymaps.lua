@@ -57,7 +57,7 @@ nnoremap(',P', '"0P')
 
 nnoremap('<leader>e', ':NvimTreeToggle<CR>')
 nnoremap('<leader>so', ':SymbolsOutline<CR>')
-nnoremap('<leader>z', ':UndotreeToggle<CR>')
+nnoremap('<leader>u', ':UndotreeToggle<CR>')
 
 nnoremap('<leader>y', '"+yy')
 vnoremap('<leader>y', '"+yy')
@@ -105,20 +105,16 @@ nnoremap('<leader>ft', ':Telescope treesitter<CR>')
 --[[
 -- Trouble
 --]]
-nnoremap('<leader>do', ':TroubleToggle<CR>')
-nnoremap('<leader>xx', '<cmd>Trouble<cr>')
-nnoremap('<leader>xw', '<cmd>Trouble workspace_diagnostics<cr>')
-nnoremap('<leader>xd', '<cmd>Trouble document_diagnostics<cr>')
-nnoremap('<leader>xl', '<cmd>Trouble loclist<cr>')
-nnoremap('<leader>xq', '<cmd>Trouble quickfix<cr>')
-nnoremap('gR', '<cmd>Trouble lsp_references<cr>')
-nnoremap('<leader>tc', '<cmd>TSContextToggle<CR>')
 
 --[[
 -- Harpoon
 --]]
-nnoremap('<leader>a', "<cmd>lua require('harpoon.mark').add_file()<cr>")
-nnoremap('<C-e>', "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>")
+vim.keymap.set('n', '<leader>a', function()
+  require('harpoon.mark').add_file()
+end)
+vim.keymap.set('n', '<C-e>', function()
+  require('harpoon.ui').toggle_quick_menu()
+end)
 nnoremap('<C-h>', "<cmd>lua require('harpoon.ui').nav_file(1)<cr>")
 nnoremap('<C-t>', "<cmd>lua require('harpoon.ui').nav_file(2)<cr>")
 nnoremap('<C-n>', "<cmd>lua require('harpoon.ui').nav_file(3)<cr>")
@@ -161,3 +157,27 @@ vim.keymap.set(
   '<cmd>TroubleToggle lsp_references<cr>',
   { silent = true, noremap = true }
 )
+
+vim.keymap.set('n', '<leader>tp', vim.cmd.TSPlaygroundToggle)
+vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
+
+nnoremap('<leader>tc', '<cmd>TSContextToggle<CR>')
+
+-- moves selected text in visual mode
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+-- keeps cursor in place when deleting newline
+vim.keymap.set('n', 'J', 'mzJ`z')
+
+-- keeps cursor centered when jumping <C-d> <C-u>
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+-- deletes to void buffer
+vim.keymap.set('n', '<leader>d', '"_d')
+vim.keymap.set('v', '<leader>d', '"_d')
+
+-- converts buffer to hex
+vim.keymap.set('n', '<leader>bx', function()
+  vim.cmd([[%!xxd]])
+end)

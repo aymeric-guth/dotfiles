@@ -39,7 +39,7 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = vim.fn.stdpath('cache')
+vim.opt.undodir = vim.fn.stdpath('cache') .. '/undodir'
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
