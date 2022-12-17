@@ -1,11 +1,7 @@
 local opts = { noremap = true, silent = true }
--- local keymap = vim.api.nvim_set_keymap
 
 local nnoremap = function(lhs, rhs)
   return vim.api.nvim_set_keymap('n', lhs, rhs, opts)
-end
-local inoremap = function(lhs, rhs)
-  return vim.api.nvim_set_keymap('i', lhs, rhs, { noremap = true, silent = true })
 end
 local vnoremap = function(lhs, rhs)
   return vim.api.nvim_set_keymap('v', lhs, rhs, { noremap = true, silent = true })
@@ -67,27 +63,26 @@ nnoremap('<leader>P', '"+P')
 -- Naviagate buffers
 nnoremap('<S-l>', ':bnext<CR>')
 nnoremap('<S-h>', ':bprevious<CR>')
-nnoremap('<leader>q', ':Bdelete<CR>')
 
 --[[
 Telescope
 --]]
--- nnoremap geh <cmd>Telescope find_files hidden=true<cr>
-nnoremap(
-  '<leader>ff',
-  "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>"
-)
-nnoremap('<leader>fF', ':Telescope find_files hidden=true no_ignore=true<CR>')
-nnoremap('<leader>fg', ':Telescope live_grep<CR>')
-
--- nnoremap(
---   '<leader>fG',
---   ':Telescope live_grep hidden=true no_ignore=true no_ignore_vcs=true no_ignore_parent=true<CR>'
--- )
-nnoremap(
-  '<leader>fG',
-  "<cmd>lua require('telescope.builtin').live_grep({no_ignore=true, hidden=true, no_ignore_vcs=true, no_ignore_parent=true})<cr>"
-)
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', function()
+  builtin.find_files(require('telescope.themes').get_dropdown({ previewer = false }))
+end, {})
+vim.keymap.set('n', '<leader>fF', function()
+  builtin.find_files(require('telescope.themes').get_dropdown({ previewer = false }))
+end, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fG', function()
+  builtin.live_grep({
+    no_ignore = true,
+    hidden = true,
+    no_ignore_vcs = true,
+    no_ignore_parent = true,
+  })
+end, {})
 
 nnoremap('<leader>fb', ':Telescope current_buffer_fuzzy_find<CR>')
 nnoremap('<leader>fB', ':Telescope buffers<CR>')
@@ -102,30 +97,12 @@ nnoremap('<leader>fa', ':Telescope autocommands<CR>')
 nnoremap('<leader>fk', ':Telescope keymaps<CR>')
 nnoremap('<leader>ft', ':Telescope treesitter<CR>')
 
+vim.keymap.set('n', '<leader>fld', builtin.lsp_document_symbols)
+vim.keymap.set('n', '<leader>flw', builtin.lsp_workspace_symbols)
+
 --[[
 -- Trouble
 --]]
-
---[[
--- Harpoon
---]]
-vim.keymap.set('n', '<leader>a', function()
-  require('harpoon.mark').add_file()
-end)
-vim.keymap.set('n', '<C-e>', function()
-  require('harpoon.ui').toggle_quick_menu()
-end)
-nnoremap('<C-h>', "<cmd>lua require('harpoon.ui').nav_file(1)<cr>")
-nnoremap('<C-t>', "<cmd>lua require('harpoon.ui').nav_file(2)<cr>")
-nnoremap('<C-n>', "<cmd>lua require('harpoon.ui').nav_file(3)<cr>")
-nnoremap('<C-s>', "<cmd>lua require('harpoon.ui').nav_file(4)<cr>")
-
---[[
--- Glow
---]]
-nnoremap('<leader>rmd', '<cmd>:Glow<cr>')
-
--- Lua
 vim.keymap.set('n', '<leader>xx', '<cmd>TroubleToggle<cr>', { silent = true, noremap = true })
 vim.keymap.set(
   'n',
@@ -158,10 +135,31 @@ vim.keymap.set(
   { silent = true, noremap = true }
 )
 
-vim.keymap.set('n', '<leader>tp', vim.cmd.TSPlaygroundToggle)
-vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
+--[[
+-- Harpoon
+--]]
+vim.keymap.set('n', '<leader>a', function()
+  require('harpoon.mark').add_file()
+end)
+vim.keymap.set('n', '<C-e>', function()
+  require('harpoon.ui').toggle_quick_menu()
+end)
+nnoremap('<C-h>', "<cmd>lua require('harpoon.ui').nav_file(1)<cr>")
+nnoremap('<C-t>', "<cmd>lua require('harpoon.ui').nav_file(2)<cr>")
+nnoremap('<C-n>', "<cmd>lua require('harpoon.ui').nav_file(3)<cr>")
+nnoremap('<C-s>', "<cmd>lua require('harpoon.ui').nav_file(4)<cr>")
 
-nnoremap('<leader>tc', '<cmd>TSContextToggle<CR>')
+--[[
+-- Glow
+--]]
+nnoremap('<leader>rmd', '<cmd>:Glow<cr>')
+
+-- [[
+-- TreeSitter
+-- ]]
+vim.keymap.set('n', '<leader>tp', vim.cmd.TSPlaygroundToggle)
+
+vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
 
 -- moves selected text in visual mode
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
