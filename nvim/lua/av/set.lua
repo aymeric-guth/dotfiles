@@ -73,11 +73,9 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 -- vim.opt.verbosefile = vim.env.DEV .. '/personal/harpoon/vim.log'
 
 vim.o.formatoptions = 'rqnj'
+-- vim.o.listchars = 'eol:\\u21b5,space:.,tab:>~'
 vim.opt.list = true
--- local ok, icons = pcall(require, 'ui.icons')
--- if ok then
--- else
---   -- end
-vim.o.listchars = 'eol:\\u21b5,space:.,tab:>~'
+vim.opt.listchars:append('space:⋅')
+vim.opt.listchars:append('eol:↴')
 
 vim.lsp.set_log_level('warn')

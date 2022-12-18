@@ -15,20 +15,16 @@ finder() {
 
 # ch - browse chrome history
 ch() {
-	local cols sep
-	cols=$((COLUMNS / 3))
+	prev="$PWD"
+	cd "$DEV"/personal/yt_hist || return 1
+	cols="$((COLUMNS / 3))"
 	sep='{::}'
-
-	historyfile="$HOME/Library/Application Support/Chromium/Default/History"
-	[ ! -f "$historyfile" ] && return 1 || cp "$historyfile" /tmp/h
-
-	sqlite3 -readonly -separator $sep /tmp/h \
-		"select substr(title, 1, $cols), url, datetime(last_visit_time / 1000000 + (strftime('%s', '1601-01-01')), 'unixepoch', 'localtime')
-    from urls order by last_visit_time desc" |
+	python main.py "$COLUMNS" "$sep" |
 		awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
 		fzf --ansi --multi |
 		sed 's#.*\(https*://\)#\1#' |
 		xargs open
+	cd "$prev" || return 1
 }
 
 chf() {

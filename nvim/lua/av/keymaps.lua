@@ -70,11 +70,11 @@ Telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', function()
   builtin.find_files(require('telescope.themes').get_dropdown({ previewer = false }))
-end, {})
+end, { desc = '[f]ind [f]files' })
 vim.keymap.set('n', '<leader>fF', function()
   builtin.find_files(require('telescope.themes').get_dropdown({ previewer = false }))
-end, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+end, { desc = '[f]ind [F]files no ignore' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[f]ind [g]rep' })
 vim.keymap.set('n', '<leader>fG', function()
   builtin.live_grep({
     no_ignore = true,
@@ -82,11 +82,12 @@ vim.keymap.set('n', '<leader>fG', function()
     no_ignore_vcs = true,
     no_ignore_parent = true,
   })
-end, {})
+end, { desc = '[f]ind [G]rep no ignore' })
 
-nnoremap('<leader>fb', ':Telescope current_buffer_fuzzy_find<CR>')
-nnoremap('<leader>fB', ':Telescope buffers<CR>')
-nnoremap('<leader>fs', ':Telescope grep_string<CR>')
+vim.keymap.set('n', '<leader>fB', builtin.buffers, { desc = '[f]ind [B]uffers' })
+vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, { desc = '[f]ind [b]uffer' })
+vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[f]ind [k]eymaps' })
+vim.keymap.set('n', '<leader>fs', builtin.grep_string, { desc = '[f]ind [s]tring' })
 -- Help
 nnoremap('<leader>fm', ':Telescope man_pages<CR>')
 nnoremap('<leader>fh', ':Telescope help_tags<CR>')
@@ -94,7 +95,6 @@ nnoremap('<leader>fc', ':Telescope commands<CR>')
 nnoremap('<leader>fo', ':Telescope vim_options<CR>')
 nnoremap('<leader>fr', ':Telescope registers<CR>')
 nnoremap('<leader>fa', ':Telescope autocommands<CR>')
-nnoremap('<leader>fk', ':Telescope keymaps<CR>')
 nnoremap('<leader>ft', ':Telescope treesitter<CR>')
 
 vim.keymap.set('n', '<leader>fld', builtin.lsp_document_symbols)

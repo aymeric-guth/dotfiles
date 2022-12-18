@@ -21,5 +21,5 @@ alias insta='python3 ~/Desktop/Network/thot_bot/minimal_api/minimal_scraper.py'
 alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
 
 flX() {
-    TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DEV/personal/mplayer"
+	TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DEV/personal/mplayer"
 }

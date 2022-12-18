@@ -1,3 +1,4 @@
+-- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
 
@@ -41,16 +42,16 @@ require('packer').startup({
 
     if os.getenv('NEOVIM_FULL') ~= nil then
       --[[
-    -- LSP
-    --]]
+      -- LSP
+      --]]
       use('neovim/nvim-lspconfig')
       use('jose-elias-alvarez/null-ls.nvim')
       use('simrat39/rust-tools.nvim')
       use('j-hui/fidget.nvim')
 
       --[[
-    -- CMP
-    --]]
+      -- CMP
+      --]]
       use({ 'hrsh7th/cmp-nvim-lsp', branch = 'main' })
       use({ 'hrsh7th/cmp-buffer', branch = 'main' })
       use({ 'hrsh7th/cmp-path', branch = 'main' })
@@ -99,6 +100,7 @@ require('packer').startup({
       end,
     })
     use({ 'nvim-treesitter/playground' })
+    use({ 'nvim-treesitter/nvim-treesitter-textobjects' })
 
     -- git
     use({
@@ -111,8 +113,8 @@ require('packer').startup({
     use({ 'tpope/vim-fugitive' })
 
     --[[
-  -- UI
-  --]]
+    -- UI
+    --]]
     -- Colorschemes
     use({ 'luisiacc/gruvbox-baby', branch = 'main' })
     use({
@@ -125,8 +127,19 @@ require('packer').startup({
         require('norcalli/nvim-colorizer.lua').setup()
       end,
     })
-    use({ 'ojroques/nvim-osc52', branch = 'main' })
+    use({ 'ojroques/nvim-osc52' })
+    use({
+      'lukas-reineke/indent-blankline.nvim',
+      config = {
+        show_end_of_line = true,
+        char = '┊',
+        show_trailing_blankline_indent = true,
+      },
+    })
 
+    -- [[
+    --  Packer Setup
+    -- ]]
     -- Packer boostraping
     if is_bootstrap then
       require('packer').sync()
@@ -137,9 +150,17 @@ require('packer').startup({
       augroup end
     ]])
     end
+
+    -- Automatically source and re-compile packer whenever you save this init.lua
+    local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+    vim.api.nvim_create_autocmd('BufWritePost', {
+      command = 'source <afile> | PackerCompile',
+      group = packer_group,
+      pattern = vim.fn.expand('$MYVIMRC'),
+    })
   end,
   config = {
-    snapshot_path = vim.fn.stdpath('cache') .. '/packer.nvim', -- Default save directory for snapshots
+    snapshot_path = vim.fn.stdpath('cache') .. '/packer.nvim', -- Default save directory for snapshots,
     package_root = vim.fn.stdpath('data') .. '/site/pack',
     compile_path = vim.fn.stdpath('data') .. '/plugin/packer_compiled.lua',
     display = {
