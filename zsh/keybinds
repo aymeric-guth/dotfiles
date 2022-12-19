@@ -65,12 +65,12 @@ if command -v fzf 1> /dev/null; then
   zle -N fzf-path
   bindkey "^X" fzf-path
   bindkey "^H" fzf-history-widget
-  bindkey "ç" fzf-cd-widget
+  bindkey "ƒ" fzf-cd-widget
 fi
 
 bindkey -s "^R" "run\n"
 bindkey -s "^B" "build\n"
 bindkey -s "^U" "up\n"
 
-bindkey -s 'ƒ' "project-most-frecent\n"
+# bindkey -s 'ƒ' "project-most-frecent\n"
 #bindkey -s '^I' "_test\n"
