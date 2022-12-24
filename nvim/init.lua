@@ -18,7 +18,7 @@ if os.getenv('NEOVIM_FULL') ~= nil then
   require('av.cmp')
   require('av.lsp')
   require('av.dap')
-  require('fidget').setup()
+  -- require('fidget').setup()
 end
 
 require('av.telescope')

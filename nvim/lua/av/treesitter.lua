@@ -9,7 +9,7 @@ treesitter.setup({
     'c',
     'cmake',
     'cpp',
-    'c_sharp',
+    -- 'c_sharp',
     'css',
     'dockerfile',
     'go',

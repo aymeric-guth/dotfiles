@@ -119,3 +119,13 @@ _man() {
 }
 #alias man='_man'
 alias m='multipass'
+
+vm() {
+  prev=$PWD
+  [ ! -f "$HOME/Downloads/mannaz.box" ] && return 1
+  cd "$DEV/personal/mannaz" || return 1
+  vagrant destroy -f || return 1
+  vagrant up || return 1
+  vagrant ssh || return 1
+  cd "$prev" || return 1
+}

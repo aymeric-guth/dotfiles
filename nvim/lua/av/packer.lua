@@ -46,8 +46,8 @@ require('packer').startup({
       --]]
       use('neovim/nvim-lspconfig')
       use('jose-elias-alvarez/null-ls.nvim')
-      use('simrat39/rust-tools.nvim')
-      use('j-hui/fidget.nvim')
+      -- use('simrat39/rust-tools.nvim')
+      -- use('j-hui/fidget.nvim')
 
       --[[
       -- CMP
@@ -66,7 +66,7 @@ require('packer').startup({
       })
       use({ 'L3MON4D3/LuaSnip', branch = 'master' })
       use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })
-      use('folke/trouble.nvim')
+      use({ 'folke/trouble.nvim' })
       use({ 'SmiteshP/nvim-navic' })
       use({
         'RRethy/vim-illuminate',
@@ -84,7 +84,7 @@ require('packer').startup({
       --[[
     -- DAP
     --]]
-      use({ 'mfussenegger/nvim-dap' })
+      -- use({ 'mfussenegger/nvim-dap' })
       use({ 'williamboman/mason.nvim' })
       use({ 'onsails/lspkind.nvim' })
     end

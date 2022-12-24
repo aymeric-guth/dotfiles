@@ -40,6 +40,8 @@ local null_ls_opts = {
       '--suppress=missingIncludeSystem',
       '--std=c11',
       '--platform=unix64',
+      -- '--project=' .. require('os').getenv('WORKSPACE') .. '/build/compile_commands.json',
+      -- '--addon=' .. require('os').getenv('DOTFILES') .. '/cppcheck/addons.json',
     },
   }),
 

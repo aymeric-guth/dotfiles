@@ -152,3 +152,9 @@ zstyle :prompt:pure:path git-is-repo && basename "$PWD" || "$PWD"
 
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
 zle -N zle-line-pre-redraw
+
+zsh_hist() {
+    echo $1 | cli add --format=raw
+}
+
+# add-zsh-hook zshaddhistory zsh_hist
