@@ -1,5 +1,10 @@
-local status, _ = pcall(require, 'lspconfig')
-if not status then
+local ok, _ = pcall(require, 'neodev')
+if ok then
+  require('neodev').setup({})
+end
+
+local ok, _ = pcall(require, 'lspconfig')
+if not ok then
   return
 end
 

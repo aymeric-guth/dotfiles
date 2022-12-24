@@ -46,6 +46,7 @@ require('packer').startup({
       --]]
       use('neovim/nvim-lspconfig')
       use('jose-elias-alvarez/null-ls.nvim')
+      use({ 'folke/neodev.nvim' })
       -- use('simrat39/rust-tools.nvim')
       -- use('j-hui/fidget.nvim')
 
