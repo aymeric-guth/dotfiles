@@ -1,29 +1,26 @@
-local util = require('lspconfig.util')
+local M = {}
 
-return {
-  filetypes = { 'yaml.ansible' },
-  root_dir = util.root_pattern('ansible.cfg'),
-  single_file_support = true,
-  settings = {
+M.settings = {
+  ansible = {
     ansible = {
-      ansible = {
-        path = 'ansible',
-        useFullyQualifiedCollectionNames = true,
-      },
-      ansibleLint = {
-        enabled = true,
-        path = 'ansible-lint',
-      },
-      executionEnvironment = {
-        enabled = false,
-      },
-      python = {
-        interpreterPath = 'python',
-      },
-      completion = {
-        provideRedirectModules = true,
-        provideModuleOptionAliases = true,
-      },
+      path = 'ansible',
+      useFullyQualifiedCollectionNames = true,
+    },
+    ansibleLint = {
+      enabled = true,
+      path = 'ansible-lint',
+    },
+    executionEnvironment = {
+      enabled = false,
+    },
+    python = {
+      interpreterPath = 'python3',
+    },
+    completion = {
+      provideRedirectModules = true,
+      provideModuleOptionAliases = true,
     },
   },
 }
+
+return M

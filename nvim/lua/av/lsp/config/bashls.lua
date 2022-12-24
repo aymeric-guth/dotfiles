@@ -1,5 +1,4 @@
-return {
-  settings = {
-    bashls = {},
-  },
+local M = {}
+M.settings = {
+  bashls = {},
 }

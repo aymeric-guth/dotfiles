@@ -47,6 +47,8 @@ require('packer').startup({
       use('neovim/nvim-lspconfig')
       use('jose-elias-alvarez/null-ls.nvim')
       use({ 'folke/neodev.nvim' })
+      use({ 'williamboman/mason-lspconfig.nvim' })
+      use({ 'williamboman/mason.nvim' })
       -- use('simrat39/rust-tools.nvim')
       -- use('j-hui/fidget.nvim')
 
@@ -85,8 +87,6 @@ require('packer').startup({
       --[[
     -- DAP
     --]]
-      -- use({ 'mfussenegger/nvim-dap' })
-      use({ 'williamboman/mason.nvim' })
       use({ 'onsails/lspkind.nvim' })
     end
 
@@ -122,12 +122,12 @@ require('packer').startup({
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     })
-    use({
-      'norcalli/nvim-colorizer.lua',
-      config = function()
-        require('norcalli/nvim-colorizer.lua').setup()
-      end,
-    })
+    -- use({
+    --   'norcalli/nvim-colorizer.lua',
+    --   config = function()
+    --     require('norcalli/nvim-colorizer.lua').setup()
+    --   end,
+    -- })
     use({ 'ojroques/nvim-osc52' })
     use({
       'lukas-reineke/indent-blankline.nvim',

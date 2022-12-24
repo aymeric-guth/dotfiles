@@ -1,5 +1,0 @@
-return {
-  setup = {
-    gopls = {},
-  },
-}
