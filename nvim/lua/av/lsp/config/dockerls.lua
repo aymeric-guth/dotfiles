@@ -1,5 +1,5 @@
-return {
-  setup = {
-    dockerls = {},
-  },
-}
+local M = {}
+
+M.settings = { dockerls = {} }
+
+return M

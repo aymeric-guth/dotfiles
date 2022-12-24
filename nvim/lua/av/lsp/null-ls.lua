@@ -1,5 +1,33 @@
-local status, null_ls = pcall(require, 'null-ls')
-if not status then
+local ok, mason_null_ls = pcall(require, 'mason-null-ls')
+if not ok then
+  error('mason_null_ls is not installed')
+  return
+end
+
+local servers = {
+  'ltrs',
+  'astyle',
+  'shellcheck',
+  'shfmt',
+  'cppcheck',
+  'black',
+  'rustfmt',
+  'ruff',
+  'prettierd',
+  'stylua',
+  'taplo',
+  'yamllint',
+  'hadolint',
+  'ansiblelint',
+  'cmake_format',
+}
+
+require('mason-null-ls').setup({
+  ensure_installed = servers,
+})
+
+local ok, null_ls = pcall(require, 'null-ls')
+if not ok then
   return
 end
 
@@ -57,26 +85,6 @@ local null_ls_opts = {
   diagnostics.ruff.with({
     filetypes = { 'python' },
   }),
-  -- formatting.dart_format.with({
-  --   filetypes = { 'dart' },
-  -- }),
-
-  -- formatting.remark.with({
-  --   filetypes = { 'markdown' },
-  -- }),
-
-  -- formatting.mdformat.with({
-  --   filetypes = { 'markdown' },
-  -- }),
-
-  -- markdown code-block formatter
-  -- formatting.cbfmt.with({
-  --   filetypes = { 'markdown' },
-  -- }),
-
-  -- diagnostics.markdownlint.with({
-  --   filetypes = { 'markdown' },
-  -- }),
 
   formatting.prettierd.with({
     filetypes = {
@@ -103,7 +111,7 @@ local null_ls_opts = {
   }),
 
   formatting.taplo.with({ filetypes = { 'toml' } }),
-  -- diagnostics.yamllint.with({ filetypes = { 'yaml' } }),
+  diagnostics.yamllint.with({ filetypes = { 'yaml' } }),
   diagnostics.hadolint.with({ filetypes = { 'dockerfile' } }),
   diagnostics.ansiblelint.with({ filetypes = { 'yaml.ansible' } }),
   formatting.cmake_format.with({ filetypes = { 'cmake' } }),

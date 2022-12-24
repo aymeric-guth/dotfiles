@@ -49,6 +49,7 @@ require('packer').startup({
       use({ 'folke/neodev.nvim' })
       use({ 'williamboman/mason-lspconfig.nvim' })
       use({ 'williamboman/mason.nvim' })
+      use({ 'jayp0521/mason-null-ls.nvim' })
       -- use('simrat39/rust-tools.nvim')
       -- use('j-hui/fidget.nvim')
 

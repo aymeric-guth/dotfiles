@@ -1,4 +1,5 @@
 local M = {}
+
 M.settings = {
   project = os.getenv('DOTFILES') .. '/pyrightconfig.json',
   pyright = {
@@ -19,4 +20,5 @@ M.settings = {
     },
   },
 }
+
 return M

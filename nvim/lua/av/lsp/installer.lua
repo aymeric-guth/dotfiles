@@ -9,9 +9,9 @@ local servers = {
   'clangd',
   'pyright',
   'sumneko_lua',
-  -- 'taplo',
-  -- 'bashls',
-  -- 'dockerls',
+  'taplo',
+  'bashls',
+  'dockerls',
   'ansiblels',
 }
 
@@ -25,6 +25,7 @@ local handlers = require('av.lsp.handlers')
 mason_lspconfig.setup_handlers({
   function(server_name)
     local server = require('av.lsp.config.' .. server_name)
+
     require('lspconfig')[server_name].setup({
       on_attach = handlers.on_attach,
       capabilities = handlers.capabilities,
