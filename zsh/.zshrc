@@ -134,11 +134,14 @@ export PATH
 # HACK source .func
 source-func() { emulate -L zsh; [ -f .func.sh ] && source .func.sh; }
 add-zsh-hook precmd source-func
+if [[ $commands[direnv] ]]; then
+    source <(direnv hook zsh)
+    direnv_prompt() {
+      [ -n "$DIRENV_DIFF" ] && psvar[12]="(${psvar[12]})"
+    }
+    add-zsh-hook precmd direnv_prompt
+fi
 
-direnv_prompt() {
-  [ -n "$DIRENV_DIFF" ] && psvar[12]="(${psvar[12]})"
-}
-add-zsh-hook precmd direnv_prompt
 zstyle :prompt:pure:path git-is-repo && basename "$PWD" || "$PWD"
 # $(basename $PWD)
 
@@ -153,8 +156,8 @@ zstyle :prompt:pure:path git-is-repo && basename "$PWD" || "$PWD"
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
 zle -N zle-line-pre-redraw
 
-zsh_hist() {
-    echo $1 | cli add --format=raw
-}
+# zsh_hist() {
+#     echo $1 | cli add --format=raw
+# }
 
 # add-zsh-hook zshaddhistory zsh_hist
