@@ -1,31 +1,3 @@
-local ok, mason_null_ls = pcall(require, 'mason-null-ls')
-if not ok then
-  error('mason_null_ls is not installed')
-  return
-end
-
-local servers = {
-  'ltrs',
-  'astyle',
-  'shellcheck',
-  'shfmt',
-  'cppcheck',
-  'black',
-  'rustfmt',
-  'ruff',
-  'prettierd',
-  'stylua',
-  'taplo',
-  'yamllint',
-  'hadolint',
-  'ansiblelint',
-  'cmake_format',
-}
-
-require('mason-null-ls').setup({
-  ensure_installed = servers,
-})
-
 local ok, null_ls = pcall(require, 'null-ls')
 if not ok then
   return
@@ -115,6 +87,7 @@ local null_ls_opts = {
   diagnostics.hadolint.with({ filetypes = { 'dockerfile' } }),
   diagnostics.ansiblelint.with({ filetypes = { 'yaml.ansible' } }),
   formatting.cmake_format.with({ filetypes = { 'cmake' } }),
+  formatting.shellharden.with({ filetypes = { 'sh' } }),
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
@@ -140,4 +113,35 @@ null_ls.setup({
       })
     end
   end,
+})
+
+local ok, mason_null_ls = pcall(require, 'mason-null-ls')
+if not ok then
+  error('mason_null_ls is not installed')
+  return
+end
+
+-- local servers = {
+--   'ansiblelint',
+--   'astyle',
+--   'black',
+--   'cmake_format',
+--   'cppcheck',
+--   'hadolint',
+--   'ltrs',
+--   'prettierd',
+--   'ruff',
+--   'rustfmt',
+--   'shellcheck',
+--   'shfmt',
+--   'stylua',
+--   'taplo',
+--   'yamllint',
+--   'shellharden',
+-- }
+
+require('mason-null-ls').setup({
+  ensure_installed = nil,
+  automatic_installation = true,
+  automatic_setup = false,
 })

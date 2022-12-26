@@ -8,10 +8,10 @@ end
 --   require('plenary.filetype').add_file('sh')
 -- end
 
+require('av.packer')
 require('av.set')
 require('av.autocmd')
 require('av.keymaps')
-require('av.packer')
 
 if os.getenv('NEOVIM_FULL') ~= nil then
   require('av.mason')

@@ -1,5 +1,5 @@
-local status, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
-if not status then
+local ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+if not ok then
   return
 end
 
@@ -88,21 +88,21 @@ M.on_attach = function(client, bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
-  -- if client.server_capabilities.document_highlight then
-  --   local status, illuminate = pcall(require, 'illuminate')
-  --   if not status then
-  --     return
-  --   end
-  --   illuminate.on_attach(client)
-  -- end
-
-  vim.g.navic_silence = true
-  local status, navic = pcall(require, 'nvim-navic')
-  if not status then
-    return
+  if client.server_capabilities.document_highlight then
+    local status, illuminate = pcall(require, 'illuminate')
+    if not status then
+      return
+    end
+    illuminate.on_attach(client)
   end
 
-  vim.cmd('setlocal omnifunc=v:lua.vim,lsp.omnifunc')
+  local ok, navic = pcall(require, 'nvim-navic')
+  if ok then
+    vim.g.navic_silence = true
+    navic.attach(client, bufnr)
+  end
+
+  vim.cmd('setlocal omnifunc=v:lua.vim.lsp.omnifunc')
 end
 
 M.lsp_flags = {

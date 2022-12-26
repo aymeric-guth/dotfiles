@@ -22,8 +22,13 @@ if ok then
 end
 
 require('av.lsp.handlers').setup()
-require('av.lsp.installer')
+local mason = require('mason')
+mason.setup({
+  -- The directory in which to install packages.
+  install_root_dir = vim.fn.stdpath('data') .. '/mason',
+  PATH = 'prepend',
+})
 
+require('av.lsp.installer')
 require('av.lsp.null-ls')
 require('av.lsp.symbols-outline')
--- require('av.lsp.rust-tools')

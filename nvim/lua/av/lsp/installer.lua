@@ -1,10 +1,3 @@
-local mason = require('mason')
-mason.setup({
-  -- The directory in which to install packages.
-  install_root_dir = vim.fn.stdpath('data') .. '/mason',
-  PATH = 'prepend',
-})
-
 local servers = {
   'clangd',
   'pyright',

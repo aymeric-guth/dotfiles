@@ -4,19 +4,17 @@ export MANWIDTH=999
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-if [ -z "$REPODIR" ]; then
-	hostname="$(uname -n)"
-	[ -f "$DOTFILES/env/.env-$hostname" ] && source "$DOTFILES/env/.env-$hostname"
-	[ -z "$PROJECTS_ROOT" ] && export PROJECTS_ROOT="$HOME"
+hostname="$(uname -n)"
+[ -f "$DOTFILES/env/.env-$hostname" ] && source "$DOTFILES/env/.env-$hostname"
+[ -z "$PROJECTS_ROOT" ] && export PROJECTS_ROOT="$HOME"
 
-	[ -d "$TOOLZ" ] && prepend-to-path "$TOOLZ/bin" && export MANPATH="$TOOLZ/share/man:$MANPATH"
-	prepend-to-path "$DOTFILES/bin"
-	# Setup fzf
-	if [ -n "$FZF" ]; then
-		prepend-to-path "$GITHUB_REPOS/fzf/bin"
-		[ -f "$GITHUB_REPOS/fzf/shell/completion.zsh" ] && source "$GITHUB_REPOS/fzf/shell/completion.zsh"
-		[ -f "$GITHUB_REPOS/fzf/shell/key-bindings.zsh" ] && source "$GITHUB_REPOS/fzf/shell/key-bindings.zsh"
-	fi
+[ -d "$TOOLZ" ] && prepend-to-path "$TOOLZ/bin" && export MANPATH="$TOOLZ/share/man:$MANPATH"
+prepend-to-path "$DOTFILES/bin"
+# Setup fzf
+if [ -n "$FZF" ]; then
+	prepend-to-path "$GITHUB_REPOS/fzf/bin"
+	[ -f "$GITHUB_REPOS/fzf/shell/completion.zsh" ] && source "$GITHUB_REPOS/fzf/shell/completion.zsh"
+	[ -f "$GITHUB_REPOS/fzf/shell/key-bindings.zsh" ] && source "$GITHUB_REPOS/fzf/shell/key-bindings.zsh"
 fi
 
 export EDITOR=editor && export VISUAL="$EDITOR" && export MANPAGER="$EDITOR -c 'Man!' -o -"
