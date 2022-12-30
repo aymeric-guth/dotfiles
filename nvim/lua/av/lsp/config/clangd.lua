@@ -5,6 +5,9 @@ M.settings = {
     cmd = {
       'clangd',
       '--background-index',
+      '--compile-commands-dir='
+        .. require('os').getenv('WORKSPACE')
+        .. '/build/compile_commands.json',
       '--pch-storage=memory',
       '--suggest-missing-includes',
       '--clang-tidy',

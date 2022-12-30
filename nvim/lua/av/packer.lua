@@ -138,6 +138,7 @@ require('packer').startup({
         show_trailing_blankline_indent = true,
       },
     })
+    use({ 'sbdchd/vim-shebang' })
 
     -- [[
     --  Packer Setup

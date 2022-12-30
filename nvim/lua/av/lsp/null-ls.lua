@@ -10,6 +10,8 @@ local code_actions = null_ls.builtins.code_actions
 -- handlers.capabilities.textDocument.formatting = true
 -- handlers.capabilities.offsetEncoding = { 'utf-16' }
 
+-- handlers.capabilities.textDocument.formatting = vim.lsp.util.make_formatting_params()
+
 local null_ls_opts = {
   code_actions.ltrs.with({
     filetypes = { 'text', 'markdown' },
@@ -35,12 +37,14 @@ local null_ls_opts = {
   diagnostics.cppcheck.with({
     filetypes = { 'c', 'cpp' },
     extra_args = {
-      '--enable=all',
-      -- '--cppcheck-build-dir=$ROOT',
-      '--suppress=missingIncludeSystem',
+      -- '--enable=all',
+      '--cppcheck-build-dir='
+        .. require('os').getenv('WORKSPACE')
+        .. '/build',
+      -- '--suppress=missingIncludeSystem,unusedFunction',
       '--std=c11',
       '--platform=unix64',
-      -- '--project=' .. require('os').getenv('WORKSPACE') .. '/build/compile_commands.json',
+      '--project=' .. require('os').getenv('WORKSPACE') .. '/build/compile_commands.json',
       -- '--addon=' .. require('os').getenv('DOTFILES') .. '/cppcheck/addons.json',
     },
   }),
@@ -87,7 +91,7 @@ local null_ls_opts = {
   diagnostics.hadolint.with({ filetypes = { 'dockerfile' } }),
   diagnostics.ansiblelint.with({ filetypes = { 'yaml.ansible' } }),
   formatting.cmake_format.with({ filetypes = { 'cmake' } }),
-  formatting.shellharden.with({ filetypes = { 'sh' } }),
+  -- formatting.shellharden.with({ filetypes = { 'sh' } }),
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})

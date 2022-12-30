@@ -3,7 +3,8 @@
 # zmodload zsh/zprof
 # hack to avoid OSX related PATH duplication
 [ -f /etc/zprofile ] && export PATH= && export MANPATH= && . "/etc/zprofile"
-
+# hack to set PATH for non - interractive shell
+[ -f /etc/zshenv ] && . "/etc/zshenv"
 
 export ZDOTDIR="$DOTFILES/zsh"
 export ZDATA="$HOME/.local/share/zsh" && [ ! -d "$ZDATA" ] && mkdir -p "$ZDATA"
@@ -24,8 +25,8 @@ export ZCACHE="$HOME/.cache/zsh" && [ ! -d "$ZCACHE" ] && mkdir -p "$ZCACHE"
 # zrecompile -pq "$ZDOTDIR/.completions.zwc" $ZDOTDIR/completions/*
 
 export HISTFILE="$ZDATA/.zsh_history"
-export HISTSIZE=9223372036854775807 #1000000
-export SAVEHIST=9223372036854775807 #1000000
+export HISTSIZE=1000000
+export SAVEHIST=1000000
 
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
@@ -70,6 +71,7 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 autoload -U edit-command-line
 autoload -Uz colors && colors
+autoload -Uz add-zsh-hook
 
 source "$ZDOTDIR/zshenv"
 
@@ -142,7 +144,7 @@ if [[ $commands[direnv] ]]; then
     add-zsh-hook precmd direnv_prompt
 fi
 
-zstyle :prompt:pure:path git-is-repo && basename "$PWD" || "$PWD"
+# zstyle :prompt:pure:path git-is-repo && basename "$PWD" || "$PWD"
 # $(basename $PWD)
 
 # if [ -n "$FRE" ]; then
@@ -159,5 +161,5 @@ zle -N zle-line-pre-redraw
 # zsh_hist() {
 #     echo $1 | cli add --format=raw
 # }
-
+# 
 # add-zsh-hook zshaddhistory zsh_hist

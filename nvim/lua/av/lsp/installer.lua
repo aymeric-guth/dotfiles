@@ -15,6 +15,7 @@ mason_lspconfig.setup({
 
 local handlers = require('av.lsp.handlers')
 
+-- handlers.capabilities.textDocument.formatting = nil
 mason_lspconfig.setup_handlers({
   function(server_name)
     local server = require('av.lsp.config.' .. server_name)

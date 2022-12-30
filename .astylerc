@@ -22,9 +22,9 @@ attach-closing-while
 indent-after-parens
 indent-continuation=1
 indent-labels
-indent-preproc-block
-indent-preproc-cond
-indent-preproc-define
+# indent-preproc-block
+# indent-preproc-cond
+# indent-preproc-define
 indent-col1-comments
 min-conditional-indent=2
 max-continuation-indent=40

@@ -89,11 +89,10 @@ M.on_attach = function(client, bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
   if client.server_capabilities.document_highlight then
-    local status, illuminate = pcall(require, 'illuminate')
-    if not status then
-      return
+    local ok, illuminate = pcall(require, 'illuminate')
+    if ok then
+      illuminate.on_attach(client)
     end
-    illuminate.on_attach(client)
   end
 
   local ok, navic = pcall(require, 'nvim-navic')
