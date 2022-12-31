@@ -9,12 +9,19 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 -- Automatically source and re-compile packer whenever you save this init.lua
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
-  group = packer_group,
-  pattern = vim.fn.expand('$MYVIMRC'),
-})
+-- local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+-- vim.api.nvim_create_autocmd('BufWritePost', {
+--   command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
+--   group = packer_group,
+--   pattern = vim.fn.expand('$MYVIMRC'),
+-- })
+
+vim.cmd([[
+    augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost packer.lua source <afile> | PackerCompile
+    augroup end
+]])
 
 require('packer').startup({
   function(use)
@@ -76,24 +83,22 @@ require('packer').startup({
       --   requires = 'hrsh7th/nvim-cmp',
       --   branch = 'main',
       -- })
-      use({ 'github/copilot.vim' })
+      use({ 'zbirenbaum/copilot.lua' })
+      use({ 'zbirenbaum/copilot-cmp' })
+
       use({ 'L3MON4D3/LuaSnip', branch = 'master' })
       use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })
       use({ 'folke/trouble.nvim' })
       use({ 'SmiteshP/nvim-navic' })
+      use({ 'RRethy/vim-illuminate' })
       use({
-        'RRethy/vim-illuminate',
-        config = function()
-          require('illuminate').configure({
-            providers = {
-              'lsp',
-              'treesitter',
-              'regex',
-            },
-          })
-        end,
+        'jackMort/ChatGPT.nvim',
+        requires = {
+          'MunifTanjim/nui.nvim',
+          'nvim-lua/plenary.nvim',
+          'nvim-telescope/telescope.nvim',
+        },
       })
-
       --[[
     -- DAP
     --]]

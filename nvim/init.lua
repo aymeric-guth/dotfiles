@@ -21,6 +21,7 @@ if os.getenv('NEOVIM_FULL') ~= nil then
     require('av.dap')
   end
   -- require('fidget').setup()
+  require('av.chatGPT')
 end
 
 require('av.telescope')

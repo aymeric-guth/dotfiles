@@ -78,10 +78,10 @@ cmp.setup({
   },
 
   sources = cmp.config.sources({
-    { name = 'cmp_tabnine' },
+    -- { name = 'cmp_tabnine' },
+    { name = 'copilot', group_index = 2 },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
-    { name = 'copilot' },
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },

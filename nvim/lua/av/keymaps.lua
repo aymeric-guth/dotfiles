@@ -203,3 +203,5 @@ vim.keymap.set('n', '<leader>cc', '<leader>c_', { remap = true })
 vim.keymap.set('x', '<leader>c', require('osc52').copy_visual)
 vim.keymap.set('n', '<leader>c', '"+y')
 vim.keymap.set('n', '<leader>cc', '"+yy')
+
+vim.keymap.set('n', '<leader>gpt', ':ChatGPT<CR>')

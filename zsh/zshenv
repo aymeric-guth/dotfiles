@@ -12,9 +12,9 @@ hostname="$(uname -n)"
 prepend-to-path "$DOTFILES/bin"
 # Setup fzf
 if [ -n "$FZF" ]; then
-	prepend-to-path "$GITHUB_REPOS/fzf/bin"
-	[ -f "$GITHUB_REPOS/fzf/shell/completion.zsh" ] && source "$GITHUB_REPOS/fzf/shell/completion.zsh"
-	[ -f "$GITHUB_REPOS/fzf/shell/key-bindings.zsh" ] && source "$GITHUB_REPOS/fzf/shell/key-bindings.zsh"
+	prepend-to-path "$REPODIR/fzf/bin"
+	[ -f "$REPODIR/fzf/shell/completion.zsh" ] && source "$REPODIR/fzf/shell/completion.zsh"
+	[ -f "$REPODIR/fzf/shell/key-bindings.zsh" ] && source "$REPODIR/fzf/shell/key-bindings.zsh"
 fi
 
 export EDITOR=editor && export VISUAL="$EDITOR" && export MANPAGER="$EDITOR -c 'Man!' -o -"
@@ -25,5 +25,5 @@ export GIT_CONFIG_GLOBAL="$DOTFILES/.gitconfig"
 
 [ -n "$GOWORK" ] && export WORK_PROJECTS="$WORK_PROJECTS" || export WORK_PROJECTS=
 [ -n "$GOLEARN" ] && export LEARNING_PROJECTS="$LEARNING_PROJECTS" || export LEARNING_PROJECTS=
-[ -n "$GOGIT" ] && export GIT_PROJECTS="$GITHUB_REPOS" || export GIT_PROJECTS=
+[ -n "$GOGIT" ] && export GIT_PROJECTS="$REPODIR" || export GIT_PROJECTS=
 export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS $LEARNING_PROJECTS $GIT_PROJECTS"
