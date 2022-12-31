@@ -8,6 +8,14 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd([[packadd packer.nvim]])
 end
 
+-- Automatically source and re-compile packer whenever you save this init.lua
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
+  group = packer_group,
+  pattern = vim.fn.expand('$MYVIMRC'),
+})
+
 require('packer').startup({
   function(use)
     -- Packer
@@ -62,12 +70,13 @@ require('packer').startup({
       use({ 'hrsh7th/cmp-cmdline', branch = 'main' })
       use({ 'hrsh7th/nvim-cmp', branch = 'main' })
       -- patched installer to force tabnine config in .local
-      use({
-        'tzachar/cmp-tabnine',
-        run = '$DOTFILES/patches/tabnine/install.sh',
-        requires = 'hrsh7th/nvim-cmp',
-        branch = 'main',
-      })
+      -- use({
+      --   'tzachar/cmp-tabnine',
+      --   run = '$DOTFILES/patches/tabnine/install.sh',
+      --   requires = 'hrsh7th/nvim-cmp',
+      --   branch = 'main',
+      -- })
+      use({ 'github/copilot.vim' })
       use({ 'L3MON4D3/LuaSnip', branch = 'master' })
       use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })
       use({ 'folke/trouble.nvim' })
@@ -93,6 +102,7 @@ require('packer').startup({
 
     -- Autopairs
     use('windwp/nvim-autopairs')
+    use({ 'tpope/vim-commentary' })
 
     -- TreeSitter + deps
     use({
@@ -153,14 +163,6 @@ require('packer').startup({
       augroup end
     ]])
     end
-
-    -- Automatically source and re-compile packer whenever you save this init.lua
-    local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-    vim.api.nvim_create_autocmd('BufWritePost', {
-      command = 'source <afile> | PackerCompile',
-      group = packer_group,
-      pattern = vim.fn.expand('$MYVIMRC'),
-    })
   end,
   config = {
     snapshot_path = vim.fn.stdpath('cache') .. '/packer.nvim', -- Default save directory for snapshots,
