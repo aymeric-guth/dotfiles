@@ -1,3 +1,0 @@
-#!/bin/sh
-
-[ -f "$CCLS_PATH" ] && eval "$CCLS_PATH" || return 1

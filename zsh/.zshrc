@@ -158,8 +158,8 @@ fi
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
 zle -N zle-line-pre-redraw
 
-# zsh_hist() {
-#     echo $1 | cli add --format=raw
-# }
-# 
-# add-zsh-hook zshaddhistory zsh_hist
+zsh_hist() {
+    echo $1 | zshist add --format raw --database ~/db.sqlite
+}
+
+add-zsh-hook zshaddhistory zsh_hist

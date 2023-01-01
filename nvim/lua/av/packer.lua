@@ -76,13 +76,6 @@ require('packer').startup({
       use({ 'hrsh7th/cmp-path', branch = 'main' })
       use({ 'hrsh7th/cmp-cmdline', branch = 'main' })
       use({ 'hrsh7th/nvim-cmp', branch = 'main' })
-      -- patched installer to force tabnine config in .local
-      -- use({
-      --   'tzachar/cmp-tabnine',
-      --   run = '$DOTFILES/patches/tabnine/install.sh',
-      --   requires = 'hrsh7th/nvim-cmp',
-      --   branch = 'main',
-      -- })
       use({ 'zbirenbaum/copilot.lua' })
       use({ 'zbirenbaum/copilot-cmp' })
 
@@ -99,10 +92,10 @@ require('packer').startup({
           'nvim-telescope/telescope.nvim',
         },
       })
-      --[[
-    -- DAP
-    --]]
       use({ 'onsails/lspkind.nvim' })
+      --[[
+      -- DAP
+      --]]
     end
 
     -- Autopairs
@@ -127,7 +120,7 @@ require('packer').startup({
       end,
     })
     use({ 'ellisonleao/glow.nvim' })
-    use({ 'tpope/vim-fugitive' })
+    -- use({ 'tpope/vim-fugitive' })
 
     --[[
     -- UI
