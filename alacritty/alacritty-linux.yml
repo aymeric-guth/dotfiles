@@ -1,5 +1,6 @@
 env:
   TERM: xterm-256color
+  # LD_PRELOAD: /home/yul/dev/personal/ldhack/usr/lib/libldlib.so
 
 window:
   # dimensions:

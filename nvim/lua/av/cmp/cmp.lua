@@ -85,14 +85,11 @@ cmp.setup({
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
-    -- { name = 'emoji' },
   }),
 
   sorting = {
     priority_weight = 2,
     comparators = {
-      -- require("copilot_cmp.comparators").prioritize,
-      -- require("copilot_cmp.comparators").score,
       compare.offset,
       compare.exact,
       -- compare.scopes,
@@ -103,8 +100,8 @@ cmp.setup({
       compare.sort_text,
       compare.length,
       compare.order,
-      -- require("copilot_cmp.comparators").prioritize,
-      -- require("copilot_cmp.comparators").score,
+      require('copilot_cmp.comparators').prioritize,
+      require('copilot_cmp.comparators').score,
     },
   },
 })

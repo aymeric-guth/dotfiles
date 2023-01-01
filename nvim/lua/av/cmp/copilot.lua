@@ -12,6 +12,7 @@ local ok, copilot = pcall(require, 'copilot')
 if not ok then
   return
 end
+
 local ok, copilot_cmp = pcall(require, 'copilot_cmp')
 if not ok then
   return

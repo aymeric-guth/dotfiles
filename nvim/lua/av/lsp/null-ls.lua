@@ -34,20 +34,20 @@ local null_ls_opts = {
     filetypes = { 'sh' },
   }),
 
-  diagnostics.cppcheck.with({
-    filetypes = { 'c', 'cpp' },
-    extra_args = {
-      -- '--enable=all',
-      '--cppcheck-build-dir='
-        .. require('os').getenv('WORKSPACE')
-        .. '/build',
-      -- '--suppress=missingIncludeSystem,unusedFunction',
-      '--std=c11',
-      '--platform=unix64',
-      '--project=' .. require('os').getenv('WORKSPACE') .. '/build/compile_commands.json',
-      -- '--addon=' .. require('os').getenv('DOTFILES') .. '/cppcheck/addons.json',
-    },
-  }),
+  -- diagnostics.cppcheck.with({
+  --   filetypes = { 'c', 'cpp' },
+  --   extra_args = {
+  --     -- '--enable=all',
+  --     '--cppcheck-build-dir='
+  --       .. require('os').getenv('WORKSPACE')
+  --       .. '/build',
+  --     -- '--suppress=missingIncludeSystem,unusedFunction',
+  --     '--std=c11',
+  --     '--platform=unix64',
+  --     '--project=' .. require('os').getenv('WORKSPACE') .. '/build/compile_commands.json',
+  --     -- '--addon=' .. require('os').getenv('DOTFILES') .. '/cppcheck/addons.json',
+  --   },
+  -- }),
 
   formatting.black.with({
     filetypes = { 'python' },

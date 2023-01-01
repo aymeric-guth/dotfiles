@@ -3,6 +3,7 @@ local opts = { noremap = true, silent = true }
 local nnoremap = function(lhs, rhs)
   return vim.api.nvim_set_keymap('n', lhs, rhs, opts)
 end
+
 local vnoremap = function(lhs, rhs)
   return vim.api.nvim_set_keymap('v', lhs, rhs, { noremap = true, silent = true })
 end
