@@ -8,6 +8,7 @@ M.settings = {
       '--compile-commands-dir='
         .. require('os').getenv('WORKSPACE')
         .. '/build/compile_commands.json',
+      '--header-insertion-decorators',
       '--pch-storage=memory',
       '--suggest-missing-includes',
       '--clang-tidy',

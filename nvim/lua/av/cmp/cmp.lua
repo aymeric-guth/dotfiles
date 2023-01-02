@@ -62,7 +62,29 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({
+      -- this is the important line
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    }),
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
   }),
 
   formatting = {
@@ -80,16 +102,21 @@ cmp.setup({
   sources = cmp.config.sources({
     -- { name = 'cmp_tabnine' },
     { name = 'copilot', group_index = 2 },
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'path' },
+    { name = 'nvim_lsp', group_index = 2 },
+    { name = 'treesitter', group_index = 2 },
+    { name = 'nvim_lsp_document_symbol', group_index = 2 },
+    { name = 'nvim_lsp_signature_help', group_index = 2 },
+    { name = 'nvim_lua', group_index = 2 },
+    { name = 'luasnip', group_index = 3 },
+    { name = 'buffer', group_index = 4 },
+    { name = 'path', group_index = 4 },
   }),
 
   sorting = {
     priority_weight = 2,
     comparators = {
+      require('copilot_cmp.comparators').prioritize,
+      require('copilot_cmp.comparators').score,
       compare.offset,
       compare.exact,
       -- compare.scopes,
@@ -100,8 +127,6 @@ cmp.setup({
       compare.sort_text,
       compare.length,
       compare.order,
-      require('copilot_cmp.comparators').prioritize,
-      require('copilot_cmp.comparators').score,
     },
   },
 })

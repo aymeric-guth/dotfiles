@@ -40,6 +40,7 @@ treesitter.setup({
   text_object = { enable = true },
   indent = {
     enable = true,
+    disable = { 'python' },
   },
 
   textobjects = {

@@ -5,7 +5,7 @@ if not status then
 end
 
 local function copy(lines, _)
-  require('osc52').copy(table.concat(lines, '\n'))
+  osc52.copy(table.concat(lines, '\n'))
 end
 
 local function paste()
@@ -19,6 +19,6 @@ vim.g.clipboard = {
 }
 
 -- Now the '+' register will copy to system clipboard using OSC52
-vim.keymap.set('n', '<leader>y', require('osc52').copy_operator, { expr = true })
+vim.keymap.set('n', '<leader>y', osc52.copy_operator, { expr = true })
 vim.keymap.set('n', '<leader>yy', '<leader>y_', { remap = true })
-vim.keymap.set('x', '<leader>y', require('osc52').copy_visual)
+vim.keymap.set('x', '<leader>y', osc52.copy_visual)

@@ -18,6 +18,16 @@ if not ok then
   return
 end
 
+copilot_cmp.setup({
+  -- method = 'getCompletionsCycling',
+  method = 'getPanelCompletions',
+  formatters = {
+    label = require('copilot_cmp.format').format_label_text,
+    insert_text = require('copilot_cmp.format').format_insert_text,
+    preview = require('copilot_cmp.format').deindent,
+  },
+})
+
 copilot.setup({
   panel = {
     enabled = false,
@@ -37,8 +47,4 @@ copilot.setup({
     cvs = false,
     ['.'] = false,
   },
-})
-
-copilot_cmp.setup({
-  method = 'getCompletionsCycling',
 })

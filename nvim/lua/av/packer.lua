@@ -78,6 +78,9 @@ require('packer').startup({
       use({ 'hrsh7th/nvim-cmp', branch = 'main' })
       use({ 'zbirenbaum/copilot.lua' })
       use({ 'zbirenbaum/copilot-cmp' })
+      use({ 'hrsh7th/cmp-nvim-lsp-document-symbol' })
+      use({ 'hrsh7th/cmp-nvim-lsp-signature-help' })
+      use({ 'ray-x/cmp-treesitter' })
 
       use({ 'L3MON4D3/LuaSnip', branch = 'master' })
       use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })

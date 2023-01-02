@@ -56,11 +56,6 @@ nnoremap('<leader>e', ':NvimTreeToggle<CR>')
 nnoremap('<leader>so', ':SymbolsOutline<CR>')
 nnoremap('<leader>u', ':UndotreeToggle<CR>')
 
-nnoremap('<leader>y', '"+yy')
-vnoremap('<leader>y', '"+yy')
-nnoremap('<leader>p', '"+p')
-nnoremap('<leader>P', '"+P')
-
 -- Naviagate buffers
 nnoremap('<S-l>', ':bnext<CR>')
 nnoremap('<S-h>', ':bprevious<CR>')
@@ -72,7 +67,7 @@ local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>ff', function()
   builtin.find_files(require('telescope.themes').get_dropdown({ previewer = false }))
-end, { desc = '[f]ind [f]files' })
+end, { desc = '[f]ind [f]iles' })
 
 vim.keymap.set('n', '<leader>fF', function()
   builtin.find_files({
@@ -83,28 +78,27 @@ vim.keymap.set('n', '<leader>fF', function()
   })
 end, { desc = '[f]ind [F]files no ignore' })
 
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[f]ind [g]rep' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[f]ind live [g]rep' })
 vim.keymap.set('n', '<leader>fG', function()
   builtin.live_grep({
     additional_args = function(opts)
       return { '--no-ignore' }
     end,
   })
-end, { desc = '[f]ind [G]rep no ignore' })
+end, { desc = '[f]ind live [G]rep no ignore' })
 
 vim.keymap.set('n', '<leader>fB', builtin.buffers, { desc = '[f]ind [B]uffers' })
 vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, { desc = '[f]ind [b]uffer' })
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[f]ind [k]eymaps' })
 vim.keymap.set('n', '<leader>fs', builtin.grep_string, { desc = '[f]ind [s]tring' })
 -- Help
--- vim.keymap
-nnoremap('<leader>fm', ':Telescope man_pages<CR>')
-nnoremap('<leader>fh', ':Telescope help_tags<CR>')
-nnoremap('<leader>fc', ':Telescope commands<CR>')
-nnoremap('<leader>fo', ':Telescope vim_options<CR>')
-nnoremap('<leader>fr', ':Telescope registers<CR>')
-nnoremap('<leader>fa', ':Telescope autocommands<CR>')
-nnoremap('<leader>ft', ':Telescope treesitter<CR>')
+vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = '[f]ind [m]an pages' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[f]ind [h]help tags' })
+vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = '[f]ind [c]ommands' })
+vim.keymap.set('n', '<leader>fo', builtin.vim_options, { desc = '[f]ind vim [o]ptions' })
+vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = '[f]ind [r]egisters' })
+vim.keymap.set('n', '<leader>f', builtin.autocommands, { desc = '[f]ind [a]utocommands' })
+vim.keymap.set('n', '<leader>f', builtin.treesitter, { desc = '[f]ind [t]reesitter' })
 
 vim.keymap.set('n', '<leader>fld', builtin.lsp_document_symbols)
 vim.keymap.set('n', '<leader>flw', builtin.lsp_workspace_symbols)
@@ -175,7 +169,6 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 -- keeps cursor in place when deleting newline
 vim.keymap.set('n', 'J', 'mzJ`z')
-
 -- keeps cursor centered when jumping <C-d> <C-u>
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
@@ -189,4 +182,12 @@ vim.keymap.set('n', '<leader>bx', function()
   vim.cmd([[%!xxd]])
 end)
 
-vim.keymap.set('n', '<leader>gpt', ':ChatGPT<CR>')
+vim.keymap.set('n', '<leader>gpt', ':ChatGPT<CR>', { desc = '[g][p][t] prompt' })
+
+-- function copy(sel)
+--   return function(lines, _)
+--     local data = vim.fn.system([[base64 | tr -d '\n']], lines)
+--     io.stdout:write('\027]52;' .. sel .. ';' .. data .. '\a')
+--   end
+-- end
+-- vim.g.clipboard = { name = 'OSC-52', copy = { ['*'] = copy('s'), ['+'] = copy('c') } }
