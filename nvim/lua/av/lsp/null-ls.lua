@@ -92,6 +92,8 @@ local null_ls_opts = {
   diagnostics.ansiblelint.with({ filetypes = { 'yaml.ansible' } }),
   formatting.cmake_format.with({ filetypes = { 'cmake' } }),
   -- formatting.shellharden.with({ filetypes = { 'sh' } }),
+  diagnostics.golangci_lint.with({ filetypes = { 'go' } }),
+  formatting.gofmt.with({ filetypes = { 'go' } }),
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})

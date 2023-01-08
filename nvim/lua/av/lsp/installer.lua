@@ -6,6 +6,8 @@ local servers = {
   'bashls',
   'dockerls',
   'ansiblels',
+  'gopls',
+  -- 'golangci_lint_ls',
 }
 
 local mason_lspconfig = require('mason-lspconfig')

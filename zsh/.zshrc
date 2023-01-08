@@ -163,3 +163,17 @@ zsh_hist() {
 }
 
 add-zsh-hook zshaddhistory zsh_hist
+
+function preexec() {
+  timer=$(($(gdate +%s%0N)/1000000))
+}
+
+function precmd() {
+  if [ $timer ]; then
+    now=$(($(gdate +%s%0N)/1000000))
+    elapsed=$(($now-$timer))
+
+    export RPROMPT="%F{cyan}${elapsed}ms %{$reset_color%}"
+    unset timer
+  fi
+}

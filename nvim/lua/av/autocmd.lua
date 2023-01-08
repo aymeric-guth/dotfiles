@@ -1,6 +1,7 @@
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank({ timeout = 200 })
@@ -8,6 +9,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+vim.cmd([[
+  augroup ColorizeBuffer
+  autocmd!
+  au BufRead,BufNewFile * ColorizerAttachToBuffer
+  augroup END
+]])
 
 vim.cmd([[
   augroup roslaunch_ext

@@ -134,12 +134,9 @@ require('packer').startup({
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     })
-    -- use({
-    --   'norcalli/nvim-colorizer.lua',
-    --   config = function()
-    --     require('norcalli/nvim-colorizer.lua').setup()
-    --   end,
-    -- })
+    use({
+      'norcalli/nvim-colorizer.lua',
+    })
     use({ 'ojroques/nvim-osc52' })
     use({
       'lukas-reineke/indent-blankline.nvim',
