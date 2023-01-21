@@ -80,3 +80,4 @@ vim.opt.listchars:append('space:⋅')
 vim.opt.listchars:append('eol:↴')
 
 vim.lsp.set_log_level('warn')
+vim.g.slime_target = 'tmux'

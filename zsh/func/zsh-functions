@@ -98,3 +98,8 @@ hex() {
 my-zsh-prof() {
   for i in $(seq 1 10); do /usr/bin/time $(which zsh) -i -c exit; done;
 }
+
+swap() {
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
+}

@@ -54,7 +54,7 @@ alias fdi="fd --no-ignore-vcs --no-ignore-parent --hidden"
 alias rgi="rg --no-ignore-vcs --no-ignore-parent --hidden"
 
 alias glow='glow --config $DOTFILES/glow.yml'
-alias g='glow --config $DOTFILES/glow.yml'
+# alias g='glow --config $DOTFILES/glow.yml'
 
 jw() {
   [ -d "$WORKSPACE" ] && cd "$WORKSPACE" || return 1

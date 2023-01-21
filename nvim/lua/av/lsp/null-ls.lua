@@ -94,6 +94,8 @@ local null_ls_opts = {
   -- formatting.shellharden.with({ filetypes = { 'sh' } }),
   diagnostics.golangci_lint.with({ filetypes = { 'go' } }),
   formatting.gofmt.with({ filetypes = { 'go' } }),
+  formatting.goimports.with({ filetypes = { 'go' } }),
+  formatting.goimports_reviser.with({ filetypes = { 'go' } }),
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
@@ -126,25 +128,6 @@ if not ok then
   error('mason_null_ls is not installed')
   return
 end
-
--- local servers = {
---   'ansiblelint',
---   'astyle',
---   'black',
---   'cmake_format',
---   'cppcheck',
---   'hadolint',
---   'ltrs',
---   'prettierd',
---   'ruff',
---   'rustfmt',
---   'shellcheck',
---   'shfmt',
---   'stylua',
---   'taplo',
---   'yamllint',
---   'shellharden',
--- }
 
 require('mason-null-ls').setup({
   ensure_installed = nil,

@@ -158,22 +158,24 @@ fi
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
 zle -N zle-line-pre-redraw
 
-zsh_hist() {
-    echo $1 | zshist add --format raw --database ~/db.sqlite
-}
+if [ -n "$ZSH_HIST" ]; then
+    zsh_hist() {
+        echo $1 | zshist add --format raw --database ~/db.sqlite
+    }
+    
+    add-zsh-hook zshaddhistory zsh_hist
+fi
 
-add-zsh-hook zshaddhistory zsh_hist
-
-function preexec() {
-  timer=$(($(gdate +%s%0N)/1000000))
-}
-
-function precmd() {
-  if [ $timer ]; then
-    now=$(($(gdate +%s%0N)/1000000))
-    elapsed=$(($now-$timer))
-
-    export RPROMPT="%F{cyan}${elapsed}ms %{$reset_color%}"
-    unset timer
-  fi
-}
+# function preexec() {
+#   timer=$(($(gdate +%s%0N)/1000000))
+# }
+# 
+# function precmd() {
+#   if [ $timer ]; then
+#     now=$(($(gdate +%s%0N)/1000000))
+#     elapsed=$(($now-$timer))
+# 
+#     export RPROMPT="%F{cyan}${elapsed}ms %{$reset_color%}"
+#     unset timer
+#   fi
+# }

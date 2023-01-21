@@ -124,6 +124,7 @@ require('packer').startup({
     })
     use({ 'ellisonleao/glow.nvim' })
     -- use({ 'tpope/vim-fugitive' })
+    use({ 'jpalardy/vim-slime' })
 
     --[[
     -- UI
