@@ -1,13 +1,15 @@
 local servers = {
   'clangd',
   'pyright',
-  'sumneko_lua',
+  'lua_ls',
   'taplo',
   'bashls',
   'dockerls',
   'ansiblels',
   'gopls',
+  -- 'solidity',
   -- 'golangci_lint_ls',
+  'marksman',
 }
 
 local mason_lspconfig = require('mason-lspconfig')

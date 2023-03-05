@@ -74,19 +74,18 @@ autoload -Uz colors && colors
 autoload -Uz add-zsh-hook
 
 source "$ZDOTDIR/zshenv"
+export COMPOSE_CMD="docker compose"
 
 case "$(uname -s)" in
     Darwin)
         # export CLICOLOR=1
         source "$ZDOTDIR/func/zsh-functions-macos"
         source "$ZDOTDIR/aliases-macos"
-        export COMPOSE_CMD="docker compose"
         ;;
 
     Linux)
         source "$ZDOTDIR/func/zsh-functions-linux"
         source "$ZDOTDIR/aliases-linux"
-        export COMPOSE_CMD="docker-compose"
         ;;
 
     *)

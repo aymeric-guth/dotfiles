@@ -17,13 +17,13 @@ local null_ls_opts = {
     filetypes = { 'text', 'markdown' },
   }),
 
-  formatting.astyle.with({
-    filetypes = { 'c', 'cpp', 'cxx' },
-    extra_args = {
-      '--options=' .. require('os').getenv('DOTFILES') .. '/.astylerc',
-      -- '--project=none',
-    },
-  }),
+  -- formatting.astyle.with({
+  --   filetypes = { 'c', 'cpp', 'cxx' },
+  --   extra_args = {
+  --     '--options=' .. require('os').getenv('DOTFILES') .. '/.astylerc',
+  --     -- '--project=none',
+  --   },
+  -- }),
 
   code_actions.shellcheck.with({
     filetypes = { 'sh' },
