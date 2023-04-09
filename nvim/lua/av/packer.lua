@@ -123,7 +123,7 @@ require('packer').startup({
       end,
     })
     use({ 'ellisonleao/glow.nvim' })
-    -- use({ 'tpope/vim-fugitive' })
+    use({ 'tpope/vim-fugitive' })
     use({ 'jpalardy/vim-slime' })
 
     --[[

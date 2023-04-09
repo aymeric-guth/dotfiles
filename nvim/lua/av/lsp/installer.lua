@@ -6,7 +6,7 @@ local servers = {
   'bashls',
   'dockerls',
   'ansiblels',
-  'gopls',
+  -- 'gopls',
   -- 'solidity',
   -- 'golangci_lint_ls',
   'marksman',
