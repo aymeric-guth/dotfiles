@@ -10,6 +10,8 @@ hostname="$(uname -n)"
 
 [ -d "$TOOLZ" ] && prepend-to-path "$TOOLZ/bin" && export MANPATH="$TOOLZ/share/man:$MANPATH"
 prepend-to-path "$DOTFILES/bin"
+prepend-to-path "$$HOME/.local/bin"
+
 # Setup fzf
 if [ -n "$FZF" ]; then
 	prepend-to-path "$REPODIR/fzf/bin"
