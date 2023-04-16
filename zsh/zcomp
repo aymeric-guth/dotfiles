@@ -2,13 +2,11 @@
 
 # Completions
 
-[[ $commands[minikube] ]] && source <(minikube completion zsh) && eval $(minikube docker-env)
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 [[ $commands[k3s] ]] && source <(k3s completion zsh)
-[[ $commands[k3d] ]] && source <(k3d completion zsh)
 [[ $commands[rustup] ]] && eval $(rustup completions zsh)
 [ -f "$ZDOTDIR/completions/_croc" ] && PROG=croc _CLI_ZSH_AUTOCOMPLETE_HACK=1 source "$ZDOTDIR/completions/_croc"
-
+[[ $commands[aws] ]] && source "$DOTFILES"/zsh/completions/aws-completion.sh
 # ALL ansible
 # if command -v ansible 1> /dev/null; then
 #     eval $(register-python-argcomplete ansible)

@@ -13,41 +13,38 @@ windows:
     start_directory: .
     panes:
       - shell_command:
-          - editor .
+          - $EDITOR .
 
   - window_name: neovim
     start_directory: .
     layout: even-horizontal
     panes:
       - shell_command:
-          - editor ./nvim/.
+          - $EDITOR ./nvim/.
 
   - window_name: shell
     start_directory: .
     layout: even-horizontal
     panes:
       - shell_command:
-          - cd ./zsh && editor .
+          - cd ./zsh && $EDITOR .
         focus: true
       - shell_command:
-          - cd ./bin && editor .
+          - cd ./bin && $EDITOR .
 
   - window_name: tmux
     start_directory: .
     layout: even-horizontal
     panes:
       - shell_command:
-          - cd ./tmux && editor tmux.conf
+          - cd ./tmux && $EDITOR tmux.conf
         focus: true
       - shell_command:
-          - cd $TMUXP_CONFIGDIR/templates && editor $TMUX_TEMPLATE
+          - cd $TMUXP_CONFIGDIR/templates && $EDITOR $TMUX_TEMPLATE
 
   - window_name: alacritty
     start_directory: ./alacritty
     layout: even-horizontal
     panes:
       - shell_command:
-          - editor .
-        focus: true
-      - shell_command:
-          - editor ../kitty/kitty.conf
+          - $EDITOR .

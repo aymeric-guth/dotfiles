@@ -157,8 +157,11 @@ fi
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
 zle -N zle-line-pre-redraw
 
+ZSH_HIST=1
+
 # if [ -n "$ZSH_HIST" ]; then
 #     zsh_hist() {
+#         env && echo $PWD
 #         echo $1 | zshist add --format raw --database ~/db.sqlite
 #     }
     
@@ -179,3 +182,5 @@ zle -N zle-line-pre-redraw
 #   fi
 # }
 
+
+source /Users/yul/.config/broot/launcher/bash/br

@@ -13,17 +13,17 @@ windows:
     layout: even-horizontal
     panes:
       - shell_command:
-        - editor "$DOTFILES/env/.env-$(uname -n)"
+        - $EDITOR "$DOTFILES/env/.env-$(uname -n)"
         focus: true
       - shell_command:
-        - editor "$DOTFILES/env/requirements-$(uname -n).txt"
+        - $EDITOR "$DOTFILES/env/requirements-$(uname -n).txt"
 
   - window_name: zshrc
     start_directory: $DOTFILES/zsh
     layout: even-horizontal
     panes:
       - shell_command:
-        - editor zshenv
+        - $EDITOR zshenv
         focus: true
       - shell_command:
-        - editor .zshrc
+        - $EDITOR .zshrc

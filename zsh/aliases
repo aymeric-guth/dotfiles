@@ -4,6 +4,7 @@
 # --pass FILEWITHPASSWORD
 # ansible-vault, keepass
 
+
 if command -v lsd 1> /dev/null; then
   alias ll='XDG_CONFIG_DIR=$DOTFILES lsd -lh'
   alias la='XDG_CONFIG_DIR=$DOTFILES lsd -lA'
@@ -32,13 +33,12 @@ cfg() {
     fi
 }
 
-v() { editor "$*"; }
+alias v='$EDITOR'
+# v() { $EDITOR "$*"; }
 mux() { tmuxp-start "$TMUXP_CONFIGDIR/anonymous"; }
 alias muxd="tmuxp debug-info"
 # alias k="k3s kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml"
-alias k="kubectl"
-alias r="run"
-alias b="build"
+
 alias lz="lazygit"
 setenv() { 
   if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
@@ -118,7 +118,6 @@ _man() {
   return 0
 }
 #alias man='_man'
-alias m='multipass'
 
 vm() {
   prev=$PWD

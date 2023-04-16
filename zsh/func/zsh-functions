@@ -5,6 +5,7 @@
 [ -n "$FRE" ] && . "$ZDOTDIR/func/_fre.sh"
 . "$ZDOTDIR/func/_syncthing.sh"
 . "$ZDOTDIR/func/_starters.sh"
+. "$ZDOTDIR"/func/aws.sh
 
 
 up() {

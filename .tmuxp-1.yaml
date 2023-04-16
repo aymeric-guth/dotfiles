@@ -13,26 +13,26 @@ windows:
     start_directory: $DOTFILES/nvim/lua/av
     panes:
       - shell_command:
-        - editor ./keymaps.lua
+        - $EDITOR ./keymaps.lua
 
   - window_name: zsh
     start_directory: $DOTFILES/zsh
     layout: even-horizontal
     panes:
       - shell_command:
-        - editor ./keybinds
+        - $EDITOR ./keybinds
         focus: true
       - shell_command:
-        - editor ./aliases
+        - $EDITOR ./aliases
 
   - window_name: tmux
     start_directory: $DOTFILES/tmux
     panes:
       - shell_command:
-        - editor ./tmux.conf
+        - $EDITOR ./tmux.conf
 
   - window_name: alacritty
     start_directory: $DOTFILES/alacritty
     panes:
       - shell_command:
-        - editor ./keymaps.yml
+        - $EDITOR ./keymaps.yml

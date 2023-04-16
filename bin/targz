@@ -1,0 +1,2 @@
+[ ! -d "$1" ] && return 1
+tar -zcvf "$1".tar.gz "$1"

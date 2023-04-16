@@ -13,9 +13,9 @@ local code_actions = null_ls.builtins.code_actions
 -- handlers.capabilities.textDocument.formatting = vim.lsp.util.make_formatting_params()
 
 local null_ls_opts = {
-  code_actions.ltrs.with({
-    filetypes = { 'text', 'markdown' },
-  }),
+  -- code_actions.ltrs.with({
+  --   filetypes = { 'text', 'markdown' },
+  -- }),
 
   -- formatting.astyle.with({
   --   filetypes = { 'c', 'cpp', 'cxx' },
@@ -129,8 +129,22 @@ if not ok then
   return
 end
 
-require('mason-null-ls').setup({
-  ensure_installed = nil,
+mason_null_ls.setup({
+  ensure_installed = {
+    'ltrs',
+    'shellcheck',
+    'shfmt',
+    'black',
+    'rustfmt',
+    'ruff',
+    'prettierd',
+    'stylua',
+    'taplo',
+    'yamllint',
+    'hadolint',
+    'ansible_lint',
+    'cmake_format',
+  },
   automatic_installation = true,
   automatic_setup = false,
 })

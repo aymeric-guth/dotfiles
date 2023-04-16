@@ -19,7 +19,8 @@ if [ -n "$FZF" ]; then
 	[ -f "$REPODIR/fzf/shell/key-bindings.zsh" ] && source "$REPODIR/fzf/shell/key-bindings.zsh"
 fi
 
-export EDITOR=editor && export VISUAL="$EDITOR" && export MANPAGER="$EDITOR -c 'Man!' -o -"
+export EDITOR=eeditor && export VISUAL=eeditor && export MANPAGER="eeditor -c 'Man!' -o -"
+
 export TMUX_TEMPLATE=".tmuxp.yaml"
 export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
 export TMUXP_CONFIGDIR="${TMUXP_CONFIGDIR:-"~/.config/tmuxp"}"
