@@ -131,7 +131,6 @@ end
 
 mason_null_ls.setup({
   ensure_installed = {
-    'ltrs',
     'shellcheck',
     'shfmt',
     'black',

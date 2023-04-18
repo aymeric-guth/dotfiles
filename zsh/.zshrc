@@ -181,6 +181,3 @@ ZSH_HIST=1
 #     unset timer
 #   fi
 # }
-
-
-source /Users/yul/.config/broot/launcher/bash/br

@@ -16,7 +16,7 @@ _aws-check() {
 }
 
 _aws-instance-ip() {
-	_ip=$(aws ec2 describe-instances --instance-ids i-09aca61e074db3e10 --query 'Reservations[].Instances[].PublicIpAddress' --output text)
+	_ip=$(aws ec2 describe-instances --instance-ids $AWS_EC2_ID --query 'Reservations[].Instances[].PublicIpAddress' --output text)
 	[ -z "$_ip" ] && {
 		echo 'ec2 instance is not up'
 		return 1

@@ -77,7 +77,7 @@ tf() {
 
 fn() {
   [ -z "$WORKSPACE" ] && return 1
-  editor "$WORKSPACE/.func.sh" && . "$WORKSPACE/.func.sh"
+  $EDITOR "$WORKSPACE/.func.sh" && . "$WORKSPACE/.func.sh"
 }
 
 no() {
