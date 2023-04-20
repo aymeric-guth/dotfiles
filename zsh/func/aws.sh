@@ -76,5 +76,7 @@ aws-status() {
 aws-scp() {
 	_ip=$(_aws-instance-ip) || { echo "$_ip" && return 1; }
 	scp \
-    -i "$AWS_KEY_FILE" ubuntu@"$_ip" "$@"
+    -i "$AWS_KEY_FILE" \
+    -r \
+    "$@" ubuntu@"$_ip":~
 }
