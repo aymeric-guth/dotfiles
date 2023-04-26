@@ -1,8 +1,6 @@
 #!/bin/sh
 
 export MANWIDTH=999
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
 
 hostname="$(uname -n)"
 [ -f "$DOTFILES/env/.env-$hostname" ] && source "$DOTFILES/env/.env-$hostname"

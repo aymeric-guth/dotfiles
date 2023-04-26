@@ -5,6 +5,7 @@
 [ -f /etc/zprofile ] && export PATH= && export MANPATH= && . "/etc/zprofile"
 # hack to set PATH for non - interractive shell
 [ -f /etc/zshenv ] && . "/etc/zshenv"
+[ -f /etc/zsh/zshenv ] && . "/etc/zsh/zshenv"
 
 export ZDOTDIR="$DOTFILES/zsh"
 export ZDATA="$HOME/.local/share/zsh" && [ ! -d "$ZDATA" ] && mkdir -p "$ZDATA"
@@ -171,7 +172,7 @@ ZSH_HIST=1
 # function preexec() {
 #   timer=$(($(gdate +%s%0N)/1000000))
 # }
-# 
+
 # function precmd() {
 #   if [ $timer ]; then
 #     now=$(($(gdate +%s%0N)/1000000))
