@@ -7,7 +7,7 @@ zle -N my-backward-delete-word
 zle -N exit-zero
 
 # push-line
-bindkey -r "^Q" 
+bindkey -r "^Q"
 bindkey -r "^[Q"
 bindkey -r "^[q"
 bindkey -r "^R"
@@ -16,14 +16,6 @@ bindkey -r "^S"
 # bindkey -s "^K" "exit\n"
 bindkey "^K" exit-zero
 bindkey "^W" my-backward-delete-word
-
-repeat-last() {
-  BUFFER="fc -e : -1"
-	zle accept-line
-}
-
-zle -N repeat-last
-bindkey '^Y' repeat-last
 
 #if [ -z "$TMUX" ] && [ -z "$SSH_CLIENT" ]; then
 #  bindkey -s "^F" "tmuxp-start\n"
@@ -36,13 +28,13 @@ bindkey '^Y' repeat-last
 #fi
 
 if [ -z "$TMUX" ]; then
-  bindkey -s "^F" "tmuxp-start\n"
-  bindkey -s "^N" "tmuxp-edit\n"
-  bindkey -s "^G" "tmuxp-debug\n"
-  bindkey -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
-  bindkey -s "^S" "tmux-attach\n"
+	bindkey -s "^F" "tmuxp-start\n"
+	bindkey -s "^N" "tmuxp-edit\n"
+	bindkey -s "^G" "tmuxp-debug\n"
+	bindkey -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
+	bindkey -s "^S" "tmux-attach\n"
 else
-  bindkey -s "^F" "vanilla-start\n"
+	bindkey -s "^F" "vanilla-start\n"
 fi
 
 bindkey "^[[5~" beginning-of-line
@@ -61,11 +53,11 @@ bindkey "^E" edit-command-line
 bindkey "^ " autosuggest-accept
 # bindkey "^M" repeat-last
 
-if command -v fzf 1> /dev/null; then
-  zle -N fzf-path
-  bindkey "^X" fzf-path
-  bindkey "^H" fzf-history-widget
-  bindkey "ƒ" fzf-cd-widget
+if command -v fzf 1>/dev/null; then
+	zle -N fzf-path
+	bindkey "^X" fzf-path
+	bindkey "^H" fzf-history-widget
+	bindkey "ƒ" fzf-cd-widget
 fi
 
 bindkey -s "^R" "run\n"
