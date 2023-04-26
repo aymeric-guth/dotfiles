@@ -12,3 +12,5 @@ alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 alias ns='netstat -plntu'
 alias ls='ls --color=auto'
 
+alias cb-copy='xclip -selection clipboard'
+alias cb-paste='xclip -selection clipboard -o'

@@ -23,3 +23,6 @@ alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne
 flX() {
 	TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DEV/personal/mplayer"
 }
+
+alias cb-copy='pbcopy'
+alias cb-paste='pbpaste'
