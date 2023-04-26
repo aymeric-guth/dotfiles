@@ -22,11 +22,15 @@ xmodmap -e 'clear Mod4'
 xmodmap -e 'keycode 64 = Super_L'
 # mapping Alt_R to Super_R
 # keycode 108 = Alt_R
-xmodmap -e 'keycode 108 = Super_R'
+# xmodmap -e 'keycode 108 = Super_R'
 # mapping Super_L to Alt_L
 # keycode 133 = Super_L to Alt_L
 xmodmap -e 'keycode 133 = Alt_L'
 
+xmodmap -e 'keycode 108= Multi_key'
+
 # recreating mod groups
 xmodmap -e 'add Mod4 = Super_L Super_R'
 xmodmap -e 'add Mod1 = Alt_L'
+
+xmodmap -e 'keycode 65 = space Return space'
