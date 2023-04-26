@@ -13,7 +13,6 @@ bindkey -r "^[q"
 bindkey -r "^R"
 bindkey -r "^S"
 
-# bindkey -s "^K" "exit\n"
 bindkey "^K" exit-zero
 bindkey "^W" my-backward-delete-word
 
@@ -42,8 +41,8 @@ bindkey "^[[6~" end-of-line
 bindkey "^[[3~" delete-char
 bindkey "˚" history-substring-search-up
 bindkey "∆" history-substring-search-down
-# bindkey "^[[A" history-substring-search-up
-# bindkey "^[[B" history-substring-search-down
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
 
 bindkey "¬" forward-word
 bindkey "˙" backward-word
@@ -51,7 +50,6 @@ bindkey "˙" backward-word
 # bindkey "^[[1;3D" backward-word
 bindkey "^E" edit-command-line
 bindkey "^ " autosuggest-accept
-# bindkey "^M" repeat-last
 
 if command -v fzf 1>/dev/null; then
 	zle -N fzf-path
@@ -63,6 +61,3 @@ fi
 bindkey -s "^R" "run\n"
 bindkey -s "^B" "build\n"
 bindkey -s "^U" "up\n"
-
-# bindkey -s 'ƒ' "project-most-frecent\n"
-#bindkey -s '^I' "_test\n"
