@@ -14,13 +14,12 @@ require('av.autocmd')
 require('av.keymaps')
 
 if os.getenv('NEOVIM_FULL') ~= nil then
-  require('av.mason')
   require('av.cmp')
   if os.getenv('WORKSPACE') ~= nil then
     require('av.lsp')
     require('av.dap')
   end
-  -- require('fidget').setup()
+  require('fidget').setup()
   require('av.chatGPT')
 end
 

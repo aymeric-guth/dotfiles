@@ -61,12 +61,12 @@ require('packer').startup({
       --]]
       use('neovim/nvim-lspconfig')
       use('jose-elias-alvarez/null-ls.nvim')
-      use({ 'folke/neodev.nvim' })
+      -- use({ 'folke/neodev.nvim' })
       use({ 'williamboman/mason-lspconfig.nvim' })
       use({ 'williamboman/mason.nvim' })
       use({ 'jayp0521/mason-null-ls.nvim' })
       -- use('simrat39/rust-tools.nvim')
-      -- use('j-hui/fidget.nvim')
+      use('j-hui/fidget.nvim')
 
       --[[
       -- CMP
@@ -87,14 +87,14 @@ require('packer').startup({
       use({ 'folke/trouble.nvim' })
       use({ 'SmiteshP/nvim-navic' })
       use({ 'RRethy/vim-illuminate' })
-      use({
-        'jackMort/ChatGPT.nvim',
-        requires = {
-          'MunifTanjim/nui.nvim',
-          'nvim-lua/plenary.nvim',
-          'nvim-telescope/telescope.nvim',
-        },
-      })
+      -- use({
+      --   'jackMort/ChatGPT.nvim',
+      --   requires = {
+      --     'MunifTanjim/nui.nvim',
+      --     'nvim-lua/plenary.nvim',
+      --     'nvim-telescope/telescope.nvim',
+      --   },
+      -- })
       use({ 'onsails/lspkind.nvim' })
       --[[
       -- DAP

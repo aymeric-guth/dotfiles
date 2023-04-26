@@ -4,7 +4,7 @@ if not ok then
   return
 end
 
-local ok, _ = pcall(require, 'mason')
+local ok, mason = pcall(require, 'mason')
 if not ok then
   error('mason not found aborting')
   return
@@ -16,17 +16,17 @@ if not ok then
   return
 end
 
-local ok, _ = pcall(require, 'neodev')
-if ok then
-  require('neodev').setup({})
-end
+-- local ok, _ = pcall(require, 'neodev')
+-- if ok then
+--   require('neodev').setup({})
+-- end
 
 require('av.lsp.handlers').setup()
-local mason = require('mason')
 mason.setup({
-  -- The directory in which to install packages.
   install_root_dir = vim.fn.stdpath('data') .. '/mason',
   PATH = 'prepend',
+  log_level = vim.log.levels.INFO,
+  max_concurrent_installers = 4,
 })
 
 require('av.lsp.installer')
