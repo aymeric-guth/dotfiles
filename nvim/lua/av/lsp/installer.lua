@@ -9,7 +9,8 @@ local servers = {
   -- 'gopls',
   -- 'solidity',
   -- 'golangci_lint_ls',
-  'marksman',
+  -- 'marksman',
+  -- 'bufls',
 }
 
 local mason_lspconfig = require('mason-lspconfig')
