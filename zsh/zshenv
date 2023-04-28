@@ -8,7 +8,9 @@ hostname="$(uname -n)"
 
 [ -d "$TOOLZ" ] && prepend-to-path "$TOOLZ/bin" && export MANPATH="$TOOLZ/share/man:$MANPATH"
 prepend-to-path "$DOTFILES/bin"
-prepend-to-path "$$HOME/.local/bin"
+prepend-to-path "$HOME/.local/bin"
+
+append-to-path "/usr/local/go/bin"
 
 # Setup fzf
 if [ -n "$FZF" ]; then
