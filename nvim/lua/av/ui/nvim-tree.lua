@@ -1,27 +1,10 @@
-local status, nvim_tree = pcall(require, 'nvim-tree')
-if not status then
+local ok, nvim_tree = pcall(require, 'nvim-tree')
+if not ok then
   return
 end
 
-local status, nvim_tree_config = pcall(require, 'nvim-tree.config')
-if not status then
-  return
-end
-
-local tree_cb = nvim_tree_config.nvim_tree_callback
-
-local status, icons = pcall(require, 'av.ui.icons')
-if not status then
-  return
-end
-
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-vim.opt.termguicolors = true
-
-local HEIGHT_RATIO = 0.8 -- You can change this
-local WIDTH_RATIO = 0.5 -- You can change this too
+local HEIGHT_RATIO = 0.8
+local WIDTH_RATIO = 0.5
 
 local function on_attach(bufnr)
   local api = require('nvim-tree.api')
@@ -36,6 +19,7 @@ local function on_attach(bufnr)
     }
   end
 
+  vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
   vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
   vim.keymap.set('n', '<cr>', api.node.open.edit, opts('Open'))
   vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
@@ -49,9 +33,6 @@ nvim_tree.setup({
   respect_buf_cwd = true,
   sync_root_with_cwd = true,
   on_attach = on_attach,
-  modified = {
-    enable = false,
-  },
   view = {
     mappings = {
       custom_only = false,

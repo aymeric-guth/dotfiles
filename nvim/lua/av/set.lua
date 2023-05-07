@@ -74,4 +74,8 @@ vim.lsp.set_log_level('warn')
 
 vim.keymap.set('', '<Space>', '<nop>')
 vim.g.mapleader = ' '
+
 vim.g.loaded_perl_provider = 0
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
