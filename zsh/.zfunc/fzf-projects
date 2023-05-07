@@ -1,7 +1,7 @@
 if [ -n "$1" ]; then
 	selected="$1"
 else
-	selected="$(match_pairs <(find $(echo $PROJECTS) -mindepth 1 -maxdepth 1 -type d \( -not -iname "_*" -not -iname ".*" \)) <(fre_load) | fzf --no-sort)"
+	selected="$(match_pairs <(find $(echo $PROJECTS) -mindepth 1 -maxdepth 1 -type d \( -not -iname "_*" -not -iname ".*" \)) <(fre_load) | fzf --no-sort --delimiter / --with-nth=-3,-2,-1)"
 fi
 [ ! -d "$selected" ] && return 1
 echo "$selected" && return 0
