@@ -129,11 +129,11 @@ vm() {
   cd "$prev" || return 1
 }
 
-# jk() {
-#   [ -d "$DEV"/personal/jk ] || return 1
-#   _path="$DEV"/personal/jk
-#   "$_path"/.venv/bin/python "$_path"/jk.py "$@"
-# }
+jk() {
+  [ -d "$DEV"/personal/jk ] || return 1
+  _path="$DEV"/personal/jk
+  "$_path"/.venv/bin/python "$_path"/jk.py "$@"
+}
 
 dt() {
     python3 -c 'import datetime;import sys; sys.stdout.write(str(datetime.datetime.fromtimestamp(int(sys.argv[1]))))' $@

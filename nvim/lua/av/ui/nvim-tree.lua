@@ -19,6 +19,10 @@ local function on_attach(bufnr)
     }
   end
 
+  vim.keymap.set('n', 'd', api.fs.remove, opts('Delete'))
+  vim.keymap.set('n', 'I', api.tree.toggle_gitignore_filter, opts('Toggle .gitignore'))
+  vim.keymap.set('n', 'H', api.tree.toggle_hidden_filter, opts('Toggle .dotfiles'))
+
   vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
   vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
   vim.keymap.set('n', '<cr>', api.node.open.edit, opts('Open'))
