@@ -1,6 +1,6 @@
-local status, osc52 = pcall(require, 'osc52')
+local ok, osc52 = pcall(require, 'osc52')
 
-if not status then
+if not ok then
   return
 end
 

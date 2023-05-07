@@ -16,10 +16,6 @@ vim.opt.wildignore = {
   '.local',
 }
 
--- vim.opt.guicursor = ""
--- vim.opt.guicursor = 'a:blinkon100'
-
--- vim.opt.foldenable = false
 vim.opt.encoding = 'utf-8'
 vim.opt.guifont = 'monospace:h17'
 
@@ -64,14 +60,9 @@ vim.opt.shortmess:append('c')
 vim.opt.colorcolumn = '80'
 
 vim.g.python3_host_prog = 'python3'
--- vim.g.sqlite_clib_path = '/opt/local/lib/libsqlite3.dylib'
-
--- vim.opt.foldmethod = 'manual'
--- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
--- vim.opt.verbosefile = vim.env.DEV .. '/personal/harpoon/vim.log'
 
 vim.o.formatoptions = 'rqnj'
 -- vim.o.listchars = 'eol:\\u21b5,space:.,tab:>~'
@@ -80,4 +71,7 @@ vim.opt.listchars:append('space:⋅')
 vim.opt.listchars:append('eol:↴')
 
 vim.lsp.set_log_level('warn')
-vim.g.slime_target = 'tmux'
+
+vim.keymap.set('', '<Space>', '<nop>')
+vim.g.mapleader = ' '
+vim.g.loaded_perl_provider = 0

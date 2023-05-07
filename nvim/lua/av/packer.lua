@@ -8,14 +8,6 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd([[packadd packer.nvim]])
 end
 
--- Automatically source and re-compile packer whenever you save this init.lua
--- local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
--- vim.api.nvim_create_autocmd('BufWritePost', {
---   command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
---   group = packer_group,
---   pattern = vim.fn.expand('$MYVIMRC'),
--- })
-
 vim.cmd([[
     augroup packer_user_config
     autocmd!
@@ -29,11 +21,12 @@ require('packer').startup({
     use('wbthomason/packer.nvim')
 
     -- General dependencies
-    use('nvim-lua/popup.nvim')
     use('nvim-lua/plenary.nvim')
     use('kyazdani42/nvim-web-devicons')
 
-    -- Telescope + deps: fuzzy finder
+    --[[
+    -- Telescope
+    --]]
     use({
       'nvim-telescope/telescope.nvim',
       branch = 'master',
@@ -46,8 +39,8 @@ require('packer').startup({
     })
 
     --[[
-  -- Navigation
-  --]]
+    -- Navigation
+    --]]
     use({
       'kyazdani42/nvim-tree.lua',
     })
@@ -61,12 +54,10 @@ require('packer').startup({
       --]]
       use('neovim/nvim-lspconfig')
       use('jose-elias-alvarez/null-ls.nvim')
-      -- use({ 'folke/neodev.nvim' })
       use({ 'williamboman/mason-lspconfig.nvim' })
       use({ 'williamboman/mason.nvim' })
       use({ 'jayp0521/mason-null-ls.nvim' })
       -- use('simrat39/rust-tools.nvim')
-      use('j-hui/fidget.nvim')
 
       --[[
       -- CMP
@@ -84,28 +75,20 @@ require('packer').startup({
 
       use({ 'L3MON4D3/LuaSnip', branch = 'master' })
       use({ 'saadparwaiz1/cmp_luasnip', branch = 'master' })
-      use({ 'folke/trouble.nvim' })
-      use({ 'SmiteshP/nvim-navic' })
-      use({ 'RRethy/vim-illuminate' })
-      -- use({
-      --   'jackMort/ChatGPT.nvim',
-      --   requires = {
-      --     'MunifTanjim/nui.nvim',
-      --     'nvim-lua/plenary.nvim',
-      --     'nvim-telescope/telescope.nvim',
-      --   },
-      -- })
-      use({ 'onsails/lspkind.nvim' })
       --[[
       -- DAP
       --]]
+      --[[
+      -- Misc
+      --]]
+      use({ 'SmiteshP/nvim-navic' })
+      use({ 'RRethy/vim-illuminate' })
+      use({ 'folke/trouble.nvim' })
+      use({ 'onsails/lspkind.nvim' })
+      use('j-hui/fidget.nvim')
     end
 
-    -- Autopairs
-    use('windwp/nvim-autopairs')
-    use({ 'tpope/vim-commentary' })
-
-    -- TreeSitter + deps
+    -- TreeSitter
     use({
       'nvim-treesitter/nvim-treesitter',
       run = function()
@@ -122,14 +105,12 @@ require('packer').startup({
         require('gitsigns').setup()
       end,
     })
-    use({ 'ellisonleao/glow.nvim' })
     use({ 'tpope/vim-fugitive' })
-    use({ 'jpalardy/vim-slime' })
+    use({ 'ThePrimeagen/git-worktree.nvim' })
 
     --[[
     -- UI
     --]]
-    -- Colorschemes
     use({ 'luisiacc/gruvbox-baby', branch = 'main' })
     use({
       'nvim-lualine/lualine.nvim',
@@ -138,7 +119,6 @@ require('packer').startup({
     use({
       'norcalli/nvim-colorizer.lua',
     })
-    use({ 'ojroques/nvim-osc52' })
     use({
       'lukas-reineke/indent-blankline.nvim',
       config = {
@@ -147,12 +127,17 @@ require('packer').startup({
         show_trailing_blankline_indent = true,
       },
     })
-    use({ 'sbdchd/vim-shebang' })
 
     -- [[
-    --  Packer Setup
+    -- Misc
     -- ]]
+    use({ 'ojroques/nvim-osc52' })
+    use('windwp/nvim-autopairs')
+    use({ 'tpope/vim-commentary' })
+
+    -- [[
     -- Packer boostraping
+    -- ]]
     if is_bootstrap then
       require('packer').sync()
       vim.cmd([[
