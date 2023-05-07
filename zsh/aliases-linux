@@ -14,3 +14,5 @@ alias ls='ls --color=auto'
 
 alias cb-copy='xclip -selection clipboard'
 alias cb-paste='xclip -selection clipboard -o'
+
+alias d='/usr/local/bin/docker'

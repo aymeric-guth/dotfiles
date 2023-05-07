@@ -26,3 +26,5 @@ flX() {
 
 alias cb-copy='pbcopy'
 alias cb-paste='pbpaste'
+
+alias d='/usr/local/bin/docker'
