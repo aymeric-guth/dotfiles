@@ -138,3 +138,17 @@ jk() {
 dt() {
     python3 -c 'import datetime;import sys; sys.stdout.write(str(datetime.datetime.fromtimestamp(int(sys.argv[1]))))' $@
 }
+
+mannaz() {
+  _path="$DEV"/personal/mannaz
+  if [ ! -d "$_path" ]; then 
+    echo "mannaz project dir not found"
+    return 1
+  fi
+  if [ ! -f ~/Downloads/mannaz.box ]; then
+    echo "mannaz box not found"
+    return 1
+  fi
+  cd "$_path" || return 1
+  vagrant ssh || jk up && vagrant ssh
+}
