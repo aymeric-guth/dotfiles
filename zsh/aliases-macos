@@ -28,3 +28,4 @@ alias cb-copy='pbcopy'
 alias cb-paste='pbpaste'
 
 alias d='/usr/local/bin/docker'
+alias g='/opt/local/bin/git'
