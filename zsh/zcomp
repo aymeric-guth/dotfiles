@@ -2,13 +2,17 @@
 
 # Completions
 
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-[[ $commands[k3s] ]] && source <(k3s completion zsh)
-[[ $commands[rustup] ]] && eval $(rustup completions zsh)
-[ -f "$ZDOTDIR/completions/_croc" ] && PROG=croc _CLI_ZSH_AUTOCOMPLETE_HACK=1 source "$ZDOTDIR/completions/_croc"
-[[ $commands[aws] ]] && source "$DOTFILES"/zsh/completions/aws-completion.sh
+# K3S
+# [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+# [[ $commands[k3s] ]] && source <(k3s completion zsh)
 
-[[ $commands[pipx] ]] && eval "$(register-python-argcomplete pipx)"
+[[ $commands[rustup] ]] && eval $(rustup completions zsh)
+# [ -f "$ZDOTDIR/completions/_croc" ] && PROG=croc _CLI_ZSH_AUTOCOMPLETE_HACK=1 source "$ZDOTDIR/completions/_croc"
+# [[ $commands[aws] ]] && source "$DOTFILES"/zsh/completions/aws-completion.sh
+
+# pipx
+# [[ $commands[pipx] ]] && eval "$(register-python-argcomplete pipx)"
+
 # ALL ansible
 # if command -v ansible 1> /dev/null; then
 #     eval $(register-python-argcomplete ansible)
@@ -23,7 +27,7 @@
 # fi
 
 # # zsh parameter completion for the dotnet CLI
-# _dotnet_zsh_complete() 
+# _dotnet_zsh_complete()
 # {
 #   local completions=("$(dotnet complete "$words")")
 #   # If the completion list is empty, just continue with filename selection
