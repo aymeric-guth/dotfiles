@@ -104,3 +104,22 @@ swap() {
     local TMPFILE=tmp.$$
     mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
 }
+
+# create a do-ls function
+# Make sure to use emulate -L zsh or
+# your shell settings and a directory
+# named 'rm' could be deadly
+# https://github.com/rothgar/mastering-zsh/blob/master/docs/config/hooks.md
+do-ls() {
+    emulate -L zsh
+    lsd -la
+}
+
+autols-enable() {
+    add-zsh-hook chpwd do-ls
+}
+
+# https://stackoverflow.com/questions/42109673/how-to-remove-a-z-shell-precmd-function
+autols-disable() {
+    add-zsh-hook -d chpwd do-ls
+}

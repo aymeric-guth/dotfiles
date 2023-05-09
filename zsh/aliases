@@ -13,6 +13,10 @@ else
   alias la='ls -la'
 fi
 
+if ! command -v fd 1> /dev/null; then
+  alias fd='find . -iname *'
+fi
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='LC_ALL=C  grep --color=auto'
@@ -150,5 +154,5 @@ mannaz() {
     return 1
   fi
   cd "$_path" || return 1
-  vagrant ssh || jk up && vagrant ssh
+  vagrant ssh
 }
