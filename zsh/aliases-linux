@@ -9,7 +9,6 @@ alias psmem='ps auxf | sort -nr -k 4 | head -5'
 # get top process eating cpu ##
 alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
-alias ns='netstat -plntu'
 alias ls='ls --color=auto'
 
 alias cb-copy='xclip -selection clipboard'
@@ -17,3 +16,11 @@ alias cb-paste='xclip -selection clipboard -o'
 
 alias d='/usr/local/bin/docker'
 alias g='/usr/bin/git'
+
+if command -v ss 1>/dev/null; then
+	alias ns='ss --listening --processes --info --summary --ipv4 --tcp'
+elif command -v netstat 1>/dev/null; then
+	alias ns='netstat -plntu'
+else
+	alias ns='lsof -i -P -n'
+fi

@@ -2,7 +2,7 @@
 
 . "$ZDOTDIR/aliases"
 
-alias ns='netstat -p tcp nltu'
+# alias ns='netstat -p tcp nltu'
 alias ns="netstat -anvp tcp | awk 'NR<3 || /LISTEN/'"
 alias ncdu='ncdu --exclude=~/.av-mp'
 
