@@ -106,7 +106,6 @@ require('packer').startup({
       end,
     })
     use({ 'tpope/vim-fugitive' })
-    use({ 'ThePrimeagen/git-worktree.nvim' })
 
     --[[
     -- UI
