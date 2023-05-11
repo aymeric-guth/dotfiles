@@ -123,3 +123,4 @@ autols-enable() {
 autols-disable() {
     add-zsh-hook -d chpwd do-ls
 }
+
