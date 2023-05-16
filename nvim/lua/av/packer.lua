@@ -1,12 +1,26 @@
 -- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
-local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-local is_bootstrap = false
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  is_bootstrap = true
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
-  vim.cmd([[packadd packer.nvim]])
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
+
+local packer_bootstrap = ensure_packer()
+
+
+-- local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+-- local is_bootstrap = false
+-- 
+-- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+--   is_bootstrap = true
+--   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+--   vim.cmd([[packadd packer.nvim]])
+-- end
 
 vim.cmd([[
     augroup packer_user_config
@@ -137,15 +151,18 @@ require('packer').startup({
     -- [[
     -- Packer boostraping
     -- ]]
-    if is_bootstrap then
-      require('packer').sync()
-      vim.cmd([[
-      augroup packer_bootstrap
-      autocmd!
-      autocmd User PackerComplete quitall
-      augroup end
-    ]])
-    end
+      if packer_bootstrap then
+        require('packer').sync()
+      end
+     -- if is_bootstrap then
+     --   require('packer').sync()
+     --   vim.cmd([[
+     --   augroup packer_bootstrap
+     --   autocmd!
+     --   autocmd User PackerComplete quitall
+     --   augroup end
+     -- ]])
+     -- end
   end,
   config = {
     snapshot_path = vim.fn.stdpath('cache') .. '/packer.nvim', -- Default save directory for snapshots,

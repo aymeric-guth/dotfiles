@@ -7,6 +7,8 @@
 # [[ $commands[k3s] ]] && source <(k3s completion zsh)
 
 [[ $commands[rustup] ]] && eval $(rustup completions zsh)
+# [ -n "$NVM_DIR" ] && [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+
 # [ -f "$ZDOTDIR/completions/_croc" ] && PROG=croc _CLI_ZSH_AUTOCOMPLETE_HACK=1 source "$ZDOTDIR/completions/_croc"
 # [[ $commands[aws] ]] && source "$DOTFILES"/zsh/completions/aws-completion.sh
 

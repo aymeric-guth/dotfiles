@@ -1,4 +1,7 @@
 ---
+import:
+  - ~/dev/personal/dotfiles/alacritty/colorschemes.yml
+  - ~/dev/personal/dotfiles/alacritty/keymaps.yml
 env:
   TERM: xterm-256color
   # LD_PRELOAD: /home/yul/dev/personal/ldhack/usr/lib/libldlib.so

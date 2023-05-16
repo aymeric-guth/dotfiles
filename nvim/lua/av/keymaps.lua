@@ -77,12 +77,12 @@ vim.keymap.set(
 )
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[f]ind [k]eymaps' })
 vim.keymap.set('n', '<leader>fs', builtin.grep_string, { desc = '[f]ind [s]tring' })
-vim.keymap.set(
-  'n',
-  '<leader>fwt',
-  require('telescope').extensions.git_worktree.git_worktrees,
-  { desc = '[f]ind [w]ork[t]ree' }
-)
+-- vim.keymap.set(
+--   'n',
+--   '<leader>fwt',
+--   require('telescope').extensions.git_worktree.git_worktrees,
+--   { desc = '[f]ind [w]ork[t]ree' }
+-- )
 
 -- Help
 vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = '[f]ind [m]an pages' })

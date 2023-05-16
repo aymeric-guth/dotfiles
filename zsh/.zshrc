@@ -11,20 +11,6 @@ export ZDOTDIR="$DOTFILES/zsh"
 export ZDATA="$HOME/.local/share/zsh" && [ ! -d "$ZDATA" ] && mkdir -p "$ZDATA"
 export ZCACHE="$HOME/.cache/zsh" && [ ! -d "$ZCACHE" ] && mkdir -p "$ZCACHE"
 
-### Dotfile (Re)Compilation
-# autoload -U zrecompile
-# zrecompile -pq "$ZDOTDIR/.zshrc"
-# zrecompile -pq "$ZDOTDIR/aliases"
-# zrecompile -pq "$ZDOTDIR/keybind"
-# zrecompile -pq "$ZDOTDIR/zcomp"
-# zrecompile -pq "$ZDOTDIR/zshenv"
-# zrecompile -pq "$ZDOTDIR/func/cleanup.sh"
-# zrecompile -pq "$ZDOTDIR/func/upgrade.sh"
-# zrecompile -pq "$ZDOTDIR/func/zsh-functions"
-# zrecompile -pq "$ZCACHE/.zcompdump-$ZSH_VERSION"
-# zrecompile -pq "$ZDOTDIR/.zfunc.zwc" $ZDOTDIR/.zfunc/*
-# zrecompile -pq "$ZDOTDIR/.completions.zwc" $ZDOTDIR/completions/*
-
 export HISTFILE="$ZDATA/.zsh_history"
 export HISTSIZE=1000000
 export SAVEHIST=1000000
@@ -94,8 +80,8 @@ case "$(uname -s)" in
 esac
 
 # Prompt
-if [ -d "$GITHUB_REPOS/pure" ]; then
-    fpath+=("$GITHUB_REPOS/pure")
+if [ -d "$REPODIR/pure" ]; then
+    fpath+=("$REPODIR/pure")
     autoload -U promptinit; promptinit
     zstyle :prompt:pure:prompt:success color green
     prompt pure
@@ -111,6 +97,7 @@ my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
 my-zsh-add-plugin "zsh-users/zsh-autosuggestions"
 my-zsh-add-plugin "hlissner/zsh-autopair"
 my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
+
 if [ -n "$FZF" ]; then
     my-zsh-add-plugin "Aloxaf/fzf-tab"
     # determines search program for fzf
@@ -129,10 +116,8 @@ fi
 source <(direnv hook zsh)
 
 
-export MANPATH
-export PATH
-
 # HACK source .func
+# preferer JK
 source-func() { emulate -L zsh; [ -f .func.sh ] && source .func.sh; }
 add-zsh-hook precmd source-func
 if [[ $commands[direnv] ]]; then
@@ -143,21 +128,9 @@ if [[ $commands[direnv] ]]; then
     add-zsh-hook precmd direnv_prompt
 fi
 
-# zstyle :prompt:pure:path git-is-repo && basename "$PWD" || "$PWD"
-# $(basename $PWD)
-
-# if [ -n "$FRE" ]; then
-#     fre_chpwd() {
-#       fre --store $DOTFILES/.local/share/fre/fre.json --add "$(pwd)"
-#     }
-#     typeset -gaU chpwd_functions
-#     chpwd_functions+=fre_chpwd
-# fi
 
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
 zle -N zle-line-pre-redraw
-
-ZSH_HIST=1
 
 # if [ -n "$ZSH_HIST" ]; then
 #     zsh_hist() {
@@ -181,3 +154,6 @@ ZSH_HIST=1
 #     unset timer
 #   fi
 # }
+
+export MANPATH
+export PATH
