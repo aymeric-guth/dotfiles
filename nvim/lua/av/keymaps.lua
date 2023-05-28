@@ -126,7 +126,7 @@ vim.keymap.set(
   'n',
   '<leader>xl',
   '<cmd>TroubleToggle loclist<cr>',
-  { desc = '[x] [q]loclist', silent = true, noremap = true }
+  { desc = '[x] [l]oclist', silent = true, noremap = true }
 )
 vim.keymap.set(
   'n',

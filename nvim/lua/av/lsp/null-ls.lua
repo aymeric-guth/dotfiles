@@ -91,11 +91,11 @@ local null_ls_opts = {
   diagnostics.hadolint.with({ filetypes = { 'dockerfile' } }),
   diagnostics.ansiblelint.with({ filetypes = { 'yaml.ansible' } }),
   formatting.cmake_format.with({ filetypes = { 'cmake' } }),
-  -- formatting.shellharden.with({ filetypes = { 'sh' } }),
-  -- diagnostics.golangci_lint.with({ filetypes = { 'go' } }),
-  -- formatting.gofmt.with({ filetypes = { 'go' } }),
-  -- formatting.goimports.with({ filetypes = { 'go' } }),
-  -- formatting.goimports_reviser.with({ filetypes = { 'go' } }),
+  formatting.shellharden.with({ filetypes = { 'sh' } }),
+  diagnostics.golangci_lint.with({ filetypes = { 'go' } }),
+  formatting.gofmt.with({ filetypes = { 'go' } }),
+  formatting.goimports.with({ filetypes = { 'go' } }),
+  formatting.goimports_reviser.with({ filetypes = { 'go' } }),
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
@@ -139,6 +139,7 @@ mason_null_ls.setup({
     'prettierd',
     'stylua',
     'taplo',
+    'gofmt',
     'yamllint',
     'hadolint',
     'ansible_lint',
