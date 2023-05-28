@@ -120,13 +120,13 @@ source <(direnv hook zsh)
 # preferer JK
 source-func() { emulate -L zsh; [ -f .func.sh ] && source .func.sh; }
 add-zsh-hook precmd source-func
-if [[ $commands[direnv] ]]; then
-    source <(direnv hook zsh)
-    direnv_prompt() {
-      [ -n "$DIRENV_DIFF" ] && psvar[12]="(${psvar[12]})"
-    }
-    add-zsh-hook precmd direnv_prompt
-fi
+# if [[ $commands[direnv] ]]; then
+#     source <(direnv hook zsh)
+#     direnv_prompt() {
+#       [ -n "$DIRENV_DIFF" ] && psvar[12]="(${psvar[12]})"
+#     }
+#     add-zsh-hook precmd direnv_prompt
+# fi
 
 
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }

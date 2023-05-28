@@ -63,7 +63,6 @@ hostmapping() {
     esac
 }
 
-
 s() {
     if git-is-repo "$(pwd)"; then
         return "$(git status --porcelain=v1 2>/dev/null | wc -l)"

@@ -1,32 +1,5 @@
 #!/bin/zsh
 
-hostmapping() {
-
-    case "$(hostname)" in
-        eihwaz)
-            print '(\U16D6)'
-            ;;
-        iMac)
-            print '(\U16D6)'
-            ;;
-        ansuz)
-            print '(\U16D6)'
-            ;;
-        laguz)
-            print '(\U16D6)'
-            ;;
-        sowilo)
-            print '(\U16D6)'
-            ;;
-        berkana)
-            print '(\U16D6)'
-            ;;
-        *)
-            print '%m'
-            ;;
-    esac
-}
-
 show_virtual_env() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
     if [[ $TMUX ]]; then

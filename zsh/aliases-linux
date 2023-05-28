@@ -24,3 +24,4 @@ elif command -v netstat 1>/dev/null; then
 else
 	alias ns='lsof -i -P -n'
 fi
+alias s='/usr/bin/systemctl'
