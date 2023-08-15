@@ -87,8 +87,8 @@ require('packer').startup({
       use({ 'hrsh7th/cmp-path', branch = 'main' })
       use({ 'hrsh7th/cmp-cmdline', branch = 'main' })
       use({ 'hrsh7th/nvim-cmp', branch = 'main' })
-      use({ 'zbirenbaum/copilot.lua' })
-      use({ 'zbirenbaum/copilot-cmp' })
+      -- use({ 'zbirenbaum/copilot.lua' })
+      -- use({ 'zbirenbaum/copilot-cmp' })
       use({ 'hrsh7th/cmp-nvim-lsp-document-symbol' })
       use({ 'hrsh7th/cmp-nvim-lsp-signature-help' })
       use({ 'ray-x/cmp-treesitter' })
@@ -105,7 +105,7 @@ require('packer').startup({
       use({ 'RRethy/vim-illuminate' })
       use({ 'folke/trouble.nvim' })
       use({ 'onsails/lspkind.nvim' })
-      use('j-hui/fidget.nvim')
+      use({ 'j-hui/fidget.nvim', tag = 'legacy' })
     end
 
     -- TreeSitter
@@ -153,6 +153,13 @@ require('packer').startup({
     use({ 'ojroques/nvim-osc52' })
     use('windwp/nvim-autopairs')
     use({ 'tpope/vim-commentary' })
+    use({
+      'rmagatti/goto-preview',
+      -- config = function()
+      --   require('goto-preview').setup({})
+      -- end,
+    })
+    use('voldikss/vim-floaterm')
 
     -- [[
     -- Packer boostraping

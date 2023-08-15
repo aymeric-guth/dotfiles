@@ -27,8 +27,6 @@ vim.api.nvim_set_hl(0, 'CmpItemKindPath', { fg = '#FDE030' })
 vim.api.nvim_set_hl(0, 'CmpItemKindLua', { fg = '#F64D00' })
 
 local source_mapping = {
-  cmp_tabnine = icons.misc.TabNine,
-  copilot = icons.git.Octoface,
   nvim_lsp = icons.misc.Robot,
   buffer = icons.misc.Buffer,
   path = icons.misc.Path,
@@ -109,8 +107,6 @@ cmp.setup({
   },
 
   sources = cmp.config.sources({
-    -- { name = 'cmp_tabnine' },
-    { name = 'copilot', group_index = 2 },
     { name = 'nvim_lsp', group_index = 2 },
     { name = 'treesitter', group_index = 2 },
     { name = 'nvim_lsp_document_symbol', group_index = 2 },
@@ -124,8 +120,6 @@ cmp.setup({
   sorting = {
     priority_weight = 2,
     comparators = {
-      require('copilot_cmp.comparators').prioritize,
-      require('copilot_cmp.comparators').score,
       compare.offset,
       compare.exact,
       -- compare.scopes,

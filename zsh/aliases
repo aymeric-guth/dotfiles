@@ -155,3 +155,6 @@ mannaz() {
   cd "$_path" || return 1
   vagrant ssh
 }
+
+alias c-lan='sudo nmcli device wifi connect TP-Link_A6DC password 28086260'
+alias c-wan='sudo nmcli connection up kenaz'

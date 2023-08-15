@@ -13,10 +13,6 @@ local code_actions = null_ls.builtins.code_actions
 -- handlers.capabilities.textDocument.formatting = vim.lsp.util.make_formatting_params()
 
 local null_ls_opts = {
-  -- code_actions.ltrs.with({
-  --   filetypes = { 'text', 'markdown' },
-  -- }),
-
   formatting.astyle.with({
     filetypes = { 'c', 'cpp', 'cxx' },
     extra_args = {
@@ -91,11 +87,11 @@ local null_ls_opts = {
   diagnostics.hadolint.with({ filetypes = { 'dockerfile' } }),
   diagnostics.ansiblelint.with({ filetypes = { 'yaml.ansible' } }),
   formatting.cmake_format.with({ filetypes = { 'cmake' } }),
-  formatting.shellharden.with({ filetypes = { 'sh' } }),
+  -- formatting.shellharden.with({ filetypes = { 'sh' } }),
   diagnostics.golangci_lint.with({ filetypes = { 'go' } }),
   formatting.gofmt.with({ filetypes = { 'go' } }),
   formatting.goimports.with({ filetypes = { 'go' } }),
-  formatting.goimports_reviser.with({ filetypes = { 'go' } }),
+  -- formatting.goimports_reviser.with({ filetypes = { 'go' } }),
 }
 
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})

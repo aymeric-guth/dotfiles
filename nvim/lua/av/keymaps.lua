@@ -30,7 +30,7 @@ nvnoremap('˚', '{')
 
 -- Basic
 --]]
-nvnoremap(';', ':')
+-- nvnoremap(';', ':')
 nnoremap(',p', '"0p')
 nnoremap(',P', '"0P')
 
@@ -201,3 +201,7 @@ vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>zz')
 vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>zz')
 vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
 vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
+
+vim.keymap.set('n', '<leader>tn', '<cmd>FloatermNew<CR>', { desc = '[t]erminal [n]ew' })
+vim.keymap.set('n', '<leader>tt', '<cmd>FloatermToggle<CR>', { desc = '[t]erminal [t]oggle' })
+vim.keymap.set('n', '<leader>tk', '<cmd>FloatermKill<CR>', { desc = '[t]erminal [k]ill' })

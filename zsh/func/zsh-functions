@@ -63,13 +63,13 @@ hostmapping() {
     esac
 }
 
-s() {
-    if git-is-repo "$(pwd)"; then
-        return "$(git status --porcelain=v1 2>/dev/null | wc -l)"
-    else
-        return 1
-    fi
-}
+# s() {
+#     if git-is-repo "$(pwd)"; then
+#         return "$(git status --porcelain=v1 2>/dev/null | wc -l)"
+#     else
+#         return 1
+#     fi
+# }
 
 k3s-agent-start() {
     [ -f /etc/systemd/system/k3s-agent.service ] && systemctl start k3s-agent.service
