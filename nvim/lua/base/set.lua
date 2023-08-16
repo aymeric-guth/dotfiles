@@ -100,7 +100,7 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 vim.o.formatoptions = 'rqnj'
--- -- vim.o.listchars = 'eol:\\u21b5,space:.,tab:>~'
+-- vim.o.listchars = 'eol:\\u21b5,space:.,tab:>~'
 vim.opt.list = true
 vim.opt.listchars:append('space:⋅')
 vim.opt.listchars:append('eol:↴')
@@ -121,9 +121,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- vim.cmd([[
---   augroup ColorizeBuffer
---   autocmd!
---   au BufRead,BufNewFile * ColorizerAttachToBuffer
---   augroup END
--- ]])
+-- vim.opt.verbose = 20
+-- vim.opt.verbose = 0
+-- vim.opt.verbosefile = nil
