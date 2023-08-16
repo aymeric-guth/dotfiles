@@ -100,7 +100,7 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 vim.o.formatoptions = 'rqnj'
--- vim.o.listchars = 'eol:\\u21b5,space:.,tab:>~'
+-- -- vim.o.listchars = 'eol:\\u21b5,space:.,tab:>~'
 vim.opt.list = true
 vim.opt.listchars:append('space:⋅')
 vim.opt.listchars:append('eol:↴')
@@ -109,10 +109,7 @@ vim.lsp.set_log_level('warn')
 
 vim.g.loaded_perl_provider = 0
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- [[ Highlight on yank ]]
+--  [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 

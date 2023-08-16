@@ -1,6 +1,4 @@
-local opts = { noremap = true, silent = true }
-
-vim.keymap.set('n', '<leader>e', '<cmd>Explore<CR>', { desc = '[e]xplore' })
+vim.keymap.set('n', '<leader>e', '<cmd>Lexplore | vert res 30<CR>', { desc = '[e]xplore' })
 -- vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = '[e]xplore' })
 -- vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<CR>', { desc = '[u]ndotree' })
 

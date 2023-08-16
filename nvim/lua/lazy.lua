@@ -1,3 +1,4 @@
+print('requiring lazy.lua')
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -12,9 +13,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'tpope/vim-fugitive',
-  'tpope/vim-sleuth',
-
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -62,79 +60,12 @@ require('lazy').setup({
     },
   },
 
-  {
-    'luisiacc/gruvbox-baby',
-    config = function ()
-      vim.g.gruvbox_baby_background_color = 'dark'
-      vim.g.gruvbox_baby_transparent_mode = true
-      vim.g.gruvbox_baby_telescope_theme = true
-      vim.cmd([[colorscheme gruvbox-baby]])
-      vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-      vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-      -- vim.cmd.colorscheme ''
-    end
-  },
-
-  {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'gruvbox-baby',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
 
   {
     'lukas-reineke/indent-blankline.nvim',
     opts = {
       char = '┊',
       show_trailing_blankline_indent = false,
-    },
-  },
-
-    -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
-  -- Fuzzy Finder (files, lsp, etc)
-  {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-      {
-        'nvim-telescope/telescope-frecency.nvim',
-        dependencies = {
-          'tami5/sqlite.lua'
-        },
-      },
-    },
-  },
-
-  {
-    -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    build = ':TSUpdate',
-  },
-
-  {
-    'nvim-tree/nvim-tree.lua',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons'
     },
   },
 
