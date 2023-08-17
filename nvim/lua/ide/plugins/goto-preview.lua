@@ -21,14 +21,14 @@ return {
       stack_floating_preview_windows = true, -- Whether to nest floating windows
       preview_window_title = { enable = true, position = 'left' }, -- Whether to set the preview window title as the filename
     })
-    
+
     vim.keymap.set(
       'n',
       '<leader>gd',
       require('goto-preview').goto_preview_definition,
       { desc = '[g]o [d]definition', silent = true, noremap = true }
     )
-    
+
     vim.keymap.set(
       'n',
       '<leader>gt',
