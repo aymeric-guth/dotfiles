@@ -40,9 +40,6 @@ nvim_tree.setup({
   sync_root_with_cwd = true,
   on_attach = on_attach,
   view = {
-    mappings = {
-      custom_only = false,
-    },
     relativenumber = true,
     float = {
       enable = true,
