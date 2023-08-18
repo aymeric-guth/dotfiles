@@ -14,7 +14,6 @@ M.capabilities.textDocument.formatting = vim.lsp.util.make_formatting_params()
 M.setup = function()
   local icons = require('av.ui.icons')
   local signs = {
-
     { name = 'DiagnosticSignError', text = icons.diagnostics.Error },
     { name = 'DiagnosticSignWarn', text = icons.diagnostics.Warning },
     { name = 'DiagnosticSignHint', text = icons.diagnostics.Hint },
