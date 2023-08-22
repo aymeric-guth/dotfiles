@@ -1,7 +1,7 @@
 return {
   'nvim-tree/nvim-tree.lua',
   dependencies = {
-    'nvim-tree/nvim-web-devicons'
+    'nvim-tree/nvim-web-devicons',
   },
   config = function()
     local ok, nvim_tree = pcall(require, 'nvim-tree')
@@ -10,14 +10,14 @@ return {
     end
 
     -- vim.keymap.del('n', '<leader>e')
-    vim.keymap.set('n', '<leader>e', vim.cmd.NvimTreeToggle, {remap=true})
-    
+    vim.keymap.set('n', '<leader>e', vim.cmd.NvimTreeToggle, { remap = true })
+
     local HEIGHT_RATIO = 0.8
     local WIDTH_RATIO = 0.5
-    
+
     local function on_attach(bufnr)
       local api = require('nvim-tree.api')
-    
+
       local function opts(desc)
         return {
           desc = 'nvim-tree: ' .. desc,
@@ -27,21 +27,21 @@ return {
           nowait = true,
         }
       end
-    
+
       vim.keymap.set('n', 'd', api.fs.remove, opts('Delete'))
       vim.keymap.set('n', 'I', api.tree.toggle_gitignore_filter, opts('Toggle .gitignore'))
       vim.keymap.set('n', 'H', api.tree.toggle_hidden_filter, opts('Toggle .dotfiles'))
-    
+
       vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
       vim.keymap.set('n', 'r', api.fs.rename_node, opts('Rename'))
-    
+
       vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
       vim.keymap.set('n', '<cr>', api.node.open.edit, opts('Open'))
       vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
       vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
       vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical Split'))
     end
-    
+
     nvim_tree.setup({
       disable_netrw = true,
       hijack_netrw = true,
@@ -78,6 +78,3 @@ return {
     })
   end,
 }
-
-
-

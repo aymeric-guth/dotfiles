@@ -7,18 +7,18 @@ return {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
       cond = function()
-        return vim.fn.executable 'make' == 1
+        return vim.fn.executable('make') == 1
       end,
     },
     {
       'nvim-telescope/telescope-frecency.nvim',
       dependencies = {
-        'tami5/sqlite.lua'
+        'tami5/sqlite.lua',
       },
     },
   },
   config = function()
-    local telescope = require 'telescope'
+    local telescope = require('telescope')
     local actions = require('telescope.actions')
     local builtin = require('telescope.builtin')
 
@@ -84,7 +84,7 @@ return {
         no_ignore_parent = true,
       })
     end, { desc = '[f]ind [F]files (no ignore)' })
-    
+
     vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[f]ind [g]rep' })
     vim.keymap.set('n', '<leader>fG', function()
       builtin.live_grep({
@@ -93,7 +93,7 @@ return {
         end,
       })
     end, { desc = '[f]ind live [G]rep (no ignore)' })
-    
+
     vim.keymap.set('n', '<leader>fB', builtin.buffers, { desc = '[f]ind [B]uffers (all)' })
     vim.keymap.set(
       'n',
@@ -103,7 +103,7 @@ return {
     )
     vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[f]ind [k]eymaps' })
     vim.keymap.set('n', '<leader>fs', builtin.grep_string, { desc = '[f]ind [s]tring' })
-    
+
     -- Help
     vim.keymap.set('n', '<leader>fm', builtin.man_pages, { desc = '[f]ind [m]an pages' })
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[f]ind [h]help tags' })
@@ -112,7 +112,7 @@ return {
     vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = '[f]ind [r]egisters' })
     vim.keymap.set('n', '<leader>fa', builtin.autocommands, { desc = '[f]ind [a]utocommands' })
     vim.keymap.set('n', '<leader>ft', builtin.treesitter, { desc = '[f]ind [t]reesitter' })
-    
+
     vim.keymap.set(
       'n',
       '<leader>fld',
