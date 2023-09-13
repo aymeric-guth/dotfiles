@@ -100,6 +100,7 @@ my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
 
 if [ -n "$FZF" ]; then
     my-zsh-add-plugin "Aloxaf/fzf-tab"
+    # my-zsh-add-plugin "lincheney/fzf-tab-completion"
     # determines search program for fzf
     if type fd &> /dev/null; then
         export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
