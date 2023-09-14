@@ -97,6 +97,7 @@ my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
 my-zsh-add-plugin "zsh-users/zsh-autosuggestions"
 my-zsh-add-plugin "hlissner/zsh-autopair"
 my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
+# my-zsh-add-plugin "jeffreytse/zsh-vi-mode"
 
 if [ -n "$FZF" ]; then
     my-zsh-add-plugin "Aloxaf/fzf-tab"
@@ -155,6 +156,7 @@ zle -N zle-line-pre-redraw
 #     unset timer
 #   fi
 # }
+
 
 export MANPATH
 export PATH
