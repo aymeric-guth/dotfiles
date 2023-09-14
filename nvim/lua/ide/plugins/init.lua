@@ -7,7 +7,7 @@ return {
   require('ide.plugins.nvim-colorizer'),
   require('ide.plugins.goto-preview'),
   require('ide.plugins.luasnip'),
-  'folke/trouble.nvim',
+  require('ide.plugins.trouble'),
 
   (function()
     if os.getenv('WORKSPACE') ~= nil then
