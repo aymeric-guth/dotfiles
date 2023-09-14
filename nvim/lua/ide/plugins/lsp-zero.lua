@@ -220,14 +220,12 @@ return {
       ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
       ['<C-y>'] = cmp.mapping.confirm({ select = true }),
       ['<C-Space>'] = cmp.mapping.complete(),
+      ['<Tab>'] = nil,
+      ['<S-Tab>'] = nil,
     })
-
-    cmp_mappings['<Tab>'] = nil
-    cmp_mappings['<S-Tab>'] = nil
-
-    -- lsp.setup_nvim_cmp({
-    --   mapping = cmp_mappings,
-    -- })
+    lsp.setup_nvim_cmp({
+      mapping = cmp_mappings,
+    })
     cmp.setup({
       sources = {
         { name = 'nvim_lsp' },
