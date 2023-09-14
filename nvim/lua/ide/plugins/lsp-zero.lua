@@ -26,7 +26,8 @@ return {
   config = function()
     local lsp = require('lsp-zero')
 
-    lsp.preset('recommended')
+    -- lsp.preset('recommended')
+    lsp.preset({})
 
     lsp.ensure_installed({
       'clangd',
@@ -118,8 +119,6 @@ return {
         },
       },
     })
-
-    lsp.setup()
 
     local null_ls = require('null-ls')
     local formatting = null_ls.builtins.formatting
@@ -213,20 +212,20 @@ return {
       automatic_installation = true,
     })
 
+    lsp.setup()
+
     local cmp = require('cmp')
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
-    local cmp_mappings = lsp.defaults.cmp_mappings({
-      ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-      ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-      ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<Tab>'] = nil,
-      ['<S-Tab>'] = nil,
-    })
-    lsp.setup_nvim_cmp({
-      mapping = cmp_mappings,
-    })
+
     cmp.setup({
+      mapping = {
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<Tab>'] = nil,
+        ['<S-Tab>'] = nil,
+      },
       sources = {
         { name = 'nvim_lsp' },
         { name = 'buffer' },
