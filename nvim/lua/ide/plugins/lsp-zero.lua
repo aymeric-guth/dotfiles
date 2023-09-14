@@ -38,6 +38,7 @@ return {
       'ansiblels',
       'gopls',
       'golangci_lint_ls',
+      'zls',
     })
 
     -- Fix Undefined global 'vim'
@@ -196,6 +197,7 @@ return {
       formatting.gofmt.with({ filetypes = { 'go' } }),
       formatting.goimports.with({ filetypes = { 'go' } }),
       -- formatting.goimports_reviser.with({ filetypes = { 'go' } }),
+      formatting.zigfmt,
     }
 
     null_ls.setup({
