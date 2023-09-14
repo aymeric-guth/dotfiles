@@ -61,3 +61,6 @@ fi
 bindkey -s "^R" "run\n"
 bindkey -s "^B" "build\n"
 bindkey -s "^U" "up\n"
+
+bindkey -v
+export KEYTIMEOUT=1
