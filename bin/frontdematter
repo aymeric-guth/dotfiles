@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+import sys
+import os.path
+import re
+
+
+def main(path: str) -> int:
+    patt = r"^---\n(.*?)\n---\n(.*)"
+    ext = os.path.splitext(path)
+
+    with open(path, "r") as f:
+        raw = f.read()
+    match = re.search(patt, raw, re.DOTALL)
+    if match:
+        sys.stdout.write(match.group(2))
+    else:
+        sys.stdout.write(raw)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1]))
