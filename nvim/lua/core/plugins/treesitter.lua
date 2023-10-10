@@ -14,7 +14,7 @@ return {
 
     -- [[ Configure Treesitter ]]
     -- See `:help nvim-treesitter`
-    require('nvim-treesitter.configs').setup {
+    require('nvim-treesitter.configs').setup({
       ensure_installed = {
         'bash',
         'c',
@@ -69,6 +69,12 @@ return {
             ['if'] = '@function.inner',
             ['ac'] = '@class.outer',
             ['ic'] = '@class.inner',
+            ['ai'] = '@.outer',
+            ['ii'] = '@conditional.inner',
+            ['al'] = '@loop.outer',
+            ['il'] = '@loop.inner',
+            ['l='] = '@assignment.lhs',
+            ['r='] = '@assignment.rhs',
           },
         },
         move = {
@@ -77,18 +83,26 @@ return {
           goto_next_start = {
             [']m'] = '@function.outer',
             [']]'] = '@class.outer',
+            [']l'] = '@loop.outer',
+            [']i'] = '@conditional.outer',
           },
           goto_next_end = {
             [']M'] = '@function.outer',
             [']['] = '@class.outer',
+            [']L'] = '@loop.outer',
+            [']I'] = '@conditional.outer',
           },
           goto_previous_start = {
             ['[m'] = '@function.outer',
             ['[['] = '@class.outer',
+            ['[l'] = '@loop.outer',
+            ['[i'] = '@conditional.outer',
           },
           goto_previous_end = {
             ['[M'] = '@function.outer',
             ['[]'] = '@class.outer',
+            ['[L'] = '@loop.outer',
+            ['[I'] = '@conditional.outer',
           },
         },
         swap = {
@@ -101,6 +115,6 @@ return {
           },
         },
       },
-    }
+    })
   end,
 }
