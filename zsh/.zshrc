@@ -91,16 +91,9 @@ fi
 
 [ -f "$ZDOTDIR/zcomp" ] && [ -n "$ZCOMP" ] && source "$ZDOTDIR/zcomp"
 
-# Plugins
-my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
-# zsh-add-plugin "zsh-users/zsh-syntax-highlighting"
-my-zsh-add-plugin "zsh-users/zsh-autosuggestions"
-my-zsh-add-plugin "hlissner/zsh-autopair"
-my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
-# my-zsh-add-plugin "jeffreytse/zsh-vi-mode"
-
 if [ -n "$FZF" ]; then
     my-zsh-add-plugin "Aloxaf/fzf-tab"
+    # my-zsh-add-plugin "Freed-Wu/fzf-tab-source"
     # my-zsh-add-plugin "lincheney/fzf-tab-completion"
     # determines search program for fzf
     if type fd &> /dev/null; then
@@ -109,8 +102,17 @@ if [ -n "$FZF" ]; then
         export FZF_DEFAULT_COMMAND='rg --files --hidden'
     fi
 fi
+# Plugins
+my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
+# zsh-add-plugin "zsh-users/zsh-syntax-highlighting"
+my-zsh-add-plugin "zsh-users/zsh-autosuggestions"
+my-zsh-add-plugin "hlissner/zsh-autopair"
+my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
+# my-zsh-add-plugin "jeffreytse/zsh-vi-mode"
 
-[ -f "$ZDOTDIR/keybinds" ] && source "$ZDOTDIR/keybinds"
+
+# [ -f "$ZDOTDIR/keybinds" ] && source "$ZDOTDIR/keybinds"
+[ -f "$ZDOTDIR/keybinds-vi" ] && source "$ZDOTDIR/keybinds-vi"
 
 # POST LOAD
 # everything else is loaded
@@ -157,6 +159,10 @@ zle -N zle-line-pre-redraw
 #   fi
 # }
 
+
+# obsidian shell extension
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${word}'
+export LESSOPEN='|"$DOTFILES/zsh/.lessfilter" '%s''
 
 export MANPATH
 export PATH
