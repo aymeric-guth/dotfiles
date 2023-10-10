@@ -1,33 +1,32 @@
 local local_vimrc = vim.fn.getcwd() .. '/.nvimrc'
 if vim.loop.fs_stat(local_vimrc) then
-  vim.cmd('source ' .. local_vimrc)
+  vim.cmd('source' .. local_vimrc)
 end
 
--- local ok, plenary = pcall(require, 'plenary.filetype')
--- if ok then
---   require('plenary.filetype').add_file('sh')
--- end
+local layer = os.getenv('AV_NVIM_LAYER')
 
-require('av.packer')
-require('av.set')
-require('av.autocmd')
-require('av.keymaps')
+if layer == 'base' or layer == nil then
+  require 'base'
 
-if os.getenv('NEOVIM_FULL') ~= nil then
-  require('av.cmp')
-  if os.getenv('WORKSPACE') ~= nil then
-    require('av.lsp')
-    require('av.dap')
+elseif layer == 'core' or layer == 'ide' then
+  require(layer)
+  local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+  if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system {
+      'git',
+      'clone',
+      '--filter=blob:none',
+      'https://github.com/folke/lazy.nvim.git',
+      '--branch=stable', -- latest stable release
+      lazypath,
+    }
   end
-  require('fidget').setup()
-end
+  vim.opt.rtp:prepend(lazypath)
+  require('lazy').setup({
+    require(layer .. '.plugins')
+  }, {})
 
-require('av.telescope')
-require('av.treesitter')
--- vim.opt.verbose = 20
--- vim.opt.verbose = 0
--- vim.opt.verbosefile = nil
-require('av.harpoon')
-require('av.ui')
-require('av.nvim-osc52')
-require('av.goto-preview')
+else
+  error('Invalid layer: ' .. layer)
+
+end

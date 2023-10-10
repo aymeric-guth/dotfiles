@@ -13,27 +13,17 @@ bindkey -r "^[q"
 bindkey -r "^R"
 bindkey -r "^S"
 
-bindkey "^K" exit-zero
+bindkey -v "^K" exit-zero
 bindkey "^W" my-backward-delete-word
 
-#if [ -z "$TMUX" ] && [ -z "$SSH_CLIENT" ]; then
-#  bindkey -s "^F" "tmuxp-start\n"
-#  bindkey -s "^N" "tmuxp-edit\n"
-#  bindkey -s "^G" "tmuxp-debug\n"
-#  bindkey -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
-#  bindkey -s "^S" "tmux-attach\n"
-#else
-#  bindkey -s "^F" "vanilla-start\n"
-#fi
-
 if [ -z "$TMUX" ]; then
-	bindkey -s "^F" "tmuxp-start\n"
-	bindkey -s "^N" "tmuxp-edit\n"
-	bindkey -s "^G" "tmuxp-debug\n"
-	bindkey -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
-	bindkey -s "^S" "tmux-attach\n"
+	bindkey -v -s "^F" "tmuxp-start\n"
+	bindkey -v -s "^N" "tmuxp-edit\n"
+	bindkey -v -s "^G" "tmuxp-debug\n"
+	bindkey -v -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
+	bindkey -v -s "^S" "tmux-attach\n"
 else
-	bindkey -s "^F" "vanilla-start\n"
+	bindkey -v -s "^F" "vanilla-start\n"
 fi
 
 bindkey "^[[5~" beginning-of-line
@@ -48,21 +38,21 @@ bindkey "¬" forward-word
 bindkey "˙" backward-word
 # bindkey "^[[1;3C" forward-word
 # bindkey "^[[1;3D" backward-word
-bindkey "^E" edit-command-line
-bindkey "^ " autosuggest-accept
+bindkey -v "^E" edit-command-line
+bindkey -v "^ " autosuggest-accept
 
 if command -v fzf 1>/dev/null; then
 	zle -N fzf-path
 	bindkey "^X" fzf-path
-	bindkey "^H" fzf-history-widget
+	bindkey -v "^H" fzf-history-widget
 	bindkey "ƒ" fzf-cd-widget
 fi
 
-bindkey -s "^R" "run\n"
-bindkey -s "^B" "build\n"
-bindkey -s "^U" "up\n"
+bindkey -v -s "^R" "run\n"
+bindkey -v -s "^B" "build\n"
+bindkey -v -s "^U" "up\n"
 
 # Vi mode
-# bindkey -v
-# export KEYTIMEOUT=1
-# bindkey "^?" backward-delete-char
+bindkey -v
+export KEYTIMEOUT=1
+bindkey "^?" backward-delete-char

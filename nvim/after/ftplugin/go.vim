@@ -64,4 +64,3 @@ setlocal foldtext=GoText()
 setlocal foldlevel=1
 
 setlocal noexpandtab
-
