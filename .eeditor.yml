@@ -1,12 +1,18 @@
 ---
 - name: nvim
-  env:
-    XDG_CONFIG_HOME: $DOTFILES
-- name: nvim
   path: $TOOLDIR/bin
   env:
     XDG_CONFIG_HOME: $DOTFILES
+  fast: false
+- name: nvim
+  env:
+    XDG_CONFIG_HOME: $DOTFILES
+  fast: false
 - name: vim
   path: /usr/bin
+  env:
+    XDG_CONFIG_HOME: $DOTFILES
+  fast: true
 - name: vi
   path: /usr/bin
+  fast: true
