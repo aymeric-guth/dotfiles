@@ -1,9 +1,9 @@
-#compdef obsdn
-compdef _obsdn obsdn
+#compdef gonext
+compdef _gonext gonext
 
-# zsh completion for obsdn                                -*- shell-script -*-
+# zsh completion for gonext                               -*- shell-script -*-
 
-__obsdn_debug()
+__gonext_debug()
 {
     local file="$BASH_COMP_DEBUG_FILE"
     if [[ -n ${file} ]]; then
@@ -11,7 +11,7 @@ __obsdn_debug()
     fi
 }
 
-_obsdn()
+_gonext()
 {
     local shellCompDirectiveError=1
     local shellCompDirectiveNoSpace=2
@@ -23,21 +23,21 @@ _obsdn()
     local lastParam lastChar flagPrefix requestComp out directive comp lastComp noSpace keepOrder
     local -a completions
 
-    __obsdn_debug "\n========= starting completion logic =========="
-    __obsdn_debug "CURRENT: ${CURRENT}, words[*]: ${words[*]}"
+    __gonext_debug "\n========= starting completion logic =========="
+    __gonext_debug "CURRENT: ${CURRENT}, words[*]: ${words[*]}"
 
     # The user could have moved the cursor backwards on the command-line.
     # We need to trigger completion from the $CURRENT location, so we need
     # to truncate the command-line ($words) up to the $CURRENT location.
     # (We cannot use $CURSOR as its value does not work when a command is an alias.)
     words=("${=words[1,CURRENT]}")
-    __obsdn_debug "Truncated words[*]: ${words[*]},"
+    __gonext_debug "Truncated words[*]: ${words[*]},"
 
     lastParam=${words[-1]}
     lastChar=${lastParam[-1]}
-    __obsdn_debug "lastParam: ${lastParam}, lastChar: ${lastChar}"
+    __gonext_debug "lastParam: ${lastParam}, lastChar: ${lastChar}"
 
-    # For zsh, when completing a flag with an = (e.g., obsdn -n=<TAB>)
+    # For zsh, when completing a flag with an = (e.g., gonext -n=<TAB>)
     # completions must be prefixed with the flag
     setopt local_options BASH_REMATCH
     if [[ "${lastParam}" =~ '-.*=' ]]; then
@@ -50,22 +50,22 @@ _obsdn()
     if [ "${lastChar}" = "" ]; then
         # If the last parameter is complete (there is a space following it)
         # We add an extra empty parameter so we can indicate this to the go completion code.
-        __obsdn_debug "Adding extra empty parameter"
+        __gonext_debug "Adding extra empty parameter"
         requestComp="${requestComp} \"\""
     fi
 
-    __obsdn_debug "About to call: eval ${requestComp}"
+    __gonext_debug "About to call: eval ${requestComp}"
 
     # Use eval to handle any environment variables and such
     out=$(eval ${requestComp} 2>/dev/null)
-    __obsdn_debug "completion output: ${out}"
+    __gonext_debug "completion output: ${out}"
 
     # Extract the directive integer following a : from the last line
     local lastLine
     while IFS='\n' read -r line; do
         lastLine=${line}
     done < <(printf "%s\n" "${out[@]}")
-    __obsdn_debug "last line: ${lastLine}"
+    __gonext_debug "last line: ${lastLine}"
 
     if [ "${lastLine[1]}" = : ]; then
         directive=${lastLine[2,-1]}
@@ -75,16 +75,16 @@ _obsdn()
         out=${out[1,-$suffix]}
     else
         # There is no directive specified.  Leave $out as is.
-        __obsdn_debug "No directive found.  Setting do default"
+        __gonext_debug "No directive found.  Setting do default"
         directive=0
     fi
 
-    __obsdn_debug "directive: ${directive}"
-    __obsdn_debug "completions: ${out}"
-    __obsdn_debug "flagPrefix: ${flagPrefix}"
+    __gonext_debug "directive: ${directive}"
+    __gonext_debug "completions: ${out}"
+    __gonext_debug "flagPrefix: ${flagPrefix}"
 
     if [ $((directive & shellCompDirectiveError)) -ne 0 ]; then
-        __obsdn_debug "Completion received error. Ignoring completions."
+        __gonext_debug "Completion received error. Ignoring completions."
         return
     fi
 
@@ -95,11 +95,11 @@ _obsdn()
     while IFS='\n' read -r comp; do
         # Check if this is an activeHelp statement (i.e., prefixed with $activeHelpMarker)
         if [ "${comp[1,$endIndex]}" = "$activeHelpMarker" ];then
-            __obsdn_debug "ActiveHelp found: $comp"
+            __gonext_debug "ActiveHelp found: $comp"
             comp="${comp[$startIndex,-1]}"
             if [ -n "$comp" ]; then
                 compadd -x "${comp}"
-                __obsdn_debug "ActiveHelp will need delimiter"
+                __gonext_debug "ActiveHelp will need delimiter"
                 hasActiveHelp=1
             fi
 
@@ -116,7 +116,7 @@ _obsdn()
             local tab="$(printf '\t')"
             comp=${comp//$tab/:}
 
-            __obsdn_debug "Adding completion: ${comp}"
+            __gonext_debug "Adding completion: ${comp}"
             completions+=${comp}
             lastComp=$comp
         fi
@@ -127,19 +127,19 @@ _obsdn()
     # - file completion will be performed (so there will be choices after the activeHelp)
     if [ $hasActiveHelp -eq 1 ]; then
         if [ ${#completions} -ne 0 ] || [ $((directive & shellCompDirectiveNoFileComp)) -eq 0 ]; then
-            __obsdn_debug "Adding activeHelp delimiter"
+            __gonext_debug "Adding activeHelp delimiter"
             compadd -x "--"
             hasActiveHelp=0
         fi
     fi
 
     if [ $((directive & shellCompDirectiveNoSpace)) -ne 0 ]; then
-        __obsdn_debug "Activating nospace."
+        __gonext_debug "Activating nospace."
         noSpace="-S ''"
     fi
 
     if [ $((directive & shellCompDirectiveKeepOrder)) -ne 0 ]; then
-        __obsdn_debug "Activating keep order."
+        __gonext_debug "Activating keep order."
         keepOrder="-V"
     fi
 
@@ -156,17 +156,17 @@ _obsdn()
         done
         filteringCmd+=" ${flagPrefix}"
 
-        __obsdn_debug "File filtering command: $filteringCmd"
+        __gonext_debug "File filtering command: $filteringCmd"
         _arguments '*:filename:'"$filteringCmd"
     elif [ $((directive & shellCompDirectiveFilterDirs)) -ne 0 ]; then
         # File completion for directories only
         local subdir
         subdir="${completions[1]}"
         if [ -n "$subdir" ]; then
-            __obsdn_debug "Listing directories in $subdir"
+            __gonext_debug "Listing directories in $subdir"
             pushd "${subdir}" >/dev/null 2>&1
         else
-            __obsdn_debug "Listing directories in ."
+            __gonext_debug "Listing directories in ."
         fi
 
         local result
@@ -177,17 +177,17 @@ _obsdn()
         fi
         return $result
     else
-        __obsdn_debug "Calling _describe"
+        __gonext_debug "Calling _describe"
         if eval _describe $keepOrder "completions" completions $flagPrefix $noSpace; then
-            __obsdn_debug "_describe found some completions"
+            __gonext_debug "_describe found some completions"
 
             # Return the success of having called _describe
             return 0
         else
-            __obsdn_debug "_describe did not find completions."
-            __obsdn_debug "Checking if we should do file completion."
+            __gonext_debug "_describe did not find completions."
+            __gonext_debug "Checking if we should do file completion."
             if [ $((directive & shellCompDirectiveNoFileComp)) -ne 0 ]; then
-                __obsdn_debug "deactivating file completion"
+                __gonext_debug "deactivating file completion"
 
                 # We must return an error code here to let zsh know that there were no
                 # completions found by _describe; this is what will trigger other
@@ -196,7 +196,7 @@ _obsdn()
                 return 1
             else
                 # Perform file completion
-                __obsdn_debug "Activating file completion"
+                __gonext_debug "Activating file completion"
 
                 # We must return the result of this command, so it must be the
                 # last command, or else we must store its result to return it.
@@ -207,6 +207,6 @@ _obsdn()
 }
 
 # don't run the completion function when being source-ed or eval-ed
-if [ "$funcstack[1]" = "_obsdn" ]; then
-    _obsdn
+if [ "$funcstack[1]" = "_gonext" ]; then
+    _gonext
 fi

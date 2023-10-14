@@ -3,6 +3,7 @@
 zle -N history-substring-search-up
 zle -N history-substring-search-down
 zle -N edit-command-line
+zle -N custom-edit-command-line
 zle -N my-backward-delete-word
 zle -N exit-zero
 
@@ -38,7 +39,9 @@ bindkey "¬" forward-word
 bindkey "˙" backward-word
 # bindkey "^[[1;3C" forward-word
 # bindkey "^[[1;3D" backward-word
-bindkey -v "^E" edit-command-line
+bindkey -v "^E" custom-edit-command-line
+# bindkey -v "^E" edit-command-line
+
 bindkey -v "^ " autosuggest-accept
 
 if command -v fzf 1>/dev/null; then

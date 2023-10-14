@@ -89,6 +89,9 @@ elif [ -f "$ZDOTDIR/prompt" ]; then
     source "$ZDOTDIR/prompt"
 fi
 
+# export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+# eval "$(starship init zsh)"
+
 [ -f "$ZDOTDIR/zcomp" ] && [ -n "$ZCOMP" ] && source "$ZDOTDIR/zcomp"
 
 if [ -n "$FZF" ]; then
