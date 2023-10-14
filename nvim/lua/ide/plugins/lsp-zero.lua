@@ -30,7 +30,7 @@ return {
     lsp.preset({})
 
     lsp.ensure_installed({
-      'clangd',
+      -- 'clangd',
       'pyright',
       'lua_ls',
       'taplo',
@@ -45,7 +45,7 @@ return {
     })
 
     -- Fix Undefined global 'vim'
-    lsp.nvim_workspace()
+    -- lsp.nvim_workspace()
 
     lsp.set_preferences({
       suggest_lsp_servers = false,
@@ -215,67 +215,6 @@ return {
       ensure_installed = nil,
       automatic_installation = true,
     })
-
-    -- require('lspconfig').clangd.setup({
-    --   settings = {
-    --     clangd = {
-    --       cmd = {
-    --         'clangd',
-    --         '--background-index',
-    --         '--compile-commands-dir='
-    --           .. require('os').getenv('WORKSPACE')
-    --           .. '/build/compile_commands.json',
-    --         '--header-insertion-decorators',
-    --         '--pch-storage=memory',
-    --         '--suggest-missing-includes',
-    --         '--clang-tidy',
-    --         '--header-insertion=iwyu',
-    --         '--completion-style=detailed',
-    --       },
-    --       init_options = {
-    --         clangdFileStatus = true,
-    --         usePlaceholders = true,
-    --         completeUnimported = true,
-    --         semanticHighlighting = true,
-    --       },
-    --       filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
-    --     },
-    --   },
-    -- })
-
-    -- require('mason-lspconfig').setup({
-    --   handlers = {
-    --     lsp.default_setup,
-    --     clangd = function()
-    --       require('lspconfig').clangd.setup({
-    --         settings = {
-    --           clangd = {
-    --             cmd = {
-    --               'clangd',
-    --               '--background-index',
-    --               '--compile-commands-dir='
-    --                 .. require('os').getenv('WORKSPACE')
-    --                 .. '/build/compile_commands.json',
-    --               '--header-insertion-decorators',
-    --               '--pch-storage=memory',
-    --               '--suggest-missing-includes',
-    --               '--clang-tidy',
-    --               '--header-insertion=iwyu',
-    --               '--completion-style=detailed',
-    --             },
-    --             init_options = {
-    --               clangdFileStatus = true,
-    --               usePlaceholders = true,
-    --               completeUnimported = true,
-    --               semanticHighlighting = true,
-    --             },
-    --             filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
-    --           },
-    --         },
-    --       })
-    --     end,
-    --   },
-    -- })
 
     lsp.setup()
 
