@@ -6,7 +6,7 @@ return {
     { 'neovim/nvim-lspconfig' }, -- Required
     { 'williamboman/mason.nvim' }, -- Optional
     { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-    { 'jose-elias-alvarez/null-ls.nvim' },
+    { 'nvimtools/none-ls.nvim' },
     { 'jayp0521/mason-null-ls.nvim' },
 
     -- Autocompletion
