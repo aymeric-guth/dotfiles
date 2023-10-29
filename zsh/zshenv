@@ -23,6 +23,8 @@ export TMUXP_CONFIGDIR="${TMUXP_CONFIGDIR:-"~/.config/tmuxp"}"
 # [ -d "$HOME/.nvm" ] && export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
+[ -n "$TOOLDIR" ] && append-to-path "$TOOLDIR"/bin
+
 [ -n "$GOPATH" ] && append-to-path "$GOPATH"/bin
 append-to-path "/usr/local/go/bin"
 

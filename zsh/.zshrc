@@ -164,7 +164,7 @@ zle -N zle-line-pre-redraw
 
 
 # obsidian shell extension
-zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${word}'
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${realpath}'
 export LESSOPEN='|"$DOTFILES/zsh/.lessfilter" '%s''
 
 export MANPATH

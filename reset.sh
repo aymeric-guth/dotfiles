@@ -7,13 +7,13 @@ rm -rf $HOME/.local/share/nvim
 rm -rf $HOME/.local/state/nvim
 rm -rf $HOME/.cache/nvim
 
-rm -rf /home/yul-23.04/.local/share/nvim
-rm -rf /home/yul-23.04/.local/state/nvim
-rm -rf /home/yul-23.04/.cache/nvim
+# rm -rf /home/yul-23.04/.local/share/nvim
+# rm -rf /home/yul-23.04/.local/state/nvim
+# rm -rf /home/yul-23.04/.cache/nvim
 
-rm -rf /home/yul-20.04/.local/share/nvim
-rm -rf /home/yul-20.04/.local/state/nvim
-rm -rf /home/yul-20.04/.cache/nvim
+# rm -rf /home/yul-20.04/.local/share/nvim
+# rm -rf /home/yul-20.04/.local/state/nvim
+# rm -rf /home/yul-20.04/.cache/nvim
 
 #rm -rf "$HOME/.cache/nvim"
 #rm -rf "$HOME/.local/share/nvim"

@@ -15,7 +15,6 @@ alias cb-copy='xclip -selection clipboard'
 alias cb-paste='xclip -selection clipboard -o'
 
 alias d='/usr/local/bin/docker'
-alias g='/usr/bin/git'
 
 if command -v ss 1>/dev/null; then
 	alias ns='ss --listening --processes --info --summary --ipv4 --tcp'
@@ -26,3 +25,7 @@ else
 fi
 alias s='/usr/bin/systemctl'
 alias lock='i3lock -c 000000'
+
+# alias g='/usr/bin/git'
+alias g="$(go env GOPATH)/bin/gonext"
+alias sudo='sudo '
