@@ -3,7 +3,7 @@
   path: $TOOLDIR/bin
   env:
     XDG_CONFIG_HOME: $DOTFILES
-  fast: false
+  fast: true
 - name: nvim
   env:
     XDG_CONFIG_HOME: $DOTFILES
