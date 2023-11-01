@@ -1,0 +1,34 @@
+#!/bin/sh
+
+if [ -z "$(find . -mindepth 1 -maxdepth 1 -type d -iname .git)" ]; then
+	echo "Must be executed from the root of a git repo"
+	exit 1
+fi
+
+if [ -n "$1" ] && [ ! -f "$1" ]; then
+	echo "error args: $1"
+	exit 1
+fi
+
+path=$(python3 -c "import sys;import pathlib;import os;sys.stdout.writelines(str(pathlib.Path(sys.argv[1]).resolve())[len(os.getcwd()) + 1 :])" "$1")
+if [ ! -f "$path" ]; then
+	echo "Unexpected error from embeded script, path: $path"
+	exit 1
+fi
+
+if [ -f "$path".orig ]; then
+	echo ".orig file is present for $1"
+	exit 1
+fi
+
+cp "$path" "$path".orig
+$EDITOR "$path"
+
+if diff "$path" "$path".orig >/dev/null 2>&1; then
+	echo "files are the same"
+	exit 1
+else
+	git diff --no-index "$path".orig "$path" | sed 's/.orig//g' >"$1".patch
+	rm -f "$path".orig
+	exit 0
+fi
