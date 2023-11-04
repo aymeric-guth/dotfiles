@@ -1,13 +1,11 @@
 vim.keymap.set('n', '<leader>e', '<cmd>Lexplore | vert res 30<CR>', { desc = '[e]xplore' })
--- vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { desc = '[e]xplore' })
--- vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<CR>', { desc = '[u]ndotree' })
 
 vim.keymap.set('n', '<S-l>', '<cmd>bnext<CR>', { desc = '-> buffer' })
 vim.keymap.set('n', '<S-h>', '<cmd>bprevious<CR>', { desc = '<- buffer' })
 
+vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'keeps cursor in place when deleting newline' })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'moves selected text in visual mode' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'moves selected text in visual mode' })
-vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'keeps cursor in place when deleting newline' })
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'keeps cursor centered when jumping' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'keeps cursor centered when jumping' })
@@ -31,7 +29,6 @@ vim.keymap.set('n', '<C-k>', '<cmd>cnext<CR>zz')
 vim.keymap.set('n', '<C-j>', '<cmd>cprev<CR>zz')
 vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
 vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
-
 
 -- --[[
 -- -- Trouble
