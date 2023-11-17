@@ -29,4 +29,8 @@ alias lock='i3lock -c 000000'
 # alias g='/usr/bin/git'
 alias g="$(go env GOPATH)/bin/gonext"
 alias sudo='sudo '
-alias tg='tag-reader'
+alias tg='tag-reader '
+
+alias j='/bin/journalctl -xeu '
+alias s='/bin/systemctl '
+alias jr='/bin/journalctl --flush --rotate --vacuum-time=1s && /bin/journalctl --user --flush --rotate --vacuum-time=1s'

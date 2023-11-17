@@ -46,5 +46,5 @@ return {
       -- min_count_to_highlight: minimum number of matches required to perform highlighting
       min_count_to_highlight = 1,
     })
-  end
+  end,
 }

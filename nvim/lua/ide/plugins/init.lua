@@ -5,7 +5,7 @@ return {
   require('ide.plugins.harpoon'),
   require('ide.plugins.illuminate'),
   require('ide.plugins.nvim-colorizer'),
-  require('ide.plugins.goto-preview'),
+  -- require('ide.plugins.goto-preview'),
   require('ide.plugins.luasnip'),
   require('ide.plugins.trouble'),
   require('ide.plugins.oil'),
