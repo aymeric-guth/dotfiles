@@ -13,5 +13,5 @@ return {
   require('core.plugins.gruvbox-baby'),
   require('core.plugins.indent-blankline'),
   require('core.plugins.nvim-osc52'),
-  require('ide.plugins.oil'),
+  require('core.plugins.oil'),
 }
