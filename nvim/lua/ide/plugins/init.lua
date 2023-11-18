@@ -8,7 +8,6 @@ return {
   -- require('ide.plugins.goto-preview'),
   require('ide.plugins.luasnip'),
   require('ide.plugins.trouble'),
-  require('ide.plugins.oil'),
 
   (function()
     if os.getenv('WORKSPACE') ~= nil then
