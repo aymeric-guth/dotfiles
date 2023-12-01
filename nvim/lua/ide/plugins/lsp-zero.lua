@@ -16,7 +16,7 @@ return {
 
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
-    { 'hrsh7th/cmp-cmdline' },
+    -- { 'hrsh7th/cmp-cmdline' },
     { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
     { 'hrsh7th/cmp-nvim-lsp-signature-help' },
     { 'ray-x/cmp-treesitter' },
@@ -66,10 +66,10 @@ return {
       vim.keymap.set('n', 'K', function()
         vim.lsp.buf.hover()
       end, opts)
-      vim.keymap.set('n', '<leader>vws', function()
+      vim.keymap.set('n', '<leader>lws', function()
         vim.lsp.buf.workspace_symbol()
       end, opts)
-      vim.keymap.set('n', '<leader>vd', function()
+      vim.keymap.set('n', '<leader>ld', function()
         vim.diagnostic.open_float()
       end, opts)
       vim.keymap.set('n', '[d', function()
@@ -78,13 +78,13 @@ return {
       vim.keymap.set('n', ']d', function()
         vim.diagnostic.goto_prev()
       end, opts)
-      vim.keymap.set('n', '<leader>vca', function()
+      vim.keymap.set('n', '<leader>lca', function()
         vim.lsp.buf.code_action()
       end, opts)
-      vim.keymap.set('n', '<leader>vrr', function()
+      vim.keymap.set('n', '<leader>lrr', function()
         vim.lsp.buf.references()
       end, opts)
-      vim.keymap.set('n', '<leader>vrn', function()
+      vim.keymap.set('n', '<leader>lrn', function()
         vim.lsp.buf.rename()
       end, opts)
       vim.keymap.set('i', '<C-h>', function()
@@ -234,7 +234,7 @@ return {
         { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },
-        { name = 'cmdline' },
+        -- { name = 'cmdline' },
         { name = 'nvim_lsp_document_symbol' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'treesitter' },

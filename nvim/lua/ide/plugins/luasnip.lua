@@ -37,7 +37,7 @@ return {
     vim.keymap.set(
       { 'n' },
       '<leader><leader>s',
-      '<cmd>source ' .. os.getenv('DOTFILES') .. '/nvim/after/plugin/luasnip.lua',
+      '<cmd>source ' .. os.getenv('DOTFILES') .. '/nvim/after/plugin/luasnip.lua' .. '<CR>',
       { silent = true, desc = 'reloads snippets' }
     )
   end,

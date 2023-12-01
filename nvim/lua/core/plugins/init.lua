@@ -5,6 +5,7 @@ return {
   -- 'tpope/vim-commentary',
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
+  { 'folke/tokyonight.nvim' },
   require('core.plugins.telescope'),
   require('core.plugins.treesitter'),
   require('core.plugins.gitsigns'),

@@ -216,4 +216,20 @@ bindsym Shift+Print exec --no-startup-id maim --select "$HOME/Pictures/$(date).p
 # exec systemctl --user start --now key-remaps
 exec feh --bg-fill ~/Pictures/EEyWG-UU4AAnQRg.jpeg
 
-exec_always --no-startup-id /home/yul/xmodmap.sh
+# exec_always --no-startup-id /home/yul/xmodmap.sh
+bindsym $mod+g exec --no-startup-id '/usr/bin/feh /home/yul/svg/out.png'
+
+# exec_always --no-startup-id "/usr/bin/setxkbmap"
+# exec_always --no-startup-id "/usr/bin/xmodmap -e 'keycode 66 = Hyper_L'"
+# exec_always --no-startup-id "/usr/bin/xmodmap -e 'remove lock = Hyper_L'"
+# exec_always --no-startup-id "/usr/bin/xmodmap -e 'remove Mod4 = Hyper_L'"
+# exec_always --no-startup-id "/usr/bin/xmodmap -e 'remove Mod4 = Hyper_L'"
+# exec_always --no-startup-id "/usr/bin/xmodmap -e 'add Mod3 = Hyper_L'"
+# 
+# # mapping Caps_Lock only to Escape
+# exec_always --no-startup-id "pgrep xcape | xargs -I '{}' /bin/sh -c 'kill -9 {}'"
+# exec_always --no-startup-id "/usr/bin/xcape -e 'Hyper_L=Escape'"
+# exec_always --no-startup-id "/usr/bin/xmodmap -e 'clear Mod1'"
+# exec_always --no-startup-id "/usr/bin/xmodmap -e 'clear Mod4'"
+# exec_always --no-startup-id "/usr/bin/xmodmap -e 'keycode 64 = Super_L'"
+# exec_always --no-startup-id "/usr/bin/xmodmap -e 'keycode 108= Multi_key'"
