@@ -28,3 +28,4 @@ ipython/profile_default/*
 /.vim/plugged
 /go
 /tool_state
+/nvim/lazy-lock.json
