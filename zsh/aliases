@@ -158,3 +158,6 @@ mannaz() {
 
 alias c-lan='sudo nmcli device wifi connect TP-Link_A6DC password 28086260'
 alias c-wan='sudo nmcli connection up kenaz'
+
+alias g-cp='git rev-parse HEAD | tr -d '\n' | cb-copy'
+alias g-sm='git add . && git commit -m "Update submodules"'
