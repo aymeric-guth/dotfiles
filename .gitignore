@@ -26,3 +26,5 @@ ipython/profile_default/*
 /.vim/.netrwhist
 /.vim/autoload
 /.vim/plugged
+/go
+/tool_state
