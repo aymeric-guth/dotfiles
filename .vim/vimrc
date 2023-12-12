@@ -1,0 +1,87 @@
+" ---
+" sets
+" ---
+
+" disable compatible mode
+set nocp
+filetype plugin indent on
+" syntax highlighting
+syntax on
+set backspace=indent,eol,start
+set hidden
+
+set nobackup
+set noswapfile
+set noundofile
+set undodir=$HOME/.cache/vim/undo
+
+set relativenumber
+set nu
+set scrolloff=8
+set signcolumn="yes"
+
+let $RTP=split(&runtimepath, ',')[0]
+let $RC="$HOME/.vim/vimrc"
+
+set path=.,**
+
+" colorscheme stuff
+set termguicolors
+
+" tree view for netrw explore
+let g:netrw_liststyle=3
+" explore ~20% screen estate
+let g:netrw_winsize=20
+" remap <CR> -> h l quand tree view active
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smartindent
+
+" no linewrap
+set nowrap
+set colorcolumn=80
+
+set nohlsearch
+set incsearch
+set autochdir
+
+set updatetime=50
+set clipboard=unnamed
+
+" ---
+" plugins
+" ---
+
+call plug#begin()
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'ayu-theme/ayu-vim'
+call plug#end()
+
+" ---
+" remaps
+" ---
+
+let g:mapleader=' '
+nnoremap <leader>e :Lexplore<CR>
+nnoremap <leader><CR> :so ~/.vim/vimrc<CR>
+nnoremap <C-j> :cprev<CR>
+nnoremap <C-k> :cnext<CR>
+nnoremap <C-e> :copen<CR>
+
+nnoremap <leader>ff :GFiles<CR>
+nnoremap <leader>fF :Files<CR>
+nnoremap <leader>fb :Buffers<CR>
+
+" ---
+"  colorscheme
+"  ---
+" ayu
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
+" gruvbox
+"set bg=dark
+"colorscheme retrobox
