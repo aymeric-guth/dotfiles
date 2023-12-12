@@ -15,7 +15,7 @@ vim.keymap.set('n', '<C-b>', '<C-b>zz', { desc = 'keeps cursor centered when jum
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'keeps cursor centered when searching' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'keeps cursor centered when searching' })
 
-vim.keymap.set('n', '<leader>d', '"_d', { desc = 'deletes to void buffer' })
+vim.keymap.set('n', '<leader>d', '"_d', { desc = 'deletes to void register' })
 vim.keymap.set('v', '<leader>d', '"_d', { desc = 'deletes to void register' })
 vim.keymap.set('x', '<leader>p', '"_dP')
 
@@ -31,3 +31,7 @@ vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
 vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
 
 vim.keymap.set('n', '<leader>gs', vim.cmd.Git, { desc = '[g]it [s]tatus' })
+
+-- vim.keymap.set('n', '<leader>y', '"+y', { expr = true })
+-- vim.keymap.set('n', '<leader>yy', '<leader>y_', { remap = true })
+-- vim.keymap.set('x', '<leader>y', osc52.copy_visual)

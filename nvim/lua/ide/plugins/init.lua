@@ -1,5 +1,7 @@
 return {
   'renerocksai/telekasten.nvim',
+  'ThePrimeagen/vim-be-good',
+  'tjdevries/train.nvim',
   require('core.plugins'),
   require('ide.plugins.nvim-tree'),
   require('ide.plugins.harpoon'),
