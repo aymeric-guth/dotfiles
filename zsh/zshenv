@@ -30,6 +30,7 @@ append-to-path "/usr/local/go/bin"
 
 WORK_PROJECTS="$WORK_PROJECTS"
 LEARNING_PROJECTS="$LEARNING_PROJECTS"
+prepend-to-path "$HOME/.local/bin"
 
 # [ -n "$GOWORK" ] && export WORK_PROJECTS="$WORK_PROJECTS" || export WORK_PROJECTS=
 # [ -n "$GOLEARN" ] && export LEARNING_PROJECTS="$LEARNING_PROJECTS" || export LEARNING_PROJECTS=
