@@ -8,6 +8,7 @@ return {
   { 'folke/tokyonight.nvim' },
   require('core.plugins.telescope'),
   require('core.plugins.treesitter'),
+  require('core.plugins.treesitter-context'),
   require('core.plugins.gitsigns'),
   require('core.plugins.undotree'),
   require('core.plugins.lualine'),
