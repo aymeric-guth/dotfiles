@@ -13,7 +13,9 @@ else
 fi
 
 if ! command -v fd 1> /dev/null; then
-  alias fd='find . -iname *'
+  fd() {
+    /usr/bin/find . -iname "*${1}*";
+  }
 fi
 
 alias ..='cd ..'
