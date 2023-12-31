@@ -61,16 +61,15 @@ autoload -Uz colors && colors
 autoload -Uz add-zsh-hook
 
 source "$ZDOTDIR/zshenv"
-
+. "$ZDOTDIR/func/zsh-functions"
+. "$ZDOTDIR/func/find.sh"
 case "$(uname -s)" in
     Darwin)
         # export CLICOLOR=1
-        source "$ZDOTDIR/func/zsh-functions-macos"
         source "$ZDOTDIR/aliases-macos"
         ;;
 
     Linux)
-        source "$ZDOTDIR/func/zsh-functions-linux"
         source "$ZDOTDIR/aliases-linux"
         ;;
 
@@ -114,7 +113,6 @@ my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
 # my-zsh-add-plugin "jeffreytse/zsh-vi-mode"
 
 
-# [ -f "$ZDOTDIR/keybinds" ] && source "$ZDOTDIR/keybinds"
 [ -f "$ZDOTDIR/keybinds-vi" ] && source "$ZDOTDIR/keybinds-vi"
 
 # POST LOAD

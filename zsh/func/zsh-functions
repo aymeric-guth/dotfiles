@@ -1,43 +1,10 @@
 #!/bin/sh
 
 . "$ZDOTDIR/func/cleanup.sh"
-. "$ZDOTDIR/func/upgrade.sh"
-[ -n "$FRE" ] && . "$ZDOTDIR/func/_fre.sh"
 . "$ZDOTDIR/func/_syncthing.sh"
 . "$ZDOTDIR/func/_starters.sh"
 . "$ZDOTDIR"/func/aws.sh
 
-
-up() {
-    if [ $COMPOSEFILE ]; then
-        eval "$COMPOSE_CMD --file $COMPOSEFILE up --build $1 $2 $3" 
-    else
-        eval "$COMPOSE_CMD up --build $1 $2 $3"
-    fi
-}
-
-down() {
-    if [ $COMPOSEFILE ]; then
-        eval "$COMPOSE_CMD --file $COMPOSEFILE down $1 $2 $3" 
-    else
-        eval "$COMPOSE_CMD down $1 $2 $3"
-    fi
-}
-
-build() {
-    eval "$COMPOSE_CMD build $*"
-}
-
-run() {
-    if [[ $RUN_CMD ]]; then
-        eval "$RUN_CMD $*"
-    elif [[ $1 ]]; then
-        eval "$COMPOSE_CMD run $*"
-    else
-        echo "Must specify a target"
-        return 1
-    fi
-}
 
 cmake_inspect() {
     if [ ! -f ./CMakeLists.txt ]; then
@@ -52,16 +19,6 @@ cmake_inspect() {
     cmake -LA | awk '{if(f)print} /-- Cache values/{f=1}'
 }
 
-hostmapping() {
-    case "$(hostname)" in
-        eihwaz)
-            print '\U16D6'
-            ;;
-        *)
-            print '%m'
-            ;;
-    esac
-}
 
 # s() {
 #     if git-is-repo "$(pwd)"; then
@@ -71,29 +28,6 @@ hostmapping() {
 #     fi
 # }
 
-k3s-agent-start() {
-    [ -f /etc/systemd/system/k3s-agent.service ] && systemctl start k3s-agent.service
-}
-
-k3s-agent-stop() {
-    [ -f /etc/systemd/system/k3s-agent.service ] && systemctl stop k3s-agent.service
-    _cleanup_docker
-}
-
-k3s-master-start() {
-    [ -f /etc/systemd/system/k3s.service ] && systemctl start k3s.service
-}
-
-k3s-master-stop() {
-    [ -f /etc/systemd/system/k3s.service ] && systemctl stop k3s.service
-    _cleanup_docker
-}
-
-hex() {
-  filename=$(resolve_path "$1")
-  [ ! -f "$filename" ] && return 1
-  /Applications/imhex.app/Contents/MacOS/imhex "$filename" &
-}
 
 my-zsh-prof() {
   for i in $(seq 1 10); do /usr/bin/time $(which zsh) -i -c exit; done;

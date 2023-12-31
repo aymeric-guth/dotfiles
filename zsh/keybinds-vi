@@ -23,8 +23,6 @@ if [ -z "$TMUX" ]; then
 	bindkey -v -s "^G" "tmuxp-debug\n"
 	bindkey -v -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
 	bindkey -v -s "^S" "tmux-attach\n"
-else
-	bindkey -v -s "^F" "vanilla-start\n"
 fi
 
 bindkey "^[[5~" beginning-of-line
@@ -45,8 +43,6 @@ bindkey -v "^E" custom-edit-command-line
 bindkey -v "^ " autosuggest-accept
 
 if command -v fzf 1>/dev/null; then
-	zle -N fzf-path
-	bindkey "^X" fzf-path
 	bindkey -v "^H" fzf-history-widget
 	bindkey "ƒ" fzf-cd-widget
 fi
