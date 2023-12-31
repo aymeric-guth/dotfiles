@@ -19,7 +19,6 @@ bindkey "^W" my-backward-delete-word
 
 if [ -z "$TMUX" ]; then
 	bindkey -v -s "^F" "tmuxp-start\n"
-	bindkey -v -s "^N" "tmuxp-edit\n"
 	bindkey -v -s "^G" "tmuxp-debug\n"
 	bindkey -v -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
 	bindkey -v -s "^S" "tmux-attach\n"
