@@ -6,8 +6,9 @@ kind=${mime##*/}
 if [ -d "$1" ]; then
 	exa --git -hl --color=always --icons "$1"
 elif [ "$category" = image ]; then
-	chafa "$1"
-	exiftool "$1"
+	# chafa "$1"
+	/Applications/kitty.app/Contents/MacOS/kitten icat "$1"
+	# exiftool "$1"
 elif
 	[ "$kind" = vnd.openxmlformats-officedocument.spreadsheetml.sheet ] ||
 		[ "$kind" = vnd.ms-excel ]
