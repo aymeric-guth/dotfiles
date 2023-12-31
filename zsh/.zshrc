@@ -66,6 +66,8 @@ source "$ZDOTDIR/zshenv"
 case "$(uname -s)" in
     Darwin)
         # export CLICOLOR=1
+        source /opt/local/share/fzf/shell/key-bindings.zsh
+        source /opt/local/share/fzf/shell/completion.zsh
         source "$ZDOTDIR/aliases-macos"
         ;;
 
@@ -98,6 +100,7 @@ if [ -n "$FZF" ]; then
     # my-zsh-add-plugin "Freed-Wu/fzf-tab-source"
     # my-zsh-add-plugin "lincheney/fzf-tab-completion"
     # determines search program for fzf
+    
     if type fd &> /dev/null; then
         export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
     elif type rg &> /dev/null; then
