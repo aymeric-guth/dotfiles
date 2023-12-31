@@ -112,6 +112,7 @@ return {
     vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = '[f]ind [r]egisters' })
     vim.keymap.set('n', '<leader>fa', builtin.autocommands, { desc = '[f]ind [a]utocommands' })
     vim.keymap.set('n', '<leader>ft', builtin.treesitter, { desc = '[f]ind [t]reesitter' })
+    vim.keymap.set('n', '<leader>fj', builtin.jumplist, { desc = '[f]ind [j]jumplist' })
 
     vim.keymap.set(
       'n',

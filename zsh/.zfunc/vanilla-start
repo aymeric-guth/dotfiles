@@ -1,2 +1,2 @@
 selected="$(fzf-projects)"
-[ -d "${selected}" ] && editor "$selected"
+[ -d "${selected}" ] && eeditor "$selected"
