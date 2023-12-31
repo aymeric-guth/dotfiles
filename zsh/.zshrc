@@ -105,7 +105,7 @@ if [ -n "$FZF" ]; then
     fi
 fi
 # Plugins
-my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
+# my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
 # zsh-add-plugin "zsh-users/zsh-syntax-highlighting"
 my-zsh-add-plugin "zsh-users/zsh-autosuggestions"
 my-zsh-add-plugin "hlissner/zsh-autopair"
