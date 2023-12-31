@@ -113,7 +113,7 @@ my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
 # my-zsh-add-plugin "jeffreytse/zsh-vi-mode"
 
 
-[ -f "$ZDOTDIR/keybinds-vi" ] && source "$ZDOTDIR/keybinds-vi"
+[ -f "$ZDOTDIR/keybinds" ] && source "$ZDOTDIR/keybinds"
 
 # POST LOAD
 # everything else is loaded
