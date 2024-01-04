@@ -1,5 +1,5 @@
 import = [
-    "~/.config/alacritty/themes/themes/Hyper.toml"
+    "~/.config/alacritty/themes/hyper.toml"
 ]
 # 
 # Campbell.toml
@@ -107,13 +107,9 @@ import = [
 [cursor.style]
 blinking = "Always"
 
-[env]
-TERM = "xterm-256color"
-
-[font]
-size = 20.0
-normal.family = "Hack Nerd Font"
-normal.style = "Regular"
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
 
 [keyboard]
 bindings = [
@@ -157,14 +153,11 @@ bindings = [
     { key= "Space", mods= "Shift", chars= "\u000d" },
 ]
 
-[shell]
-program = "/opt/local/bin/zsh"
-
 [window]
-opacity = 0.85
+opacity = 0.1
 startup_mode = "Maximized"
+decorations = "None"
 
 [window.dimensions]
 columns = 120
 lines = 32
-
