@@ -129,6 +129,8 @@ bindsym Mod4+space exec alacritty --class fmenu -e ~/dev/personal/dotfiles/bin/f
 bar {
     status_command i3status
     tray_output primary
+    wheel_up_cmd nop
+    wheel_down_cmd nop
 }
 
 bindsym Shift+Print exec --no-startup-id maim --select "$HOME/Pictures/$(date).png"
