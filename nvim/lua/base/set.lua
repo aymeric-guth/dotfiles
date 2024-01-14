@@ -124,3 +124,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- vim.opt.verbose = 20
 -- vim.opt.verbose = 0
 -- vim.opt.verbosefile = nil
+
+vim.cmd([[colorscheme retrobox]])

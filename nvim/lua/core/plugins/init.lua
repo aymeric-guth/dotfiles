@@ -6,6 +6,7 @@ return {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
   { 'folke/tokyonight.nvim' },
+  -- { 'ellisonleao/gruvbox.nvim', priority = 1000, config = true },
   require('core.plugins.telescope'),
   require('core.plugins.treesitter'),
   require('core.plugins.treesitter-context'),
