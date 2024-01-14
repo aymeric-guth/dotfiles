@@ -1,0 +1,12 @@
+import = [
+    "~/.config/alacritty/alacritty-common.toml"
+]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 18.0
+
+[shell]
+program = "/usr/bin/zsh"

@@ -1,54 +1,25 @@
 import = [
     "~/.config/alacritty/themes/hyper.toml"
 ]
-# 
-# Campbell.toml
-# Carbonfox.toml
+
 # Catppuccin.toml
 # Catppuccin_frappe.toml
 # Catppuccin_latte.toml
 # Catppuccin_macchiato.toml
 # Catppuccin_mocha.toml
-# Challenger_deep.toml
-# Citylights.toml
-# Cyber_punk_neon.toml
-# Darcula.toml
-# Dark_pastels.toml
-# Deep_space.toml
-# Doom_one.toml
-# Dracula.toml
 # Everforest_dark.toml
 # Everforest_light.toml
-# Falcon.toml
-# Flat_remix.toml
 # Flexoki.toml
-# Github_dark.toml
-# Github_dark_colorblind.toml
-# Github_dark_default.toml
 # Github_dark_dimmed.toml
-# Github_dark_high_contrast.toml
 # Github_dark_tritanopia.toml
-# Github_light.toml
-# Github_light_colorblind.toml
-# Github_light_default.toml
-# Github_light_high_contrast.toml
-# Github_light_tritanopia.toml
 # Gnome_terminal.toml
 # Gotham.toml
-# Gruvbox_dark.toml
-# Gruvbox_light.toml
-# Gruvbox_material.toml
-# Gruvbox_material_medium_dark.toml
-# Gruvbox_material_medium_light.toml
 # Hardhacker.toml
 # High_contrast.toml
 # Horizon-dark.toml
 # Inferno.toml
 # Iris.toml
-# Iterm.toml
-# Kanagawa_dragon.toml
 # Kanagawa_wave.toml
-# Konsole_linux.toml
 # Low_contrast.toml
 # Marine_dark.toml
 # Material_theme.toml
@@ -57,9 +28,7 @@ import = [
 # Midnight-haze.toml
 # Monokai_charcoal.toml
 # Monokai_pro.toml
-# Moonlight_ii_vscode.toml
 # Msx.toml
-# Night_owlish_light.toml
 # Nightfox.toml
 # Noctis-lux.toml
 # Nord.toml
@@ -103,6 +72,9 @@ import = [
 # Blood_moon.toml
 # Breeze.toml
 # Xterm.toml"
+# Hyper.toml"
+# citylights.toml
+# campbell.toml
 
 [cursor.style]
 blinking = "Always"
@@ -154,7 +126,7 @@ bindings = [
 ]
 
 [window]
-opacity = 0.1
+opacity = 0.85
 startup_mode = "Maximized"
 decorations = "None"
 
