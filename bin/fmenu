@@ -1,0 +1,7 @@
+#!/usr/bin/zsh
+
+selected=$(echo ${(k)commands} | tr ' ' '\n' | sort -u | fzf --color=bw --reverse --border)
+# selected=$(grep -h "^Exec=" /usr/share/applications/*.desktop ~/.local/share/applications/*.desktop 2> /dev/null | cut -d '=' -f2 | cut -d ' ' -f1 | sort -u | fzf)
+
+# exec systemd-run --user "$selected"
+exec i3-msg -q "exec --no-startup-id $selected"
