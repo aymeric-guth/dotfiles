@@ -48,3 +48,17 @@ windows:
     panes:
       - shell_command:
           - $EDITOR .
+
+  # - window_name: i3
+  #   start_directory: ./i3
+  #   layout: even-horizontal
+  #   panes:
+  #     - shell_command:
+  #         - $EDITOR .
+
+  - window_name: sway
+    start_directory: ./sway
+    layout: even-horizontal
+    panes:
+      - shell_command:
+          - $EDITOR .
