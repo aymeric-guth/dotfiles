@@ -81,7 +81,10 @@ case "$(uname -s)" in
 esac
 
 # Prompt
-if [ -d "$REPODIR/pure" ]; then
+if command -v starship 1>/dev/null; then
+    export STARSHIP_CONFIG="$DOTFILES/starship.toml"
+    eval "$(starship init zsh)"
+elif [ -d "$REPODIR/pure" ]; then
     fpath+=("$REPODIR/pure")
     autoload -U promptinit; promptinit
     zstyle :prompt:pure:prompt:success color green
@@ -90,7 +93,6 @@ elif [ -f "$ZDOTDIR/prompt" ]; then
     source "$ZDOTDIR/prompt"
 fi
 
-# export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 # eval "$(starship init zsh)"
 
 [ -f "$ZDOTDIR/zcomp" ] && [ -n "$ZCOMP" ] && source "$ZDOTDIR/zcomp"
