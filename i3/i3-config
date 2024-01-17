@@ -114,11 +114,14 @@ client.focused #32cd32 #285577 #ffffff #2e9ef4 #32cd32
 
 
 bindsym $mod+Return exec alacritty
-bindsym $mod+b exec /opt/toolz/bin/chromium
+# bindsym $mod+b exec /opt/toolz/bin/chromium
+bindsym $mod+b exec /usr/bin/google-chrome
 bindsym $mod+n exec /opt/toolz/bin/obsidian
 
 bindsym $mod+Mod4+j exec /snap/bin/jellyfinmediaplayer
 bindsym $mod+Mod4+s exec /opt/toolz/bin/sonixd
+bindsym $mod+Mod4+h exec /usr/bin/flatpak run org.pipewire.Helvum
+
 bindsym $mod+p exec /usr/bin/keepassxc
 bindsym $mod+c exec /usr/bin/discord
 # bindsym Mod4+space exec dmenu_run
@@ -171,10 +174,12 @@ set $ws9 "9"
 for_window [workspace=$ws9] layout stacking
 assign [class="Sonixd" instance="sonixd"] $ws9
 assign [class="Jellyfin Media Player" instance="jellyfinmediaplayer"] $ws9
+assign [class="mpv" instance="gl"] $ws9
 ## ws10
 set $ws10 "10"
 for_window [workspace=$ws10] layout stacking
 assign [class="KeePassXC"] $ws10
+assign [class="helvum" instance="helvum"] $ws10
 ## floating
 for_window [class="Blueman-manager" instance="blueman-manager"] floating enable sticky enable resize set 640 480
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable sticky enable resize set 640 480
@@ -202,7 +207,8 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet &
 
 exec --no-startup-id alacritty
-exec --no-startup-id /opt/toolz/bin/chromium
+# exec --no-startup-id /opt/toolz/bin/chromium
+exec --no-startup-id /usr/bin/google-chrome
 exec --no-startup-id /opt/toolz/bin/obsidian
 exec --no-startup-id /snap/bin/jellyfinmediaplayer
 exec --no-startup-id /opt/toolz/bin/sonixd

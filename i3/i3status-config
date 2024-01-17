@@ -11,6 +11,7 @@ general {
         interval = 5
 }
 
+order += "memory"
 order += "disk /"
 order += "battery all"
 order += "load"
@@ -18,6 +19,12 @@ order += "tztime local"
 
 battery all {
         format = "%status %percentage %remaining"
+        status_chr = "⚡ CHR"
+        status_bat = "🔋 BAT"
+        status_unk = "? UNK"
+        status_full = "☻ FULL"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
 }
 
 tztime local {
@@ -30,4 +37,10 @@ load {
 
 disk "/" {
         format = "%avail"
+}
+
+memory {
+        format = "%used"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
 }
