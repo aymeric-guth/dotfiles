@@ -1,4 +1,5 @@
 #!/bin/sh
+
 rm -f ~/.config/alacritty/alacritty.toml
 ln -rs "$DOTFILES"/alacritty/alacritty-linux.toml ~/.config/alacritty/alacritty.toml
 xrandr \

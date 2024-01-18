@@ -1,0 +1,15 @@
+! reset caps lock state to off
+! reset num lock state to off
+clear Lock
+clear Mod2
+
+! caps remapped to esc -> Meta_L ?
+! caps lock (keycode 66) -> hyper
+remove Mod4 = Hyper_L
+keycode 66 = Hyper_L
+add Mod3 = Hyper_L
+
+! alt_r (keycode 108) -> compose key
+remove Mod1 = Alt_R
+keycode 108 = Alt_R
+keysym Alt_R = Multi_key
