@@ -100,7 +100,7 @@ bindsym $mod+r mode "resize"
 # finds out, if availajle)
 
 mode "exit: [l]ock [L]ogout, [r]eboot, [s]hutdown" {
-  bindsym l exec i3lock -c 000000
+  bindsym l exec i3lock -c 000000 && /usr/bin/xrandr --auto
   bindsym Shift+l exec i3-msg exit
   bindsym r exec systemctl reboot
   bindsym s exec systemctl shutdown
@@ -125,7 +125,10 @@ bindsym $mod+Mod4+h exec /usr/bin/flatpak run org.pipewire.Helvum
 bindsym $mod+p exec /usr/bin/keepassxc
 bindsym $mod+c exec /usr/bin/discord
 # bindsym Mod4+space exec dmenu_run
-bindsym Mod4+space exec alacritty --class fmenu -e ~/dev/personal/dotfiles/bin/fmenu
+# bindsym Mod4+space exec alacritty --class fmenu -e ~/dev/personal/dotfiles/bin/fmenu
+bindsym Mod4+space exec rofi -show run
+bindsym $mod+e exec /usr/bin/nautilus
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -175,6 +178,7 @@ for_window [workspace=$ws9] layout stacking
 assign [class="Sonixd" instance="sonixd"] $ws9
 assign [class="Jellyfin Media Player" instance="jellyfinmediaplayer"] $ws9
 assign [class="mpv" instance="gl"] $ws9
+assign [class="foobar2000.exe" instance="foobar2000.exe"] $ws9
 ## ws10
 set $ws10 "10"
 for_window [workspace=$ws10] layout stacking
@@ -185,7 +189,8 @@ for_window [class="Blueman-manager" instance="blueman-manager"] floating enable 
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable sticky enable resize set 640 480
 for_window [class="org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable sticky enable resize set 960 480, move position center
 for_window [class="fmenu" instance="fmenu"] floating enable, resize set 640 480, move position center
-
+for_window [class="Zenity" instance="zenity"] floating enable sticky enable move position center
+for_window [title="Event Tester"] floating enable
 
 # 3840x2160
 # 640x480
@@ -214,3 +219,4 @@ exec --no-startup-id /snap/bin/jellyfinmediaplayer
 exec --no-startup-id /opt/toolz/bin/sonixd
 exec --no-startup-id /usr/bin/keepassxc
 exec --no-startup-id /usr/bin/discord
+exec --no-startup-id /usr/local/bin/foobar2000
