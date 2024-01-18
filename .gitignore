@@ -37,4 +37,6 @@ gtk-2.0
 keepassxc
 mimeapps.list
 pavucontrol.ini
-pulse
+/pulse
+/chromium
+/menus
