@@ -15,6 +15,6 @@ xmodmap -e 'keycode 66 = Hyper_L'
 xmodmap -e 'add Mod3 = Hyper_L'
 
 # alt_r (keycode 108) -> compose key
-xmodmap -e 'remove Mod1 = Alt_R'
-xmodmap -e 'keycode 108 = Alt_R'
-xmodmap -e 'keysym Alt_R = Multi_key'
+#xmodmap -e 'remove Mod1 = Alt_R'
+# xmodmap -e 'keycode 108 = Alt_R'
+# xmodmap -e 'keysym Alt_R = Multi_key'
