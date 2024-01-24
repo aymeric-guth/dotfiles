@@ -37,3 +37,10 @@ vim.keymap.set('n', '<leader>gs', vim.cmd.Git, { desc = 'g]it [s]tatus' })
 
 vim.keymap.set('n', '<leader>sb', '<cmd>buffers<CR>', { desc = '[s]tats[b]uffers' })
 vim.keymap.set('n', '<leader>sj', '<cmd>jumps<CR>', { desc = '[s]tats[j]umps' })
+
+vim.keymap.set(
+  'n',
+  '<leader>ge',
+  'oif err != nil {<CR>}<ESC>Oreturn err<ESC>',
+  { desc = 'err != nil' }
+)
