@@ -48,10 +48,11 @@ align-reference=name
 ### Formatting Options
 # break-closing-braces
 # break-elseifs
-break-one-line-headers
+# break-one-line-headers
+# add-brackets
 # add-braces
 # add-one-line-braces
-remove-braces
+# remove-braces
 # break-return-type
 # break-return-type-decl
 # attach-return-type
@@ -61,7 +62,7 @@ remove-braces
 convert-tabs
 # close-templates
 # remove-comment-prefix
-# max-code-length=
+max-code-length=1000
 # break-after-logical
 mode=c
 
