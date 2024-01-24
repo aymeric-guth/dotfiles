@@ -40,3 +40,14 @@ pavucontrol.ini
 /pulse
 /chromium
 /menus
+.gsd-keyboard.settings-ported
+GNOME-xdg-terminals.list
+/balena-etcher
+/dconf
+/evolution
+/gtk-3.0
+/ibus
+ubuntu-xdg-terminals.list
+user-dirs.dirs
+user-dirs.locale
+xdg-terminals.list
