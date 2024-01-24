@@ -1,7 +1,0 @@
-clear Mod1
-clear Mod4
-add Mod1 = Super_L Super_R
-add Mod4 = Alt_L Alt_R
-clear Lock
-keycode 66 = Hyper_L
-add Mod5 = Hyper_L

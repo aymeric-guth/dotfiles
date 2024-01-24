@@ -32,22 +32,22 @@ windows:
       - shell_command:
           - cd ./bin && $EDITOR .
 
-  - window_name: tmux
-    start_directory: .
-    layout: even-horizontal
-    panes:
-      - shell_command:
-          - cd ./tmux && $EDITOR tmux.conf
-        focus: true
-      - shell_command:
-          - cd $TMUXP_CONFIGDIR/templates && $EDITOR $TMUX_TEMPLATE
-
-  - window_name: alacritty
-    start_directory: ./alacritty
-    layout: even-horizontal
-    panes:
-      - shell_command:
-          - $EDITOR .
+  # - window_name: tmux
+  #   start_directory: .
+  #   layout: even-horizontal
+  #   panes:
+  #     - shell_command:
+  #         - cd ./tmux && $EDITOR tmux.conf
+  #       focus: true
+  #     - shell_command:
+  #         - cd $TMUXP_CONFIGDIR/templates && $EDITOR $TMUX_TEMPLATE
+  #
+  # - window_name: alacritty
+  #   start_directory: ./alacritty
+  #   layout: even-horizontal
+  #   panes:
+  #     - shell_command:
+  #         - $EDITOR .
 
   # - window_name: i3
   #   start_directory: ./i3
@@ -56,9 +56,9 @@ windows:
   #     - shell_command:
   #         - $EDITOR .
 
-  - window_name: sway
-    start_directory: ./sway
-    layout: even-horizontal
-    panes:
-      - shell_command:
-          - $EDITOR .
+  # - window_name: sway
+  #   start_directory: ./sway
+  #   layout: even-horizontal
+  #   panes:
+  #     - shell_command:
+  #         - $EDITOR .
