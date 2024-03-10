@@ -30,7 +30,6 @@ return {
     lsp.preset({})
 
     lsp.ensure_installed({
-      -- 'clangd',
       'pyright',
       'lua_ls',
       'taplo',
@@ -42,6 +41,8 @@ return {
       'zls',
       'eslint',
       'bufls',
+      'tsserver',
+      'clangd',
     })
 
     -- Fix Undefined global 'vim'
@@ -87,7 +88,7 @@ return {
       vim.keymap.set('n', '<leader>lrn', function()
         vim.lsp.buf.rename()
       end, opts)
-      vim.keymap.set('i', '<C-h>', function()
+      vim.keymap.set('n', '<C-h>', function()
         vim.lsp.buf.signature_help()
       end, opts)
     end)

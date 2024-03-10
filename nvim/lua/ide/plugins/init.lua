@@ -2,6 +2,12 @@ return {
   'renerocksai/telekasten.nvim',
   'ThePrimeagen/vim-be-good',
   'tjdevries/train.nvim',
+  {
+    'ecthelionvi/NeoView.nvim',
+    config = function()
+      require('NeoView').setup()
+    end,
+  },
   require('core.plugins'),
   require('ide.plugins.nvim-tree'),
   require('ide.plugins.harpoon'),
@@ -10,6 +16,7 @@ return {
   -- require('ide.plugins.goto-preview'),
   require('ide.plugins.luasnip'),
   require('ide.plugins.trouble'),
+  -- require('ide.plugins.sg'),
   -- require('ide.plugins.chatgpt'),
 
   (function()

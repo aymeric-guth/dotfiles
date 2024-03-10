@@ -32,5 +32,8 @@ alias sudo='sudo '
 alias tg='tag-reader '
 
 alias j='/bin/journalctl -xeu '
-alias s='/bin/systemctl '
 alias jr='/bin/journalctl --flush --rotate --vacuum-time=1s && /bin/journalctl --user --flush --rotate --vacuum-time=1s'
+
+alias s='/bin/systemctl '
+alias sr='/bin/systemctl restart '
+alias sdr='/bin/systemctl daemon-reload '
