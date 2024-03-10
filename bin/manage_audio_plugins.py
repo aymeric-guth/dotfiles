@@ -102,9 +102,9 @@ dirs = [
     # "/Library/Application Support/Universal Audio/UAD-2 Powered Plug-Ins/",
     "/Library/Audio/Plug-Ins/Components/",
     "/Library/Audio/Plug-Ins/VST/",
-    "/Library/Audio/Plug-Ins/VST/Powered Plug-Ins/",
-    "/Library/Audio/Plug-Ins/VST/Powered Plug-Ins/Mono/",
-    "/Library/Audio/Plug-Ins/VST/Plugin Alliance/",
+    # "/Library/Audio/Plug-Ins/VST/Powered Plug-Ins/",
+    # "/Library/Audio/Plug-Ins/VST/Powered Plug-Ins/Mono/",
+    # "/Library/Audio/Plug-Ins/VST/Plugin Alliance/",
     "/Library/Audio/Plug-Ins/VST3/",
 ]
 def purge_dir(path):
@@ -115,7 +115,12 @@ def purge_dir(path):
                 print(f"Deleting {file.path}")
                 subprocess.run(["sudo", "rm", "-r", file.path])
 
-[ purge_dir(i) for i in dirs ]
+# [ purge_dir(i) for i in dirs ]
+for i in dirs:
+    try:
+        purge_dir(i)
+    except Exception:
+        ...
 
 try:
     os.chdir("/Library/Application Support/Avid/")
