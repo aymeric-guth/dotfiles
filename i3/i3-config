@@ -117,7 +117,9 @@ bindsym $mod+Return exec alacritty
 # bindsym $mod+b exec /opt/toolz/bin/chromium
 bindsym $mod+b exec /usr/bin/google-chrome
 bindsym $mod+Mod4+b exec /usr/bin/firefox
-bindsym $mod+n exec /opt/toolz/bin/obsidian
+# bindsym $mod+n exec /opt/toolz/bin/obsidian
+# bindsym $mod+n exec /usr/bin/obsidian
+bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/dev/personal/dotfiles /usr/bin/obsidian
 
 bindsym $mod+Mod4+j exec /snap/bin/jellyfinmediaplayer
 bindsym $mod+Mod4+s exec /opt/toolz/bin/sonixd
@@ -126,7 +128,7 @@ bindsym $mod+Mod4+h exec /usr/bin/flatpak run org.pipewire.Helvum
 bindsym $mod+Mod4+c exec /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox'
 
 bindsym $mod+p exec /usr/bin/keepassxc
-bindsym $mod+c exec /usr/bin/discord
+bindsym $mod+Mod4+d exec /usr/bin/discord
 # bindsym Mod4+space exec dmenu_run
 # bindsym Mod4+space exec alacritty --class fmenu -e ~/dev/personal/dotfiles/bin/fmenu
 # bindsym Mod4+space exec rofi -show run
@@ -169,6 +171,7 @@ for_window [workspace=$ws4] layout stacking
 set $ws5 "5"
 for_window [workspace=$ws5] layout stacking
 assign [class="discord" instance="discord"] $ws5
+assign [class="Ferdium" instance="ferdium"] $ws5
 ## ws6
 set $ws6 "6"
 for_window [workspace=$ws6] layout stacking
@@ -177,6 +180,12 @@ assign [class="xyz.chatboxapp.app" instance="xyz.chatboxapp.app"] $ws6
 set $ws7 "7"
 ## ws8
 set $ws8 "8"
+for_window [workspace=$ws9] layout stacking
+assign [class="psa_com.exe" instance="psa_com.exe"] $ws8
+for_window [class="psa_com.exe" instance="psa_com.exe"] floating enable
+# sticky enable resize set 640 480
+assign [class="obddiagscan.exe" instance="obddiagscan.exe"] $ws8
+for_window [class="obddiagscan.exe" instance="obddiagscan.exe"] floating enable
 ## ws9
 set $ws9 "9"
 for_window [workspace=$ws9] layout stacking
@@ -198,7 +207,8 @@ for_window [class="Zenity" instance="zenity"] floating enable sticky enable move
 for_window [title="Event Tester"] floating enable
 for_window [class="balena-etcher" instance="balena-etcher"] floating enable sticky enable move position center
 for_window [class="Balena-etcher.bin" instance="balena-etcher.bin"] floating enable sticky enable resize set 960 480 move position center
-
+for_window [class="Protonvpn-app" instance="protonvpn-app"] floating enable sticky enable resize set 960 480 move position center
+for_window [class="gnome-calculator" instance="gnome-calculator"] floating enable sticky enable resize set 960 480 move position center
 
 # 3840x2160
 # 640x480
@@ -224,7 +234,8 @@ exec --no-startup-id /home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh
 exec --no-startup-id alacritty
 # exec --no-startup-id /opt/toolz/bin/chromium
 exec --no-startup-id /usr/bin/google-chrome
-exec --no-startup-id /opt/toolz/bin/obsidian
+# exec --no-startup-id /opt/toolz/bin/obsidian
+exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/dev/personal/dotfiles /usr/bin/obsidian
 exec --no-startup-id /snap/bin/jellyfinmediaplayer
 exec --no-startup-id /opt/toolz/bin/sonixd
 exec --no-startup-id /usr/bin/keepassxc
@@ -233,5 +244,12 @@ exec --no-startup-id /usr/local/bin/foobar2000
 exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox'
 
 exec --no-startup-id ibus exit
+exec --no-startup-id /usr/bin/protonvpn-app
 exec_always --no-startup-id setxkbmap -layout custom
 exec_always --no-startup-id xset s off -dpms
+
+bindsym $mod+Shift+P exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).png"
+bindsym $mod+Mod4+f exec --no-startup-id /usr/local/bin/foobar2000
+
+bindsym $mod+Mod4+p exec --no-startup-id /usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/PSA\ COM/PSA_COM.exe
+bindsym $mod+Mod4+o exec --no-startup-id /usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/OBD_Diag_Scan/ObdDiagScan.exe
