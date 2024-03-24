@@ -131,6 +131,7 @@ return {
     local code_actions = null_ls.builtins.code_actions
 
     local null_ls_opts = {
+      diagnostics.dotenv_linter,
       formatting.astyle.with({
         filetypes = { 'c', 'cpp', 'cxx' },
         extra_args = {
@@ -138,35 +139,32 @@ return {
           -- '--project=none',
         },
       }),
-      code_actions.shellcheck.with({
-        filetypes = { 'sh' },
-      }),
+      -- code_actions.shellcheck.with({
+      --   filetypes = { 'sh' },
+      -- }),
       -- https://github.com/mvdan/sh
       formatting.shfmt.with({
         filetypes = { 'sh' },
       }),
-      diagnostics.cppcheck.with({
-        filetypes = { 'c', 'cpp' },
-        extra_args = {
-          -- '--enable=all',
-          '--cppcheck-build-dir='
-            .. require('os').getenv('WORKSPACE')
-            .. '/build',
-          -- '--suppress=missingIncludeSystem,unusedFunction',
-          '--std=c11',
-          '--platform=unix64',
-          '--project=' .. require('os').getenv('WORKSPACE') .. '/build/compile_commands.json',
-          -- '--addon=' .. require('os').getenv('DOTFILES') .. '/cppcheck/addons.json',
-        },
-      }),
+      -- diagnostics.cppcheck.with({
+      --   filetypes = { 'c', 'cpp' },
+      --   extra_args = {
+      --     -- '--enable=all',
+      --     '--cppcheck-build-dir='
+      --       .. require('os').getenv('WORKSPACE')
+      --       .. '/build',
+      --     -- '--suppress=missingIncludeSystem,unusedFunction',
+      --     '--std=c11',
+      --     '--platform=unix64',
+      --     '--project=' .. require('os').getenv('WORKSPACE') .. '/build/compile_commands.json',
+      --     -- '--addon=' .. require('os').getenv('DOTFILES') .. '/cppcheck/addons.json',
+      --   },
+      -- }),
       formatting.black.with({
         filetypes = { 'python' },
         extra_args = { '--fast' },
       }),
-      formatting.rustfmt.with({
-        filetypes = { 'rust' },
-      }),
-      diagnostics.ruff.with({
+      diagnostics.pylint.with({
         filetypes = { 'python' },
       }),
       formatting.prettierd.with({
@@ -191,7 +189,7 @@ return {
       formatting.stylua.with({
         filetypes = { 'lua' },
       }),
-      formatting.taplo.with({ filetypes = { 'toml' } }),
+      -- formatting.taplo.with({ filetypes = { 'toml' } }),
       diagnostics.yamllint.with({ filetypes = { 'yaml' } }),
       diagnostics.hadolint.with({ filetypes = { 'dockerfile' } }),
       diagnostics.ansiblelint.with({ filetypes = { 'yaml.ansible' } }),
@@ -199,9 +197,19 @@ return {
       -- formatting.shellharden.with({ filetypes = { 'sh' } }),
       diagnostics.golangci_lint.with({ filetypes = { 'go' } }),
       formatting.gofmt.with({ filetypes = { 'go' } }),
-      formatting.goimports.with({ filetypes = { 'go' } }),
       -- formatting.goimports_reviser.with({ filetypes = { 'go' } }),
-      formatting.zigfmt,
+      formatting.goimports.with({ filetypes = { 'go' } }),
+      -- formatting.zigfmt,
+      code_actions.gomodifytags,
+      code_actions.impl,
+      diagnostics.checkmake,
+      diagnostics.cmake_lint,
+      diagnostics.sqlfluff.with({
+        extra_args = { '--dialect', 'postgres' }, -- change to your dialect
+      }),
+      diagnostics.zsh,
+      formatting.cbfmt,
+      formatting.clang_format,
     }
 
     null_ls.setup({
