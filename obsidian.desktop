@@ -1,8 +1,6 @@
 [Desktop Entry]
 Name=Obsidian
-# Exec=env XDG_CONFIG_HOME=~/.config XDG_DATA_DIRS=~/.local /usr/bin/obsidian %u
 Exec=/usr/bin/obsidian %u
-# Exec=/opt/toolz/bin/obsidian %u
 Terminal=false
 Type=Application
 # Icon=/home/rachum/obsidian/icon.png

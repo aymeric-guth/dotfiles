@@ -31,9 +31,13 @@ alias g="$(go env GOPATH)/bin/gonext"
 alias sudo='sudo '
 alias tg='tag-reader '
 
-alias j='/bin/journalctl -xeu '
+alias j='/bin/journalctl '
+alias ju='/bin/journalctl -xeu '
 alias jr='/bin/journalctl --flush --rotate --vacuum-time=1s && /bin/journalctl --user --flush --rotate --vacuum-time=1s'
 
 alias s='/bin/systemctl '
 alias sr='/bin/systemctl restart '
+alias so='/bin/systemctl stop '
+alias sa='/bin/systemctl start '
+alias ss='/bin/systemctl status '
 alias sdr='/bin/systemctl daemon-reload '

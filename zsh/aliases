@@ -21,22 +21,6 @@ fi
 alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='LC_ALL=C  grep --color=auto'
-#alias grep='LC_ALL=C  grep --color=auto --exclude-dir={.av-mp}'
-
-alias df='df -h'     # human-readable sizes
-# gpg encryption
-# verify signature for isos
-alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-# receive the key of a developer
-alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-
-cfg() {
-    if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
-      editor "$DOTFILES"
-    else
-      tmuxp-start "$DOTFILES"
-    fi
-}
 
 alias v='$EDITOR'
 # v() { $EDITOR "$*"; }
@@ -158,11 +142,18 @@ mannaz() {
   vagrant ssh
 }
 
-alias c-lan='sudo nmcli device wifi connect TP-Link_A6DC password 28086260'
-alias c-wan='sudo nmcli connection up kenaz'
-
 alias g-cp='git rev-parse HEAD | tr -d '\n' | cb-copy'
 alias g-sm='git add . && git commit -m "Update submodules"'
 alias g-pm='git push -u origin master'
 alias g-ig='git add .gitignore && git commit -m "Update .gitignore"'
 alias g-cm='git commit -m '
+
+_img_slideshow() {
+  mpv \
+      --image-display-duration=10 \
+       --loop-playlist=inf \
+       --fullscreen  \
+       --shuffle \
+      "${1:-.}"
+}
+alias img_slide='_img_slideshow'

@@ -119,13 +119,14 @@ bindsym $mod+b exec /usr/bin/google-chrome
 bindsym $mod+Mod4+b exec /usr/bin/firefox
 # bindsym $mod+n exec /opt/toolz/bin/obsidian
 # bindsym $mod+n exec /usr/bin/obsidian
-bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/dev/personal/dotfiles /usr/bin/obsidian
+bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 
 bindsym $mod+Mod4+j exec /snap/bin/jellyfinmediaplayer
 bindsym $mod+Mod4+s exec /opt/toolz/bin/sonixd
 bindsym $mod+Mod4+h exec /usr/bin/flatpak run org.pipewire.Helvum
 # bindsym $mod+Mod4+c exec /usr/bin/zsh -c 'source ~/.zshrc &&/opt/toolz/bin/chatbox'
 bindsym $mod+Mod4+c exec /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox'
+bindsym $mod+Mod4+r exec /usr/bin/zsh -c -i '/home/yul/setup.sh'
 
 bindsym $mod+p exec /usr/bin/keepassxc
 bindsym $mod+Mod4+d exec /usr/bin/discord
@@ -152,7 +153,7 @@ exec feh --bg-fill ~/Pictures/EEyWG-UU4AAnQRg.jpeg
 # xprop | grep WM_CLASS
 ## ws1
 set $ws1 "1"
-for_window [workspace=$ws1] layout toggle split
+for_window [workspace=$ws1] layout stacking
 assign [class="Alacritty" instance="Alacritty"] $ws1
 ## ws2
 set $ws2 "2"
@@ -180,9 +181,10 @@ assign [class="xyz.chatboxapp.app" instance="xyz.chatboxapp.app"] $ws6
 set $ws7 "7"
 ## ws8
 set $ws8 "8"
-for_window [workspace=$ws9] layout stacking
-assign [class="psa_com.exe" instance="psa_com.exe"] $ws8
-for_window [class="psa_com.exe" instance="psa_com.exe"] floating enable
+for_window [workspace=$ws8] layout stacking
+assign [class="VirtualBox Manager" instance="VirtualBox Manager"] $ws8
+for_window [class="VirtualBox Manager" instance="VirtualBox Manager"] floating enable
+
 # sticky enable resize set 640 480
 assign [class="obddiagscan.exe" instance="obddiagscan.exe"] $ws8
 for_window [class="obddiagscan.exe" instance="obddiagscan.exe"] floating enable
@@ -235,7 +237,7 @@ exec --no-startup-id alacritty
 # exec --no-startup-id /opt/toolz/bin/chromium
 exec --no-startup-id /usr/bin/google-chrome
 # exec --no-startup-id /opt/toolz/bin/obsidian
-exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/dev/personal/dotfiles /usr/bin/obsidian
+exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 exec --no-startup-id /snap/bin/jellyfinmediaplayer
 exec --no-startup-id /opt/toolz/bin/sonixd
 exec --no-startup-id /usr/bin/keepassxc
@@ -247,9 +249,13 @@ exec --no-startup-id ibus exit
 exec --no-startup-id /usr/bin/protonvpn-app
 exec_always --no-startup-id setxkbmap -layout custom
 exec_always --no-startup-id xset s off -dpms
+# kills notification daemo
+exec_always --no-startup-id pkill -u "$(whoami)" -USR1 dunst
+# pkill -u "$(whoami)" -USR2 dunst # This resumes notifications
 
 bindsym $mod+Shift+P exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).png"
 bindsym $mod+Mod4+f exec --no-startup-id /usr/local/bin/foobar2000
 
 bindsym $mod+Mod4+p exec --no-startup-id /usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/PSA\ COM/PSA_COM.exe
 bindsym $mod+Mod4+o exec --no-startup-id /usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/OBD_Diag_Scan/ObdDiagScan.exe
+

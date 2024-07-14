@@ -59,6 +59,7 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ayu-theme/ayu-vim'
+Plug 'ledger/vim-ledger'
 call plug#end()
 
 " ---
@@ -84,4 +85,4 @@ let ayucolor="dark"   " for dark version of theme
 colorscheme ayu
 " gruvbox
 "set bg=dark
-"colorscheme retrobox
+" colorscheme retrobox

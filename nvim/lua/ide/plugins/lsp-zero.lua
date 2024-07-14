@@ -21,6 +21,7 @@ return {
     { 'hrsh7th/cmp-nvim-lsp-signature-help' },
     { 'ray-x/cmp-treesitter' },
     { 'saadparwaiz1/cmp_luasnip' },
+    { 'piero-vic/cmp-ledger' },
   },
 
   config = function()
@@ -248,6 +249,7 @@ return {
         { name = 'nvim_lsp_signature_help' },
         { name = 'treesitter' },
         { name = 'luasnip' },
+        { name = 'ledger' },
       },
     })
   end,

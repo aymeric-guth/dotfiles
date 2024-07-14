@@ -16,14 +16,11 @@ return {
     vim.keymap.set('n', '<C-k>', function()
       require('harpoon.ui').nav_file(2)
     end)
-    vim.keymap.set('n', '<C-h>', function()
+    vim.keymap.set('n', '<C-f>', function()
       require('harpoon.ui').nav_file(3)
     end)
-    vim.keymap.set('n', '<C-f>', function()
-      require('harpoon.ui').nav_file(4)
-    end)
     vim.keymap.set('n', '<C-s>', function()
-      require('harpoon.ui').nav_file(5)
+      require('harpoon.ui').nav_file(4)
     end)
   end,
 }
