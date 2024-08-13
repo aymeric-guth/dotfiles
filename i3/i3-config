@@ -241,7 +241,7 @@ exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 # exec --no-startup-id /snap/bin/jellyfinmediaplayer
 exec --no-startup-id /opt/toolz/bin/sonixd
 exec --no-startup-id /usr/bin/keepassxc
-exec --no-startup-id /usr/bin/discord
+# exec --no-startup-id /usr/bin/discord
 exec --no-startup-id /usr/local/bin/foobar2000
 exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox'
 
