@@ -62,7 +62,7 @@ align-reference=name
 convert-tabs
 # close-templates
 # remove-comment-prefix
-max-code-length=1000
+# max-code-length=1000
 # break-after-logical
 mode=c
 

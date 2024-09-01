@@ -2,6 +2,7 @@ return {
   'renerocksai/telekasten.nvim',
   'ThePrimeagen/vim-be-good',
   'tjdevries/train.nvim',
+  'ledger/vim-ledger',
   {
     'ecthelionvi/NeoView.nvim',
     config = function()
