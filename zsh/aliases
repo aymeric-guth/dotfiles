@@ -22,8 +22,12 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='LC_ALL=C  grep --color=auto'
 
-alias v='$EDITOR'
-# v() { $EDITOR "$*"; }
+# alias v='$EDITOR'
+v() { 
+  _cb="$(xclip -selection clip -o)"
+  [ -f "$_cb" ] && $EDITOR "$_cb" || $EDITOR "$*"
+}
+
 mux() { tmuxp-start "$TMUXP_CONFIGDIR/anonymous"; }
 alias muxd="tmuxp debug-info"
 # alias k="k3s kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml"
