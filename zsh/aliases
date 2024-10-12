@@ -1,149 +1,50 @@
 #!/bin/sh
 
-# croc --pass YOURPASSWORD --relay "myreal.example.com:9009" send [filename]
-# --pass FILEWITHPASSWORD
-# ansible-vault, keepass
-
-if command -v lsd 1> /dev/null; then
-  alias ll='XDG_CONFIG_DIR=$DOTFILES lsd -lh'
-  alias la='XDG_CONFIG_DIR=$DOTFILES lsd -lA'
+if command -v lsd 1>/dev/null; then
+	alias ll='XDG_CONFIG_DIR=$DOTFILES lsd -lh'
+	alias la='XDG_CONFIG_DIR=$DOTFILES lsd -lA'
 else
-  alias ll='ls -lh'
-  alias la='ls -la'
+	alias ll='ls -lh'
+	alias la='ls -la'
 fi
 
-if ! command -v fd 1> /dev/null; then
-  fd() {
-    /usr/bin/find . -iname "*${1}*";
-  }
+if ! command -v fd 1>/dev/null; then
+	fd() {
+		/usr/bin/find . -iname "*${1}*"
+	}
 fi
 
 alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='LC_ALL=C  grep --color=auto'
 
-# alias v='$EDITOR'
-v() { 
-  _cb="$(xclip -selection clip -o)"
-  [ -f "$_cb" ] && $EDITOR "$_cb" || $EDITOR "$*"
+v() {
+	_cb="$(xclip -selection clip -o)"
+	[ -f "$_cb" ] && $EDITOR "$_cb" || $EDITOR "$*"
 }
-
-mux() { tmuxp-start "$TMUXP_CONFIGDIR/anonymous"; }
-alias muxd="tmuxp debug-info"
-# alias k="k3s kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml"
-
-# alias lz="lazygit"
-setenv() { 
-  if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
-    editor "$DOTFILES/env/.env-$(uname -n)"
-  else
-    TMUX_TEMPLATE=".tmuxp-2.yaml" tmuxp-start "$DOTFILES"
-  fi
-}
-
-kb() { TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DOTFILES"; }
 
 alias fdi="fd --no-ignore-vcs --no-ignore-parent --hidden"
 alias rgi="rg --no-ignore-vcs --no-ignore-parent --hidden --ignore-case"
 
-alias glow='glow --config $DOTFILES/glow.yml'
-# alias g='glow --config $DOTFILES/glow.yml'
-
 jw() {
-  [ -d "$WORKSPACE" ] && cd "$WORKSPACE" || return 1
-}
-je() {
-  [ -d "$WORKSPACE/external" ] && cd "$WORKSPACE/external" || return 1
-  selected="$(find . -mindepth 1 -maxdepth 1 -type d \( -not -iname "_*" -not -iname ".*" \))"
-  [ "$(echo "$selected" | wc -l)" = 1 ] && cd "$selected" || return 1
-  return 0
-}
-alias pudb='XDG_CONFIG_HOME=$DOTFILES pudb'
-# [ -n DEBUG ] && alias python3='XDG_CONFIG_HOME=$DOTFILES pudb'
-
-tf() {
-  [ -z "${commands[obs]}" ] && return 1
-  selected="$(tag_finder | fzf)"
-  [ -z "$selected" ] && return 1
-  obs find "#$selected"
+	[ -d "$WORKSPACE" ] && cd "$WORKSPACE" || return 1
 }
 
 fn() {
-  [ -z "$WORKSPACE" ] && return 1
-  $EDITOR "$WORKSPACE/.func.sh" && . "$WORKSPACE/.func.sh"
-}
-
-no() {
-  if [ -n "$TMUX" ] || [ -n "$SSH_CLIENT" ]; then
-    editor "$OBSIDIAN_VAULT"
-  else
-    tmuxp-start $TMUXP_CONFIGDIR/notes
-  fi
+	[ -z "$WORKSPACE" ] && return 1
+	$EDITOR "$WORKSPACE/.func.sh" && . "$WORKSPACE/.func.sh"
 }
 
 de() {
-  direnv edit "$@"
+	direnv edit "$@"
 }
 
 da() {
-  direnv allow "$@"
-}
-
-### Builtins Overrides
-_man() {
-  # provides a unique API for builtin documentation via man
-  query="$1"
-  [ -z "$query" ] && return 1
-  if [ -z ${commands[$query]} ]; then
-    echo "command not foud: $query"
-    return 1
-  fi
-  if [ -n "$( find `echo $MANPATH | tr ":" " "` -iname '*"$query"*' | grep . )" ]; then
-    if (man "$query"); then
-      return 0
-    fi
-  fi
-  if ( ! $query --help 1,2> /dev/null ); then
-    echo "$query does not provides --help flag"
-    return 1
-  fi
-  $query --help | editor -R 
-  return 0
-}
-#alias man='_man'
-
-vm() {
-  prev=$PWD
-  [ ! -f "$HOME/Downloads/mannaz.box" ] && return 1
-  cd "$DEV/personal/mannaz" || return 1
-  vagrant destroy -f || return 1
-  vagrant up || return 1
-  vagrant ssh || return 1
-  cd "$prev" || return 1
-}
-
-jk() {
-  [ -d "$DEV"/personal/jk ] || return 1
-  _path="$DEV"/personal/jk
-  "$_path"/.venv/bin/python "$_path"/jk.py "$@"
+	direnv allow "$@"
 }
 
 dt() {
-    python3 -c 'import datetime;import sys; sys.stdout.write(str(datetime.datetime.fromtimestamp(int(sys.argv[1]))))' $@
-}
-
-mannaz() {
-  _path="$DEV"/personal/mannaz
-  if [ ! -d "$_path" ]; then 
-    echo "mannaz project dir not found"
-    return 1
-  fi
-  if [ ! -f ~/Downloads/mannaz.box ]; then
-    echo "mannaz box not found"
-    return 1
-  fi
-  cd "$_path" || return 1
-  vagrant ssh
+	python3 -c 'import datetime;import sys; sys.stdout.write(str(datetime.datetime.fromtimestamp(int(sys.argv[1]))))' $@
 }
 
 alias g-cp='git rev-parse HEAD | tr -d '\n' | cb-copy'
@@ -153,11 +54,11 @@ alias g-ig='git add .gitignore && git commit -m "Update .gitignore"'
 alias g-cm='git commit -m '
 
 _img_slideshow() {
-  mpv \
-      --image-display-duration=10 \
-       --loop-playlist=inf \
-       --fullscreen  \
-       --shuffle \
-      "${1:-.}"
+	mpv \
+		--image-display-duration=10 \
+		--loop-playlist=inf \
+		--fullscreen \
+		--shuffle \
+		"${1:-.}"
 }
 alias img_slide='_img_slideshow'

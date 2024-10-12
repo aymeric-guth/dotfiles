@@ -4,7 +4,6 @@ export MANWIDTH=999
 
 hostname="$(uname -n)"
 [ -f "$DOTFILES/env/.env-$hostname" ] && source "$DOTFILES/env/.env-$hostname"
-# [ -z "$PROJECTS_ROOT" ] && export PROJECTS_ROOT="$HOME"
 
 # Setup fzf
 if [ -n "$FZF" ]; then
@@ -29,11 +28,6 @@ export TMUXP_CONFIGDIR="${TMUXP_CONFIGDIR:-"~/.config/tmuxp"}"
 append-to-path "/usr/local/go/bin"
 
 WORK_PROJECTS="$WORK_PROJECTS"
-LEARNING_PROJECTS="$LEARNING_PROJECTS"
 prepend-to-path "$HOME/.local/bin"
 
-# [ -n "$GOWORK" ] && export WORK_PROJECTS="$WORK_PROJECTS" || export WORK_PROJECTS=
-# [ -n "$GOLEARN" ] && export LEARNING_PROJECTS="$LEARNING_PROJECTS" || export LEARNING_PROJECTS=
-# [ -n "$GOGIT" ] && export GIT_PROJECTS="$REPODIR" || export GIT_PROJECTS=
-# $REPODIR
-export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS $LEARNING_PROJECTS"
+export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS"

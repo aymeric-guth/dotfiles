@@ -2,13 +2,6 @@
 
 . "$ZDOTDIR/aliases"
 
-alias free='free -m' # show sizes in MB
-
-# get top process eating memory
-alias psmem='ps auxf | sort -nr -k 4 | head -5'
-# get top process eating cpu ##
-alias pscpu='ps auxf | sort -nr -k 3 | head -5'
-
 alias ls='ls --color=auto'
 
 alias cb-copy='xclip -selection clipboard'
@@ -26,8 +19,7 @@ fi
 alias s='/usr/bin/systemctl'
 alias lock='i3lock -c 000000'
 
-# alias g='/usr/bin/git'
-alias g="$(go env GOPATH)/bin/gonext"
+alias g='/usr/bin/git'
 alias sudo='sudo '
 alias tg='tag-reader '
 

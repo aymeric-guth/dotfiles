@@ -15,19 +15,9 @@ alias spcplay='wine ${WINEDIR}/spcplay-2.18.1.6862/spcplay.exe'
 alias foobar='wine ${WINEDIR}/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
 alias looping='wine ${WINEDIR}/Looping32.exe'
 
-# Divers
-alias insta='python3 ~/Desktop/Network/thot_bot/minimal_api/minimal_scraper.py'
-
-alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
-
-flX() {
-	TMUX_TEMPLATE=".tmuxp-1.yaml" tmuxp-start "$DEV/personal/mplayer"
-}
-
 alias cb-copy='pbcopy'
 alias cb-paste='pbpaste'
 
 alias d='/usr/local/bin/docker'
-# alias g='/opt/local/bin/git'
+alias g='/opt/local/bin/git'
 alias hd='/usr/bin/hexdump'
-alias g='~/go/bin/gonext'

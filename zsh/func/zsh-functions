@@ -19,16 +19,6 @@ cmake_inspect() {
     cmake -LA | awk '{if(f)print} /-- Cache values/{f=1}'
 }
 
-
-# s() {
-#     if git-is-repo "$(pwd)"; then
-#         return "$(git status --porcelain=v1 2>/dev/null | wc -l)"
-#     else
-#         return 1
-#     fi
-# }
-
-
 my-zsh-prof() {
   for i in $(seq 1 10); do /usr/bin/time $(which zsh) -i -c exit; done;
 }
@@ -57,3 +47,50 @@ autols-disable() {
     add-zsh-hook -d chpwd do-ls
 }
 
+# ch - browse chrome history
+ch() {
+	prev="$PWD"
+	cd "$DEV"/personal/yt_hist || return 1
+	cols="$((COLUMNS / 3))"
+	sep='{::}'
+	python main.py "$COLUMNS" "$sep" |
+		awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+		fzf --ansi --multi |
+		sed 's#.*\(https*://\)#\1#' |
+		xargs open
+	cd "$prev" || return 1
+}
+
+chf() {
+	# https://gist.github.com/dshnkao/10865f32d69e40dc591e08e3af970e9d
+	local cols sep
+	cols=$((COLUMNS / 3))
+	sep='{::}'
+
+	historyfile="$HOME/.mozilla/firefox/z6833bcl.default-release/places.sqlite"
+	[ ! -f "$historyfile" ] && return 1 || cp "$historyfile" /tmp/h
+	DB_PATH=/tmp/h
+
+	QUERY="
+  SELECT
+      url, title FROM moz_places
+  WHERE
+      url NOT LIKE '%google%search%'
+  ORDER BY
+      visit_count DESC,
+      last_visit_date DESC;
+  "
+
+	SEP="∙"
+
+	ENTRY=$(
+		sqlite3 "$DB_PATH" "$QUERY" |
+			sed -E 's/^https?:\/\///' |
+			sed -E "s/\\/?\\|/ $SEP /" |
+			sed -E "s/$SEP $//" |
+			fzf
+	)
+
+	URL=$(echo "$ENTRY" | sed "s/$SEP.*//g")
+	[ -z "$URL" ] && return 0 || open "https://$URL"
+}
