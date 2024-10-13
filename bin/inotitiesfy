@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/home/yul/notities.py "$*"
