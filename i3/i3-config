@@ -24,10 +24,10 @@ bindsym $mod+l focus right
 bindsym $mod+h focus left
 
 # move focused window
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-bindsym $mod+Shift+h move left
+# bindsym $mod+Shift+j move down
+# bindsym $mod+Shift+k move up
+# bindsym $mod+Shift+l move right
+# bindsym $mod+Shift+h move left
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -212,7 +212,7 @@ for_window [class="Balena-etcher.bin" instance="balena-etcher.bin"] floating ena
 for_window [class="Protonvpn-app" instance="protonvpn-app"] floating enable sticky enable resize set 960 480 move position center
 for_window [class="gnome-calculator" instance="gnome-calculator"] floating enable sticky enable resize set 960 480 move position center
 
-# for_window [class="i3-frame" instance="i3-frame"] floating enable sticky enable
+for_window [class="i3-frame" instance="i3-frame"] floating enable sticky enable
 for_window [class="sun-awt-X11-XDialogPeer" instance="MPLAB X IDE v6.20"] floating enable
 for_window [class="java" instance="java"] floating enable
 
