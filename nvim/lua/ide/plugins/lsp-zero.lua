@@ -42,7 +42,7 @@ return {
       'zls',
       'eslint',
       'bufls',
-      'tsserver',
+      'ts_ls',
       'clangd',
     })
 

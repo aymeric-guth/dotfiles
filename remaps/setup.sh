@@ -4,6 +4,8 @@
 /usr/bin/xrandr --auto
 # reintializing keymaps
 setxkbmap
+xmodmap -e "pointer = 3 2 1"
+# xmodmap -e "pointer = 1 2 3"
 
 # if xinput | grep MoErgo >/dev/null 2>&1; then
 # 	echo "glove80"

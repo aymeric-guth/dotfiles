@@ -1,7 +1,5 @@
 return {
   'renerocksai/telekasten.nvim',
-  'ThePrimeagen/vim-be-good',
-  'tjdevries/train.nvim',
   'ledger/vim-ledger',
   {
     'ecthelionvi/NeoView.nvim',
@@ -10,7 +8,7 @@ return {
     end,
   },
   require('core.plugins'),
-  require('ide.plugins.nvim-tree'),
+  -- require('ide.plugins.nvim-tree'),
   require('ide.plugins.harpoon'),
   require('ide.plugins.illuminate'),
   require('ide.plugins.nvim-colorizer'),
