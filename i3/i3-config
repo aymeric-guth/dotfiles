@@ -133,7 +133,7 @@ bindsym $mod+Mod4+d exec /usr/bin/discord
 # bindsym Mod4+space exec dmenu_run
 # bindsym Mod4+space exec alacritty --class fmenu -e ~/dev/personal/dotfiles/bin/fmenu
 # bindsym Mod4+space exec rofi -show run
-bindsym Mod4+space exec /usr/bin/zsh -c 'env /usr/bin/rofi -show run drun'
+bindsym Mod4+space exec /usr/bin/zsh -c 'env PATH=/opt/toolz/bin:$PATH /usr/bin/rofi -show run drun'
 bindsym $mod+e exec /usr/bin/nautilus
 
 # Start i3bar to display a workspace bar (plus the system information i3status
