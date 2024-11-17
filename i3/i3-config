@@ -124,8 +124,7 @@ bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 bindsym $mod+Mod4+j exec /snap/bin/jellyfinmediaplayer
 bindsym $mod+Mod4+s exec /opt/toolz/bin/sonixd
 bindsym $mod+Mod4+h exec /usr/bin/flatpak run org.pipewire.Helvum
-# bindsym $mod+Mod4+c exec /usr/bin/zsh -c 'source ~/.zshrc &&/opt/toolz/bin/chatbox'
-bindsym $mod+Mod4+c exec /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox'
+bindsym $mod+Mod4+a exec /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox'
 bindsym $mod+Mod4+r exec /usr/bin/zsh -c -i '/home/yul/setup.sh'
 
 bindsym $mod+p exec /usr/bin/keepassxc
@@ -133,7 +132,10 @@ bindsym $mod+Mod4+d exec /usr/bin/discord
 # bindsym Mod4+space exec dmenu_run
 # bindsym Mod4+space exec alacritty --class fmenu -e ~/dev/personal/dotfiles/bin/fmenu
 # bindsym Mod4+space exec rofi -show run
-bindsym Mod4+space exec /usr/bin/zsh -c 'env PATH=/opt/toolz/bin:$PATH /usr/bin/rofi -show run drun'
+bindsym Mod4+space exec /usr/bin/zsh -c 'env PATH=/opt/toolz/bin:$PATH /usr/bin/rofi -show-icons -dpi 1 -show run drun'
+# genre rofi -combi-modi window#drun#ssh -theme DarkBlue -font "hack 13" -show combi -show-icons -dpi 180
+bindsym $mod+Mod4+c exec gnome-calculator
+
 bindsym $mod+e exec /usr/bin/nautilus
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -201,10 +203,10 @@ for_window [workspace=$ws10] layout stacking
 assign [class="KeePassXC"] $ws10
 assign [class="helvum" instance="helvum"] $ws10
 ## floating
-for_window [class="Blueman-manager" instance="blueman-manager"] floating enable sticky enable resize set 640 480
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable sticky enable resize set 640 480
-for_window [class="org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable sticky enable resize set 960 480, move position center
-for_window [class="fmenu" instance="fmenu"] floating enable, resize set 640 480, move position center
+for_window [class="Blueman-manager" instance="blueman-manager"] floating enable sticky enable resize set 1280 960
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable sticky enable resize set 1280 960
+for_window [class="org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable sticky enable resize set 1280 960, move position center
+for_window [class="fmenu" instance="fmenu"] floating enable, resize set 1280 960, move position center
 for_window [class="Zenity" instance="zenity"] floating enable sticky enable move position center
 for_window [title="Event Tester"] floating enable
 for_window [class="balena-etcher" instance="balena-etcher"] floating enable sticky enable move position center
