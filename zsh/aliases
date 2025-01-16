@@ -62,3 +62,5 @@ _img_slideshow() {
 		"${1:-.}"
 }
 alias img_slide='_img_slideshow'
+alias playerctl='env LD_LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH" /usr/local/bin/playerctl'
+alias playerctl-sonixd='env LD_LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH" /usr/local/bin/playerctl --player=Sonixd'
