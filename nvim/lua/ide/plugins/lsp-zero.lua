@@ -41,7 +41,7 @@ return {
       'golangci_lint_ls',
       'zls',
       'eslint',
-      'bufls',
+      -- 'bufls',
       'ts_ls',
       'clangd',
     })
@@ -62,38 +62,37 @@ return {
     lsp.on_attach(function(client, bufnr)
       vim.keymap.set('n', 'gd', function()
         vim.lsp.buf.definition()
-      end, { buffer = bufnr, remap = false, desc = '[g]o [d]efinition'})
+      end, { buffer = bufnr, remap = false, desc = '[g]o [d]efinition' })
       vim.keymap.set('n', 'gi', function()
         vim.lsp.buf.implementation()
-      end, { buffer = bufnr, remap = false, desc = '[g]o [i]mplementation'})
+      end, { buffer = bufnr, remap = false, desc = '[g]o [i]mplementation' })
       vim.keymap.set('n', 'K', function()
         vim.lsp.buf.hover()
-      end, { buffer = bufnr, remap = false, desc = 'hover'})
+      end, { buffer = bufnr, remap = false, desc = 'hover' })
       vim.keymap.set('n', '<leader>lws', function()
         vim.lsp.buf.workspace_symbol()
-      end, { buffer = bufnr, remap = false, desc = '[l]sp [w]ork[s]pace'})
+      end, { buffer = bufnr, remap = false, desc = '[l]sp [w]ork[s]pace' })
       vim.keymap.set('n', '<leader>ld', function()
         vim.diagnostic.open_float()
-      end, { buffer = bufnr, remap = false, desc = '[l]sp [d]etach'})
+      end, { buffer = bufnr, remap = false, desc = '[l]sp [d]etach' })
       vim.keymap.set('n', '[d', function()
         vim.diagnostic.goto_next()
-      end, { buffer = bufnr, remap = false, desc = '[ [d]iag'})
+      end, { buffer = bufnr, remap = false, desc = '[ [d]iag' })
       vim.keymap.set('n', ']d', function()
         vim.diagnostic.goto_prev()
-      end, { buffer = bufnr, remap = false, desc = '] [d]iag'})
+      end, { buffer = bufnr, remap = false, desc = '] [d]iag' })
       vim.keymap.set('n', '<leader>lca', function()
         vim.lsp.buf.code_action()
-      end, { buffer = bufnr, remap = false, desc = '[l]sp [c]ode [a]ction'})
+      end, { buffer = bufnr, remap = false, desc = '[l]sp [c]ode [a]ction' })
       vim.keymap.set('n', '<leader>lrr', function()
         vim.lsp.buf.references()
-      end, { buffer = bufnr, remap = false, desc = '[l]sp [r]efe[r]ences'})
+      end, { buffer = bufnr, remap = false, desc = '[l]sp [r]efe[r]ences' })
       vim.keymap.set('n', '<leader>lrn', function()
         vim.lsp.buf.rename()
-      end, { buffer = bufnr, remap = false, desc = '[l]sp [r]e[n]ame'})
+      end, { buffer = bufnr, remap = false, desc = '[l]sp [r]e[n]ame' })
       vim.keymap.set('n', '<leader>ls', function()
         vim.lsp.buf.signature_help()
-      end, { buffer = bufnr, remap = false, desc = '[l]sp [s]ignature help'})
-
+      end, { buffer = bufnr, remap = false, desc = '[l]sp [s]ignature help' })
     end)
 
     vim.diagnostic.config({
@@ -243,7 +242,7 @@ return {
         ['<S-Tab>'] = nil,
       },
       sources = {
-        { name = 'nvim_lsp' },
+        -- { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },
         -- { name = 'cmdline' },
