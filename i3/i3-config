@@ -149,7 +149,8 @@ bar {
 
 bindsym Shift+Print exec --no-startup-id maim --select "$HOME/Pictures/$(date).png"
 
-exec feh --bg-fill ~/Pictures/EEyWG-UU4AAnQRg.jpeg
+exec feh --bg-fill ~/Pictures/410502-1.jpg
+# exec feh --bg-fill ~/Pictures/EEyWG-UU4AAnQRg.jpeg
 
 # https://www.tuxtips.info/linux/how-to-find-applications-window-class-in-i3-window-manager
 # xprop | grep WM_CLASS
@@ -220,7 +221,9 @@ for_window [class="sun-awt-X11-XDialogPeer" instance="MPLAB X IDE v6.20"] floati
 for_window [class="java" instance="java"] floating enable
 
 for_window [class="Arduino-ide" instance="arduino-ide"] floating enable, sticky enable, resize set 1280 960, move position center
+for_window [class="dosbox.exe" instance="dosbox.exe"] floating enable, sticky enable, resize set 1280 960, move position center
 
+for_window [class="Logic" instance="Logic"] floating enable, sticky enable, resize set 1280 960, move position center
 
 # 3840x2160
 # 640x480
@@ -254,6 +257,8 @@ exec --no-startup-id /usr/local/bin/foobar2000
 exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox'
 
 exec --no-startup-id ibus exit
+exec --no-startup-id /usr/bin/zsh -c -i '/home/yul/setup.sh'
+
 # exec --no-startup-id /usr/bin/protonvpn-app
 exec_always --no-startup-id setxkbmap -layout custom
 exec_always --no-startup-id xset s off -dpms

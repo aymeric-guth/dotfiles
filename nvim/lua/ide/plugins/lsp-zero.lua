@@ -242,7 +242,7 @@ return {
         ['<S-Tab>'] = nil,
       },
       sources = {
-        -- { name = 'nvim_lsp' },
+        { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },
         -- { name = 'cmdline' },
