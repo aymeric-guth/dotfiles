@@ -1,11 +1,11 @@
 return {
   'ledger/vim-ledger',
-  {
-    'ecthelionvi/NeoView.nvim',
-    config = function()
-      require('NeoView').setup()
-    end,
-  },
+  -- {
+  --   'ecthelionvi/NeoView.nvim',
+  --   config = function()
+  --     require('NeoView').setup()
+  --   end,
+  -- },
   require('core.plugins'),
   require('ide.plugins.harpoon'),
   require('ide.plugins.illuminate'),
