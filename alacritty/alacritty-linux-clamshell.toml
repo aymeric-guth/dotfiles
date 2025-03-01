@@ -1,3 +1,4 @@
+[general]
 import = [
     "~/.config/alacritty/alacritty-common.toml"
 ]
@@ -12,5 +13,5 @@ size = 16.0
 opacity = 0.85
 startup_mode = "Maximized"
 
-[shell]
+[terminal.shell]
 program = "/usr/bin/zsh"

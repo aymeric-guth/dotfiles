@@ -1,69 +1,7 @@
+[general]
 import = [
     "~/.config/alacritty/themes/hyper.toml"
 ]
-
-# Catppuccin.toml
-# Catppuccin_frappe.toml
-# Catppuccin_latte.toml
-# Catppuccin_macchiato.toml
-# Catppuccin_mocha.toml
-# Everforest_dark.toml
-# Everforest_light.toml
-# Flexoki.toml
-# Github_dark_dimmed.toml
-# Github_dark_tritanopia.toml
-# Gnome_terminal.toml
-# Gotham.toml
-# Hardhacker.toml
-# High_contrast.toml
-# Horizon-dark.toml
-# Inferno.toml
-# Iris.toml
-# Kanagawa_wave.toml
-# Low_contrast.toml
-# Marine_dark.toml
-# Material_theme.toml
-# Material_theme_mod.toml
-# Meliora.toml
-# Midnight-haze.toml
-# Monokai_charcoal.toml
-# Monokai_pro.toml
-# Msx.toml
-# Nightfox.toml
-# Noctis-lux.toml
-# Nord.toml
-# Nord_light.toml
-# Nordic.toml
-# Oceanic_next.toml
-# Omni.toml
-# One_dark.toml
-# Palenight.toml
-# Papercolor_dark.toml
-# Papercolor_light.toml
-# Papertheme.toml
-# Pencil_dark.toml
-# Pencil_light.toml
-# Rainbow.toml
-# Remedy_dark.toml
-# Rose-pine-dawn.toml
-# Rose-pine-moon.toml
-# Rose-pine.toml
-# Seashells.toml
-# Smoooooth.toml
-# Snazzy.toml
-# Solarized_dark.toml
-# Solarized_light.toml
-# Taerminal.toml
-# Tango_dark.toml
-# Tender.toml
-# Terminal_app.toml
-# Thelovelace.toml
-# Tokyo-night-storm.toml
-# Tokyo-night.toml
-# Tomorrow_night.toml
-# Tomorrow_night_bright.toml
-# Ubuntu.toml
-# Wombat.toml
 
 ### keep
 # Afterglow.toml
