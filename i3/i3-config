@@ -31,7 +31,6 @@ bindsym $mod+h focus left
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
 # toggle tiling / floating
 # bindsym $mod+Shift+space floating toggle
 
@@ -122,7 +121,9 @@ bindsym $mod+Mod4+b exec /usr/bin/firefox
 bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 
 bindsym $mod+Mod4+j exec /snap/bin/jellyfinmediaplayer
+# bindsym $mod+Mod4+s exec /usr/bin/zsh -c -i '/opt/toolz/bin/sonxid'
 bindsym $mod+Mod4+s exec /opt/toolz/bin/sonixd
+
 bindsym $mod+Mod4+h exec /usr/bin/flatpak run org.pipewire.Helvum
 bindsym $mod+Mod4+a exec /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox'
 bindsym $mod+Mod4+r exec /usr/bin/zsh -c -i '/home/yul/setup.sh'
@@ -269,10 +270,10 @@ exec_always --no-startup-id pkill -u "$(whoami)" -USR1 dunst
 bindsym $mod+Shift+P exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).png"
 bindsym $mod+Mod4+f exec --no-startup-id /usr/local/bin/foobar2000
 
-bindsym $mod+Mod1+space exec /usr/bin/zsh -c 'env LD_LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH" /usr/local/bin/playerctl --player=Sonixd play-pause'
-bindsym $mod+Mod1+l exec /usr/bin/zsh -c 'env LD_LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH" /usr/local/bin/playerctl --player=Sonixd next'
-bindsym $mod+Mod1+h exec /usr/bin/zsh -c 'env LD_LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH" /usr/local/bin/playerctl --player=Sonixd previous'
-bindsym $mod+Mod1+Shift+l exec /usr/bin/zsh -c 'env LD_LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH" /usr/local/bin/playerctl --player=Sonixd position 5+'
-bindsym $mod+Mod1+Shift+h exec /usr/bin/zsh -c 'env LD_LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH" /usr/local/bin/playerctl --player=Sonixd position 5-'
-bindsym $mod+Mod1+j exec /usr/bin/zsh -c 'env LD_LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH" /usr/local/bin/playerctl --player=Sonixd volume 0.1-'
-bindsym $mod+Mod1+k exec /usr/bin/zsh -c 'env LD_LIBRARY_PATH="/usr/lib:/lib:/usr/local/lib:/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH" /usr/local/bin/playerctl --player=Sonixd volume 0.1+'
+bindsym $mod+Mod1+space exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd play-pause'
+bindsym $mod+Mod1+l exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd next'
+bindsym $mod+Mod1+h exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd previous'
+bindsym $mod+Mod1+Shift+l exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5+'
+bindsym $mod+Mod1+Shift+h exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5-'
+bindsym $mod+Mod1+j exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1-'
+bindsym $mod+Mod1+k exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
