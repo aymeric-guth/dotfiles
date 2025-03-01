@@ -73,7 +73,7 @@ bindsym $mod+b exec /usr/bin/google-chrome
 bindsym $mod+Mod4+b exec /usr/bin/firefox
 # bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 
-bindsym $mod+Mod4+s exec /usr/bin/zsh -c -i '/opt/toolz/bin/sonixd'
+bindsym $mod+Mod4+s exec /usr/bin/zsh -i -c '/opt/toolz/bin/sonixd --no-sandbox'
 bindsym $mod+Mod1+space exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd play-pause'
 bindsym $mod+Mod1+l exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd next'
 bindsym $mod+Mod1+h exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd previous'
@@ -82,11 +82,12 @@ bindsym $mod+Mod1+Shift+h exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Soni
 bindsym $mod+Mod1+j exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1-'
 bindsym $mod+Mod1+k exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
 
-bindsym $mod+Mod4+a exec /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox'
+bindsym $mod+Mod4+a exec /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 bindsym $mod+Mod4+r exec /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh'
 
 bindsym $mod+Mod4+d exec /snap/bin/discord
 bindsym Mod4+space exec /usr/bin/zsh -c 'env PATH=/opt/toolz/bin:$PATH /usr/bin/rofi -show-icons -dpi 1 -show run drun'
+
 bindsym $mod+Mod4+c exec gnome-calculator
 
 bindsym $mod+e exec /usr/bin/nautilus
@@ -197,11 +198,11 @@ exec --no-startup-id alacritty
 exec --no-startup-id /usr/bin/google-chrome
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 # exec --no-startup-id /snap/bin/jellyfinmediaplayer
-exec --no-startup-id /opt/toolz/bin/sonixd
+exec --no-startup-id /opt/toolz/bin/sonixd --no-sandbox
 exec --no-startup-id /usr/bin/keepassxc
 # exec --no-startup-id /usr/bin/discord
 exec --no-startup-id /usr/local/bin/foobar2000
-exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox'
+exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
 exec --no-startup-id ibus exit
 
