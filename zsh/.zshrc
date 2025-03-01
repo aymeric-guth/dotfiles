@@ -162,11 +162,3 @@ export LESSOPEN='|"$DOTFILES/zsh/.lessfilter" '%s''
 
 export MANPATH
 export PATH
-
-# pnpm
-export PNPM_HOME="/home/yul/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
