@@ -56,7 +56,7 @@ bindsym $mod+Shift+r restart
 # finds out, if availajle)
 
 mode "exit: [l]ock [L]ogout, [r]eboot, [s]hutdown" {
-  bindsym l exec i3lock -c 000000 && /usr/bin/xrandr --auto
+  bindsym l exec i3lock -c 000001 && /usr/bin/xrandr --auto
   bindsym Shift+l exec i3-msg exit
   bindsym r exec systemctl reboot
   bindsym s exec systemctl shutdown
@@ -83,7 +83,7 @@ bindsym $mod+Mod1+j exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd vol
 bindsym $mod+Mod1+k exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
 
 bindsym $mod+Mod4+a exec /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
-bindsym $mod+Mod4+r exec /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh'
+bindsym control+Mod1+Mod4+r exec /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh'
 
 bindsym $mod+Mod4+d exec /snap/bin/discord
 bindsym Mod4+space exec /usr/bin/zsh -c 'env PATH=/opt/toolz/bin:$PATH /usr/bin/rofi -show-icons -dpi 1 -show run drun'
@@ -198,7 +198,7 @@ exec --no-startup-id alacritty
 exec --no-startup-id /usr/bin/google-chrome
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 # exec --no-startup-id /snap/bin/jellyfinmediaplayer
-exec --no-startup-id /opt/toolz/bin/sonixd --no-sandbox
+exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/sonixd --no-sandbox'
 exec --no-startup-id /usr/bin/keepassxc
 # exec --no-startup-id /usr/bin/discord
 exec --no-startup-id /usr/local/bin/foobar2000
@@ -211,4 +211,3 @@ exec_always --no-startup-id setxkbmap -layout custom
 exec_always --no-startup-id xset s off -dpms
 # kills notification daemo
 exec_always --no-startup-id pkill -u "$(whoami)" -USR1 dunst
-

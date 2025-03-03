@@ -5,6 +5,7 @@
 # reintializing keymaps
 setxkbmap
 xmodmap -e "pointer = 3 2 1"
+setxkbmap -layout custom
 
 if /usr/bin/xrandr | grep '^DP-1 connected' >/dev/null 2>&1; then
 	echo "clamshell"
