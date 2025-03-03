@@ -62,3 +62,9 @@ _img_slideshow() {
 		"${1:-.}"
 }
 alias img_slide='_img_slideshow'
+jk() {
+	[ -d "$DEV"/personal/jk ] || return 1
+	_path="$DEV"/personal/jk
+	"$_path"/.venv/bin/python "$_path"/jk.py "$@"
+	direnv allow "$@"
+}
