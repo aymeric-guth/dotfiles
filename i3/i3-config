@@ -83,6 +83,8 @@ bindsym $mod+Mod1+j exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd vol
 bindsym $mod+Mod1+k exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
 
 bindsym $mod+Mod4+a exec /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
+
+bindsym control+Mod1+Mod4+Shift+r exec /bin/xdotool key Caps_Lock
 bindsym control+Mod1+Mod4+r exec /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh'
 
 bindsym $mod+Mod4+d exec /snap/bin/discord

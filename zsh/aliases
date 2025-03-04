@@ -68,3 +68,7 @@ jk() {
 	"$_path"/.venv/bin/python "$_path"/jk.py "$@"
 	direnv allow "$@"
 }
+upgrade_naudiz() {
+	cd "$DEV"/personal/ansible || return 1
+	ansible-playbook upgrade_workstation.yml --extra-vars host=naudiz
+}
