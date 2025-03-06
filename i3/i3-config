@@ -81,6 +81,7 @@ bindsym $mod+Mod1+Shift+l exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Soni
 bindsym $mod+Mod1+Shift+h exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5-'
 bindsym $mod+Mod1+j exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1-'
 bindsym $mod+Mod1+k exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
+bindsym $mod+Mod4+f exec /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
 
 bindsym $mod+Mod4+a exec /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
@@ -202,8 +203,7 @@ exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 # exec --no-startup-id /snap/bin/jellyfinmediaplayer
 exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/sonixd --no-sandbox'
 exec --no-startup-id /usr/bin/keepassxc
-# exec --no-startup-id /usr/bin/discord
-exec --no-startup-id /usr/local/bin/foobar2000
+exec --no-startup-id /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
 exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
 exec --no-startup-id ibus exit
