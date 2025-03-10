@@ -200,16 +200,15 @@ exec --no-startup-id /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/
 exec --no-startup-id alacritty
 exec --no-startup-id /usr/bin/google-chrome
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
-# exec --no-startup-id /snap/bin/jellyfinmediaplayer
+exec --no-startup-id /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
 exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/sonixd --no-sandbox'
 exec --no-startup-id /usr/bin/keepassxc
-exec --no-startup-id /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
 exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
-exec --no-startup-id ibus exit
+# exec --no-startup-id ibus exit
 
 exec_always --no-startup-id setxkbmap -layout custom
 # disable screen saver
 exec_always --no-startup-id xset s off -dpms
-# kills notification daemo
+# kills notification daemon
 exec_always --no-startup-id pkill -u "$(whoami)" -USR1 dunst
