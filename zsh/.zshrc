@@ -92,10 +92,6 @@ elif [ -f "$ZDOTDIR/prompt" ]; then
     source "$ZDOTDIR/prompt"
 fi
 
-# eval "$(starship init zsh)"
-
-[ -f "$ZDOTDIR/zcomp" ] && [ -n "$ZCOMP" ] && source "$ZDOTDIR/zcomp"
-
 if [ -n "$FZF" ]; then
     my-zsh-add-plugin "Aloxaf/fzf-tab"
     # my-zsh-add-plugin "Freed-Wu/fzf-tab-source"
@@ -124,37 +120,12 @@ my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
 # direnv hook
 source <(direnv hook zsh)
 
-
 # HACK source .func
 source-func() { emulate -L zsh; [ -f .func.sh ] && source .func.sh; }
 add-zsh-hook precmd source-func
 
 zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
 zle -N zle-line-pre-redraw
-
-# if [ -n "$ZSH_HIST" ]; then
-#     zsh_hist() {
-#         env && echo $PWD
-#         echo $1 | zshist add --format raw --database ~/db.sqlite
-#     }
-    
-#     add-zsh-hook zshaddhistory zsh_hist
-# fi
-
-# function preexec() {
-#   timer=$(($(gdate +%s%0N)/1000000))
-# }
-
-# function precmd() {
-#   if [ $timer ]; then
-#     now=$(($(gdate +%s%0N)/1000000))
-#     elapsed=$(($now-$timer))
-# 
-#     export RPROMPT="%F{cyan}${elapsed}ms %{$reset_color%}"
-#     unset timer
-#   fi
-# }
-
 
 # obsidian shell extension
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${realpath}'

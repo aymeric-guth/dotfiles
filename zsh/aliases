@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if command -v lsd 1>/dev/null; then
-	alias ll='XDG_CONFIG_DIR=$DOTFILES lsd -lh'
-	alias la='XDG_CONFIG_DIR=$DOTFILES lsd -lA'
+	alias ll='lsd -lh'
+	alias la='lsd -lA'
 else
 	alias ll='ls -lh'
 	alias la='ls -la'
@@ -12,6 +12,15 @@ if ! command -v fd 1>/dev/null; then
 	fd() {
 		/usr/bin/find . -iname "*${1}*"
 	}
+	alias fdi="fd"
+else
+	alias fdi="fd --no-ignore-vcs --no-ignore-parent --hidden"
+fi
+
+if command -v rg 1>/dev/null; then
+	alias rgi="rg --no-ignore-vcs --no-ignore-parent --hidden --ignore-case"
+else
+	alias rgi="grep -rn"
 fi
 
 alias ..='cd ..'
@@ -19,12 +28,11 @@ alias ...='cd ../..'
 alias grep='LC_ALL=C  grep --color=auto'
 
 v() {
-	_cb="$(xclip -selection clip -o)"
+	if ! command -v xclip 1>/dev/null; then
+		_cb="$(xclip -selection clip -o)"
+	fi
 	[ -f "$_cb" ] && $EDITOR "$_cb" || $EDITOR "$*"
 }
-
-alias fdi="fd --no-ignore-vcs --no-ignore-parent --hidden"
-alias rgi="rg --no-ignore-vcs --no-ignore-parent --hidden --ignore-case"
 
 jw() {
 	[ -d "$WORKSPACE" ] && cd "$WORKSPACE" || return 1
@@ -53,21 +61,13 @@ alias g-pm='git push -u origin master'
 alias g-ig='git add .gitignore && git commit -m "Update .gitignore"'
 alias g-cm='git commit -m '
 
-_img_slideshow() {
-	mpv \
-		--image-display-duration=10 \
-		--loop-playlist=inf \
-		--fullscreen \
-		--shuffle \
-		"${1:-.}"
-}
-alias img_slide='_img_slideshow'
 jk() {
 	[ -d "$DEV"/personal/jk ] || return 1
 	_path="$DEV"/personal/jk
 	"$_path"/.venv/bin/python "$_path"/jk.py "$@"
 	direnv allow "$@"
 }
+
 upgrade_naudiz() {
 	cd "$DEV"/personal/ansible || return 1
 	ansible-playbook upgrade_workstation.yml --extra-vars host=naudiz

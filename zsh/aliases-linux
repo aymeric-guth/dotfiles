@@ -7,8 +7,6 @@ alias ls='ls --color=auto'
 alias cb-copy='xclip -selection clipboard'
 alias cb-paste='xclip -selection clipboard -o'
 
-alias d='/usr/local/bin/docker'
-
 if command -v ss 1>/dev/null; then
 	alias ns='ss --listening --processes --info --summary --ipv4 --tcp'
 elif command -v netstat 1>/dev/null; then
@@ -31,5 +29,4 @@ alias s='/bin/systemctl '
 alias sr='/bin/systemctl restart '
 alias so='/bin/systemctl stop '
 alias sa='/bin/systemctl start '
-# alias ss='/bin/systemctl status '
 alias sdr='/bin/systemctl daemon-reload '

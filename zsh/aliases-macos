@@ -4,20 +4,6 @@
 
 # alias ns='netstat -p tcp nltu'
 alias ns="netstat -anvp tcp | awk 'NR<3 || /LISTEN/'"
-alias ncdu='ncdu --exclude=~/.av-mp'
-
-# Wine Executables
-alias vgmtrans='wine ${WINEDIR}/vgmtrans/bin/vgmtrans.exe'
-alias spctool='wine ${WINEDIR}/SPCTool/SPCTool.exe'
-alias tagscanner='wine ${WINEDIR}/tagscan-6/Tagscan.exe'
-# alias glow='wine ${WINEDIR}/Glow/Glow.exe'
-alias spcplay='wine ${WINEDIR}/spcplay-2.18.1.6862/spcplay.exe'
-alias foobar='wine ${WINEDIR}/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
-alias looping='wine ${WINEDIR}/Looping32.exe'
 
 alias cb-copy='pbcopy'
 alias cb-paste='pbpaste'
-
-alias d='/usr/local/bin/docker'
-alias g='/opt/local/bin/git'
-alias hd='/usr/bin/hexdump'

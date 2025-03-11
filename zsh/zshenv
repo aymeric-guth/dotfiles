@@ -19,10 +19,9 @@ export TMUX_TEMPLATE=".tmuxp.yaml"
 export TMUXP_CONFIGDIR="${TMUXP_CONFIGDIR:-"~/.config/tmuxp"}"
 
 [ -n "$TOOLDIR" ] && append-to-path "$TOOLDIR"/bin
-
 [ -n "$GOPATH" ] && append-to-path "$GOPATH"/bin
+[ -d "$HOME/.local/bin" ] && prepend-to-path "$HOME/.local/bin"
 
 WORK_PROJECTS="$WORK_PROJECTS"
-prepend-to-path "$HOME/.local/bin"
 
 export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS"
