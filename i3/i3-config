@@ -68,32 +68,32 @@ bindsym $mod+x mode "exit: [l]ock [L]ogout, [r]eboot, [s]hutdown"
 # border backgr.text indicator child_border
 client.focused #32cd32 #285577 #ffffff #2e9ef4 #32cd32
 
-bindsym $mod+Return exec alacritty
-bindsym $mod+b exec /usr/bin/google-chrome
-bindsym $mod+Mod4+b exec /usr/bin/firefox
-# bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
+bindsym $mod+Return exec env XDG_CONFIG_HOME=/home/yul/.config alacritty
+bindsym $mod+b exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/google-chrome
+bindsym $mod+Mod4+b exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/firefox
+bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 
-bindsym $mod+Mod4+s exec /usr/bin/zsh -i -c '/opt/toolz/bin/sonixd --no-sandbox'
-bindsym $mod+Mod1+space exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd play-pause'
-bindsym $mod+Mod1+l exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd next'
-bindsym $mod+Mod1+h exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd previous'
-bindsym $mod+Mod1+Shift+l exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5+'
-bindsym $mod+Mod1+Shift+h exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5-'
-bindsym $mod+Mod1+j exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1-'
-bindsym $mod+Mod1+k exec /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
-bindsym $mod+Mod4+f exec /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
+bindsym $mod+Mod4+s exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -i -c '/opt/toolz/bin/sonixd --no-sandbox'
+bindsym $mod+Mod1+space exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd play-pause'
+bindsym $mod+Mod1+l exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd next'
+bindsym $mod+Mod1+h exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd previous'
+bindsym $mod+Mod1+Shift+l exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5+'
+bindsym $mod+Mod1+Shift+h exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5-'
+bindsym $mod+Mod1+j exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1-'
+bindsym $mod+Mod1+k exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
+bindsym $mod+Mod4+f exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
 
-bindsym $mod+Mod4+a exec /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
+bindsym $mod+Mod4+a exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
 bindsym control+Mod1+Mod4+Shift+r exec /bin/xdotool key Caps_Lock
 bindsym control+Mod1+Mod4+r exec /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh'
 
-bindsym $mod+Mod4+d exec /snap/bin/discord
+bindsym $mod+Mod4+d exec env XDG_CONFIG_HOME=/home/yul/.config /snap/bin/discord
 bindsym Mod4+space exec /usr/bin/zsh -c 'env PATH=/opt/toolz/bin:$PATH /usr/bin/rofi -show-icons -dpi 1 -show run drun'
 
-bindsym $mod+Mod4+c exec gnome-calculator
+bindsym $mod+Mod4+c exec env XDG_CONFIG_HOME=/home/yul/.config gnome-calculator
 
-bindsym $mod+e exec /usr/bin/nautilus
+bindsym $mod+e exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/nautilus
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -197,13 +197,13 @@ exec --no-startup-id blueman-applet &
 
 exec --no-startup-id /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh'
 
-exec --no-startup-id alacritty
-exec --no-startup-id /usr/bin/google-chrome
+exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /snap/bin/alacritty
+exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/google-chrome
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
-exec --no-startup-id /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
-exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/sonixd --no-sandbox'
-exec --no-startup-id /usr/bin/keepassxc
-exec --no-startup-id /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
+exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
+exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/sonixd --no-sandbox'
+exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/keepassxc
+exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
 # exec --no-startup-id ibus exit
 
