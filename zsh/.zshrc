@@ -61,7 +61,6 @@ autoload -Uz colors && colors
 autoload -Uz add-zsh-hook
 
 source "$ZDOTDIR/zshenv"
-. "$ZDOTDIR/func/zsh-functions"
 case "$(uname -s)" in
     Darwin)
         # export CLICOLOR=1
