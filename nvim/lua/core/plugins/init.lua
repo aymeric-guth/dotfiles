@@ -15,6 +15,5 @@ return {
   require('core.plugins.lualine'),
   require('core.plugins.gruvbox-baby'),
   require('core.plugins.indent-blankline'),
-  -- require('core.plugins.nvim-osc52'),
   require('core.plugins.oil'),
 }

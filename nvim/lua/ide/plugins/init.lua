@@ -20,8 +20,4 @@ return {
       return {}
     end
   end)(),
-  -- (function()
-  --   local trouble = require('folke/trouble.nvim')
-  --   trouble.setup({})
-  -- end)(),
 }
