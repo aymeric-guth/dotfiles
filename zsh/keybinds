@@ -18,16 +18,11 @@ bindkey -v "^K" exit-zero
 bindkey "^W" my-backward-delete-word
 
 if [ -z "$TMUX" ]; then
-	bindkey -v -s "^F" "tmuxp-start\n"
-	bindkey -v -s "^G" "tmuxp-debug\n"
-	bindkey -v -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
+	# bindkey -v -s "^F" "tmuxp-start\n"
+	bindkey -v -s "^F" "tmux-start\n"
+	# bindkey -v -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
+	bindkey -v -s "^O" "tmux-start $TMUXP_CONFIGDIR/anonymous\n"
 	bindkey -v -s "^S" "tmux-attach\n"
-
-	bindkey -v -s "^AA" "tmuxp-start $TMUXP_QUICK1\n"
-	bindkey -v -s "^AB" "tmuxp-start $TMUXP_QUICK2\n"
-	bindkey -v -s "^AC" "tmuxp-start $TMUXP_QUICK3\n"
-	bindkey -v -s "^AD" "tmuxp-start $TMUXP_QUICK4\n"
-	bindkey -v -s "^AE" "tmuxp-start $TMUXP_QUICK5\n"
 fi
 
 bindkey "^[[5~" beginning-of-line
