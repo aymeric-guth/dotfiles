@@ -1,0 +1,20 @@
+selected=$(fzf-projects "$@")
+[ ! -d "$selected" ] && return 1
+selected_name=$(basename "$selected")
+
+if [ "$selected_name" = anonymous ]; then
+    project_name="$(uuid)"
+    workspace="$(pwd)"
+else
+    project_name="$selected_name"
+    workspace="$selected"
+fi
+
+tmux \
+    -f "$TMUX_CONFIG" \
+    new-session \
+    -A \
+    -s "$project_name" \
+    -c "$workspace" \
+    -e PROJECT_NAME="$project_name" \
+    -e WORKSPACE="$workspace"
