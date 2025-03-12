@@ -5,9 +5,7 @@ end
 
 local layer = os.getenv('AV_NVIM_LAYER')
 
-if layer == 'base' or layer == nil then
-  require('base')
-elseif layer == 'core' or layer == 'ide' then
+if layer == 'core' or layer == 'ide' then
   require(layer)
   local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
   if not vim.loop.fs_stat(lazypath) then
