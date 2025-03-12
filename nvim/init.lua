@@ -3,8 +3,6 @@ if vim.loop.fs_stat(local_vimrc) then
   vim.cmd('source' .. local_vimrc)
 end
 
-local layer = os.getenv('AV_NVIM_LAYER')
-
 require('remap')
 require('set')
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
