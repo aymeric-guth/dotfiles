@@ -5,7 +5,8 @@ end
 
 local layer = os.getenv('AV_NVIM_LAYER')
 
-require('ide')
+require('remap')
+require('set')
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -19,5 +20,5 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
-  require(layer .. '.plugins'),
+  require('plugins'),
 }, {})
