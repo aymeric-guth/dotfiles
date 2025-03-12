@@ -2,15 +2,8 @@ import = [
     "~/.config/alacritty/alacritty-common.toml"
 ]
 
-[env]
-TERM = "xterm-256color"
-
 [font]
 size = 22.0
 
 [shell]
 program = "/opt/local/bin/zsh"
-
-[window]
-opacity = 0.85
-startup_mode = "Maximized"

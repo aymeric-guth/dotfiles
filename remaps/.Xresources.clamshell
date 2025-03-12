@@ -1,0 +1,12 @@
+! useful for dpi, antialiasing, terminal colors, hinting? other x font settings?
+
+! Xft.antialias: 1
+! Xft.hinting: 1
+! Xft.rgba: rgb
+! Xft.hintstyle: hintslight
+! Xft.lcdfilter: lcddefault
+! Xft.dpi: 120
+
+! HI-DPI
+Xft.dpi: 220
+Xft.antialias: true
