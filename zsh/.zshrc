@@ -78,7 +78,7 @@ case "$(uname -s)" in
         ;;
 esac
 
-# Prompt
+# prompt
 if command -v starship 1>/dev/null; then
     export STARSHIP_CONFIG="$DOTFILES/starship.toml"
     eval "$(starship init zsh)"
@@ -87,21 +87,12 @@ elif [ -d "$REPODIR/pure" ]; then
     autoload -U promptinit; promptinit
     zstyle :prompt:pure:prompt:success color green
     prompt pure
-elif [ -f "$ZDOTDIR/prompt" ]; then
-    source "$ZDOTDIR/prompt"
 fi
 
 zle -N edit-command-line
 zle -N my-backward-delete-word
 
-# push-line
-# bindkey -r "^Q"
-# bindkey -r "^[Q"
-# bindkey -r "^[q"
-# bindkey -r "^S"
-
 bindkey "^W" my-backward-delete-word
-
 bindkey -v "^E" edit-command-line
 bindkey -v "^Y" autosuggest-accept
 
