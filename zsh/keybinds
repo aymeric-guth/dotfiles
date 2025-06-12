@@ -1,11 +1,10 @@
 #!/bin/sh
 
-zle -N history-substring-search-up
-zle -N history-substring-search-down
+# zle -N history-substring-search-up
+# zle -N history-substring-search-down
+# zle -N custom-edit-command-line
 zle -N edit-command-line
-zle -N custom-edit-command-line
 zle -N my-backward-delete-word
-zle -N exit-zero
 
 # push-line
 bindkey -r "^Q"
@@ -24,20 +23,10 @@ fi
 bindkey "^[[5~" beginning-of-line
 bindkey "^[[6~" end-of-line
 bindkey "^[[3~" delete-char
-bindkey "˚" history-substring-search-up
-bindkey "∆" history-substring-search-down
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
 
-bindkey "¬" forward-word
-bindkey "˙" backward-word
-# bindkey "^[[1;3C" forward-word
-# bindkey "^[[1;3D" backward-word
-# bindkey -v "^E" custom-edit-command-line
 bindkey -v "^E" edit-command-line
 bindkey -v "^Y" autosuggest-accept
 
 # Vi mode
 bindkey -v
 export KEYTIMEOUT=1
-bindkey "^?" backward-delete-char
