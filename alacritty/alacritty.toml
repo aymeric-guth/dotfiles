@@ -75,5 +75,5 @@ decorations = "None"
 TERM = "xterm-256color"
 
 [window.dimensions]
-columns = 120
+columns = 132
 lines = 32
