@@ -43,14 +43,6 @@ fn() {
 	$EDITOR "$WORKSPACE/.func.sh" && . "$WORKSPACE/.func.sh"
 }
 
-de() {
-	direnv edit "$@"
-}
-
-da() {
-	direnv allow "$@"
-}
-
 dt() {
 	python3 -c 'import datetime;import sys; sys.stdout.write(str(datetime.datetime.fromtimestamp(int(sys.argv[1]))))' $@
 }
@@ -66,9 +58,4 @@ jk() {
 	_path="$DEV"/personal/jk
 	"$_path"/.venv/bin/python "$_path"/jk.py "$@"
 	direnv allow "$@"
-}
-
-upgrade_naudiz() {
-	cd "$DEV"/personal/ansible || return 1
-	ansible-playbook upgrade_workstation.yml --extra-vars host=naudiz
 }
