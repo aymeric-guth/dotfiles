@@ -11,16 +11,12 @@ zle -N exit-zero
 bindkey -r "^Q"
 bindkey -r "^[Q"
 bindkey -r "^[q"
-bindkey -r "^R"
 bindkey -r "^S"
 
-bindkey -v "^K" exit-zero
 bindkey "^W" my-backward-delete-word
 
 if [ -z "$TMUX" ]; then
-	# bindkey -v -s "^F" "tmuxp-start\n"
 	bindkey -v -s "^F" "tmux-start\n"
-	# bindkey -v -s "^O" "tmuxp-start $TMUXP_CONFIGDIR/anonymous\n"
 	bindkey -v -s "^O" "tmux-start $TMUXP_CONFIGDIR/anonymous\n"
 	bindkey -v -s "^S" "tmux-attach\n"
 fi
@@ -37,19 +33,9 @@ bindkey "¬" forward-word
 bindkey "˙" backward-word
 # bindkey "^[[1;3C" forward-word
 # bindkey "^[[1;3D" backward-word
-bindkey -v "^E" custom-edit-command-line
-# bindkey -v "^E" edit-command-line
-
-bindkey -v "^ " autosuggest-accept
-
-if command -v fzf 1>/dev/null; then
-	bindkey -v "^H" fzf-history-widget
-	bindkey "ƒ" fzf-cd-widget
-fi
-
-bindkey -v -s "^R" "run\n"
-bindkey -v -s "^B" "build\n"
-bindkey -v -s "^U" "up\n"
+# bindkey -v "^E" custom-edit-command-line
+bindkey -v "^E" edit-command-line
+bindkey -v "^Y" autosuggest-accept
 
 # Vi mode
 bindkey -v
