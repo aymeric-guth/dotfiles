@@ -4,11 +4,12 @@
 /usr/bin/xrandr --auto
 # reintializing keymaps
 setxkbmap
-xmodmap -e "pointer = 3 2 1"
 setxkbmap -layout custom
 
 if /usr/bin/xrandr | grep '^DP-1 connected' >/dev/null 2>&1; then
 	echo "clamshell"
+	xmodmap -e "pointer = 1 2 3"
+	# xmodmap -e "pointer = 3 2 1"
 	rm -f "$HOME"/.Xresources
 	ln -rs "$DOTFILES"/remaps/.Xresources.clamshell "$HOME"/.Xresources
 	xrdb -merge "$HOME"/.Xresources
@@ -19,6 +20,7 @@ if /usr/bin/xrandr | grep '^DP-1 connected' >/dev/null 2>&1; then
 		--output HDMI-1 --off
 else
 	echo "laptop"
+	xmodmap -e "pointer = 1 2 3"
 	rm -f "$HOME"/.Xresources
 	ln -rs "$DOTFILES"/remaps/.Xresources.laptop "$HOME"/.Xresources
 	xrdb -merge "$HOME"/.Xresources
