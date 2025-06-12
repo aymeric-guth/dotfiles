@@ -111,8 +111,29 @@ my-zsh-add-plugin "hlissner/zsh-autopair"
 my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
 # my-zsh-add-plugin "jeffreytse/zsh-vi-mode"
 
+zle -N edit-command-line
+zle -N my-backward-delete-word
 
-[ -f "$ZDOTDIR/keybinds" ] && source "$ZDOTDIR/keybinds"
+# push-line
+bindkey -r "^Q"
+bindkey -r "^[Q"
+bindkey -r "^[q"
+bindkey -r "^S"
+
+bindkey "^W" my-backward-delete-word
+
+if [ -z "$TMUX" ]; then
+	bindkey -v -s "^F" "tmux-start\n"
+	bindkey -v -s "^O" "tmux-start $TMUXP_CONFIGDIR/anonymous\n"
+	bindkey -v -s "^S" "tmux-attach\n"
+fi
+
+bindkey -v "^E" edit-command-line
+bindkey -v "^Y" autosuggest-accept
+
+# Vi mode
+bindkey -v
+# export KEYTIMEOUT=1
 
 # POST LOAD
 # everything else is loaded
