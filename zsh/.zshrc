@@ -91,63 +91,54 @@ elif [ -f "$ZDOTDIR/prompt" ]; then
     source "$ZDOTDIR/prompt"
 fi
 
-if [ -n "$FZF" ]; then
+zle -N edit-command-line
+zle -N my-backward-delete-word
+
+# push-line
+# bindkey -r "^Q"
+# bindkey -r "^[Q"
+# bindkey -r "^[q"
+# bindkey -r "^S"
+
+bindkey "^W" my-backward-delete-word
+
+bindkey -v "^E" edit-command-line
+bindkey -v "^Y" autosuggest-accept
+
+if command -v tmux 1>/dev/null; then
+	bindkey -v -s "^F" "tmux-start\n"
+	bindkey -v -s "^O" "tmux-start $TMUXP_CONFIGDIR/anonymous\n"
+	bindkey -v -s "^S" "tmux-attach\n"
+fi
+
+if command -v fzf 1>/dev/null; then
     my-zsh-add-plugin "Aloxaf/fzf-tab"
-    # my-zsh-add-plugin "Freed-Wu/fzf-tab-source"
-    # my-zsh-add-plugin "lincheney/fzf-tab-completion"
-    # determines search program for fzf
-    
     if type fd &> /dev/null; then
         export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'
     elif type rg &> /dev/null; then
         export FZF_DEFAULT_COMMAND='rg --files --hidden'
     fi
 fi
-# Plugins
-# my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
-# zsh-add-plugin "zsh-users/zsh-syntax-highlighting"
-my-zsh-add-plugin "zsh-users/zsh-autosuggestions"
-my-zsh-add-plugin "hlissner/zsh-autopair"
-my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
-# my-zsh-add-plugin "jeffreytse/zsh-vi-mode"
-
-zle -N edit-command-line
-zle -N my-backward-delete-word
-
-# push-line
-bindkey -r "^Q"
-bindkey -r "^[Q"
-bindkey -r "^[q"
-bindkey -r "^S"
-
-bindkey "^W" my-backward-delete-word
-
-if [ -z "$TMUX" ]; then
-	bindkey -v -s "^F" "tmux-start\n"
-	bindkey -v -s "^O" "tmux-start $TMUXP_CONFIGDIR/anonymous\n"
-	bindkey -v -s "^S" "tmux-attach\n"
-fi
-
-bindkey -v "^E" edit-command-line
-bindkey -v "^Y" autosuggest-accept
 
 # Vi mode
 bindkey -v
 # export KEYTIMEOUT=1
+
+# Plugins
+# my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
+# zsh-add-plugin "zsh-users/zsh-syntax-highlighting"
+# my-zsh-add-plugin "zsh-users/zsh-autosuggestions"
+# my-zsh-add-plugin "hlissner/zsh-autopair"
+# my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
+# my-zsh-add-plugin "jeffreytse/zsh-vi-mode"
+
 
 # POST LOAD
 # everything else is loaded
 # direnv hook
 source <(direnv hook zsh)
 
-# HACK source .func
-source-func() { emulate -L zsh; [ -f .func.sh ] && source .func.sh; }
-add-zsh-hook precmd source-func
-
-zle-line-pre-redraw() { ( auto-keybind $BUFFER ) && zle accept-line; }
-zle -N zle-line-pre-redraw
-
-# obsidian shell extension
+# preview
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${realpath}'
 export LESSOPEN='|"$DOTFILES/zsh/.lessfilter" '%s''
 
