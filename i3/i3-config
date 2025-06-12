@@ -136,6 +136,9 @@ assign [class="discord" instance="discord"] $ws5
 set $ws6 "6"
 for_window [workspace=$ws6] layout stacking
 assign [class="xyz.chatboxapp.app" instance="xyz.chatboxapp.app"] $ws6
+assign [class="Upscayl" instance="upscayl"] $ws6
+for_window [class="Upscayl" instance="upscayl"] floating enable move position center
+
 ## ws7
 set $ws7 "7"
 ## ws8
@@ -150,6 +153,8 @@ assign [class="Sonixd" instance="sonixd"] $ws9
 assign [class="Jellyfin Media Player" instance="jellyfinmediaplayer"] $ws9
 assign [class="mpv" instance="gl"] $ws9
 assign [class="foobar2000.exe" instance="foobar2000.exe"] $ws9
+assign [class="Spotify" instance="spotify"] $ws9
+
 ## ws10
 set $ws10 "10"
 for_window [workspace=$ws10] layout stacking
@@ -157,12 +162,13 @@ assign [class="KeePassXC"] $ws10
 ## floating
 for_window [class="Blueman-manager" instance="blueman-manager"] floating enable sticky enable resize set 1280 960
 for_window [class="Pavucontrol" instance="pavucontrol"] floating enable sticky enable resize set 1280 960
-for_window [class="org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable sticky enable resize set 1280 960, move position center
+for_window [class="org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable sticky enable resize set 2048 960, move position center
 for_window [class="xdg-desktop-portal-gnome" instance="xdg-desktop-portal-gnome"] floating enable sticky enable resize set 1280 960, move position center
 for_window [class="fmenu" instance="fmenu"] floating enable, resize set 1280 960, move position center
 for_window [class="Zenity" instance="zenity"] floating enable sticky enable move position center
 for_window [title="Event Tester"] floating enable
 for_window [class="balena-etcher" instance="balena-etcher"] floating enable sticky enable move position center
+# for_window [class="Upscayl" instance="upscayl"] floating enable sticky enable move position center
 
 for_window [class="Protonvpn-app" instance="protonvpn-app"] floating enable sticky enable resize set 960 480 move position center
 for_window [class="gnome-calculator" instance="gnome-calculator"] floating enable sticky enable resize set 960 480 move position center
@@ -175,6 +181,8 @@ for_window [class="Arduino-ide" instance="arduino-ide"] floating enable, sticky 
 for_window [class="dosbox.exe" instance="dosbox.exe"] floating enable, sticky enable, resize set 1280 960, move position center
 
 for_window [class="Logic" instance="Logic"] floating enable, sticky enable, resize set 1280 960, move position center
+for_window [class="ripdrag" instance="ripdrag"] floating enable, sticky enable, resize set 1280 960, move position center
+
 
 # 3840x2160
 # 640x480
@@ -200,7 +208,7 @@ exec --no-startup-id /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /snap/bin/alacritty
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/google-chrome
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
-exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
+# exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/sonixd --no-sandbox'
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/keepassxc
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
