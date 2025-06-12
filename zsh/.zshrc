@@ -60,7 +60,21 @@ autoload -U edit-command-line
 autoload -Uz colors && colors
 autoload -Uz add-zsh-hook
 
-source "$ZDOTDIR/zshenv"
+export MANWIDTH=999
+
+hostname="$(uname -n)"
+[ -f "$DOTFILES/env/.env-$hostname" ] && source "$DOTFILES/env/.env-$hostname"
+
+export EDITOR=eeditor && export VISUAL=eeditor && export MANPAGER="eeditor -c 'Man!' -o -"
+
+[ -z "$TMUX_CONFIG" ] && export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
+[ -n "$TOOLDIR" ] && append-to-path "$TOOLDIR"/bin
+[ -n "$GOPATH" ] && append-to-path "$GOPATH"/bin
+[ -d "$HOME/.local/bin" ] && prepend-to-path "$HOME/.local/bin"
+[ -d "/usr/local/go/bin" ] && append-to-path "/usr/local/go/bin"
+
+export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS"
+
 case "$(uname -s)" in
     Darwin)
         # export CLICOLOR=1
@@ -103,6 +117,10 @@ if command -v tmux 1>/dev/null; then
 fi
 
 if command -v fzf 1>/dev/null; then
+	prepend-to-path "$REPODIR/fzf/bin"
+	[ -f "$REPODIR/fzf/shell/completion.zsh" ] && source "$REPODIR/fzf/shell/completion.zsh"
+	[ -f "$REPODIR/fzf/shell/key-bindings.zsh" ] && source "$REPODIR/fzf/shell/key-bindings.zsh"
+
     my-zsh-add-plugin "Aloxaf/fzf-tab"
     if type fd &> /dev/null; then
         export FZF_DEFAULT_COMMAND='fd --type file --hidden --no-ignore'

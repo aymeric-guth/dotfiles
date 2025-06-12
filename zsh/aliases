@@ -28,19 +28,11 @@ alias ...='cd ../..'
 alias grep='LC_ALL=C  grep --color=auto'
 
 v() {
-	if ! command -v xclip 1>/dev/null; then
-		_cb="$(xclip -selection clip -o)"
-	fi
-	[ -f "$_cb" ] && $EDITOR "$_cb" || $EDITOR "$*"
+	$EDITOR "$*"
 }
 
 jw() {
 	[ -d "$WORKSPACE" ] && cd "$WORKSPACE" || return 1
-}
-
-fn() {
-	[ -z "$WORKSPACE" ] && return 1
-	$EDITOR "$WORKSPACE/.func.sh" && . "$WORKSPACE/.func.sh"
 }
 
 dt() {
