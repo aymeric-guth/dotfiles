@@ -110,6 +110,9 @@ bindkey "^W" my-backward-delete-word
 bindkey -v "^E" edit-command-line
 bindkey -v "^Y" autosuggest-accept
 
+bindkey '^P' up-line-or-search
+bindkey '^N' down-line-or-search
+
 if command -v tmux 1>/dev/null; then
 	bindkey -v -s "^F" "tmux-start\n"
 	bindkey -v -s "^O" "tmux-start $TMUXP_CONFIGDIR/anonymous\n"
