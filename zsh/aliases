@@ -45,6 +45,8 @@ alias g-pm='git push -u origin master'
 alias g-ig='git add .gitignore && git commit -m "Update .gitignore"'
 alias g-cm='git commit -m '
 
+alias m=make
+
 jk() {
 	[ -d "$DEV"/personal/jk ] || return 1
 	_path="$DEV"/personal/jk
