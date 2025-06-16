@@ -48,6 +48,10 @@ alias g-cm='git commit -m '
 alias m=make
 
 alias d=docker
+alias dc=docker compose
+alias dcd=docker compose down
+alias dcu=docker compose up
+alias dcub=docker compose up --build
 
 jk() {
 	[ -d "$DEV"/personal/jk ] || return 1
