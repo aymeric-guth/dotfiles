@@ -47,6 +47,8 @@ alias g-cm='git commit -m '
 
 alias m=make
 
+alias d=docker
+
 jk() {
 	[ -d "$DEV"/personal/jk ] || return 1
 	_path="$DEV"/personal/jk
