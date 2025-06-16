@@ -40,10 +40,10 @@ dt() {
 }
 
 alias g-cp='git rev-parse HEAD | tr -d '\n' | cb-copy'
-alias g-sm='git add . && git commit -m "Update submodules"'
-alias g-pm='git push -u origin master'
+alias gusm='git add . && git commit -m "Update submodules"'
 alias g-ig='git add .gitignore && git commit -m "Update .gitignore"'
-alias g-cm='git commit -m '
+alias gcm='git commit -m '
+alias gpom='git push -u origin master'
 
 alias m=make
 
