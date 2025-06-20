@@ -44,6 +44,9 @@ alias gusm='git add . && git commit -m "Update submodules"'
 alias g-ig='git add .gitignore && git commit -m "Update .gitignore"'
 alias gcm='git commit -m '
 alias gpom='git push -u origin master'
+alias gpo='git push -u origin '
+alias ga.='git add .'
+alias ga='git add '
 
 alias m=make
 
