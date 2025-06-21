@@ -75,11 +75,11 @@ bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 
 bindsym $mod+Mod4+s exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -i -c '/opt/toolz/bin/sonixd --no-sandbox'
 
-# bindsym $mod+Mod1+space exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd play-pause'
-# bindsym $mod+Mod1+l exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd next'
-# bindsym $mod+Mod1+h exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd previous'
-# bindsym $mod+Mod1+Shift+l exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5+'
-# bindsym $mod+Mod1+Shift+h exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5-'
+bindsym $mod+Mod1+space exec mpc toggle
+bindsym $mod+Mod1+l exec mpc next
+bindsym $mod+Mod1+h exec mpc prev
+bindsym $mod+Mod1+Shift+l exec mpc seekthrough +10
+bindsym $mod+Mod1+Shift+h exec mpc seekthrough -10
 # bindsym $mod+Mod1+j exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1-'
 # bindsym $mod+Mod1+k exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
 bindsym $mod+Mod4+f exec systemd-run --user \
