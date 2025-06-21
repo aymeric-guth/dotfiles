@@ -74,14 +74,17 @@ bindsym $mod+Mod4+b exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/firefox
 bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 
 bindsym $mod+Mod4+s exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -i -c '/opt/toolz/bin/sonixd --no-sandbox'
-bindsym $mod+Mod1+space exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd play-pause'
-bindsym $mod+Mod1+l exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd next'
-bindsym $mod+Mod1+h exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd previous'
-bindsym $mod+Mod1+Shift+l exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5+'
-bindsym $mod+Mod1+Shift+h exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5-'
-bindsym $mod+Mod1+j exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1-'
-bindsym $mod+Mod1+k exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
-bindsym $mod+Mod4+f exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
+
+# bindsym $mod+Mod1+space exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd play-pause'
+# bindsym $mod+Mod1+l exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd next'
+# bindsym $mod+Mod1+h exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd previous'
+# bindsym $mod+Mod1+Shift+l exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5+'
+# bindsym $mod+Mod1+Shift+h exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd position 5-'
+# bindsym $mod+Mod1+j exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1-'
+# bindsym $mod+Mod1+k exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
+bindsym $mod+Mod4+f exec systemd-run --user \
+    --property=WorkingDirectory=/home/yul/dev/personal/mplayer/soonoos \
+    sh -c '. .venv/bin/activate && python main.py Bureau'
 
 bindsym $mod+Mod4+a exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
@@ -152,7 +155,6 @@ for_window [workspace=$ws9] layout stacking
 assign [class="Sonixd" instance="sonixd"] $ws9
 assign [class="Jellyfin Media Player" instance="jellyfinmediaplayer"] $ws9
 assign [class="mpv" instance="gl"] $ws9
-assign [class="foobar2000.exe" instance="foobar2000.exe"] $ws9
 assign [class="Spotify" instance="spotify"] $ws9
 
 ## ws10
@@ -208,8 +210,6 @@ exec --no-startup-id /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /snap/bin/alacritty
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/google-chrome
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
-# exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/usr/bin/wine ~/.wine/drive_c/Program\ Files\ \(x86\)/foobar2000/foobar2000.exe'
-exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/sonixd --no-sandbox'
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/keepassxc
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
