@@ -82,9 +82,16 @@ bindsym $mod+Mod1+Shift+l exec mpc seekthrough +10
 bindsym $mod+Mod1+Shift+h exec mpc seekthrough -10
 # bindsym $mod+Mod1+j exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1-'
 # bindsym $mod+Mod1+k exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
+
+bindsym $mod+Mod1+k exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py Bureau up'
+bindsym $mod+Mod1+j exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py Bureau down'
+
 bindsym $mod+Mod4+f exec systemd-run --user \
     --property=WorkingDirectory=/home/yul/dev/personal/mplayer/soonoos \
     sh -c '. .venv/bin/activate && python main.py Bureau'
+
+bindsym Mod4+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/open-and-play-dir.sh music"
+bindsym Mod1+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/open-and-play-dir.sh music.ready"
 
 bindsym $mod+Mod4+a exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
@@ -170,6 +177,7 @@ for_window [class="fmenu" instance="fmenu"] floating enable, resize set 1280 960
 for_window [class="Zenity" instance="zenity"] floating enable sticky enable move position center
 for_window [title="Event Tester"] floating enable
 for_window [class="balena-etcher" instance="balena-etcher"] floating enable sticky enable move position center
+for_window [class="dmenu" instance="dmenu"] floating enable sticky enable move position center
 # for_window [class="Upscayl" instance="upscayl"] floating enable sticky enable move position center
 
 for_window [class="Protonvpn-app" instance="protonvpn-app"] floating enable sticky enable resize set 960 480 move position center
@@ -219,4 +227,4 @@ exec_always --no-startup-id setxkbmap -layout custom
 # disable screen saver
 exec_always --no-startup-id xset s off -dpms
 # kills notification daemon
-exec_always --no-startup-id pkill -u "$(whoami)" -USR1 dunst
+# exec_always --no-startup-id pkill -u "$(whoami)" -USR1 dunst
