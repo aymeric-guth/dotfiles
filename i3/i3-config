@@ -73,6 +73,7 @@ bindsym $mod+b exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/google-chrome
 bindsym $mod+Mod4+b exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/firefox
 bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 
+# mplayer
 bindsym $mod+Mod4+s exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -i -c '/opt/toolz/bin/sonixd --no-sandbox'
 
 bindsym $mod+Mod1+space exec mpc toggle
@@ -80,8 +81,8 @@ bindsym $mod+Mod1+l exec mpc next
 bindsym $mod+Mod1+h exec mpc prev
 bindsym $mod+Mod1+Shift+l exec mpc seekthrough +10
 bindsym $mod+Mod1+Shift+h exec mpc seekthrough -10
-# bindsym $mod+Mod1+j exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1-'
-# bindsym $mod+Mod1+k exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c '/usr/bin/playerctl --player=Sonixd volume 0.1+'
+bindsym $mod+Mod1+Shift+k exec mpc seekthrough +20
+bindsym $mod+Mod1+Shift+j exec mpc seekthrough -20
 
 bindsym $mod+Mod1+k exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py Bureau up'
 bindsym $mod+Mod1+j exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py Bureau down'
@@ -92,6 +93,8 @@ bindsym $mod+Mod4+f exec systemd-run --user \
 
 bindsym Mod4+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/open-and-play-dir.sh music"
 bindsym Mod1+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/open-and-play-dir.sh music.ready"
+bindsym $mod+Mod4+m exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/move-to-lib.sh"
+bindsym $mod+Mod4+r exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/remove-track.sh"
 
 bindsym $mod+Mod4+a exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
