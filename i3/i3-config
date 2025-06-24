@@ -72,6 +72,7 @@ bindsym $mod+Return exec env XDG_CONFIG_HOME=/home/yul/.config alacritty
 bindsym $mod+b exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/google-chrome
 bindsym $mod+Mod4+b exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/firefox
 bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
+bindsym Mod1+control+Mod4+space exec i3-input
 
 # mplayer
 bindsym $mod+Mod4+s exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -i -c '/opt/toolz/bin/sonixd --no-sandbox'
@@ -88,15 +89,12 @@ bindsym $mod+control+Mod4+r exec /snap/bin/alacritty -qq --class e2696752-512f-1
 
 bindsym $mod+Mod1+k exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py Bureau up'
 bindsym $mod+Mod1+j exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py Bureau down'
+bindsym $mod+Mod4+f exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/force-connect-sonos.sh"
 
-bindsym $mod+Mod4+f exec systemd-run --user \
-    --property=WorkingDirectory=/home/yul/dev/personal/mplayer/soonoos \
-    sh -c '. .venv/bin/activate && python main.py Bureau'
-
-bindsym Mod4+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/open-and-play-dir.sh music"
-bindsym Mod1+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/open-and-play-dir.sh music.ready"
+bindsym $mod+Mod4+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/open-and-play-dir.sh music"
+bindsym $mod+Mod4+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/open-and-play-dir.sh music.ready"
 bindsym $mod+Mod4+m exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/move-to-lib.sh"
-bindsym $mod+Mod4+r exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/remove-track.sh"
+bindsym $mod+Mod4+shift+m exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/remove-track.sh"
 
 bindsym $mod+Mod4+a exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
