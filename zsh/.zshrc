@@ -65,8 +65,6 @@ export MANWIDTH=999
 hostname="$(uname -n)"
 [ -f "$DOTFILES/env/.env-$hostname" ] && source "$DOTFILES/env/.env-$hostname"
 
-export EDITOR=eeditor && export VISUAL=eeditor && export MANPAGER="eeditor -c 'Man!' -o -"
-
 [ -z "$TMUX_CONFIG" ] && export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
 [ -n "$TOOLDIR" ] && append-to-path "$TOOLDIR"/bin
 [ -n "$GOPATH" ] && append-to-path "$GOPATH"/bin
