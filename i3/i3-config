@@ -87,8 +87,8 @@ bindsym $mod+Mod1+Shift+j exec mpc seekthrough -20
 bindsym $mod+Mod1+r exec mpc repeat
 bindsym $mod+control+Mod4+r exec /snap/bin/alacritty -qq --class e2696752-512f-11f0-ae75-ab75b60c01aa --command /opt/toolz/.cargo/bin/rmpc
 
-bindsym $mod+Mod1+k exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py Bureau up'
-bindsym $mod+Mod1+j exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py Bureau down'
+bindsym $mod+Mod1+k exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py SdB up'
+bindsym $mod+Mod1+j exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py SdB down'
 bindsym $mod+Mod4+f exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/force-connect-sonos.sh"
 
 bindsym $mod+Mod4+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/open-and-play-dir.sh music"
@@ -107,6 +107,11 @@ bindsym Mod4+space exec /usr/bin/zsh -c 'env PATH=/opt/toolz/bin:$PATH /usr/bin/
 bindsym $mod+Mod4+c exec env XDG_CONFIG_HOME=/home/yul/.config gnome-calculator
 
 bindsym $mod+e exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/nautilus
+
+bindsym $mod+Mod1+s exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/playlist-sync-push-to-remote.sh"
+bindsym $mod+Mod1+shift+s exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/playlist-sync-pull-to-host.sh"
+
+bindsym $mod+Mod1+Mod4+p exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/playlist-edit.sh"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
