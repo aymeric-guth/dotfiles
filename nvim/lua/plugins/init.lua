@@ -32,7 +32,7 @@ return {
     if os.getenv('WORKSPACE') ~= nil then
       return require('plugins.lsp-zero')
     else
-      print('WORKSPACE is not defined')
+      -- print('WORKSPACE is not defined')
       return {}
     end
   end)(),
