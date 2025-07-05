@@ -86,13 +86,17 @@ bindsym $mod+Mod1+Shift+k exec mpc seekthrough +20
 bindsym $mod+Mod1+Shift+j exec mpc seekthrough -20
 bindsym $mod+Mod1+r exec mpc repeat
 bindsym $mod+control+Mod4+r exec /snap/bin/alacritty -qq --class e2696752-512f-11f0-ae75-ab75b60c01aa --command /opt/toolz/.cargo/bin/rmpc
+bindsym $mod+Mod4+p exec /snap/bin/alacritty -qq --class 479e7be6-597b-11f0-a405-2f94b44adb01 --command sh -c "mpc playlist | less"
 
 bindsym $mod+Mod1+k exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py SdB up'
 bindsym $mod+Mod1+j exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py SdB down'
 bindsym $mod+Mod4+f exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/force-connect-sonos.sh"
 
-bindsym $mod+Mod4+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/open-and-play-dir.sh music"
-bindsym $mod+Mod4+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/open-and-play-dir.sh music.ready"
+bindsym $mod+Mod4+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/play-override.sh music"
+bindsym $mod+Mod4+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/play-override.sh music.ready"
+bindsym $mod+control+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/play-append.sh music"
+bindsym $mod+control+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/play-append.sh music.ready"
+
 bindsym $mod+Mod4+m exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/move-to-lib.sh"
 bindsym $mod+Mod4+shift+m exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/remove-track.sh"
 
@@ -202,6 +206,8 @@ for_window [class="Logic" instance="Logic"] floating enable, sticky enable, resi
 for_window [class="ripdrag" instance="ripdrag"] floating enable, sticky enable, resize set 1280 960, move position center
 
 for_window [class="e2696752-512f-11f0-ae75-ab75b60c01aa"] floating enable sticky enable resize set 2048 960, move position center
+for_window [class="479e7be6-597b-11f0-a405-2f94b44adb01"] floating enable, sticky enable, resize set 1280 1080, move position center
+
 
 # 3840x2160
 # 640x480
