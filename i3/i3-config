@@ -69,8 +69,7 @@ bindsym $mod+x mode "exit: [l]ock [L]ogout, [r]eboot, [s]hutdown"
 client.focused #32cd32 #285577 #ffffff #2e9ef4 #32cd32
 
 bindsym $mod+Return exec env XDG_CONFIG_HOME=/home/yul/.config alacritty
-bindsym $mod+b exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/google-chrome
-bindsym $mod+Mod4+b exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/firefox
+bindsym $mod+b exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/firefox
 bindsym $mod+n exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 bindsym Mod1+control+Mod4+space exec i3-input
 
@@ -86,11 +85,14 @@ bindsym $mod+Mod1+Shift+k exec mpc seekthrough +20
 bindsym $mod+Mod1+Shift+j exec mpc seekthrough -20
 bindsym $mod+Mod1+r exec mpc repeat
 bindsym $mod+control+Mod4+r exec /snap/bin/alacritty -qq --class e2696752-512f-11f0-ae75-ab75b60c01aa --command /opt/toolz/.cargo/bin/rmpc
-bindsym $mod+Mod4+p exec /snap/bin/alacritty -qq --class 479e7be6-597b-11f0-a405-2f94b44adb01 --command sh -c "mpc playlist | less"
+# bindsym $mod+Mod4+p exec /snap/bin/alacritty -qq --class 479e7be6-597b-11f0-a405-2f94b44adb01 --command sh -c "mpc playlist | less"
+bindsym $mod+Mod4+p exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/mplayer-status.sh"
 
-bindsym $mod+Mod1+k exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py SdB up'
-bindsym $mod+Mod1+j exec env --chdir=/home/yul/dev/personal/mplayer/soonoos sh -c '. .venv/bin/activate && python sonos_volume.py SdB down'
-bindsym $mod+Mod4+f exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/force-connect-sonos.sh"
+bindsym $mod+Mod4+c exec bluetoothctl connect '20:18:5B:15:68:AD'
+bindsym $mod+Mod4+d exec bluetoothctl disconnect '20:18:5B:15:68:AD'
+
+bindsym $mod+Mod1+k exec mpc volume +5
+bindsym $mod+Mod1+j exec mpc volume -5
 
 bindsym $mod+Mod4+shift+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/play-override.sh music"
 bindsym $mod+Mod4+space exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/play-override.sh music.ready"
@@ -105,10 +107,10 @@ bindsym $mod+Mod4+a exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -
 bindsym control+Mod1+Mod4+Shift+r exec /bin/xdotool key Caps_Lock
 bindsym control+Mod1+Mod4+r exec /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh'
 
-bindsym $mod+Mod4+d exec env XDG_CONFIG_HOME=/home/yul/.config /snap/bin/discord
+# bindsym $mod+Mod4+d exec env XDG_CONFIG_HOME=/home/yul/.config /snap/bin/discord
 bindsym Mod4+space exec /usr/bin/zsh -c 'env PATH=/opt/toolz/bin:$PATH /usr/bin/rofi -show-icons -dpi 1 -show run drun'
 
-bindsym $mod+Mod4+c exec env XDG_CONFIG_HOME=/home/yul/.config gnome-calculator
+# bindsym $mod+Mod4+c exec env XDG_CONFIG_HOME=/home/yul/.config gnome-calculator
 
 bindsym $mod+e exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/nautilus
 
@@ -181,10 +183,14 @@ set $ws10 "10"
 for_window [workspace=$ws10] layout stacking
 assign [class="KeePassXC"] $ws10
 ## floating
-for_window [class="Blueman-manager" instance="blueman-manager"] floating enable sticky enable resize set 1280 960
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable sticky enable resize set 1280 960
-for_window [class="org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable sticky enable resize set 2048 960, move position center
-for_window [class="xdg-desktop-portal-gnome" instance="xdg-desktop-portal-gnome"] floating enable sticky enable resize set 1280 960, move position center
+for_window [class="Blueman-manager" instance="blueman-manager"] floating enable sticky enable resize set 960 540, move position center
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable sticky enable resize set 960 540, move position center
+# for_window [class="org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable sticky enable resize set 2048 960, move position center
+for_window [class="org.gnome.Nautilus" instance="org.gnome.Nautilus"] floating enable sticky enable resize set 960 512, move position center
+# for_window [class="xdg-desktop-portal-gnome" instance="xdg-desktop-portal-gnome"] floating enable sticky enable resize set 1280 960, move position center
+for_window [class="xdg-desktop-portal-gnome" instance="xdg-desktop-portal-gnome"] floating enable sticky enable resize set 960 512, move position center
+for_window [class="Xdg-desktop-portal-gtk" instance="xdg-desktop-portal-gtk"] floating enable sticky enable resize set 960 512, move position center
+
 for_window [class="fmenu" instance="fmenu"] floating enable, resize set 1280 960, move position center
 for_window [class="Zenity" instance="zenity"] floating enable sticky enable move position center
 for_window [title="Event Tester"] floating enable
@@ -193,7 +199,7 @@ for_window [class="dmenu" instance="dmenu"] floating enable sticky enable move p
 # for_window [class="Upscayl" instance="upscayl"] floating enable sticky enable move position center
 
 for_window [class="Protonvpn-app" instance="protonvpn-app"] floating enable sticky enable resize set 960 480 move position center
-for_window [class="gnome-calculator" instance="gnome-calculator"] floating enable sticky enable resize set 960 480 move position center
+for_window [class="gnome-calculator" instance="gnome-calculator"] floating enable sticky enable resize set 540 960, move position center
 
 for_window [class="i3-frame" instance="i3-frame"] floating enable sticky enable
 for_window [class="sun-awt-X11-XDialogPeer" instance="MPLAB X IDE v6.20"] floating enable
@@ -205,9 +211,8 @@ for_window [class="dosbox.exe" instance="dosbox.exe"] floating enable, sticky en
 for_window [class="Logic" instance="Logic"] floating enable, sticky enable, resize set 1280 960, move position center
 for_window [class="ripdrag" instance="ripdrag"] floating enable, sticky enable, resize set 1280 960, move position center
 
-for_window [class="e2696752-512f-11f0-ae75-ab75b60c01aa"] floating enable sticky enable resize set 2048 960, move position center
+for_window [class="e2696752-512f-11f0-ae75-ab75b60c01aa"] floating enable sticky enable resize set 960 540, move position center
 for_window [class="479e7be6-597b-11f0-a405-2f94b44adb01"] floating enable, sticky enable, resize set 1280 1080, move position center
-
 
 # 3840x2160
 # 640x480
@@ -231,7 +236,7 @@ exec --no-startup-id blueman-applet &
 exec --no-startup-id /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh'
 
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /snap/bin/alacritty
-exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/google-chrome
+exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/firefox
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/obsidian
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/keepassxc
 exec --no-startup-id env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'

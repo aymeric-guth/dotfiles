@@ -5,6 +5,7 @@
 # reintializing keymaps
 setxkbmap
 setxkbmap -layout custom
+xmodmap -e "clear Lock"
 
 if /usr/bin/xrandr | grep '^DP-1 connected' >/dev/null 2>&1; then
 	echo "clamshell"

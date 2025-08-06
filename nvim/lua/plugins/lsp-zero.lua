@@ -133,14 +133,14 @@ return {
     local code_actions = null_ls.builtins.code_actions
 
     local null_ls_opts = {
+      -- formatting.clang_format,
+      -- formatting.astyle.with({
+      --   filetypes = { 'c', 'cpp', 'cxx' },
+      --   extra_args = {
+      --     '--options=' .. require('os').getenv('DOTFILES') .. '/.astylerc',
+      --   },
+      -- }),
       diagnostics.dotenv_linter,
-      formatting.astyle.with({
-        filetypes = { 'c', 'cpp', 'cxx' },
-        extra_args = {
-          '--options=' .. require('os').getenv('DOTFILES') .. '/.astylerc',
-          -- '--project=none',
-        },
-      }),
       -- code_actions.shellcheck.with({
       --   filetypes = { 'sh' },
       -- }),
@@ -197,7 +197,6 @@ return {
       }),
       diagnostics.zsh,
       formatting.cbfmt,
-      formatting.clang_format,
     }
 
     null_ls.setup({
