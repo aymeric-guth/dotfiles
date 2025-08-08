@@ -120,9 +120,9 @@ if command -v tmux 1>/dev/null; then
 fi
 
 if command -v fzf 1>/dev/null; then
-	prepend-to-path "$REPODIR/fzf/bin"
-	[ -f "$REPODIR/fzf/shell/completion.zsh" ] && source "$REPODIR/fzf/shell/completion.zsh"
-	[ -f "$REPODIR/fzf/shell/key-bindings.zsh" ] && source "$REPODIR/fzf/shell/key-bindings.zsh"
+	# prepend-to-path "$REPODIR/fzf/bin"
+	[ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"
+	[ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
 
     my-zsh-add-plugin "Aloxaf/fzf-tab"
     if type fd &> /dev/null; then

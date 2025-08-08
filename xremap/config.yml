@@ -13,6 +13,13 @@ modmap:
       KEY_RIGHTMETA: KEY_RIGHTALT
     device:
       only: ['AT Translated Set 2']
+  - name: Firefox Alt <-> Super
+    remap:
+      KEY_LEFTALT: KEY_LEFTMETA
+      KEY_LEFTMETA: KEY_LEFTALT
+    application:
+      only:
+        firefox_firefox
 
 keymap:
   - name: Accute Accent

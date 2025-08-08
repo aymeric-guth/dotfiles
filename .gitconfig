@@ -18,7 +18,7 @@
   prompt = false
 
 [mergetool "vimdiff"]
-  cmd = "eeditor -d $MERGED $LOCAL $BASE $REMOTE -c 'wincmd J | wincmd ='"
+  cmd = "nvim -d $MERGED $LOCAL $BASE $REMOTE -c 'wincmd J | wincmd ='"
 [safe]
 	directory = *
 [color]
