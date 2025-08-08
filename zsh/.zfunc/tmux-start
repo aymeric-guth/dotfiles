@@ -11,7 +11,6 @@ else
 fi
 
 tmux \
-    -f "$TMUX_CONFIG" \
     new-session \
     -A \
     -s "$project_name" \

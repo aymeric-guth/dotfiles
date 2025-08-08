@@ -67,7 +67,6 @@ export MANWIDTH=999
 hostname="$(uname -n)"
 [ -f "$DOTFILES/env/.env-$hostname" ] && source "$DOTFILES/env/.env-$hostname"
 
-[ -z "$TMUX_CONFIG" ] && export TMUX_CONFIG="$DOTFILES/tmux/tmux.conf"
 [ -n "$TOOLDIR" ] && append-to-path "$TOOLDIR"/bin
 [ -n "$GOPATH" ] && append-to-path "$GOPATH"/bin
 [ -d "$HOME/.local/bin" ] && prepend-to-path "$HOME/.local/bin"
@@ -115,7 +114,6 @@ bindkey '^N' down-line-or-search
 
 if command -v tmux 1>/dev/null; then
 	bindkey -v -s "^F" "tmux-start\n"
-	bindkey -v -s "^O" "tmux-start $TMUXP_CONFIGDIR/anonymous\n"
 	bindkey -v -s "^S" "tmux-attach\n"
 fi
 
