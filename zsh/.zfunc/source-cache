@@ -1,6 +1,0 @@
-autoload -U zrecompile
-[ ! -s "$1" ] && return 1
-filename="$(basename "$1")"
-zrecompile -pq "$ZCACHE/${filename}.zwc" "$1"
-chmod +x "$ZCACHE/${filename}.zwc"
-eval "$ZCACHE/${filename}.zwc"

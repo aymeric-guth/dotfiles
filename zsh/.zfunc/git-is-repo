@@ -1,1 +1,0 @@
-[ -n "$(find "${1:-$PWD}" -mindepth 1 -maxdepth 1 -type d -iname .git)" ]
