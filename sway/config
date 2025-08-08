@@ -90,7 +90,7 @@ client.focused #32cd32 #285577 #ffffff #2e9ef4 #32cd32
 
 bindsym $mod+Return exec /usr/bin/alacritty
 bindsym $mod+b exec env GDK_SCALE=2 /usr/bin/firefox
-bindsym $mod+n exec /usr/bin/obsidian
+bindsym $mod+n exec env ELECTRON_OZONE_PLATFORM_HINT=auto /usr/bin/obsidian
 bindsym Mod1+control+Mod4+space exec i3-input
 
 # mplayer
@@ -128,7 +128,7 @@ bindsym control+Mod1+Mod4+Shift+r exec /bin/xdotool key Caps_Lock
 bindsym control+Mod1+Mod4+r exec /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh'
 
 # bindsym $mod+Mod4+d exec env XDG_CONFIG_HOME=/home/yul/.config /snap/bin/discord
-bindsym Mod4+space exec '/usr/bin/rofi -show-icons -dpi 1 -show run drun'
+bindsym Mod4+space exec 'env ELECTRON_OZONE_PLATFORM_HINT=auto /usr/bin/rofi -show-icons -dpi 1 -show run drun'
 
 bindsym $mod+e exec /usr/bin/dolphin
 
@@ -213,7 +213,7 @@ exec --no-startup-id blueman-applet &
 
 exec --no-startup-id /usr/bin/alacritty
 exec --no-startup-id /usr/bin/firefox
-exec --no-startup-id /usr/bin/obsidian
+exec --no-startup-id env ELECTRON_OZONE_PLATFORM_HINT=auto /usr/bin/obsidian
 exec --no-startup-id /usr/bin/keepassxc
 
 # exec --no-startup-id ibus exit
