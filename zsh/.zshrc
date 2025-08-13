@@ -93,7 +93,6 @@ esac
 
 # prompt
 if command -v starship 1>/dev/null; then
-    export STARSHIP_CONFIG="$DOTFILES/starship.toml"
     eval "$(starship init zsh)"
 elif [ -d "$REPODIR/pure" ]; then
     fpath+=("$REPODIR/pure")
