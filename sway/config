@@ -93,10 +93,11 @@ bindsym $mod+Mod1+Shift+k exec mpc seekthrough +20
 bindsym $mod+Mod1+Shift+j exec mpc seekthrough -20
 bindsym $mod+Mod1+r exec mpc repeat
 bindsym $mod+control+Mod4+r exec /usr/bin/alacritty -qq --class e2696752-512f-11f0-ae75-ab75b60c01aa --command /usr/bin/rmpc
+bindsym $mod+Mod4+c exec /usr/bin/alacritty -qq --class e2696752-512f-11f0-ae75-ab75b60c01aa --command /usr/bin/python3
 bindsym $mod+Mod4+p exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/mplayer-status.sh"
 
-bindsym $mod+Mod4+c exec bluetoothctl connect '20:18:5B:15:68:AD'
-bindsym $mod+Mod4+d exec bluetoothctl disconnect '20:18:5B:15:68:AD'
+# bindsym $mod+Mod4+c exec bluetoothctl connect '20:18:5B:15:68:AD'
+# bindsym $mod+Mod4+d exec bluetoothctl disconnect '20:18:5B:15:68:AD'
 
 bindsym $mod+Mod1+k exec mpc volume +5
 bindsym $mod+Mod1+j exec mpc volume -5
@@ -132,8 +133,6 @@ bar {
 
 bindsym Shift+Print exec --no-startup-id maim --select "$HOME/Pictures/$(date +"%Y-%m-%d_%H%M%S").png"
 bindsym $mod+Shift+P exec --no-startup-id maim --select "$HOME/Pictures/$(date +"%Y-%m-%d_%H%M%S").png"
-
-# exec feh --bg-fill ~/Pictures/410502-1.jpg
 
 # https://www.tuxtips.info/linux/how-to-find-applications-window-class-in-i3-window-manager
 # xprop | grep WM_CLASS
