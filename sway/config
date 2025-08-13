@@ -1,7 +1,6 @@
-output DP-1 mode 3840x2160@120Hz scale 2.0
-output eDP-1 disable
-
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+exec_always --no-startup-id sh -c /home/yul/dev/personal/dotfiles/remaps/wayland.setup.monitor.sh
+
 set $mod Mod3
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -20,11 +19,7 @@ bindsym $mod+h focus left
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-# toggle tiling / floating
-# bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
-# bindsym $mod+space focus mode_toggle
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -63,11 +58,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # reload the configuration file
 bindsym $mod+r exec swaymsg reload
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if availajle)
-
 mode "exit: [l]ock [L]ogout, [r]eboot, [s]hutdown" {
-  bindsym l exec i3lock -c 000001 && /usr/bin/xrandr --auto
+  bindsym l exec swaylock -c 000001 && /usr/bin/xrandr --auto
   bindsym Shift+l exec swaymsg exit
   bindsym r exec systemctl reboot
   bindsym s exec systemctl shutdown
@@ -83,7 +75,6 @@ input type:pointer {
     natural_scroll enable
 }
 
-
 bindsym $mod+x mode "exit: [l]ock [L]ogout, [r]eboot, [s]hutdown"
 # border backgr.text indicator child_border
 client.focused #32cd32 #285577 #ffffff #2e9ef4 #32cd32
@@ -91,11 +82,8 @@ client.focused #32cd32 #285577 #ffffff #2e9ef4 #32cd32
 bindsym $mod+Return exec /usr/bin/alacritty
 bindsym $mod+b exec env GDK_SCALE=2 /usr/bin/firefox
 bindsym $mod+n exec env ELECTRON_OZONE_PLATFORM_HINT=auto /usr/bin/obsidian
-bindsym Mod1+control+Mod4+space exec i3-input
 
 # mplayer
-bindsym $mod+Mod4+s exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -i -c '/opt/toolz/bin/sonixd --no-sandbox'
-
 bindsym $mod+Mod1+space exec mpc toggle
 bindsym $mod+Mod1+l exec mpc next
 bindsym $mod+Mod1+h exec mpc prev
@@ -104,8 +92,7 @@ bindsym $mod+Mod1+Shift+h exec mpc seekthrough -10
 bindsym $mod+Mod1+Shift+k exec mpc seekthrough +20
 bindsym $mod+Mod1+Shift+j exec mpc seekthrough -20
 bindsym $mod+Mod1+r exec mpc repeat
-bindsym $mod+control+Mod4+r exec /snap/bin/alacritty -qq --class e2696752-512f-11f0-ae75-ab75b60c01aa --command /opt/toolz/.cargo/bin/rmpc
-# bindsym $mod+Mod4+p exec /snap/bin/alacritty -qq --class 479e7be6-597b-11f0-a405-2f94b44adb01 --command sh -c "mpc playlist | less"
+bindsym $mod+control+Mod4+r exec /usr/bin/alacritty -qq --class e2696752-512f-11f0-ae75-ab75b60c01aa --command /usr/bin/rmpc
 bindsym $mod+Mod4+p exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/mplayer-status.sh"
 
 bindsym $mod+Mod4+c exec bluetoothctl connect '20:18:5B:15:68:AD'
@@ -125,12 +112,11 @@ bindsym $mod+Mod4+shift+m exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/co
 bindsym $mod+Mod4+a exec env XDG_CONFIG_HOME=/home/yul/.config /usr/bin/zsh -c -i '/opt/toolz/bin/chatbox --no-sandbox'
 
 bindsym control+Mod1+Mod4+Shift+r exec /bin/xdotool key Caps_Lock
-bindsym control+Mod1+Mod4+r exec /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh'
+bindsym control+Mod1+Mod4+r exec /bin/sh -c '/home/yul/dev/personal/dotfiles/remaps/wayland.setup.monitor.sh'
 
-# bindsym $mod+Mod4+d exec env XDG_CONFIG_HOME=/home/yul/.config /snap/bin/discord
 bindsym Mod4+space exec 'env ELECTRON_OZONE_PLATFORM_HINT=auto /usr/bin/rofi -show-icons -dpi 1 -show run drun'
 
-bindsym $mod+e exec /usr/bin/dolphin
+bindsym $mod+e exec env XDG_CURRENT_DESKTOP=KDE KDE_SESSION_VERSION=6 QT_AUTO_SCREEN_SCALE_FACTOR=0 /usr/bin/dolphin
 
 bindsym $mod+Mod1+s exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/playlist-sync-push-to-remote.sh"
 bindsym $mod+Mod1+shift+s exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/commands/playlist-sync-pull-to-host.sh"
@@ -142,14 +128,12 @@ bindsym $mod+Mod1+Mod4+p exec /usr/bin/zsh -c -i "$HOME/dev/personal/mplayer/com
 bar {
     status_command i3status
     tray_output primary
-    # wheel_up_cmd nop
-    # wheel_down_cmd nop
 }
 
-bindsym Shift+Print exec --no-startup-id maim --select "$HOME/Pictures/$(date).png"
-bindsym $mod+Shift+P exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).png"
+bindsym Shift+Print exec --no-startup-id maim --select "$HOME/Pictures/$(date +"%Y-%m-%d_%H%M%S").png"
+bindsym $mod+Shift+P exec --no-startup-id maim --select "$HOME/Pictures/$(date +"%Y-%m-%d_%H%M%S").png"
 
-exec feh --bg-fill ~/Pictures/410502-1.jpg
+# exec feh --bg-fill ~/Pictures/410502-1.jpg
 
 # https://www.tuxtips.info/linux/how-to-find-applications-window-class-in-i3-window-manager
 # xprop | grep WM_CLASS
@@ -178,48 +162,27 @@ assign [app_id="org.keepassxc.KeePassXC"] $ws10
 
 ## floating
 for_window [class="Blueman-manager" instance="blueman-manager"] floating enable sticky enable resize set 960 540, move position center
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable sticky enable resize set 960 540, move position center
-for_window [app_id="org.kde.dolphin"] floating enable sticky enable resize set 960 512, move position center
 
-for_window [class="xdg-desktop-portal-gnome" instance="xdg-desktop-portal-gnome"] floating enable sticky enable resize set 960 512, move position center
-for_window [class="Xdg-desktop-portal-gtk" instance="xdg-desktop-portal-gtk"] floating enable sticky enable resize set 960 512, move position center
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable, resize set height 512 px, move position center
+for_window [app_id="org.kde.dolphin"] floating enable, resize set height 512 px, move position center
+# for_window [class="xdg-desktop-portal-gnome" instance="xdg-desktop-portal-gnome"] floating enable sticky enable resize set 960 512, move position center
+# for_window [class="Xdg-desktop-portal-gtk" instance="xdg-desktop-portal-gtk"] floating enable sticky enable resize set 960 512, move position center
 
-for_window [class="gnome-calculator" instance="gnome-calculator"] floating enable sticky enable resize set 540 960, move position center
-
-for_window [class="Logic" instance="Logic"] floating enable, sticky enable, resize set 1280 960, move position center
-for_window [class="e2696752-512f-11f0-ae75-ab75b60c01aa"] floating enable sticky enable resize set 960 540, move position center
-for_window [class="479e7be6-597b-11f0-a405-2f94b44adb01"] floating enable, sticky enable, resize set 1280 1080, move position center
+for_window [app_id="e2696752-512f-11f0-ae75-ab75b60c01aa"] floating enable, resize set height 512 px, move position center
+for_window [app_id="479e7be6-597b-11f0-a405-2f94b44adb01"] floating enable, resize set height 512 px, move position center
 
 # 3840x2160
 # 640x480
-
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet &
 
-# exec --no-startup-id /usr/bin/zsh -c -i '/home/yul/dev/personal/dotfiles/remaps/setup.monitor.sh'
-
 exec --no-startup-id /usr/bin/alacritty
 exec --no-startup-id /usr/bin/firefox
 exec --no-startup-id env ELECTRON_OZONE_PLATFORM_HINT=auto /usr/bin/obsidian
 exec --no-startup-id /usr/bin/keepassxc
 
-# exec --no-startup-id ibus exit
-
-# exec_always --no-startup-id setxkbmap -layout custom
-# disable screen saver
 exec_always --no-startup-id xset s off -dpms
-# kills notification daemon
-# exec_always --no-startup-id pkill -u "$(whoami)" -USR1 dunst
+exec_always --no-startup-id mako
