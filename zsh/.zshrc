@@ -117,7 +117,6 @@ if command -v tmux 1>/dev/null; then
 fi
 
 if command -v fzf 1>/dev/null; then
-	# prepend-to-path "$REPODIR/fzf/bin"
 	[ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"
 	[ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
 
@@ -129,9 +128,16 @@ if command -v fzf 1>/dev/null; then
     fi
 fi
 
-# Vi mode
+# VI mode
+function vi-yank-osc52 {
+    zle vi-yank
+    osc52-copy "$CUTBUFFER"
+}
+
+zle -N vi-yank-osc52
+bindkey -M vicmd 'y' vi-yank-osc52
+
 bindkey -v
-# export KEYTIMEOUT=1
 
 # Plugins
 # my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
@@ -143,7 +149,6 @@ bindkey -v
 
 
 # POST LOAD
-# everything else is loaded
 # direnv hook
 source <(direnv hook zsh)
 

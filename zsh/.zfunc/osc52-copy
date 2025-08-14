@@ -1,0 +1,2 @@
+local buffer="$1"
+printf "\e]52;c;%s\a" "$(echo -n "$buffer" | base64)"
