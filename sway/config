@@ -80,7 +80,8 @@ bindsym $mod+x mode "exit: [l]ock [L]ogout, [r]eboot, [s]hutdown"
 client.focused #32cd32 #285577 #ffffff #2e9ef4 #32cd32
 
 bindsym $mod+Return exec /usr/bin/alacritty
-bindsym $mod+b exec env GDK_SCALE=2 /usr/bin/firefox
+# bindsym $mod+b exec env GDK_SCALE=2 /usr/bin/firefox
+bindsym $mod+b exec /usr/bin/brave --enable-features=UseOzonePlatform --ozone-platform=wayland
 bindsym $mod+n exec env ELECTRON_OZONE_PLATFORM_HINT=auto /usr/bin/obsidian
 
 # mplayer
@@ -179,7 +180,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet &
 
 exec --no-startup-id /usr/bin/alacritty
-exec --no-startup-id /usr/bin/firefox
+# exec --no-startup-id /usr/bin/firefox
 exec --no-startup-id env ELECTRON_OZONE_PLATFORM_HINT=auto /usr/bin/obsidian
 exec --no-startup-id /usr/bin/keepassxc
 
