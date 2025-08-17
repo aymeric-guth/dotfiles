@@ -30,6 +30,6 @@ dt() {
 alias ls='ls --color=auto'
 alias grep='LC_ALL=C  grep --color=auto'
 alias ll='ls -lh'
-alias la='ls -la'
+alias la='ls -lha'
 alias ..='cd ..'
 alias ...='cd ../..'
