@@ -124,15 +124,6 @@ bindkey -M vicmd 'y' vi-yank-osc52
 
 bindkey -v
 
-# Plugins
-# my-zsh-add-plugin "zdharma-continuum/fast-syntax-highlighting"
-# zsh-add-plugin "zsh-users/zsh-syntax-highlighting"
-# my-zsh-add-plugin "zsh-users/zsh-autosuggestions"
-# my-zsh-add-plugin "hlissner/zsh-autopair"
-# my-zsh-add-plugin "zsh-users/zsh-history-substring-search"
-# my-zsh-add-plugin "jeffreytse/zsh-vi-mode"
-
-
 # POST LOAD
 # direnv hook
 source <(direnv hook zsh)

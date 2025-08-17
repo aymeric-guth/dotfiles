@@ -1,25 +1,12 @@
 #! /usr/bin/env sh
 # this is a example of .lessfilter, you can change it
 mime=$(file -bL --mime-type "$1")
-category=${mime%%/*}
-kind=${mime##*/}
+# category=${mime%%/*}
+# kind=${mime##*/}
 if [ -d "$1" ]; then
-	exa --git -hl --color=always --icons "$1"
-elif [ "$category" = image ]; then
-	# chafa "$1"
-	/Applications/kitty.app/Contents/MacOS/kitten icat "$1"
-	# exiftool "$1"
-elif
-	[ "$kind" = vnd.openxmlformats-officedocument.spreadsheetml.sheet ] ||
-		[ "$kind" = vnd.ms-excel ]
-then
-	in2csv "$1" | xsv table | bat -ltsv --color=always
-# elif [ "$category" = text ]; then
-# 	bat --color=always "$1"
-elif [[ $1 == *.md ]]; then
-	frontdematter "$1" | bat --color=always --language=md
+	ls -lha "$1"
+elif [ "$mime" = text/plain ]; then
+	cat --number "$1"
 else
-	bat --color=always "$1"
-	# lesspipe.sh "$1" | bat --color=always
+	nop
 fi
-# lesspipe.sh don't use exa, bat and chafa, it use ls and exiftool. so we create a lessfilter.
