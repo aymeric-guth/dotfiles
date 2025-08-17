@@ -74,7 +74,7 @@ hostname="$(uname -n)"
 
 export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS"
 
-source "$ZDOTDIR/aliases-linux"
+source "$ZDOTDIR/aliases"
 
 # prompt
 if command -v starship 1>/dev/null; then
