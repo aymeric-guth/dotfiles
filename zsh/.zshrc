@@ -72,8 +72,6 @@ hostname="$(uname -n)"
 [ -d "$HOME/.local/bin" ] && prepend-to-path "$HOME/.local/bin"
 [ -d "/usr/local/go/bin" ] && append-to-path "/usr/local/go/bin"
 
-export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS"
-
 source "$ZDOTDIR/aliases"
 
 # prompt
@@ -111,6 +109,7 @@ if command -v fzf 1>/dev/null; then
     elif type rg &> /dev/null; then
         export FZF_DEFAULT_COMMAND='rg --files --hidden'
     fi
+    zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${realpath}'
 fi
 
 # VI mode
@@ -121,16 +120,11 @@ function vi-yank-osc52 {
 
 zle -N vi-yank-osc52
 bindkey -M vicmd 'y' vi-yank-osc52
-
 bindkey -v
 
-# POST LOAD
-# direnv hook
 source <(direnv hook zsh)
 
-# preview
-zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${realpath}'
+export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS"
 export LESSOPEN='|"$DOTFILES/zsh/.lessfilter" '%s''
-
 export MANPATH
 export PATH
