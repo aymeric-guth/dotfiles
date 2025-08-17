@@ -74,22 +74,7 @@ hostname="$(uname -n)"
 
 export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS"
 
-case "$(uname -s)" in
-    Darwin)
-        # export CLICOLOR=1
-        source /opt/local/share/fzf/shell/key-bindings.zsh
-        source /opt/local/share/fzf/shell/completion.zsh
-        source "$ZDOTDIR/aliases-macos"
-        ;;
-
-    Linux)
-        source "$ZDOTDIR/aliases-linux"
-        ;;
-
-    *)
-        exit 1
-        ;;
-esac
+source "$ZDOTDIR/aliases-linux"
 
 # prompt
 if command -v starship 1>/dev/null; then
