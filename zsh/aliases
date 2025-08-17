@@ -1,13 +1,5 @@
 #!/bin/sh
 
-if command -v lsd 1>/dev/null; then
-	alias ll='lsd -lh'
-	alias la='lsd -lA'
-else
-	alias ll='ls -lh'
-	alias la='ls -la'
-fi
-
 if ! command -v fd 1>/dev/null; then
 	fd() {
 		/usr/bin/find . -iname "*${1}*"
@@ -23,12 +15,8 @@ else
 	alias rgi="grep -rn"
 fi
 
-alias ..='cd ..'
-alias ...='cd ../..'
-alias grep='LC_ALL=C  grep --color=auto'
-
 v() {
-	$EDITOR "$*"
+	env $EDITOR "$*"
 }
 
 jw() {
@@ -39,62 +27,9 @@ dt() {
 	python3 -c 'import datetime;import sys; sys.stdout.write(str(datetime.datetime.fromtimestamp(int(sys.argv[1]))))' $@
 }
 
-alias g-cp='git rev-parse HEAD | tr -d '\n' | cb-copy'
-alias gusm='git add . && git commit -m "Update submodules"'
-alias g-ig='git add .gitignore && git commit -m "Update .gitignore"'
-alias gcm='git commit -m '
-alias gpom='git push -u origin master'
-alias gpo='git push -u origin '
-alias ga.='git add .'
-alias ga='git add '
-
-alias m=make
-
-alias d=docker
-alias dc=docker compose
-alias dcd=docker compose down
-alias dcu=docker compose up
-alias dcub=docker compose up --build
-
-jk() {
-	[ -d "$DEV"/personal/jk ] || return 1
-	_path="$DEV"/personal/jk
-	"$_path"/.venv/bin/python "$_path"/jk.py "$@"
-	direnv allow "$@"
-}
-
 alias ls='ls --color=auto'
-
-alias cb-copy='xclip -selection clipboard'
-alias cb-paste='xclip -selection clipboard -o'
-
-if command -v ss 1>/dev/null; then
-	alias ns='ss --listening --processes --info --summary --ipv4 --tcp'
-elif command -v netstat 1>/dev/null; then
-	alias ns='netstat -plntu'
-else
-	alias ns='lsof -i -P -n'
-fi
-
-alias lock='i3lock -c 000000'
-
-alias g='/usr/bin/git'
-alias sudo='sudo '
-alias tg='tag-reader '
-
-alias j='/bin/journalctl '
-alias js='/bin/journalctl -xeu '
-alias jr='/bin/journalctl --flush --rotate --vacuum-time=1s && /bin/journalctl --user --flush --rotate --vacuum-time=1s'
-alias ju='/bin/journalctl --user '
-alias jus='/bin/journalctl --user -xeu '
-
-alias s='/bin/systemctl '
-alias sr='/bin/systemctl restart '
-alias so='/bin/systemctl stop '
-alias sa='/bin/systemctl start '
-alias sdr='/bin/systemctl daemon-reload '
-
-alias su='/bin/systemctl --user'
-alias sur='/bin/systemctl --user restart '
-alias suo='/bin/systemctl --user stop '
-alias sus='/bin/systemctl --user start '
+alias grep='LC_ALL=C  grep --color=auto'
+alias ll='ls -lh'
+alias la='ls -la'
+alias ..='cd ..'
+alias ...='cd ../..'
