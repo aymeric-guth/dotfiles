@@ -1,9 +1,0 @@
-#!/bin/sh
-
-. "$ZDOTDIR/aliases"
-
-# alias ns='netstat -p tcp nltu'
-alias ns="netstat -anvp tcp | awk 'NR<3 || /LISTEN/'"
-
-alias cb-copy='pbcopy'
-alias cb-paste='pbpaste'
