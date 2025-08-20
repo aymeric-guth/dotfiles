@@ -1,12 +1,5 @@
 #!/bin/sh
 
-# zmodload zsh/zprof
-# hack to avoid OSX related PATH duplication
-[ -f /etc/zprofile ] && export PATH= && export MANPATH= && . "/etc/zprofile"
-# hack to set PATH for non - interractive shell
-[ -f /etc/zshenv ] && . "/etc/zshenv"
-[ -f /etc/zsh/zshenv ] && . "/etc/zsh/zshenv"
-
 export ZDOTDIR="$DOTFILES/zsh"
 export ZDATA="$HOME/.local/share/zsh" && [ ! -d "$ZDATA" ] && mkdir -p "$ZDATA"
 export ZCACHE="$HOME/.cache/zsh" && [ ! -d "$ZCACHE" ] && mkdir -p "$ZCACHE"
@@ -64,15 +57,18 @@ autoload -Uz add-zsh-hook
 
 export MANWIDTH=999
 
-hostname="$(uname -n)"
-[ -f "$DOTFILES/env/.env-$hostname" ] && source "$DOTFILES/env/.env-$hostname"
+source-if-exists() {
+    [ -f "$1" ] && . "$1"
+}
 
-[ -n "$TOOLDIR" ] && append-to-path "$TOOLDIR"/bin
-[ -n "$GOPATH" ] && append-to-path "$GOPATH"/bin
+source-if-exists "$DOTFILES/env/.env-$(uname -n)"
+
+[ -n "$GOPATH" ] && [ -d "$GOPATH" ] && append-to-path "$GOPATH"/bin
 [ -d "$HOME/.local/bin" ] && prepend-to-path "$HOME/.local/bin"
 [ -d "/usr/local/go/bin" ] && append-to-path "/usr/local/go/bin"
+[ -d "$DOTFILES/bin" ] && append-to-path "$DOTFILES/bin"
 
-source "$ZDOTDIR/aliases"
+source-if-exists "$ZDOTDIR/aliases"
 
 # prompt
 if command -v starship 1>/dev/null; then
@@ -100,8 +96,8 @@ if command -v tmux 1>/dev/null; then
 fi
 
 if command -v fzf 1>/dev/null; then
-	[ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"
-	[ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
+	source-if-exists "/usr/share/fzf/completion.zsh"
+	source-if-exists "/usr/share/fzf/key-bindings.zsh"
 
     my-zsh-add-plugin "Aloxaf/fzf-tab"
     if type fd &> /dev/null; then
