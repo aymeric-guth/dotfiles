@@ -8,6 +8,7 @@ case $- in
 *) return ;;
 esac
 
+export HISTFILE="$HOME/.local/share/bash/history"
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -110,3 +111,10 @@ if ! shopt -oq posix; then
 		. /etc/bash_completion
 	fi
 fi
+
+source-if-exists() {
+	[ -f "$1" ] && . "$1"
+}
+
+source-if-exists "$DOTFILES/zsh/aliases"
+
