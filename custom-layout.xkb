@@ -1,0 +1,8 @@
+default partial alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+    include "us(basic)"
+    name[Group1]= "English (US) yul";
+    key <CAPS> {[Hyper_L]};
+    modifier_map Mod3 { <CAPS> };
+    key <MENU> {[Multi_key]};
+};
