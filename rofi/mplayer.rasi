@@ -1,13 +1,16 @@
 configuration {
   dpi: 1;
-  show-icons: true;
-  drun-use-desktop-cache: true;
-  drun-reload-desktop-cache: true;
+  show-icons: false;
+  drun-use-desktop-cache: false;
+  drun-reload-desktop-cache: false;
   font: "mono 16";
+/*	modes: "window,drun,run,ssh";*/
+/*	font: "mono 12";*/
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
+/*	show-icons: false;*/
 /*	preview-cmd: ;*/
 /*	on-selection-changed: ;*/
 /*	on-mode-changed: ;*/
@@ -48,6 +51,7 @@ configuration {
 /*	tokenize: true;*/
 /*	m: "-5";*/
 /*	filter: ;*/
+/*	dpi: -1;*/
 /*	threads: 0;*/
 /*	scroll-method: 0;*/
 /*	window-format: "{w}    {c}   {t}";*/
@@ -58,6 +62,8 @@ configuration {
 /*	matching-negate-char: '-' /* unsupported */;*/
 /*	cache-dir: ;*/
 /*	window-thumbnail: false;*/
+/*	drun-use-desktop-cache: false;*/
+/*	drun-reload-desktop-cache: false;*/
 /*	normalize-match: false;*/
 /*	steal-focus: false;*/
 /*	application-fallback-icon: ;*/
