@@ -19,7 +19,7 @@ modmap:
       KEY_LEFTMETA: KEY_LEFTALT
     application:
       only:
-        firefox_firefox
+        firefox
 
 keymap:
   - name: Accute Accent
