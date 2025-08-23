@@ -35,13 +35,14 @@ keymap:
   - name: Cedille
     remap:
       KEY_RIGHTALT-KEY_C: [KEY_COMPOSE, KEY_COMMA, KEY_C]
-  - name: tmux
-    remap:
-      # tmux refresh
-      KEY_LEFTCTRL-KEY_L: [KEY_LEFTCTRL, KEY_A, KEY_V]
-      KEY_LEFTMETA-KEY_H: [KEY_LEFTCTRL, KEY_A, KEY_H]
-      KEY_LEFTMETA-KEY_J: [KEY_LEFTCTRL, KEY_A, KEY_J]
-      # KEY_RIGHTMETA-KEY_H: [KEY_LEFTCTRL, KEY_A, KEY_H]
-      # KEY_RIGHTMETA-KEY_J: [KEY_LEFTCTRL, KEY_A, KEY_J]
-    application:
-      only: [kitty]
+
+  # - name: tmux
+  #   remap:
+  #     # tmux refresh
+  #     KEY_LEFTCTRL-KEY_L: [KEY_LEFTCTRL, KEY_A, KEY_V]
+  #     KEY_LEFTMETA-KEY_H: [KEY_LEFTCTRL, KEY_A, KEY_H]
+  #     KEY_LEFTMETA-KEY_J: [KEY_LEFTCTRL, KEY_A, KEY_J]
+  #     # KEY_RIGHTMETA-KEY_H: [KEY_LEFTCTRL, KEY_A, KEY_H]
+  #     # KEY_RIGHTMETA-KEY_J: [KEY_LEFTCTRL, KEY_A, KEY_J]
+  #   application:
+  #     only: [kitty]
