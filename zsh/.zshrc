@@ -55,20 +55,7 @@ autoload -U edit-command-line
 autoload -Uz colors && colors
 autoload -Uz add-zsh-hook
 
-export MANWIDTH=999
-
-source-if-exists() {
-    [ -f "$1" ] && . "$1"
-}
-
-source-if-exists "$DOTFILES/env/.env-$(uname -n)"
-
-[ -n "$GOPATH" ] && [ -d "$GOPATH" ] && append-to-path "$GOPATH"/bin
-[ -d "$HOME/.local/bin" ] && prepend-to-path "$HOME/.local/bin"
-[ -d "/usr/local/go/bin" ] && append-to-path "/usr/local/go/bin"
-[ -d "$DOTFILES/bin" ] && append-to-path "$DOTFILES/bin"
-
-source-if-exists "$ZDOTDIR/aliases"
+. "$DOTFILES/shell/common"
 
 # prompt
 if command -v starship 1>/dev/null; then

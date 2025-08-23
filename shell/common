@@ -1,0 +1,59 @@
+#!/bin/sh
+
+###
+# functions
+###
+source-if-exists() {
+    [ -f "$1" ] && . "$1"
+}
+
+append-to-path() {
+    [ -d "$1" ] && ! (echo "$PATH" | grep -q "$1") && export PATH="$PATH:$1"
+}
+
+prepend-to-path() {
+    [ -d "$1" ] && ! (echo "$PATH" | grep -q "$1") && export PATH="$1:$PATH"
+}
+
+###
+# environment variables
+###
+source-if-exists "$DOTFILES/env/.env-$(uname -n)"
+export MANWIDTH=999
+
+###
+# path
+###
+[ -n "$GOPATH" ] && [ -d "$GOPATH" ] && append-to-path "$GOPATH"/bin
+[ -d "$HOME/.local/bin" ] && prepend-to-path "$HOME/.local/bin"
+[ -d "/usr/local/go/bin" ] && append-to-path "/usr/local/go/bin"
+[ -d "$DOTFILES/bin" ] && append-to-path "$DOTFILES/bin"
+
+###
+# aliases
+###
+if ! command -v fd 1>/dev/null; then
+	fd() {
+		/usr/bin/find . -iname "*${1}*"
+	}
+	alias fdi="fd"
+else
+	alias fdi="fd --no-ignore-vcs --no-ignore-parent --hidden"
+fi
+
+if command -v rg 1>/dev/null; then
+	alias rgi="rg --no-ignore-vcs --no-ignore-parent --hidden --ignore-case"
+else
+	alias rgi="grep -rn"
+fi
+
+v() {
+	env $EDITOR "$*"
+}
+
+alias ls='ls --color=auto'
+alias grep='LC_ALL=C  grep --color=auto'
+alias ll='ls -lh'
+alias la='ls -lha'
+alias ..='cd ..'
+alias ...='cd ../..'
