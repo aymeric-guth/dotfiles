@@ -58,13 +58,13 @@ autoload -Uz add-zsh-hook
 . "$DOTFILES/shell/common"
 
 # prompt
-if command -v starship 1>/dev/null; then
-    eval "$(starship init zsh)"
-elif [ -d "$REPODIR/pure" ]; then
-    fpath+=("$REPODIR/pure")
+if [ -d "$HOME/.local/share/pure" ]; then
+    fpath+=("$HOME/.local/share/pure")
     autoload -U promptinit; promptinit
     zstyle :prompt:pure:prompt:success color green
     prompt pure
+elif command -v starship 1>/dev/null; then
+    eval "$(starship init zsh)"
 fi
 
 zle -N edit-command-line
