@@ -1,19 +1,8 @@
 return {
   'ledger/vim-ledger',
-  -- {
-  --   'ecthelionvi/NeoView.nvim',
-  --   config = function()
-  --     require('NeoView').setup()
-  --   end,
-  -- },
-  'tpope/vim-fugitive',
   'windwp/nvim-autopairs',
-  -- 'tpope/vim-sleuth',
   -- 'tpope/vim-commentary',
-  -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-  { 'folke/tokyonight.nvim' },
-  -- { 'ellisonleao/gruvbox.nvim', priority = 1000, config = true },
   require('plugins.telescope'),
   require('plugins.treesitter'),
   require('plugins.treesitter-context'),

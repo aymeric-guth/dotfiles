@@ -82,6 +82,7 @@ vim.opt.undodir = vim.fn.stdpath('cache') .. '/undodir'
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.opt.cursorline = true
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = 'yes'

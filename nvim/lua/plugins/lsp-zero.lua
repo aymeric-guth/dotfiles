@@ -30,21 +30,18 @@ return {
     -- lsp.preset('recommended')
     lsp.preset({})
 
-    -- lsp.ensure_installed({
-    --   'pyright',
-    --   'lua_ls',
-    --   'taplo',
-    --   'bashls',
-    --   'dockerls',
-    --   'ansiblels',
-    --   'gopls',
-    --   'golangci_lint_ls',
-    --   'zls',
-    --   'eslint',
-    --   -- 'bufls',
-    --   'ts_ls',
-    --   'clangd',
-    -- })
+    lsp.ensure_installed({
+      'basedpyright',
+      'lua_ls',
+      'bashls',
+      'dockerls',
+      'ansiblels',
+      'gopls',
+      'golangci_lint_ls',
+      'eslint',
+      'ts_ls',
+      'clangd',
+    })
 
     -- Fix Undefined global 'vim'
     -- lsp.nvim_workspace()
