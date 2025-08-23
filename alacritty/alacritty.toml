@@ -1,7 +1,7 @@
 [general]
-import = [
-   "~/.config/alacritty/alacritty-theme/themes/hyper.toml"
-]
+# import = [
+#    "~/.config/alacritty/alacritty-theme/themes/hyper.toml"
+# ]
 
 ### keep
 # Afterglow.toml
