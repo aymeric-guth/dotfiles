@@ -84,7 +84,7 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.cursorline = true
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 10
 vim.opt.signcolumn = 'yes'
 vim.opt.isfname:append('@-@')
 
@@ -132,3 +132,22 @@ vim.cmd([[colorscheme retrobox]])
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.foldenable = false
+
+-- Créer une commande EvalExpr
+vim.api.nvim_create_user_command('EvalExpr', function(opts)
+  -- opts.line1/line2 = plage si utilisée
+  local range = string.format('%d,%d', opts.line1, opts.line2)
+  vim.cmd(range .. [[s/\v(\d[0-9\.\+\-\*\/]*)/\=eval(submatch(1))/g]])
+end, { range = true })
+
+-- Mapping pour lancer la commande
+-- <leader>e en mode normal = sur tout le buffer
+vim.keymap.set(
+  'n',
+  '<leader>e',
+  '<cmd>EvalExpr<CR>',
+  { desc = 'Évaluer les expressions numériques' }
+)
+
+-- <leader>e en mode visuel = sur la sélection
+vim.keymap.set('v', '<leader>e', ':EvalExpr<CR>', { desc = 'Évaluer les expressions numériques' })
