@@ -10,7 +10,7 @@ rsync \
 	--verbose \
 	--human-readable \
 	/home/yul/Music/ \
-	yul@eihwaz.nebula:'/mnt/md0/music-lib/'
+	yul@eihwaz.nebula:'/home/yul/Music/'
 ssh yul@eihwaz.nebula '/home/yul/.local/bin/gonic-refresh'
 mpc update
 notify-send \

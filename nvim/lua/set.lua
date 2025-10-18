@@ -143,11 +143,10 @@ end, { range = true })
 -- Mapping pour lancer la commande
 -- <leader>e en mode normal = sur tout le buffer
 vim.keymap.set(
-  'n',
+  {'n', 'v'},
   '<leader>e',
   '<cmd>EvalExpr<CR>',
   { desc = 'Évaluer les expressions numériques' }
 )
 
--- <leader>e en mode visuel = sur la sélection
-vim.keymap.set('v', '<leader>e', ':EvalExpr<CR>', { desc = 'Évaluer les expressions numériques' })
+vim.opt.winborder = 'rounded'

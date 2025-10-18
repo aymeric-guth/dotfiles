@@ -1,8 +1,9 @@
 return {
   'ledger/vim-ledger',
-  'windwp/nvim-autopairs',
-  -- 'tpope/vim-commentary',
+  -- 'windwp/nvim-autopairs',
+  'tpope/vim-commentary',
   { 'numToStr/Comment.nvim', opts = {} },
+  { 'vague2k/vague.nvim' },
   require('plugins.telescope'),
   require('plugins.treesitter'),
   require('plugins.treesitter-context'),
@@ -16,13 +17,14 @@ return {
   require('plugins.illuminate'),
   require('plugins.nvim-colorizer'),
   require('plugins.luasnip'),
-  -- require('plugins.trouble'),
-  (function()
-    if os.getenv('WORKSPACE') ~= nil then
-      return require('plugins.lsp-zero')
-    else
-      -- print('WORKSPACE is not defined')
-      return {}
-    end
-  end)(),
+  require('plugins.trouble'),
+  require('plugins.lsp'),
+  -- (function()
+  --   if os.getenv('WORKSPACE') ~= nil then
+  --     return require('plugins.lsp-zero')
+  --   else
+  --     -- print('WORKSPACE is not defined')
+  --     return {}
+  --   end
+  -- end)(),
 }

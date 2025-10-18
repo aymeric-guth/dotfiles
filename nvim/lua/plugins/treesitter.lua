@@ -35,6 +35,7 @@ return {
         'vim',
         'vimdoc',
         'yaml',
+        'ledger',
       },
       sync_install = false,
       auto_install = true,
