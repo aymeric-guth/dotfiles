@@ -6,7 +6,7 @@ return {
   { 'vague2k/vague.nvim' },
   require('plugins.telescope'),
   require('plugins.treesitter'),
-  require('plugins.treesitter-context'),
+  -- require('plugins.treesitter-context'),
   require('plugins.gitsigns'),
   require('plugins.undotree'),
   require('plugins.lualine'),

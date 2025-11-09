@@ -4,9 +4,9 @@ mime=$(file -bL --mime-type "$1")
 # category=${mime%%/*}
 # kind=${mime##*/}
 if [ -d "$1" ]; then
-	ls -lha "$1"
+	/usr/bin/ls -lha --color=always "$1"
 elif [ "$mime" = text/plain ]; then
-	cat --number "$1"
+	/usr/bin/bat --plain --number --paging=never --color=always "$1"
 else
-	nop
+  file -b "$1"
 fi
