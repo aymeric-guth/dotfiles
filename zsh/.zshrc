@@ -83,8 +83,7 @@ if command -v tmux 1>/dev/null; then
 fi
 
 if command -v fzf 1>/dev/null; then
-	source-if-exists "/usr/share/fzf/completion.zsh"
-	source-if-exists "/usr/share/fzf/key-bindings.zsh"
+    source <(fzf --zsh)
 
     my-zsh-add-plugin "Aloxaf/fzf-tab"
     if type fd &> /dev/null; then
