@@ -18,15 +18,18 @@ prepend-to-path() {
 ###
 # environment variables
 ###
-source-if-exists "$DOTFILES/env/.env-$(uname -n)"
 export MANWIDTH=999
+export PYTHON_HISTORY="$HOME/.local/share/python/history"
+export SQLITE_HISTORY="$HOME/.local/share/sqlite/history"
+export GOPATH="$HOME/go"
+source-if-exists "$DOTFILES/env/.env-$(uname -n)"
 
 ###
 # path
 ###
-[ -n "$GOPATH" ] && [ -d "$GOPATH" ] && append-to-path "$GOPATH"/bin
 [ -d "$HOME/.local/bin" ] && prepend-to-path "$HOME/.local/bin"
 [ -d "/usr/local/go/bin" ] && append-to-path "/usr/local/go/bin"
+[ -d "$HOME/go/bin" ] && append-to-path "$HOME/go/bin"
 [ -d "$DOTFILES/bin" ] && append-to-path "$DOTFILES/bin"
 
 ###
