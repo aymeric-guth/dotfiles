@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=STM32CubeIDE
-Exec=/home/yul/st/stm32cubeide_1.19.0/stm32cubeide %u
-NoDisplay=true
-Type=Application

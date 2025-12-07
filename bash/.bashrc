@@ -118,3 +118,5 @@ source-if-exists() {
 
 source-if-exists "$DOTFILES/zsh/aliases"
 
+
+export STM32_PRG_PATH=/home/yul/st/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin

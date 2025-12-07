@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=VSCode
+Exec=/usr/bin/code %U --enable-features=UseOzonePlatform --ozone-platform=wayland
+Terminal=false
+Type=Application
+Icon=Code
+#StartupWMClass=Code
+Categories=Office;

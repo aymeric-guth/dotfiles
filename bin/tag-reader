@@ -4,5 +4,5 @@ if [ ! -f "$1" ]; then
 	echo "File $1 does not exists"
 	exit 1
 fi
-path="$DEV"/personal/tag-reader
+path="$HOME"/dev/personal/tag-reader
 "$path"/.venv/bin/python "$path"/main.py "$*"

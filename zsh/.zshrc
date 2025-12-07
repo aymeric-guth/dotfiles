@@ -110,3 +110,4 @@ export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS"
 export LESSOPEN='|"$DOTFILES/zsh/.lessfilter" '%s''
 export MANPATH
 export PATH
+alias tg=tag-reader

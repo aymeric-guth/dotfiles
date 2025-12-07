@@ -1,4 +1,8 @@
 return {
+  {
+    "mason-org/mason.nvim",
+    opts = {}
+  },
   'ledger/vim-ledger',
   -- 'windwp/nvim-autopairs',
   'tpope/vim-commentary',
