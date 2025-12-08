@@ -30,6 +30,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
   callback = function(args)
+    local clients = vim.lsp.get_clients({ bufnr = args.buf })
+
+    -- for _, client in ipairs(clients) do
+    --   vim.notify(client.name, vim.log.levels.ERROR)
+    -- end
+
     vim.lsp.buf.format({
       bufnr = args.buf,
       async = false,
@@ -40,6 +46,11 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 vim.diagnostic.config({ virtual_text = true })
 vim.lsp.config('clangd', {
   cmd = { 'clangd', '--background-index', '--clang-tidy', '--fallback-style=none' },
+  filetypes = { 'c' },
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end,
 })
 vim.lsp.config('lua_ls', {
   settings = {
@@ -72,5 +83,5 @@ null_ls.setup({
 
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('basedpyright')
--- vim.lsp.enable('clangd')
+vim.lsp.enable('clangd')
 vim.lsp.enable('ruff')
