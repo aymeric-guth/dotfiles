@@ -1,10 +1,6 @@
-local local_vimrc = vim.fn.getcwd() .. '/.nvimrc'
-if vim.loop.fs_stat(local_vimrc) then
-  vim.cmd('source' .. local_vimrc)
-end
-
 require('remap')
 require('set')
+
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -12,8 +8,7 @@ if not vim.loop.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
+    '--branch=stable',
   })
 end
 vim.opt.rtp:prepend(lazypath)
@@ -21,11 +16,9 @@ require('lazy').setup({
   require('plugins'),
 }, {})
 
-require("mason").setup()
-
-
+-- LSP
 -- https://gpanders.com/blog/whats-new-in-neovim-0-11/#lsp
--- https://neovim.io/doc/user/news-0.11.html
+--https://neovim.io/doc/user/news-0.11.html
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -34,7 +27,50 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function(args)
+    vim.lsp.buf.format({
+      bufnr = args.buf,
+      async = false,
+    })
+  end,
+})
+-- https:// github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 vim.diagnostic.config({ virtual_text = true })
+vim.lsp.config('clangd', {
+  cmd = { 'clangd', '--background-index', '--clang-tidy', '--fallback-style=none' },
+})
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' },
+      },
+    },
+  },
+})
+vim.lsp.config('lua_ls', {})
+vim.lsp.config('basedpyright', {})
+vim.lsp.config('ruff', {})
+
+-- https:// github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTIN_CONFIG.md
+--https:// github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
+local null_ls = require('null-ls')
+null_ls.setup({
+  sources = {
+    null_ls.builtins.diagnostics.cppcheck,
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.astyle.with({
+      extra_args = {
+        '--options=' .. os.getenv('DOTFILES') .. '/.astylerc',
+      },
+    }),
+    null_ls.builtins.formatting.black,
+  },
+})
 
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('basedpyright')
+-- vim.lsp.enable('clangd')
+vim.lsp.enable('ruff')

@@ -3,6 +3,7 @@ return {
     "mason-org/mason.nvim",
     opts = {}
   },
+  'nvimtools/none-ls.nvim',
   'ledger/vim-ledger',
   -- 'windwp/nvim-autopairs',
   'tpope/vim-commentary',
@@ -22,13 +23,4 @@ return {
   require('plugins.nvim-colorizer'),
   require('plugins.luasnip'),
   require('plugins.trouble'),
-  require('plugins.lsp'),
-  -- (function()
-  --   if os.getenv('WORKSPACE') ~= nil then
-  --     return require('plugins.lsp-zero')
-  --   else
-  --     -- print('WORKSPACE is not defined')
-  --     return {}
-  --   end
-  -- end)(),
 }
