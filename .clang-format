@@ -1,0 +1,40 @@
+---
+# On part de LLVM (proche du K&R) et on override
+Language: C
+BasedOnStyle: LLVM
+
+### Indentation / tabs  (~ indent=spaces=4, convert-tabs)
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ContinuationIndentWidth: 4   # ≈ indent-continuation=1
+
+### Braces (~ style=kr, attach-closing-while)
+# K&R = accolades attachées aux instructions
+BreakBeforeBraces: Attach    # if (...) { ... }, while (...) { ... } etc.
+
+### Après parenthèses (~ indent-after-parens)
+# On évite l’alignement “jagged” et on indente simplement
+AlignAfterOpenBracket: DontAlign  # utilise ContinuationIndentWidth au lieu d’aligner sous ( 
+
+### Labels (~ indent-labels)
+IndentGotoLabels: true  # indent les labels plutôt que les coller en colonne 0
+
+### Espaces / padding (~ pad-oper, pad-comma, pad-header, unpad-paren)
+# clang-format met déjà des espaces autour des opérateurs et après les virgules.
+# On force juste les trucs qui touchent aux parenthèses / if / for.
+SpaceBeforeParens: ControlStatements   # if (...) , while (...), for (...)
+SpacesInParentheses: false            # unpad-paren
+SpaceInEmptyParentheses: false        # pas de "f( )"
+
+### Pointeurs / références (~ align-pointer=name, align-reference=name)
+DerivePointerAlignment: false
+PointerAlignment: Right       # int *p;  (étoile collée au nom, comme "name" dans Astyle)
+ReferenceAlignment: Right     # int &r;  idem pour les références en C++
+
+### Lignes vides (~ delete-empty-lines)
+MaxEmptyLinesToKeep: 0        # supprime les suites de lignes vides
+
+### Divers
+ColumnLimit: 0                # pas de wrap forcé sur la longueur de ligne
+SortIncludes: false           # évite que clang-format réordonne les #include tout seul
