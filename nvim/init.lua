@@ -39,6 +39,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     vim.lsp.buf.format({
       bufnr = args.buf,
       async = false,
+      filter = function(client)
+        return client.name ~= 'clangd'
+      end,
     })
   end,
 })
