@@ -22,9 +22,73 @@ require('lazy').setup({
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    local bufnr = ev.buf
+
     if client:supports_method('textDocument/completion') then
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
     end
+
+    vim.keymap.set(
+      'n',
+      'gd',
+      vim.lsp.buf.definition,
+      { buffer = bufnr, remap = false, desc = '[g]o [d]efinition' }
+    )
+    vim.keymap.set(
+      'n',
+      'gi',
+      vim.lsp.buf.implementation,
+      { buffer = bufnr, remap = false, desc = '[g]o [i]mplementation' }
+    )
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = bufnr, remap = false, desc = 'hover' })
+    vim.keymap.set(
+      'n',
+      '<leader>lws',
+      vim.lsp.buf.workspace_symbol,
+      { buffer = bufnr, remap = false, desc = '[l]sp [w]ork[s]pace' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>ld',
+      vim.diagnostic.open_float,
+      { buffer = bufnr, remap = false, desc = '[l]sp [d]iagnostics' }
+    )
+    vim.keymap.set(
+      'n',
+      '[d',
+      vim.diagnostic.goto_next,
+      { buffer = bufnr, remap = false, desc = '[d] next diagnostic' }
+    )
+    vim.keymap.set(
+      'n',
+      ']d',
+      vim.diagnostic.goto_prev,
+      { buffer = bufnr, remap = false, desc = '[d] prev diagnostic' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>lca',
+      vim.lsp.buf.code_action,
+      { buffer = bufnr, remap = false, desc = '[l]sp [c]ode [a]ction' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>lrr',
+      vim.lsp.buf.references,
+      { buffer = bufnr, remap = false, desc = '[l]sp [r]efe[r]ences' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>lrn',
+      vim.lsp.buf.rename,
+      { buffer = bufnr, remap = false, desc = '[l]sp [r]e[n]ame' }
+    )
+    vim.keymap.set(
+      'n',
+      '<leader>ls',
+      vim.lsp.buf.signature_help,
+      { buffer = bufnr, remap = false, desc = '[l]sp [s]ignature help' }
+    )
   end,
 })
 vim.api.nvim_create_autocmd('BufWritePre', {
