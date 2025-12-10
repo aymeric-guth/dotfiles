@@ -47,8 +47,18 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 -- https:// github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 vim.diagnostic.config({ virtual_text = true })
+local lspconfig = require('lspconfig')
+--
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#clangd
 vim.lsp.config('clangd', {
-  cmd = { 'clangd', '--background-index', '--clang-tidy', '--fallback-style=none' },
+  cmd = {
+    'clangd',
+    '--background-index',
+    '--clang-tidy',
+    '--fallback-style=none',
+    '--offset-encoding=utf-8',
+    '--compile-commands-dir=' .. '"' .. os.getenv('HOME') .. '/baby steps' .. '"',
+  },
   filetypes = { 'c' },
   on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
@@ -64,16 +74,22 @@ vim.lsp.config('lua_ls', {
     },
   },
 })
-vim.lsp.config('lua_ls', {})
-vim.lsp.config('basedpyright', {})
-vim.lsp.config('ruff', {})
+-- vim.lsp.config('lua_ls', {})
+-- vim.lsp.config('basedpyright', {})
+-- vim.lsp.config('ruff', {})
 
 -- https:// github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTIN_CONFIG.md
---https:// github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
+-- https:// github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
 local null_ls = require('null-ls')
 null_ls.setup({
   sources = {
-    null_ls.builtins.diagnostics.cppcheck,
+    null_ls.builtins.diagnostics.cppcheck.with({
+      extra_args = {
+        '--enable=warning,style,performance,portability',
+        '--template=gcc',
+        '$FILENAME',
+      },
+    }),
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.astyle.with({
       extra_args = {

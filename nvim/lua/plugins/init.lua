@@ -1,8 +1,9 @@
 return {
   {
-    "mason-org/mason.nvim",
-    opts = {}
+    'mason-org/mason.nvim',
+    opts = {},
   },
+  'neovim/nvim-lspconfig',
   'nvimtools/none-ls.nvim',
   'ledger/vim-ledger',
   -- 'windwp/nvim-autopairs',
