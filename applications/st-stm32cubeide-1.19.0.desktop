@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=STMicroelectronics STM32CubeIDE 1.19.0
+Comment=STMicroelectronics STM32CubeIDE 1.19.0
+GenericName=STM32CubeIDE
+Exec=/home/yul/dev/personal/dotfiles/scripts/cubeide_launcher.sh %F
+Icon=/opt/st/stm32cubeide_1.19.0/icon.xpm
+Path=/opt/st/stm32cubeide_1.19.0/
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=Development
