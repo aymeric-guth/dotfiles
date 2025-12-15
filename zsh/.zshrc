@@ -107,7 +107,7 @@ bindkey -v
 source <(direnv hook zsh)
 
 export PROJECTS="$PERSONAL_PROJECTS $WORK_PROJECTS"
-export LESSOPEN='|"$DOTFILES/zsh/.lessfilter" '%s''
+export LESSOPEN='|"$DOTFILES/.lessfilter" '%s''
 export MANPATH
 export PATH
 alias tg=tag-reader
