@@ -143,7 +143,7 @@ end, { range = true })
 -- Mapping pour lancer la commande
 -- <leader>e en mode normal = sur tout le buffer
 vim.keymap.set(
-  {'n', 'v'},
+  { 'n', 'v' },
   '<leader>e',
   '<cmd>EvalExpr<CR>',
   { desc = 'Évaluer les expressions numériques' }
@@ -152,28 +152,28 @@ vim.keymap.set(
 vim.opt.winborder = 'rounded'
 
 vim.keymap.set(
-  {'n', 'v'},
+  { 'n', 'v' },
   '<leader>m',
   '<cmd>:call PlayFileUnderCursor()<CR>',
   { desc = 'play file' }
 )
 
-local mpv_socket = "/tmp/mpv-nvim-" .. vim.fn.getpid() .. ".sock"
+local mpv_socket = '/tmp/mpv-nvim-' .. vim.fn.getpid() .. '.sock'
 
-vim.api.nvim_create_autocmd("VimEnter", {
+vim.api.nvim_create_autocmd('VimEnter', {
   once = true,
   callback = function()
     vim.fn.jobstart({
-      "mpv",
-      "--idle=yes",
-      "--no-terminal",
-      "--force-window=no",
-      "--input-ipc-server=" .. mpv_socket,
+      'mpv',
+      '--idle=yes',
+      '--no-terminal',
+      '--force-window=no',
+      '--input-ipc-server=' .. mpv_socket,
     }, {
       on_exit = function(_, code, _)
         if code ~= 0 then
           vim.schedule(function()
-            vim.notify("mpv s'est terminé (code " .. code .. ")", vim.log.levels.WARN)
+            vim.notify("mpv s'est terminé (code " .. code .. ')', vim.log.levels.WARN)
           end)
         end
       end,
@@ -182,14 +182,14 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 local function mpv_send(cmd)
-  local payload = vim.fn.json_encode({ command = cmd }) .. "\n"
+  local payload = vim.fn.json_encode({ command = cmd }) .. '\n'
 
   local pipe = vim.loop.new_pipe(false)
   pipe:connect(mpv_socket, function(err)
     if err then
       pipe:close()
       vim.schedule(function()
-        vim.notify("mpv IPC erreur: " .. err, vim.log.levels.ERROR)
+        vim.notify('mpv IPC erreur: ' .. err, vim.log.levels.ERROR)
       end)
       return
     end
@@ -197,7 +197,7 @@ local function mpv_send(cmd)
     pipe:write(payload, function(werr)
       if werr then
         vim.schedule(function()
-          vim.notify("mpv IPC write: " .. werr, vim.log.levels.ERROR)
+          vim.notify('mpv IPC write: ' .. werr, vim.log.levels.ERROR)
         end)
       end
       pipe:shutdown(function()
@@ -211,15 +211,15 @@ local function mpv_loadfile(path)
   -- mpv_ensure()
 
   local payload = vim.fn.json_encode({
-    command = { "loadfile", path, "replace" },
-  }) .. "\n"
+    command = { 'loadfile', path, 'replace' },
+  }) .. '\n'
 
   local pipe = vim.loop.new_pipe(false)
 
   pipe:connect(mpv_socket, function(err)
     if err then
       vim.schedule(function()
-        vim.notify("mpv: connexion échouée: " .. err, vim.log.levels.ERROR)
+        vim.notify('mpv: connexion échouée: ' .. err, vim.log.levels.ERROR)
       end)
       pipe:close()
       return
@@ -228,7 +228,7 @@ local function mpv_loadfile(path)
     pipe:write(payload, function(werr)
       if werr then
         vim.schedule(function()
-          vim.notify("mpv: écriture échouée: " .. werr, vim.log.levels.ERROR)
+          vim.notify('mpv: écriture échouée: ' .. werr, vim.log.levels.ERROR)
         end)
       end
       pipe:shutdown(function()
@@ -239,64 +239,63 @@ local function mpv_loadfile(path)
 end
 
 local function play_file_under_cursor()
-  local entry = require("oil").get_cursor_entry()
+  local entry = require('oil').get_cursor_entry()
   local file = entry.name
-  local dir = require("oil").get_current_dir()
+  local dir = require('oil').get_current_dir()
 
-  if file == nil or file == "" then
-    vim.notify("Aucun fichier sous le curseur", vim.log.levels.WARN)
+  if file == nil or file == '' then
+    vim.notify('Aucun fichier sous le curseur', vim.log.levels.WARN)
     return
   end
 
   vim.notify(file)
   vim.notify(dir)
 
-  local is_audio =
-    file:match("%.mp3$") or
-    file:match("%.flac$") or
-    file:match("%.wav$") or
-    file:match("%.ogg$") or
-    file:match("%.m4a$")
+  local is_audio = file:match('%.mp3$')
+      or file:match('%.flac$')
+      or file:match('%.wav$')
+      or file:match('%.ogg$')
+      or file:match('%.m4a$')
 
   if not is_audio then
-    vim.notify("Pas un fichier audio : " .. file, vim.log.levels.INFO)
+    vim.notify('Pas un fichier audio : ' .. file, vim.log.levels.INFO)
     return
   end
 
   local path = dir .. file
   mpv_loadfile(path)
-  vim.notify("Lecture : " .. path, vim.log.levels.INFO)
+  vim.notify('Lecture : ' .. path, vim.log.levels.INFO)
 end
 
-vim.api.nvim_create_autocmd("VimLeavePre", {
+vim.api.nvim_create_autocmd('VimLeavePre', {
   once = true,
   callback = function()
     pcall(os.remove, mpv_socket)
   end,
 })
 
-vim.keymap.set("n", "<leader>m", play_file_under_cursor, {
-  desc = "Lire le fichier audio sous le curseur",
+vim.keymap.set('n', '<leader>m', play_file_under_cursor, {
+  desc = 'Lire le fichier audio sous le curseur',
 })
-vim.keymap.set("n", "<leader>p", function()
-  mpv_send({ "cycle", "pause" })
-end, { desc = "mpv play/pause" })
+vim.keymap.set('n', '<leader>p', function()
+  mpv_send({ 'cycle', 'pause' })
+end, { desc = 'mpv play/pause' })
 
-vim.keymap.set("n", "<leader>l", function()
-  mpv_send({ "seek", 30, "relative" })
-end, { desc = "mpv +10s" })
+vim.keymap.set('n', '<leader>l', function()
+  mpv_send({ 'seek', 30, 'relative' })
+end, { desc = 'mpv +10s' })
 
-vim.keymap.set("n", "<leader>h", function()
-  mpv_send({ "seek", -30, "relative" })
-end, { desc = "mpv -10s" })
+vim.keymap.set('n', '<leader>h', function()
+  mpv_send({ 'seek', -30, 'relative' })
+end, { desc = 'mpv -10s' })
 
-vim.keymap.set("n", "<leader>k", function()
-  mpv_send({ "add", "volume", 10 })
-end, { desc = "mpv volume +5" })
+vim.keymap.set('n', '<leader>k', function()
+  mpv_send({ 'add', 'volume', 10 })
+end, { desc = 'mpv volume +5' })
 
-vim.keymap.set("n", "<leader>j", function()
-  mpv_send({ "add", "volume", -10 })
-end, { desc = "mpv volume -5" })
+vim.keymap.set('n', '<leader>j', function()
+  mpv_send({ 'add', 'volume', -10 })
+end, { desc = 'mpv volume -5' })
 
 --vim.opts.rocks.enabled = false
 --vim.opts.rocks.hererocks = false
