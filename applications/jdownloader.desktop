@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=JDownloader
+Icon=jdownloader
+TryExec=JDownloader
+Exec=env GDK_SCALE=2 /usr/bin/JDownloader %f
+Terminal=false
+Categories=Application;Network;
+StartupWMClass=jd-Main
