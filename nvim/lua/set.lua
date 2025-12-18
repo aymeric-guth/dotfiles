@@ -238,6 +238,15 @@ local function mpv_loadfile(path)
   end)
 end
 
+local function mpc_loadfile(path)
+  -- mpc clear
+  -- mpc add "$file"
+  -- mpc play
+  vim.fn.jobstart({ 'mpc', 'clear' })
+  vim.fn.jobstart({ 'mpc', 'add', path })
+  vim.fn.jobstart({ 'mpc', 'play' })
+end
+
 local function play_file_under_cursor()
   local entry = require('oil').get_cursor_entry()
   local file = entry.name
@@ -263,8 +272,10 @@ local function play_file_under_cursor()
   end
 
   local path = dir .. file
-  mpv_loadfile(path)
-  vim.notify('Lecture : ' .. path, vim.log.levels.INFO)
+  -- mpv_loadfile(path)
+  mpc_loadfile(string.sub(path, 17))
+
+  vim.notify('Lecture : ' .. string.sub(path, 17), vim.log.levels.INFO)
 end
 
 vim.api.nvim_create_autocmd('VimLeavePre', {
