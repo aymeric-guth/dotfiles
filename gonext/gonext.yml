@@ -1,9 +1,9 @@
 ---
 paths:
-  slipbox: "/803 Slipbox"
-  tasks: "/813 Tasks"
+  slipbox: "/Notes"
+  tasks: "/Actions"
   inbox: "/800 Inbox"
-  refs: "/802 Refs"
+  refs: "/Verbatim"
   archives: "/400 Archives"
   logs: "/600 Log"
   attachments: "/000 Attachments"
