@@ -113,13 +113,11 @@ vim.g.loaded_perl_provider = 0
 
 --  [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank({ timeout = 200 })
   end,
-  group = highlight_group,
+  group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
   pattern = '*',
 })
 
@@ -181,72 +179,6 @@ vim.api.nvim_create_autocmd('VimEnter', {
   end,
 })
 
-local function mpv_send(cmd)
-  local payload = vim.fn.json_encode({ command = cmd }) .. '\n'
-
-  local pipe = vim.loop.new_pipe(false)
-  pipe:connect(mpv_socket, function(err)
-    if err then
-      pipe:close()
-      vim.schedule(function()
-        vim.notify('mpv IPC erreur: ' .. err, vim.log.levels.ERROR)
-      end)
-      return
-    end
-
-    pipe:write(payload, function(werr)
-      if werr then
-        vim.schedule(function()
-          vim.notify('mpv IPC write: ' .. werr, vim.log.levels.ERROR)
-        end)
-      end
-      pipe:shutdown(function()
-        pipe:close()
-      end)
-    end)
-  end)
-end
-
-local function mpv_loadfile(path)
-  -- mpv_ensure()
-
-  local payload = vim.fn.json_encode({
-    command = { 'loadfile', path, 'replace' },
-  }) .. '\n'
-
-  local pipe = vim.loop.new_pipe(false)
-
-  pipe:connect(mpv_socket, function(err)
-    if err then
-      vim.schedule(function()
-        vim.notify('mpv: connexion échouée: ' .. err, vim.log.levels.ERROR)
-      end)
-      pipe:close()
-      return
-    end
-
-    pipe:write(payload, function(werr)
-      if werr then
-        vim.schedule(function()
-          vim.notify('mpv: écriture échouée: ' .. werr, vim.log.levels.ERROR)
-        end)
-      end
-      pipe:shutdown(function()
-        pipe:close()
-      end)
-    end)
-  end)
-end
-
-local function mpc_loadfile(path)
-  -- mpc clear
-  -- mpc add "$file"
-  -- mpc play
-  vim.fn.jobstart({ 'mpc', 'clear' })
-  vim.fn.jobstart({ 'mpc', 'add', path })
-  vim.fn.jobstart({ 'mpc', 'play' })
-end
-
 local function play_file_under_cursor()
   local entry = require('oil').get_cursor_entry()
   local file = entry.name
@@ -273,17 +205,12 @@ local function play_file_under_cursor()
 
   local path = dir .. file
   -- mpv_loadfile(path)
-  mpc_loadfile(string.sub(path, 17))
+  vim.system({ 'mpc', 'clear', '--wait' }):wait()
+  vim.system({ 'mpc', 'add', path, '--wait' }):wait()
+  vim.system({ 'mpc', 'play', '--wait' }):wait()
 
   vim.notify('Lecture : ' .. string.sub(path, 17), vim.log.levels.INFO)
 end
-
-vim.api.nvim_create_autocmd('VimLeavePre', {
-  once = true,
-  callback = function()
-    pcall(os.remove, mpv_socket)
-  end,
-})
 
 vim.keymap.set('n', '<leader>m', play_file_under_cursor, {
   desc = 'Lire le fichier audio sous le curseur',
@@ -308,5 +235,32 @@ vim.keymap.set('n', '<leader>j', function()
   mpv_send({ 'add', 'volume', -10 })
 end, { desc = 'mpv volume -5' })
 
---vim.opts.rocks.enabled = false
---vim.opts.rocks.hererocks = false
+vim.api.nvim_create_autocmd('BufReadCmd', {
+  group = vim.api.nvim_create_augroup('BlockMP3', { clear = true }),
+  pattern = { '*.mp3', '*.MP3' },
+  callback = function(args)
+    local mp3_buf = args.buf
+    local win = vim.api.nvim_get_current_win()
+    local bufname = vim.api.nvim_buf_get_name(args.buf)
+
+    local alt = vim.fn.bufnr('#')
+
+    vim.schedule(function()
+      if alt > 0 and vim.api.nvim_buf_is_valid(alt) then
+        pcall(vim.api.nvim_win_set_buf, win, alt)
+      else
+        pcall(vim.cmd, 'silent! keepalt keepjumps enew')
+      end
+
+      if vim.api.nvim_buf_is_valid(mp3_buf) then
+        pcall(vim.api.nvim_buf_delete, mp3_buf, { force = true })
+        local path = string.sub(bufname, 17)
+        vim.system({ 'mpc', 'clear', '--wait' }):wait()
+        vim.system({ 'mpc', 'add', path, '--wait' }):wait()
+        vim.system({ 'mpc', 'play', '--wait' }):wait()
+
+        vim.notify('Lecture : ' .. path, vim.log.levels.INFO)
+      end
+    end)
+  end,
+})

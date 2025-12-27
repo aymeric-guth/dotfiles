@@ -1,10 +1,11 @@
 return {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-  },
+  -- dependencies = {
+  --   { 'nvim-treesitter/nvim-treesitter-textobjects', opts = { branch = 'main' } },
+  -- },
   build = ':TSUpdate',
+  lazy = false,
 
   config = function()
     local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
