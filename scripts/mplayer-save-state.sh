@@ -1,4 +1,5 @@
 #!/bin/sh
+
 mkdir -p "$HOME/.cache/mpd"
 mpd_state="__state_$(date +%s%N)"
 
