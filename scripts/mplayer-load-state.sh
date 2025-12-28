@@ -1,21 +1,11 @@
 #!/bin/sh
+[ -d "$HOME/.cache/mpd" ] || { echo "stack vide" >&2; exit 1; }
 
-mpd_stack="${XDG_STATE_HOME:-$HOME/.local/state}/mpd-stack.tsv"
+mpd_state="$(find $HOME/.cache/mpd -iname '__state_*' | sort --reverse | head -n 1)"
+[ -s "$mpd_state" ] || { echo "stack vide" >&2; exit 1; }
+echo "$mpd_state"
 
-[ -s "$mpd_stack" ] || { echo "stack vide" >&2; exit 1; }
-
-line="$(tail -n 1 "$mpd_stack")"
-snap="$(printf "%s" "$line" | cut -f1)"
-pos="$(printf "%s" "$line" | cut -f2)"
-elapsed="$(printf "%s" "$line" | cut -f3)"
-
-echo snap: $snap
-echo pos: $pos
-echo elapsed: $elapsed
-sed -i '$d' "$mpd_stack"
-
-mpc --quiet --wait clear
-mpc --quiet --wait load "$snap"
-mpc --quiet --wait play "$pos"
-[ -n "$elapsed" ] && mpc --quiet --wait seek "$elapsed"
-rm -f "$HOME/Music/playlists/$snap.m3u"
+systemctl --user stop mpd
+cp "${mpd_state}" "$HOME"/.local/state/mpd/state
+systemctl --user start mpd
+rm "$mpd_state"
