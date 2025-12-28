@@ -179,65 +179,9 @@ vim.api.nvim_create_autocmd('VimEnter', {
   end,
 })
 
-local function play_file_under_cursor()
-  local entry = require('oil').get_cursor_entry()
-  local file = entry.name
-  local dir = require('oil').get_current_dir()
-
-  if file == nil or file == '' then
-    vim.notify('Aucun fichier sous le curseur', vim.log.levels.WARN)
-    return
-  end
-
-  vim.notify(file)
-  vim.notify(dir)
-
-  local is_audio = file:match('%.mp3$')
-      or file:match('%.flac$')
-      or file:match('%.wav$')
-      or file:match('%.ogg$')
-      or file:match('%.m4a$')
-
-  if not is_audio then
-    vim.notify('Pas un fichier audio : ' .. file, vim.log.levels.INFO)
-    return
-  end
-
-  local path = dir .. file
-  -- mpv_loadfile(path)
-  vim.system({ 'mpc', 'clear', '--wait' }):wait()
-  vim.system({ 'mpc', 'add', path, '--wait' }):wait()
-  vim.system({ 'mpc', 'play', '--wait' }):wait()
-
-  vim.notify('Lecture : ' .. string.sub(path, 17), vim.log.levels.INFO)
-end
-
-vim.keymap.set('n', '<leader>m', play_file_under_cursor, {
-  desc = 'Lire le fichier audio sous le curseur',
-})
-vim.keymap.set('n', '<leader>p', function()
-  mpv_send({ 'cycle', 'pause' })
-end, { desc = 'mpv play/pause' })
-
-vim.keymap.set('n', '<leader>l', function()
-  mpv_send({ 'seek', 30, 'relative' })
-end, { desc = 'mpv +10s' })
-
-vim.keymap.set('n', '<leader>h', function()
-  mpv_send({ 'seek', -30, 'relative' })
-end, { desc = 'mpv -10s' })
-
-vim.keymap.set('n', '<leader>k', function()
-  mpv_send({ 'add', 'volume', 10 })
-end, { desc = 'mpv volume +5' })
-
-vim.keymap.set('n', '<leader>j', function()
-  mpv_send({ 'add', 'volume', -10 })
-end, { desc = 'mpv volume -5' })
-
 vim.api.nvim_create_autocmd('BufReadCmd', {
   group = vim.api.nvim_create_augroup('BlockMP3', { clear = true }),
-  pattern = { '*.mp3', '*.MP3' },
+  pattern = { '*.mp3', '*.MP3', '*.flac', '*.FLAC' },
   callback = function(args)
     local mp3_buf = args.buf
     local win = vim.api.nvim_get_current_win()
@@ -263,4 +207,18 @@ vim.api.nvim_create_autocmd('BufReadCmd', {
       end
     end)
   end,
+})
+
+vim.keymap.set('n', '<leader>m', function()
+  local dir = require('oil').get_current_dir()
+  vim.notify(dir, vim.log.levels.WARN)
+  local path = string.sub(dir, 17)
+
+  vim.system({ 'mpc', 'clear', '--wait' }):wait()
+  vim.system({ 'mpc', 'add', path, '--wait' }):wait()
+  vim.system({ 'mpc', 'play', '--wait' }):wait()
+
+  vim.notify('Lecture : ' .. path, vim.log.levels.INFO)
+end, {
+  desc = 'Lire le fichier audio sous le curseur',
 })

@@ -14,7 +14,8 @@ echo pos: $pos
 echo elapsed: $elapsed
 sed -i '$d' "$mpd_stack"
 
-mpc --quiet clear
-mpc --quiet load "$snap"
-mpc --quiet play "$pos"
-[ -n "$elapsed" ] && mpc --quiet seek "$elapsed"
+mpc --quiet --wait clear
+mpc --quiet --wait load "$snap"
+mpc --quiet --wait play "$pos"
+[ -n "$elapsed" ] && mpc --quiet --wait seek "$elapsed"
+rm -f "$HOME/Music/playlists/$snap.m3u"
