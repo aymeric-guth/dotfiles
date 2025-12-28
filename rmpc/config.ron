@@ -4,7 +4,7 @@
 (
     address: "127.0.0.1:6600",
     password: None,
-    theme: None,
+    theme: Some("theme.ron"),
     cache_dir: None,
     on_song_change: None,
     volume_step: 1,
@@ -119,18 +119,6 @@
             name: "Directories",
             pane: Pane(Directories),
         ),
-        // (
-        //     name: "Artists",
-        //     pane: Pane(Artists),
-        // ),
-        // (
-        //     name: "Album Artists",
-        //     pane: Pane(AlbumArtists),
-        // ),
-        // (
-        //     name: "Albums",
-        //     pane: Pane(Albums),
-       // ),
         (
             name: "Playlists",
             pane: Pane(Playlists),
@@ -141,4 +129,3 @@
         ),
     ],
 )
-
