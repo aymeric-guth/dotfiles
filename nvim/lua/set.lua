@@ -181,7 +181,7 @@ vim.api.nvim_create_autocmd('VimEnter', {
 
 vim.api.nvim_create_autocmd('BufReadCmd', {
   group = vim.api.nvim_create_augroup('BlockMP3', { clear = true }),
-  pattern = { '*.mp3', '*.MP3', '*.flac', '*.FLAC' },
+  pattern = { '*.mp3', '*.flac', '*.m4a' },
   callback = function(args)
     local mp3_buf = args.buf
     local win = vim.api.nvim_get_current_win()

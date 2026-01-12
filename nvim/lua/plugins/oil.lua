@@ -36,7 +36,7 @@ return {
         concealcursor = 'nvic',
       },
       -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
-      delete_to_trash = false,
+      delete_to_trash = true,
       -- Skip the confirmation popup for simple operations
       skip_confirm_for_simple_edits = false,
       -- Selecting a new/moved/renamed file or directory will prompt you to save changes first
@@ -51,6 +51,7 @@ return {
       -- it will use the mapping at require("oil.actions").<name>
       -- Set to `false` to remove a keymap
       -- See :help oil-actions for a list of all available actions
+      watch_for_changes = false,
       keymaps = {
         ['g?'] = 'actions.show_help',
         ['<CR>'] = 'actions.select',
