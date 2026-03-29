@@ -168,12 +168,13 @@ null_ls.setup({
         '--options=' .. os.getenv('DOTFILES') .. '/.astylerc',
       },
     }),
-    null_ls.builtins.formatting.black,
+    -- null_ls.builtins.formatting.black,
   },
 })
 
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('basedpyright')
 vim.lsp.enable('clangd')
-vim.lsp.enable('ruff')
+-- vim.lsp.enable('ruff')
 vim.lsp.enable('ts_ls')
+vim.lsp.enable('markdown_oxide')

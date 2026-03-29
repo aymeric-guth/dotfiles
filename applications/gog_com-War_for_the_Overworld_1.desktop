@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Value=1.0
+Type=Application
+Name=War for the Overworld
+GenericName=War for the Overworld
+Comment=War for the Overworld
+Icon=/home/yul/GOG Games/War for the Overworld/support/icon.png
+Exec="/home/yul/GOG Games/War for the Overworld/start.sh" ""
+Categories=Game;
+Path=/home/yul/GOG Games/War for the Overworld
+
