@@ -44,3 +44,5 @@ vim.keymap.set(
   'oif err != nil {<CR>}<ESC>Oreturn err<ESC>',
   { desc = 'err != nil' }
 )
+
+vim.keymap.set('i', '<C-del>', '<Esc>Bdwa', { desc = '[s]tats[j]umps' })

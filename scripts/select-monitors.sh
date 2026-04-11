@@ -1,9 +1,5 @@
-#!/bin/bash
-
-hyprctl reload
-
-kill -s USR1 $(pgrep kitty)
-kill -s USR2 $(pgrep waybar)
+#!/usr/bin/env bash
+set -euo pipefail
 
 DP1_STATUS="disconnected"
 
@@ -16,5 +12,5 @@ done
 if [[ "$DP1_STATUS" == "connected" ]]; then
   hyprctl --batch 'keyword monitor DP-1,3840x2160@165.00,0x0,2 ; keyword monitor eDP-1,disable'
 else
-  hyprctl --batch 'keyword monitor eDP-1,preferred,0x0,1.5'
+  hyprctl --batch 'keyword monitor eDP-1,preferred,0x0,1'
 fi
