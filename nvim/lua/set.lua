@@ -107,7 +107,7 @@ vim.opt.list = true
 vim.opt.listchars:append('space:⋅')
 vim.opt.listchars:append('eol:↴')
 
-vim.lsp.set_log_level('warn')
+-- vim.lsp.set_log_level('warn')
 
 vim.g.loaded_perl_provider = 0
 
@@ -115,7 +115,7 @@ vim.g.loaded_perl_provider = 0
 -- See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank({ timeout = 200 })
+    vim.hl.on_yank({ timeout = 200 })
   end,
   group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
   pattern = '*',

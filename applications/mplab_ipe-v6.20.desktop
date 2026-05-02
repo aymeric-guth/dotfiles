@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=MPLAB IPE v6.20
+Comment=IPE for Microchip PIC and dsPIC programming
+Exec=/opt/microchip/mplabx/v6.20/mplab_platform/bin/mplab_ipe
+Icon=mplab_ipe-v6.20.png
+Terminal=false
+Type=Application
+Categories=Application;Development;Programming;
+StartupNotify=true

@@ -10,8 +10,8 @@ cp /home/yul/.config/BraveSoftware/Brave-Browser/Default/History "/home/yul/Back
 cp /home/yul/.config/BraveSoftware/Brave-Browser/Default/Bookmarks "/home/yul/Backup/Brave/$(date '+%Y-%m-%d')_Bookmarks"
 
 cd /home/yul/Music
-find music.inbox > "/home/yul/Backup/Music/$(date '+%Y-%m-%d')_music.inbox"
-find music > "/home/yul/Backup/Music/$(date '+%Y-%m-%d')_music"
-find chiptunes.inbox > "/home/yul/Backup/Music/$(date '+%Y-%m-%d')_chiptunes.inbox"
-find chiptunes.lib > "/home/yul/Backup/Music/$(date '+%Y-%m-%d')_chiptunes.lib"
-find playlists > "/home/yul/Backup/Music/$(date '+%Y-%m-%d')_playlists"
+find music.inbox | sort > "/home/yul/Backup/Music/$(date '+%Y-%m-%d')_music.inbox"
+find music | sort > "/home/yul/Backup/Music/$(date '+%Y-%m-%d')_music"
+find chiptunes.inbox | sort > "/home/yul/Backup/Music/$(date '+%Y-%m-%d')_chiptunes.inbox"
+find chiptunes.lib | sort > "/home/yul/Backup/Music/$(date '+%Y-%m-%d')_chiptunes.lib"
+find playlists | sort > "/home/yul/Backup/Music/$(date '+%Y-%m-%d')_playlists"

@@ -21,8 +21,9 @@ require('lazy').setup({
   require('plugins'),
 }, {})
 
--- vim.cmd([[colorscheme retrobox]])
-vim.cmd([[colorscheme vague]])
+vim.cmd([[colorscheme retrobox]])
+-- vim.cmd([[colorscheme gruvbox-baby]])
+-- vim.cmd([[colorscheme vague]])
 
 -- LSP
 -- https://gpanders.com/blog/whats-new-in-neovim-0-11/#lsp
