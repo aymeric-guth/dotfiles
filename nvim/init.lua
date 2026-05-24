@@ -169,6 +169,7 @@ null_ls.setup({
         '--options=' .. os.getenv('DOTFILES') .. '/.astylerc',
       },
     }),
+    null_ls.builtins.formatting.prettier,
     -- null_ls.builtins.formatting.black,
   },
 })

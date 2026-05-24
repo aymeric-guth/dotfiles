@@ -6,6 +6,7 @@ if git status --porcelain; then
 fi
 
 cp /home/yul/.local/share/zsh/.zsh_history "/home/yul/Backup/zsh/$(date '+%Y-%m-%d')_zsh_history"
+scp yul@eihwaz.nebula:~/.local/share/zsh/.zsh_history "/home/yul/Backup/zsh/$(date '+%Y-%m-%d')_zsh_history_eihwaz"
 cp /home/yul/.config/BraveSoftware/Brave-Browser/Default/History "/home/yul/Backup/Brave/$(date '+%Y-%m-%d')_History"
 cp /home/yul/.config/BraveSoftware/Brave-Browser/Default/Bookmarks "/home/yul/Backup/Brave/$(date '+%Y-%m-%d')_Bookmarks"
 7z a -p"$(cat ~/.archive_pass)" -mhe=on /home/yul/Backup/ssh/$(date "+%Y-%m-%d")_ssh.7z /home/yul/.ssh
