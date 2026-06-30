@@ -180,3 +180,7 @@ vim.lsp.enable('clangd')
 -- vim.lsp.enable('ruff')
 vim.lsp.enable('ts_ls')
 vim.lsp.enable('markdown_oxide')
+
+require('luasnip.loaders.from_lua').lazy_load({
+  paths = '~/.config/nvim/lua/snippets',
+})
