@@ -1,18 +1,10 @@
 local ls = require('luasnip')
 
-local s = ls.snippet
-local i = ls.insert_node
-local f = ls.function_node
-
 local fmt = require('luasnip.extras.fmt').fmt
 local rep = require('luasnip.extras').rep
 
-local function today()
-  return os.date('%Y-%m-%d')
-end
-
 return {
-  s(
+  ls.snippet(
     {
       trig = 'arinv',
       name = 'Accounts receivable invoice',
@@ -24,12 +16,13 @@ return {
   ; invoice: {}
   assets:bank:boursobank:checking  {} EUR
   assets:account receivable:{}
+
 ]],
       {
-        f(today),
-        i(1, 'payee'),
-        i(2, 'invoice_id'),
-        i(3, 'amount'),
+        os.date('%Y-%m-%d'),
+        ls.insert_node(1, 'payee'),
+        ls.insert_node(2, 'invoice_id'),
+        ls.insert_node(3, 'amount'),
         rep(1),
       }
     )
