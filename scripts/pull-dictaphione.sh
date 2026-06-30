@@ -55,5 +55,7 @@ then
     exit 1
 fi
 
+/usr/bin/mpc update --wait
+
 /usr/bin/notify-send "Dictaphione" \
     "Enregistrements copiés et dictaphone démonté"
