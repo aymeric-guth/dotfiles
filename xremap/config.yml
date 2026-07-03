@@ -1,4 +1,4 @@
-modmap: 
+modmap:
   - name: Global
     remap:
       KEY_CAPSLOCK:
@@ -12,7 +12,7 @@ modmap:
       KEY_LEFTMETA: KEY_LEFTALT
       KEY_RIGHTMETA: KEY_RIGHTALT
     device:
-      only: ['AT Translated Set 2']
+      only: ["AT Translated Set 2"]
   - name: Firefox Alt <-> Super
     application:
       only: [firefox]
