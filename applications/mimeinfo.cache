@@ -3,6 +3,7 @@ application/epub+zip=org.pwmt.zathura-pdf-mupdf.desktop;
 application/json=firefox.desktop;
 application/oxps=org.pwmt.zathura-pdf-mupdf.desktop;
 application/pdf=brave-browser.desktop;firefox.desktop;org.pwmt.zathura-pdf-mupdf.desktop;zathura-2.desktop;zathura-3.desktop;zathura-4.desktop;zathura-5.desktop;zathura.desktop;
+application/pkix-cert=wine-extension-crt.desktop;
 application/rdf+xml=brave-browser.desktop;firefox.desktop;
 application/rss+xml=brave-browser.desktop;firefox.desktop;
 application/vnd.ms-htmlhelp=wine-extension-chm.desktop;

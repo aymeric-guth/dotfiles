@@ -35,6 +35,18 @@ keymap:
   - name: Cedille
     remap:
       KEY_RIGHTALT-KEY_C: [KEY_COMPOSE, KEY_COMMA, KEY_C]
+  # https://en.wikipedia.org/wiki/Compose_key
+  # https://www.yogicstudies.com/blog/how-to-type-transliterated-sanskrit-with-diacritics-in-mac-osxGo
+  - name: Sanskrit IAST Diacritics
+    remap:
+      # ā/Ā, ī/Ī, ū/Ū: option+a, then a/A/i/I/u/U.
+      KEY_RIGHTALT-KEY_A: [KEY_COMPOSE, KEY_MINUS]
+      # ṛ/Ṛ, ḷ/Ḷ, ṃ/Ṃ, ḥ/Ḥ, ṭ/Ṭ, ḍ/Ḍ, ṇ/Ṇ, ṣ/Ṣ: option+x, then letter.
+      KEY_RIGHTALT-KEY_X: [KEY_COMPOSE, KEY_LEFTSHIFT-KEY_1]
+      # ṅ/Ṅ: option+w, then n/N.
+      KEY_RIGHTALT-KEY_W: [KEY_COMPOSE, KEY_DOT]
+      # ñ/Ñ: option+n, then n/N.
+      KEY_LEFTALT-KEY_N: [KEY_COMPOSE, KEY_RIGHTSHIFT-KEY_GRAVE]
 
   # - name: tmux
   #   remap:

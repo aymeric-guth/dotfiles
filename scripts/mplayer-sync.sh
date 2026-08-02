@@ -2,7 +2,6 @@
 
 rsync \
 	--archive \
-	--exclude playlists \
 	--exclude Makefile \
 	--exclude .stfolder \
 	--exclude .stignore \
