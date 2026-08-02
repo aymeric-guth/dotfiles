@@ -4,11 +4,22 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 -- hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "auto" })
--- hl.monitor({ output = "DP-1", mode = "3840x2160@165.00", position = "0x0", scale = 2 })
--- hl.monitor({ output = "eDP-1", disabled = true })
 -- hl.on("hyprland.start", function()
 --     hl.exec_cmd("~/dev/personal/dotfiles/scripts/reload.sh")
 -- end)
+
+local function configure_monitors()
+  if hl.get_monitor('DP-1') then
+    hl.monitor({ output = 'DP-1', mode = '3840x2160@165.00', position = '0x0', scale = 2 })
+    hl.monitor({ output = 'eDP-1', disabled = true })
+  else
+    hl.monitor({ output = 'eDP-1', mode = 'preferred', position = '0x0', scale = 1.5 })
+  end
+end
+
+configure_monitors()
+hl.on('monitor.added', configure_monitors)
+hl.on('monitor.removed', configure_monitors)
 
 -------------------
 --- MY PROGRAMS ---
