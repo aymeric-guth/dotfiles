@@ -529,3 +529,14 @@ hl.window_rule({ match = { class = 'brave' }, float = true })
 hl.window_rule({ match = { class = 'org.kde.kcalc' }, float = true })
 hl.window_rule({ match = { class = 'xdg-desktop-portal-gtk' }, float = true })
 hl.window_rule({ match = { class = 'com-st-stlinkupgrade-app-MainApp' }, float = true })
+
+hl.window_rule({
+  match = { class = '^(md.obsidian.Obsidian)$', title = '^(Settings - .*)$' },
+  float = true,
+  size = { 1185, 763 },
+})
+hl.window_rule({
+  match = { class = '^(md.obsidian.Obsidian)$', title = '^(Community plugins - .*)$' },
+  float = true,
+  size = { 1185, 763 },
+})

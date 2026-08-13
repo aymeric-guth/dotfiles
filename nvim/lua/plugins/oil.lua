@@ -52,16 +52,16 @@ return {
       -- See :help oil-actions for a list of all available actions
       watch_for_changes = false,
       keymaps = {
-        ['yy'] = {
-          callback = function()
-            local entry = require('oil').get_cursor_entry()
-            if entry then
-              vim.fn.setreg(vim.v.register, entry.parsed_name or entry.name, 'c')
-            end
-          end,
-          mode = 'n',
-          desc = 'Yank filename',
-        },
+        -- ['yy'] = {
+        --   callback = function()
+        --     local entry = require('oil').get_cursor_entry()
+        --     if entry then
+        --       vim.fn.setreg(vim.v.register, entry.parsed_name or entry.name, 'c')
+        --     end
+        --   end,
+        --   mode = 'n',
+        --   desc = 'Yank filename',
+        -- },
         ['g?'] = 'actions.show_help',
         ['<CR>'] = 'actions.select',
         ['<C-s>'] = 'actions.select_vsplit',
