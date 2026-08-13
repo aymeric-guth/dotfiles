@@ -281,117 +281,142 @@ local alt = 'ALT'
 local shift = 'SHIFT'
 local main_mod = hyper
 
-local function bind_exec(keys, command)
-  hl.bind(keys, hl.dsp.exec_cmd(command))
-end
-
 -- Drag / resize des fenêtres avec la souris.
 hl.bind(super .. ' + mouse:272', hl.dsp.window.drag(), { mouse = true })
 hl.bind(super .. ' + mouse:273', hl.dsp.window.resize(), { mouse = true })
 
-bind_exec(main_mod .. ' + Return', 'kitty')
+hl.bind(main_mod .. ' + Return', hl.dsp.exec_cmd('kitty'))
 hl.bind(main_mod .. ' + Q', hl.dsp.window.close())
-bind_exec(main_mod .. ' + ' .. shift .. ' + X', '$DOTFILES/scripts/logout.sh')
-bind_exec(main_mod .. ' + ' .. shift .. ' + L', 'hyprlock')
+hl.bind(main_mod .. ' + ' .. shift .. ' + X', hl.dsp.exec_cmd('$DOTFILES/scripts/logout.sh'))
+hl.bind(main_mod .. ' + ' .. shift .. ' + L', hl.dsp.exec_cmd('hyprlock'))
 
-bind_exec(main_mod .. ' + E', '/usr/bin/dolphin')
+hl.bind(main_mod .. ' + E', hl.dsp.exec_cmd('/usr/bin/dolphin'))
 hl.bind(main_mod .. ' + V', hl.dsp.window.float({ action = 'toggle' }))
--- bind_exec(main_mod .. " + R", menu)
+-- hl.bind(main_mod .. " + R", hl.dsp.exec_cmd(menu))
 -- hl.bind(main_mod .. " + P", hl.dsp.window.pseudo({ action = "toggle" }))
 -- hl.bind(main_mod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(main_mod .. ' + F', hl.dsp.window.fullscreen({ action = 'toggle' }))
-bind_exec(main_mod .. ' + R', '$DOTFILES/scripts/reload.sh')
+hl.bind(main_mod .. ' + R', hl.dsp.exec_cmd('$DOTFILES/scripts/reload.sh'))
 
-bind_exec(super .. ' + space', '/usr/bin/rofi -config $DOTFILES/rofi/rofi.rasi -show drun run')
+hl.bind(
+  super .. ' + space',
+  hl.dsp.exec_cmd('/usr/bin/rofi -config $DOTFILES/rofi/rofi.rasi -show drun run')
+)
 
-bind_exec(main_mod .. ' + B', '/usr/bin/gtk-launch brave-browser.desktop')
-bind_exec(main_mod .. ' + N', '/usr/bin/gtk-launch obsidian.desktop')
+hl.bind(main_mod .. ' + B', hl.dsp.exec_cmd('/usr/bin/gtk-launch brave-browser.desktop'))
+hl.bind(main_mod .. ' + N', hl.dsp.exec_cmd('/usr/bin/gtk-launch obsidian.desktop'))
 
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. ctrl .. ' + space',
-  [=[/usr/bin/kitty --app-id e2696752-512f-11f0-ae75-ab75b60c01aa nvim "$(find ~ -maxdepth 1 -mindepth 1 ! -iname '.*' -type d | sort | rofi -p "play" -dmenu -i -l 10 -config $DOTFILES/rofi/mplayer.rasi)"]=]
+  hl.dsp.exec_cmd(
+    [=[/usr/bin/kitty --app-id e2696752-512f-11f0-ae75-ab75b60c01aa nvim "$(find ~ -maxdepth 1 -mindepth 1 ! -iname '.*' -type d | sort | rofi -p "play" -dmenu -i -l 10 -config $DOTFILES/rofi/mplayer.rasi)"]=]
+  )
 )
 
 -- mplayer
-bind_exec(main_mod .. ' + ' .. alt .. ' + space', 'mpc toggle')
-bind_exec(main_mod .. ' + ' .. alt .. ' + L', 'mpc next')
-bind_exec(main_mod .. ' + ' .. alt .. ' + H', 'mpc prev')
-bind_exec(main_mod .. ' + ' .. alt .. ' + ' .. shift .. ' + L', 'mpc seekthrough +10')
-bind_exec(main_mod .. ' + ' .. alt .. ' + ' .. shift .. ' + H', 'mpc seekthrough -10')
-bind_exec(main_mod .. ' + ' .. alt .. ' + ' .. shift .. ' + K', 'mpc seekthrough +20')
-bind_exec(main_mod .. ' + ' .. alt .. ' + ' .. shift .. ' + J', 'mpc seekthrough -20')
-bind_exec(main_mod .. ' + ' .. alt .. ' + K', 'mpc volume +5')
-bind_exec(main_mod .. ' + ' .. alt .. ' + J', 'mpc volume -5')
-bind_exec(main_mod .. ' + ' .. alt .. ' + R', 'mpc repeat')
+hl.bind(main_mod .. ' + ' .. alt .. ' + space', hl.dsp.exec_cmd('mpc toggle'))
+hl.bind(main_mod .. ' + ' .. alt .. ' + L', hl.dsp.exec_cmd('mpc next'))
+hl.bind(main_mod .. ' + ' .. alt .. ' + H', hl.dsp.exec_cmd('mpc prev'))
+hl.bind(
+  main_mod .. ' + ' .. alt .. ' + ' .. shift .. ' + L',
+  hl.dsp.exec_cmd('mpc seekthrough +10')
+)
+hl.bind(
+  main_mod .. ' + ' .. alt .. ' + ' .. shift .. ' + H',
+  hl.dsp.exec_cmd('mpc seekthrough -10')
+)
+hl.bind(
+  main_mod .. ' + ' .. alt .. ' + ' .. shift .. ' + K',
+  hl.dsp.exec_cmd('mpc seekthrough +20')
+)
+hl.bind(
+  main_mod .. ' + ' .. alt .. ' + ' .. shift .. ' + J',
+  hl.dsp.exec_cmd('mpc seekthrough -20')
+)
+hl.bind(main_mod .. ' + ' .. alt .. ' + K', hl.dsp.exec_cmd('mpc volume +5'))
+hl.bind(main_mod .. ' + ' .. alt .. ' + J', hl.dsp.exec_cmd('mpc volume -5'))
+hl.bind(main_mod .. ' + ' .. alt .. ' + R', hl.dsp.exec_cmd('mpc repeat'))
 
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. ctrl .. ' + ' .. super .. ' + R',
-  '/usr/bin/kitty --app-id e2696752-512f-11f0-ae75-ab75b60c01aa /usr/bin/rmpc'
+  hl.dsp.exec_cmd('/usr/bin/kitty --app-id e2696752-512f-11f0-ae75-ab75b60c01aa /usr/bin/rmpc')
 )
 
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. super .. ' + ' .. shift .. ' + space',
-  [=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-play-override-dir.sh music"]=]
+  hl.dsp.exec_cmd([=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-play-override-dir.sh music"]=])
 )
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. super .. ' + space',
-  [=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-play-override-dir.sh music.inbox"]=]
+  hl.dsp.exec_cmd(
+    [=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-play-override-dir.sh music.inbox"]=]
+  )
 )
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. super .. ' + ' .. ctrl .. ' + space',
-  [=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-play-override-playlists.sh"]=]
+  hl.dsp.exec_cmd([=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-play-override-playlists.sh"]=])
 )
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. super .. ' + ' .. shift .. ' + J',
-  [=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-save-state.sh"]=]
+  hl.dsp.exec_cmd([=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-save-state.sh"]=])
 )
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. super .. ' + ' .. shift .. ' + K',
-  [=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-load-state.sh"]=]
+  hl.dsp.exec_cmd([=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-load-state.sh"]=])
 )
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. ctrl .. ' + L',
-  [=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-play-fanfare.sh"]=]
+  hl.dsp.exec_cmd([=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-play-fanfare.sh"]=])
 )
 
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. super .. ' + M',
-  [=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-move-to-lib.sh"]=]
+  hl.dsp.exec_cmd([=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-move-to-lib.sh"]=])
 )
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. super .. ' + ' .. shift .. ' + M',
-  [=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-remove-track.sh music.inbox"]=]
+  hl.dsp.exec_cmd([=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-remove-track.sh music.inbox"]=])
 )
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. ctrl .. ' + ' .. shift .. ' + M',
-  [=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-remove-track.sh playlists"]=]
+  hl.dsp.exec_cmd([=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-remove-track.sh playlists"]=])
 )
 
-bind_exec(
+hl.bind(
   ctrl .. ' + ' .. alt .. ' + ' .. super .. ' + R',
-  "/bin/sh -c '/home/yul/dev/personal/dotfiles/remaps/wayland.setup.monitor.sh'"
+  hl.dsp.exec_cmd("/bin/sh -c '/home/yul/dev/personal/dotfiles/remaps/wayland.setup.monitor.sh'")
 )
 
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. alt .. ' + ' .. super .. ' + P',
-  [=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-playlist-edit.sh"]=]
+  hl.dsp.exec_cmd([=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-playlist-edit.sh"]=])
 )
 
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. shift .. ' + P',
-  [=[hyprshot -m region --output-folder="$HOME/Pictures" --filename="$(date +"%Y-%m-%d_%H%M%S").png"]=]
+  hl.dsp.exec_cmd(
+    [=[hyprshot -m region --output-folder="$HOME/Pictures" --filename="$(date +"%Y-%m-%d_%H%M%S").png"]=]
+  )
 )
-bind_exec(
+hl.bind(
   main_mod .. ' + P',
-  [=[hyprshot -m output --output-folder="$HOME/Pictures" --filename="$(date +"%Y-%m-%d_%H%M%S").png"]=]
+  hl.dsp.exec_cmd(
+    [=[hyprshot -m output --output-folder="$HOME/Pictures" --filename="$(date +"%Y-%m-%d_%H%M%S").png"]=]
+  )
 )
 
-bind_exec(main_mod .. ' + ' .. super .. ' + C', "bluetoothctl connect '20:18:5B:15:68:AD'")
-bind_exec(main_mod .. ' + ' .. super .. ' + D', "bluetoothctl disconnect '20:18:5B:15:68:AD'")
+hl.bind(
+  main_mod .. ' + ' .. super .. ' + C',
+  hl.dsp.exec_cmd("bluetoothctl connect '20:18:5B:15:68:AD'")
+)
+hl.bind(
+  main_mod .. ' + ' .. super .. ' + D',
+  hl.dsp.exec_cmd("bluetoothctl disconnect '20:18:5B:15:68:AD'")
+)
 
-bind_exec(
+hl.bind(
   main_mod .. ' + ' .. ctrl .. ' + K',
-  "/usr/bin/mosquitto_pub -t desk -q 1 -h '10.0.0.4' -p 1883 -m light_updated"
+  hl.dsp.exec_cmd("/usr/bin/mosquitto_pub -t desk -q 1 -h '10.0.0.4' -p 1883 -m light_updated")
 )
 
 -- Move focus with mainMod + H/J/K/L.
