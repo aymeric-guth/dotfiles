@@ -1,0 +1,12 @@
+startgroup
+    var float WARP = 0.0
+    var float SCAN = 1.0
+    var float4 TINT = float4(0, 0.8, 0.6, 0)
+    shaders crt
+endgroup
+
+startgroup
+    var float BLOOM_THRESHOLD = 0.2
+    var float BLOOM_STRENGTH = 0.1
+    shaders bloom
+endgroup

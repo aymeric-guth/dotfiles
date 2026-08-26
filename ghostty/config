@@ -1,0 +1,5 @@
+command = /usr/bin/zsh
+working-directory = inherit
+click-repeat-interval = 500
+gtk-single-instance = false
+auto-update-channel = tip
