@@ -147,9 +147,9 @@ vim.lsp.config('lua_ls', {
     },
   },
 })
--- vim.lsp.config('lua_ls', {})
--- vim.lsp.config('basedpyright', {})
--- vim.lsp.config('ruff', {})
+vim.lsp.config('lua_ls', {})
+vim.lsp.config('basedpyright', {})
+vim.lsp.config('ruff', {})
 
 -- https:// github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTIN_CONFIG.md
 -- https:// github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
@@ -169,7 +169,7 @@ null_ls.setup({
         '--options=' .. os.getenv('DOTFILES') .. '/.astylerc',
       },
     }),
-    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.prettierd,
     -- null_ls.builtins.formatting.black,
   },
 })
