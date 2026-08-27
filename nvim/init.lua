@@ -34,9 +34,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local bufnr = ev.buf
 
     if client:supports_method('textDocument/completion') then
-      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
     end
-
+    vim.keymap.set('i', '<C-Space>', vim.lsp.completion.get, {
+      buffer = ev.buf,
+      desc = 'LSP completion',
+    })
     vim.keymap.set(
       'n',
       'gd',
