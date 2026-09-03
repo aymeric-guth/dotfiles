@@ -107,7 +107,7 @@ vim.opt.list = true
 vim.opt.listchars:append('space:⋅')
 vim.opt.listchars:append('eol:↴')
 
--- vim.lsp.set_log_level('warn')
+vim.lsp.set_log_level('info')
 
 vim.g.loaded_perl_provider = 0
 

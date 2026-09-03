@@ -116,7 +116,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
       bufnr = args.buf,
       async = false,
       filter = function(client)
-        return client.name ~= 'clangd'
+        return client.name ~= 'clangd' and client.name ~= 'ts_ls'
       end,
     })
   end,
@@ -150,6 +150,13 @@ vim.lsp.config('lua_ls', {
     },
   },
 })
+vim.lsp.config('ts_ls', {
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end,
+})
+
 vim.lsp.config('lua_ls', {})
 vim.lsp.config('basedpyright', {})
 vim.lsp.config('ruff', {})
