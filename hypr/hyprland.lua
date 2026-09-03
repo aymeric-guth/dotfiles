@@ -391,6 +391,10 @@ hl.bind(
   main_mod .. ' + ' .. alt .. ' + ' .. super .. ' + P',
   hl.dsp.exec_cmd([=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-playlist-edit.sh"]=])
 )
+hl.bind(
+  main_mod .. ' + ' .. shift .. '+ ' .. super .. ' + P',
+  hl.dsp.exec_cmd([=[/usr/bin/zsh -c -i "$DOTFILES/scripts/mplayer-playlist-open.sh"]=])
+)
 
 hl.bind(
   main_mod .. ' + ' .. shift .. ' + P',
